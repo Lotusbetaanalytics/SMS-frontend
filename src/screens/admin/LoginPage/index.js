@@ -1,7 +1,8 @@
 import React from "react";
+import styles from "./styles.module.css";
 
 function LoginPage() {
-  return <div>LoginPage</div>;
+  return <div className={styles.pageContainer}>LoginPage</div>;
 }
 
 export default LoginPage;
