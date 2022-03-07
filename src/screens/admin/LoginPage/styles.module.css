@@ -1,3 +1,16 @@
-.pageContainer {
-  padding: 1rem;
+.topCircle {
+  height: 120px;
+  width: 150px;
+  background-color: rgb(199, 4, 4);
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 10px;
+  top: 10px;
+}
+
+.downCircle {
+  height: 120px;
+  width: 150px;
+  background-color: rgb(4, 127, 199);
 }
