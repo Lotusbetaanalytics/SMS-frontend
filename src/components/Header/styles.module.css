@@ -1,0 +1,51 @@
+.headerContainer {
+  display: flex;
+  width: 100%;
+  background-color: gray;
+}
+
+.header {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  /* background-color: blue; */
+}
+
+.header img {
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.headerUser {
+  display: flex;
+}
+
+.headerNotify {
+  display: flex;
+  margin-left: 50%;
+  margin-top: 10px;
+}
+
+.headerUser h5 {
+  margin-left: 5px;
+  margin-top: 17px;
+}
+
+.headerIcondrop {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.headerNotify {
+  font-size: 30px;
+}
+
+.colorNotify {
+  background-color: #8afaa3;
+  width: 50%;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 2px;
+}

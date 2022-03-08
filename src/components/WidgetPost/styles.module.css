@@ -1,0 +1,104 @@
+.widgetPostContainer {
+  width: 24%;
+  height: 110vh;
+  margin-left: 2%;
+}
+
+.widgetHeader {
+  display: flex;
+  width: 100%;
+  padding: 1rem;
+  /* background-color: blue; */
+}
+
+.widgetHeader img {
+  width: 10%;
+  height: 10%;
+  border-radius: 50%;
+  margin-top: 5px;
+}
+
+.widgetUser {
+  display: flex;
+}
+
+.widgetNotify {
+  display: flex;
+  margin-left: 50%;
+  margin-top: 10px;
+}
+
+.widgetUser h5 {
+  margin-left: 5px;
+  margin-top: 17px;
+}
+
+.widgetIcondrop {
+  font-size: 25px;
+  margin-top: 10px;
+}
+
+.widgetNotify {
+  font-size: 30px;
+}
+
+.colorNotify {
+  background-color: #8afaa3;
+  width: 50%;
+  height: 12px;
+  border-radius: 50%;
+  margin-top: 2px;
+}
+
+.widgetCalendarContainer {
+  margin-left: 20px;
+}
+
+.widgetCalendarContainer {
+  color: gray;
+}
+
+.widgetCalendarContainer__navigate {
+  background-color: green;
+}
+
+.widgetCalendarContainer button {
+  font-size: 12px;
+  border-radius: 50%;
+}
+
+.noticeContainer {
+  padding: 1rem;
+}
+
+.noticeTitle {
+  margin-left: 5px;
+}
+
+.noticeCards {
+  display: flex;
+  width: 100%;
+  height: 60%;
+  background-color: whitesmoke;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+
+.noticeContent {
+  display: flex;
+  padding: 10px;
+}
+
+.noticeAnnoces {
+  margin-top: 10px;
+  font-size: 16px;
+}
+
+.noticeUser {
+  font-size: 14px;
+}
+
+/* .widgetCalendarContainer {
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border: none;
+} */

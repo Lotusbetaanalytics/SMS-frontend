@@ -23,14 +23,16 @@ function LoginPage() {
               type={"text"}
               onChange={(e) => setUserName(e.target.value)}
               value={userName}
+              required={true}
             />
           </div>
           <div className={styles.input_box}>
             <div>Password</div>
             <Input
-              type={"text"}
+              type={"password"}
               onChange={(e) => setPassword(e.target.value)}
               value={password}
+              reqiured={true}
             />
             <div className={styles.forgot}>forgot password?</div>
           </div>

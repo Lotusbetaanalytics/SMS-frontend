@@ -4,6 +4,7 @@ import "./App.css";
 import Input from "./components/Input";
 import Dashboard from "./screens/admin/Dashboard";
 import LoginPage from "./screens/admin/LoginPage";
+import NewStudent from "./screens/admin/NewStudent";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Route path="/" exact element={<LoginPage />} />
         <Route path="/input" exact element={<Input />} />
         <Route path="/admin/dashboard" exact element={<Dashboard />} />
+        <Route path="/admin/newstudent" exact element={<NewStudent />} />
       </Routes>
     </Router>
   );

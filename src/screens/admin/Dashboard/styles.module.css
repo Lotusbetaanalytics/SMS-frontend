@@ -1,3 +1,44 @@
 .dashboardContainer {
-  padding-left: 3%;
+  margin-left: 3%;
+  display: flex;
+}
+
+.dashboard {
+  width: 55%;
+  height: 110vh;
+  background-color: white;
+}
+
+.dashboardHeader {
+  padding: 1rem;
+}
+
+.dashboardHeader h4 {
+  font-weight: 500;
+}
+
+.dashboardCards {
+  display: flex;
+  background-color: whitesmoke;
+  padding: 1rem;
+  margin-left: 15px;
+  margin-right: 15px;
+  border-radius: 5px;
+  justify-content: space-between;
+  box-shadow: 0px 0px 3px rgba(0, 0, 0, 0.25);
+  margin-bottom: 15px;
+}
+
+.dashboardCards p {
+  font-weight: bold;
+}
+
+.dashboardScore {
+  width: 20%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  border: 3px solid #2d9cdb;
+  color: #2d9cdb;
 }

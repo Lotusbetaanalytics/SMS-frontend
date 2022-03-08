@@ -38,7 +38,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/">
+            <Link to="/admin/newstudent">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <IoIosPeople />
