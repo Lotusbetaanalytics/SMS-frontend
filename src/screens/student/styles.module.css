@@ -64,3 +64,15 @@
   left: -12px;
   bottom: 0;
 }
+.studentDashboard {
+  display: flex;
+  flex-direction: row;
+}
+.Sidebar {
+  display: flex;
+  width: 15%;
+}
+.info {
+  display: flex;
+  width: 60%;
+}

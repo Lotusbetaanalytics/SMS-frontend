@@ -1,0 +1,41 @@
+.infoContainer {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1% 3%;
+  height: 97vh;
+  /* padding: 1.5rem 3rem; */
+}
+.cardSize {
+  display: grid;
+}
+.cardContainer {
+  display: grid;
+  grid-template-columns: 23% 23% 23% 23%;
+  grid-gap: 3%;
+  margin-top: 30px;
+}
+
+.graphContainer {
+  display: grid;
+  grid-template-columns: 48% 48%;
+  grid-gap: 4%;
+  margin-top: 10px;
+}
+.statistic {
+  background-color: aqua;
+  padding: 3rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+.report {
+  background-color: yellow;
+  padding: 3rem;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+}
+.courseHeader {
+  margin-top: 20px;
+  border-radius: 5px;
+  padding: 0.5rem;
+  width: 20%;
+  border: 2px solid #2d9cdb;
+}

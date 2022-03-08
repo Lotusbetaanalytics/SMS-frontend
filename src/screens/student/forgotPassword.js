@@ -5,9 +5,8 @@ import Input from "../../components/Input";
 import styles from "./styles.module.css";
 import logo from "../../assets/Rectangle 73girl.png"
 
-function StudentLogin() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+function ForgotPassword() {
+  const [email, setEmail] = useState("");
   const submitHandler = () => {
 
   }
@@ -19,26 +18,17 @@ function StudentLogin() {
       <div className={styles.center_}>
         <div className={styles.left_}>
           <div className={styles.input_box_}>
-            <div className={styles.title_}>Student Login</div>
-            <div>Username</div>
+            <div className={styles.title_}>Forgot Password</div>
+            <div>Email</div>
             <Input
               type={"text"}
-              onChange={(e) => setUserName(e.target.value)}
-              value={userName}
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
             />
-          </div>
-          <div className={styles.input_box_}>
-            <div>Password</div>
-            <Input
-              type={"text"}
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            <div className={styles.forgot_}>forgot password?</div>
           </div>
           <div className={styles.input_box_}>
             <Button className={styles.blue_}
-              buttonName={"Login"}
+              buttonName={"Submit"}
               onClick={submitHandler}
             />
           </div>
@@ -54,4 +44,4 @@ function StudentLogin() {
   );
 }
 
-export default StudentLogin;
+export default ForgotPassword;

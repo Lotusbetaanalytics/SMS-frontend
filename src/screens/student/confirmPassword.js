@@ -5,9 +5,9 @@ import Input from "../../components/Input";
 import styles from "./styles.module.css";
 import logo from "../../assets/Rectangle 73girl.png"
 
-function StudentLogin() {
-  const [userName, setUserName] = useState("");
-  const [password, setPassword] = useState("");
+function ConfirmPassword() {
+  const [newPassword, setNewPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const submitHandler = () => {
 
   }
@@ -19,26 +19,25 @@ function StudentLogin() {
       <div className={styles.center_}>
         <div className={styles.left_}>
           <div className={styles.input_box_}>
-            <div className={styles.title_}>Student Login</div>
-            <div>Username</div>
+            <div className={styles.title_}>Forgot Password</div>
+            <div>New Password</div>
             <Input
               type={"text"}
-              onChange={(e) => setUserName(e.target.value)}
-              value={userName}
+              onChange={(e) => setNewPassword(e.target.value)}
+              value={newPassword}
             />
           </div>
           <div className={styles.input_box_}>
-            <div>Password</div>
+            <div>Confirm Password</div>
             <Input
               type={"text"}
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
+              onChange={(e) => setConfirmPassword(e.target.value)}
+              value={confirmPassword}
             />
-            <div className={styles.forgot_}>forgot password?</div>
           </div>
           <div className={styles.input_box_}>
             <Button className={styles.blue_}
-              buttonName={"Login"}
+              buttonName={"Submit"}
               onClick={submitHandler}
             />
           </div>
@@ -54,4 +53,4 @@ function StudentLogin() {
   );
 }
 
-export default StudentLogin;
+export default ConfirmPassword;
