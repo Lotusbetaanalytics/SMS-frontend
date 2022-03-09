@@ -8,8 +8,11 @@ function NewStudent() {
   return (
     <div className={styles.newStudentContainer}>
       <Sidebar />
-      <div>
-        <Header />
+      <Header userN="Fonsus" />
+      <div className={styles.newStudent}>
+        <div className={styles.newStudentTitle}>
+          <span>Create New Student</span>
+        </div>
       </div>
     </div>
   );

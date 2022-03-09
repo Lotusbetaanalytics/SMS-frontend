@@ -1,5 +1,24 @@
 .newStudentContainer {
-  display: flex;
   margin-left: 3%;
+}
+
+.newStudent {
+  padding-top: 2rem;
+}
+
+.newStudentTitle {
+  display: flex;
+  width: 80%;
+  padding-top: 1.5rem;
+  margin-left: 40px;
+}
+
+.newStudentTitle span {
+  /* padding: 1rem;
   width: 100%;
+  margin-left: 5%;
+  font-weight: bold;
+  background-color: #2d9cdb;
+  border-radius: 5px;
+  color: azure; */
 }

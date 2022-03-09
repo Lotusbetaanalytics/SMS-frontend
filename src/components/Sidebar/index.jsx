@@ -10,9 +10,14 @@ import { BsBuilding } from "react-icons/bs";
 import { ImBook } from "react-icons/im";
 import { FaAssistiveListeningSystems } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
+import { userLogout } from "../../redux/action/userAction";
+import { useDispatch } from "react-redux";
 
 const Sidebar = () => {
-  const logoutHandler = () => {};
+  const dispatch = useDispatch();
+  const logoutHandler = () => {
+    dispatch(userLogout());
+  };
 
   return (
     <div className={styles.sidebarContainer}>
@@ -114,7 +119,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="" onClick={logoutHandler}>
+            <Link to="/" onClick={logoutHandler}>
               <div className={styles.logout}>
                 <div className={styles.iconContainer}>
                   <div className={styles.icon}>

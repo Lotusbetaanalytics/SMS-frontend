@@ -1,25 +1,33 @@
 .headerContainer {
   display: flex;
-  width: 100%;
-  background-color: gray;
+  height: 80px;
+  justify-content: center;
+  align-items: center;
 }
 
 .header {
   display: flex;
   width: 100%;
-  padding: 1rem;
+  /* padding-left: 50px; */
   /* background-color: blue; */
+  padding-top: 20px;
+  justify-content: space-around;
 }
 
-.header img {
-  width: 10%;
-  height: 10%;
-  border-radius: 50%;
-  margin-top: 5px;
+.header input {
+  margin-top: 10px;
 }
 
 .headerUser {
   display: flex;
+  width: 15%;
+}
+
+.header img {
+  width: 30%;
+  height: 34px;
+  border-radius: 50%;
+  margin-top: 15px;
 }
 
 .headerNotify {
@@ -35,16 +43,20 @@
 
 .headerIcondrop {
   font-size: 25px;
-  margin-top: 10px;
+  margin-top: 15px;
+}
+
+.headerTitle {
+  margin-top: 5px;
 }
 
 .headerNotify {
-  font-size: 30px;
+  font-size: 35px;
 }
 
 .colorNotify {
   background-color: #8afaa3;
-  width: 50%;
+  width: 60%;
   height: 12px;
   border-radius: 50%;
   margin-top: 2px;
