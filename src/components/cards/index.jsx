@@ -1,6 +1,6 @@
 import React from 'react'
 import styles from './styles.module.css'
-import { FcDepartment} from "react-icons/fc";
+
 
 const Cards = ({bgColor,departmentName,title,icon}) => {
    

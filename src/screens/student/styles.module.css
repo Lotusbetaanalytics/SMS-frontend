@@ -76,3 +76,9 @@
   display: flex;
   width: 60%;
 }
+.leftBar {
+  display: flex;
+  width: 18%;
+  padding: 2% 2%;
+  box-shadow: -1px 6px 16px 2px rgba(168, 152, 152, 0.24);
+}

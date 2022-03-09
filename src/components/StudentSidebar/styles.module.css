@@ -117,3 +117,20 @@
 .icon ul {
   text-decoration: none;
 }
+.notice {
+  font-weight: bold;
+  font-size: 14px;
+  margin-left: 15px;
+  background-color: whitesmoke;
+}
+.calender {
+  padding: 2rem;
+  background-color: red;
+  height: 120px;
+  margin-bottom: 20px;
+  box-shadow: 11px 9px 22px -4px rgba(110, 100, 100, 0.07);
+}
+.board {
+  height: 100px;
+  overflow-y: scroll;
+}
