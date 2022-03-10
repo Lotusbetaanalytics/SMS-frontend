@@ -124,13 +124,53 @@
   background-color: whitesmoke;
 }
 .calender {
-  padding: 2rem;
-  background-color: red;
-  height: 120px;
-  margin-bottom: 20px;
-  box-shadow: 11px 9px 22px -4px rgba(110, 100, 100, 0.07);
+  display: flex;
+  height: 270px;
+  margin-bottom: 10px;
+  box-shadow: 11px 9px 22px -4px rgba(70, 47, 47, 0.07);
+  width: 90%;
 }
 .board {
-  height: 100px;
+  height: 80px;
   overflow-y: scroll;
+}
+.notificationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.user {
+  display: flex;
+  align-items: center;
+}
+.userName {
+  font-size: 12px;
+}
+.bar {
+  display: flex;
+  align-items: center;
+}
+.colorNotify {
+  height: 15px;
+  width: 15px;
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  background-color: green;
+  font-size: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-left: -3px;
+  margin-bottom: 10px;
+}
+.userImg {
+  height: 40px;
+  width: 40px;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.userImg img {
+  height: 90%;
+  width: 90%;
 }

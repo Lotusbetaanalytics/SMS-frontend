@@ -12,6 +12,8 @@ import LoginPage from "./screens/admin/LoginPage";
 import ConfirmPassword from "./screens/student/confirmPassword";
 import StudentDashboard from "./screens/student/dashboard";
 import ForgotPassword from "./screens/student/forgotPassword";
+import AcademicHistory from "./screens/student/profileScreen/academy";
+import AccountInfo from "./screens/student/profileScreen/health";
 import StudentLogin from "./screens/student/studentLogin";
 // import StudentPage from "./screens/student/studentLogin";
 
@@ -29,8 +31,9 @@ function App() {
         <Route path="/card2" exact element={<CardTwo/>} />
         <Route path="/info" exact element={<Info/>} />
         <Route path="/notification" exact element={<NotificationCard/>} />
-        <Route path="/student/dashboard" exact element={<StudentDashboard/>} />
+        <Route path="/student/login/dashboard" exact element={<StudentDashboard/>} />
         <Route path="/sidebar2" exact element={<SidebarTwo/>} />
+        <Route path="/student/profile/academyhistory" exact element={<AcademicHistory/>} />
       </Routes>
     </Router>
   );

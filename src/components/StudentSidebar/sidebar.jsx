@@ -1,15 +1,35 @@
-import React from 'react'
+import React, { useState } from 'react'
 import CardTwo from '../cards/card'
 import NotificationCard from '../cards/notificationCard'
+import Calendar from "react-calendar";
 import styles from "./styles.module.css";
+import 'react-calendar/dist/Calendar.css';
+import { MdOutlineNotificationsActive } from "react-icons/md";
+import adminpic from "../../assets/adminpic.png";
+
+
 const SidebarTwo = () => {
+  const [value, onChange] = useState(new Date());
+
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const mystudentDetails = myDetail;
+  console.log(mystudentDetails)
   return (
     <div>
        <div className={styles.notificationBar}>
-            this is notification
+          <div className={styles.user}>
+            <div className={styles.userImg}> <img src={adminpic} alt="" /> </div>
+            <div className={styles.userName}>{mystudentDetails && mystudentDetails.first_name}</div>
+          </div>
+          <div className={styles.bar}>
+            <MdOutlineNotificationsActive />
+            <p className={styles.colorNotify}>2</p>
+            </div>
         </div>
        <div className={styles.calender}>
-           this is calender
+         <div>
+         <Calendar onChange={onChange} value={value} />  
+         </div>
         </div>
        <div className={styles.personel}>
             <CardTwo bgColor={'#8AFAA326'} name={'Mr John Doe'} header={"Designated Course adviser"}/>

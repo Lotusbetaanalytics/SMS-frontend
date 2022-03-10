@@ -5,10 +5,15 @@ import { CgAwards } from "react-icons/cg";
 import {  MdOutlineAssessment} from "react-icons/md";
 import styles from './styles.module.css'
 const Info = () => {
+
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const mystudentDetails = myDetail;
+  console.log(mystudentDetails)
+
   return (
     <div className={styles.infoContainer}>
         <div className={styles.salutation}>
-            <div className={styles.hi}>Hi Chris</div>
+            <div className={styles.hi}>Hi {mystudentDetails && mystudentDetails.first_name}  {mystudentDetails && mystudentDetails.middle_name}</div>
             <div className={styles.salute}>Welcome Back</div>
         </div>
         <div className={styles.cardContainer}>
@@ -57,6 +62,7 @@ const Info = () => {
             <div>Registered courses </div>   
         </div>
         <div className={styles.courseContainer}>
+            
         </div>
     </div>
   )

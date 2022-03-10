@@ -1,14 +1,29 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import adminpic from "../../assets/adminpic.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
 import { GiBookshelf} from "react-icons/gi";
 import { FaRegUser,FaClipboardList } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
+import { studentDetails, studentLogout } from "../../redux/studentActions/studentAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const StudentSidebar = (props) => {
-  const logoutHandler = () => {};
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
+
+
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const mystudentDetails = myDetail;
+  console.log(mystudentDetails)
+
+
+
+  const logoutHandler = () => {
+    dispatch(studentLogout())
+    setTimeout(()=>navigate("../../"),[2000]);
+  };
 
   return (
     <div className={styles.sidebarContainer}>
@@ -16,7 +31,7 @@ const StudentSidebar = (props) => {
         <img src={adminpic} alt="User" />
       </div>
       <div className={styles.sidebarTitle}>
-        <h3>Fonsus Ali</h3>
+        <h3>{mystudentDetails && mystudentDetails.first_name}</h3>
       </div>
       <div className={styles.sidebarIconContainer}>
         <ul>

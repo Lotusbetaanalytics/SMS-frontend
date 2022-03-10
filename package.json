@@ -2,6 +2,7 @@
   "name": "sms-frontend",
   "version": "0.1.0",
   "private": true,
+  "proxy": "https://sms-lotus.herokuapp.com",
   "dependencies": {
     "@chakra-ui/react": "^1.8.6",
     "@emotion/react": "^11.8.1",
@@ -20,6 +21,7 @@
     "react-router-dom": "^6.2.2",
     "react-scripts": "5.0.0",
     "redux": "^4.1.2",
+    "redux-devtools-extension": "^2.13.9",
     "redux-thunk": "^2.4.1",
     "web-vitals": "^2.1.4"
   },
