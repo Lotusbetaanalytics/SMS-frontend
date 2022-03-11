@@ -7,6 +7,9 @@ import {
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
+  USER_FORGOTPASSWORD_REQUEST,
+  USER_FORGOTPASSWORD_SUCCESS,
+  USER_FORGOTPASSWORD_FAIL,
 } from "../constants/userConstants";
 
 export const loginUser = (email, password) => async (dispatch) => {
@@ -30,7 +33,6 @@ export const loginUser = (email, password) => async (dispatch) => {
       payload: data,
     });
     localStorage.setItem("userInfo", JSON.stringify(data));
-    console.log(data);
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -63,12 +65,13 @@ export const userDetails = () => async (dispatch, getState) => {
       },
     };
 
-    const { data } = await axios.get("/api/v1/admin/self", config);
+    const { data } = await axios.get("/user/account", config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,
     });
     localStorage.setItem("userDetails", JSON.stringify(data));
+    console.log(data);
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,
@@ -80,5 +83,40 @@ export const userDetails = () => async (dispatch, getState) => {
 
     localStorage.removeItem("userInfo");
     dispatch({ type: USER_LOGOUT });
+  }
+};
+
+export const userForgotPassword = (email) => async (dispatch) => {
+  try {
+    dispatch({
+      type: USER_FORGOTPASSWORD_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/password_reset/",
+      {
+        email,
+      },
+      config
+    );
+    dispatch({
+      type: USER_FORGOTPASSWORD_SUCCESS,
+      payload: data,
+    });
+    console.log(data);
+    console.log(email);
+  } catch (error) {
+    dispatch({
+      type: USER_FORGOTPASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
   }
 };

@@ -3,6 +3,12 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_DETAILS_SUCCESS,
+  USER_DETAILS_REQUEST,
+  USER_DETAILS_FAIL,
+  USER_FORGOTPASSWORD_REQUEST,
+  USER_FORGOTPASSWORD_SUCCESS,
+  USER_FORGOTPASSWORD_FAIL,
 } from "../constants/userConstants";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -15,6 +21,32 @@ export const userLoginReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case USER_LOGOUT:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const userDetailsReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_DETAILS_REQUEST:
+      return { loading: true };
+    case USER_DETAILS_SUCCESS:
+      return { loading: false, success: true, user: action.payload.data };
+    case USER_DETAILS_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const userForgotPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case USER_FORGOTPASSWORD_REQUEST:
+      return { loading: true };
+    case USER_FORGOTPASSWORD_SUCCESS:
+      return { loading: false, success: true, user: action.payload.data };
+    case USER_FORGOTPASSWORD_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

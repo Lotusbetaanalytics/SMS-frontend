@@ -1,35 +1,29 @@
-import React, { useEffect, useState } from "react";
-// import Button from "../../../components/Button";
-import Circle from "../../../components/Circle";
-import Input from "../../../components/Input";
+import React, { useState } from "react";
+import {
+  Alert,
+  AlertIcon,
+  Center,
+  CircularProgress,
+  Input,
+} from "@chakra-ui/react";
 import styles from "./styles.module.css";
-import logo from "../../../assets/logo1.png";
+import Circle from "../../../components/Circle";
+import forgetpic from "../../../assets/forgetpic.png";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../../redux/action/userAction";
-import { Link, useNavigate } from "react-router-dom";
-import { Alert, AlertIcon, Center, CircularProgress } from "@chakra-ui/react";
+import { userForgotPassword } from "../../../redux/action/userAction";
+import { Link } from "react-router-dom";
 
-function LoginPage() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
+function ForgotPassword() {
   const dispatch = useDispatch();
-  const navigate = useNavigate();
+  const [email, setEmail] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password));
+    dispatch(userForgotPassword(email));
   };
 
-  const userLogin = useSelector((state) => state.userLogin);
-  const { loading, error, success, userInfo } = userLogin;
-  console.log(userInfo);
-
-  useEffect(() => {
-    if (userInfo) {
-      navigate("/admin/dashboard");
-    }
-  });
+  const userforgetPassword = useSelector((state) => state.userforgetPassword);
+  const { loading, error, success } = userforgetPassword;
 
   return (
     <div className={styles.pageContainer}>
@@ -47,7 +41,7 @@ function LoginPage() {
           {success && (
             <Alert status="success">
               <AlertIcon />
-              login Successfully
+              Check your Email to Retrieve your password
             </Alert>
           )}
           {loading ? (
@@ -57,8 +51,8 @@ function LoginPage() {
           ) : (
             <form onSubmit={submitHandler}>
               <div className={styles.input_box}>
-                <div className={styles.title}>Login</div>
-                <div>Username</div>
+                <div className={styles.title}>Forgot Password</div>
+                <div>Email</div>
                 <Input
                   type={"text"}
                   onChange={(e) => setEmail(e.target.value)}
@@ -67,32 +61,22 @@ function LoginPage() {
                 />
               </div>
               <div className={styles.input_box}>
-                <div>Password</div>
-                <Input
-                  type={"password"}
-                  onChange={(e) => setPassword(e.target.value)}
-                  value={password}
-                  reqiured={true}
-                />
-                <Link to="/staff/forgotpassword">
-                  <div className={styles.forgot}>forgot password?</div>
+                <Link to="/staff/confirmpassword">
+                  <p>Confirm Password</p>
                 </Link>
-              </div>
-              <div className={styles.input_box}>
                 <button
                   type={"submit"}
                   className={styles.stBtn}
                   onClick={submitHandler}
-                  disabled={!email || !password}
                 >
-                  Login
+                  Submit
                 </button>
               </div>
             </form>
           )}
         </div>
         <div className={styles.right}>
-          <img src={logo} alt="caption" />
+          <img src={forgetpic} alt="caption" />
         </div>
       </div>
       <div className={styles.downCircle}>
@@ -102,4 +86,4 @@ function LoginPage() {
   );
 }
 
-export default LoginPage;
+export default ForgotPassword;

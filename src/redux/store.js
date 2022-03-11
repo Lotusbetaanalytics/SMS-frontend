@@ -1,10 +1,18 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { userLoginReducer } from "./reducers/userReducer";
+import {
+  userDetailsReducer,
+  userForgotPasswordReducer,
+  userLoginReducer,
+} from "./reducers/userReducer";
+import { createNewStudentReducer } from "./reducers/createStudentReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
+  userDetails: userDetailsReducer,
+  userforgetPassword: userForgotPasswordReducer,
+  postNewStudent: createNewStudentReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
