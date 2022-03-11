@@ -6,7 +6,7 @@ import logo from "../../assets/Rectangle 73girl.png"
 import {Alert, useToast, Button} from  "@chakra-ui/react";
 import { STUDENT_LOGIN_RESET } from "../../redux/studentConstants/studentConstants";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { LoginStudent, studentDetails } from "../../redux/studentActions/studentAction";
 
 function StudentLogin() {
@@ -19,7 +19,7 @@ function StudentLogin() {
   const[successMsg,setSuccessMsg] = useState("")
 
   const studentLogin = useSelector((state) => state.studentLogin);
-  const {loading, error, success, studentInfo} = studentLogin
+  const {loading, error,studentInfo} = studentLogin
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -46,7 +46,7 @@ function StudentLogin() {
   // }
   useEffect(()=>{
     if (studentInfo){
-      navigate("./dashboard")
+      navigate("/student/dashboard")
     }
   },[studentInfo,navigate])
   return (
@@ -82,7 +82,7 @@ function StudentLogin() {
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <div className={styles.forgot_}>forgot password?</div>
+            <div className={styles.forgot_}><Link to="/student/forgotpassword">forgot password?</Link></div>
           </div>
           <div className={styles.input_box_}>
             {loading? (

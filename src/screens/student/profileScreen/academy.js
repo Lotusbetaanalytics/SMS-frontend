@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
 import SidebarTwo from '../../../components/StudentSidebar/sidebar';
-import EditNavbar from '../../component/navigation_';
+
 
 import styles from "./styles.module.css"
 
@@ -18,7 +19,7 @@ const AcademicHistory = () => {
   return <div >
         <div> 
             <div className={styles.layout}>
-                <div className={styles.Sidebar}><StudentSidebar/></div>
+                <div className={styles.Sidebar}><StudentSidebar profile={styles.remote}/></div>
                 <div className={styles.editContainer}>
                     <EditNavbar official={styles.remote} />
                     <div className={styles.formContainer}>
@@ -40,7 +41,7 @@ const AcademicHistory = () => {
                       <input type="email" value={qualification_earn} onChange={(e) => setQualification_earn(e.target.value)} />
                     </div>
                         </form>
-                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/accountInfo"> <div className={`${styles.btn} ${styles.purple}`}>Account Information</div></Link>
+                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/accountInfo"> <div className={`${styles.btn} ${styles.purple}`}>Health Data</div></Link>
                     </div>
                 </div>
                 <div className={styles.leftBar}><SidebarTwo/></div>

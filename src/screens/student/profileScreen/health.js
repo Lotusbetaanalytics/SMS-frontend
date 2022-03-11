@@ -22,7 +22,7 @@ const HealthData = () => {
   return <div >
         <div> 
             <div className={styles.layout}>
-                <div className={styles.Sidebar}><StudentSidebar/></div>
+                <div className={styles.Sidebar}><StudentSidebar profile={styles.remote}/></div>
                 <div className={styles.editContainer}>
                     <EditNavbar account={styles.remote} />
                     <div className={styles.formContainer}>
@@ -108,7 +108,7 @@ const HealthData = () => {
                       </select>
                     </div>
                         </form>
-                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/profileImage"> <div className={`${styles.btn} ${styles.purple}`}>Photo Upload</div></Link> 
+                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/profileImage"> <div className={`${styles.btn} ${styles.purple}`}>Family Data</div></Link> 
                     </div>
                 </div>
                 <div className={styles.leftBar}><SidebarTwo/></div>

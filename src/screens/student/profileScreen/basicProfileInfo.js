@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
 import SidebarTwo from "../../../components/StudentSidebar/sidebar";
-import EditNavbar from "../../component/navigation_";
 import styles from "./styles.module.css";
 
 const BasicProfileInfo = () => {
@@ -19,7 +19,7 @@ const BasicProfileInfo = () => {
       <div>
         <div className={styles.layout}>
           <div className={styles.Sidebar}>
-            <StudentSidebar />
+            <StudentSidebar profile={styles.remote} />
           </div>
           <div className={styles.editContainer}>
             <EditNavbar basic={styles.remote} />
@@ -65,15 +65,6 @@ const BasicProfileInfo = () => {
                     onChange={(e) => setSpecialization(e.target.value)}
                   />
                 </div>
-
-                <div className={styles.inputContainer_}>
-                  <label>Mobile Number</label>
-                  <input
-                    type="email"
-                    value={mobile}
-                    onChange={(e) => setMobile(e.target.value)}
-                  />
-                </div>
                 <div className={styles.inputContainer_}>
                   <label>Matric Number</label>
                   <input
@@ -88,11 +79,10 @@ const BasicProfileInfo = () => {
                 className={`${styles.btn} ${styles.lilac}`}
               >
                 Save information
-              </button>{" "}
+              </button>
               <Link to="/edit/emergencyInfo">
-                {" "}
                 <div className={`${styles.btn} ${styles.purple}`}>
-                  Emergency information
+                  Bio Data
                 </div>
               </Link>
             </div>

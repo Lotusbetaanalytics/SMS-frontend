@@ -22,7 +22,7 @@ const StudentSidebar = (props) => {
 
   const logoutHandler = () => {
     dispatch(studentLogout())
-    setTimeout(()=>navigate("../../"),[2000]);
+    setTimeout(()=>navigate("/student/login"),[2000]);
   };
 
   return (
@@ -36,7 +36,7 @@ const StudentSidebar = (props) => {
       <div className={styles.sidebarIconContainer}>
         <ul>
           <li className={props.dashboard}>
-            <Link to="/admin/dashboard">
+            <Link to="/student/dashboard">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <MdSpaceDashboard />
@@ -49,7 +49,7 @@ const StudentSidebar = (props) => {
           </li>
 
           <li className={props.profile}>
-            <Link to="/">
+            <Link to="/student/profile/basicInfo">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <FaRegUser />

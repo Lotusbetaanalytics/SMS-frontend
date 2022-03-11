@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  FORGET_PASSWORD_FAIL,
+  FORGET_PASSWORD_REQUEST,
+  FORGET_PASSWORD_SUCCESS,
   STUDENT_DETAILS_FAIL,
   STUDENT_DETAILS_REQUEST,
   STUDENT_DETAILS_SUCCESS,
@@ -15,6 +18,7 @@ export const LoginStudent = (email, password) => async (dispatch) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
+        
       },
     };
     const { data } = await axios.post("/user/token/", { email, password }, config);
@@ -57,6 +61,35 @@ export const studentDetails = () => async (dispatch,getState) => {
   } catch (error) {
     dispatch({
       type: STUDENT_DETAILS_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+export const forgetpassword = (email) => async (dispatch) => {
+  try {
+    dispatch({ type: FORGET_PASSWORD_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/password_reset/",
+      { email },
+      config
+    );
+    dispatch({
+      type: FORGET_PASSWORD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: FORGET_PASSWORD_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

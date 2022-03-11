@@ -23,15 +23,15 @@
   box-shadow: -1px 6px 16px 2px rgba(168, 152, 152, 0.24);
 }
 .remote {
-  background-color: #fff;
-  color: black;
-  border: solid 2px rgb(43, 46, 226);
+  background-color: rgba(45, 156, 219, 1);
+  color: rgb(255, 255, 255);
+  border: solid 2px rgb(170, 169, 169);
   border-radius: 5px;
 }
 .formContainer {
   margin-top: 5%;
   width: 80%;
-  margin-left: 5%;
+  margin-left: 10%;
   height: 100%;
 }
 form {
@@ -55,7 +55,7 @@ select {
   height: 3rem;
   padding: 0.5rem 0.5rem;
   display: block;
-  border: 1px solid rgb(3, 3, 3);
+  border: 1px solid rgb(204, 203, 203);
   border-radius: 5px;
   outline: none;
 }

@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import EditNavbar from "../../component/navigation_";
+import SidebarTwo from "../../../components/StudentSidebar/sidebar";
 import styles from "./styles.module.css";
 
 const FamilyData = () => {
@@ -19,14 +20,14 @@ const FamilyData = () => {
       <div>
         <div className={styles.layout}>
           <div className={styles.Sidebar}>
-            <StudentSidebar />
+            <StudentSidebar profile={styles.remote} />
           </div>
           <div className={styles.editContainer}>
             <EditNavbar photo={styles.remote} />
             <div className={styles.formContainer}>
               <form onSubmit={submitHandler}>
                 <div className={styles.inputContainer_}>
-                  <label>next_of_kin_full_name</label>
+                  <label>Next of kin fullname</label>
                   <input
                     type="text"
                     value={next_of_kin_full_name}
@@ -34,7 +35,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>next_of_kin_phone_no_1</label>
+                  <label>Next of kin phone number_1</label>
                   <input
                     type="text"
                     value={next_of_kin_phone_no_1}
@@ -42,7 +43,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>next_of_kin_phone_no_2</label>
+                  <label>Next of kin phone number_2</label>
                   <input
                     type="text"
                     value={next_of_kin_phone_no_2}
@@ -50,7 +51,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>next_of_kin_address</label>
+                  <label>Next of kin address</label>
                   <input
                     type="text"
                     value={next_of_kin_address}
@@ -58,7 +59,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>guardian_full_name</label>
+                  <label>Guardian fullname</label>
                   <input
                     type="text"
                     value={guardian_full_name}
@@ -66,7 +67,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>guardian_phone_no_1</label>
+                  <label>Guardian phone number_1</label>
                   <input
                     type="text"
                     value={guardian_phone_no_1}
@@ -74,7 +75,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>guardian_phone_no_2</label>
+                  <label>Guardian phone number_2</label>
                   <input
                     type="text"
                     value={guardian_phone_no_2}
@@ -82,7 +83,7 @@ const FamilyData = () => {
                   />
                 </div>
                 <div className={styles.inputContainer_}>
-                  <label>guardian_address</label>
+                  <label>Guardian address</label>
                   <input
                     type="text"
                     value={guardian_address}

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import Header from '../../component/header_';
-import EditNavbar from '../../component/navigation_';
-import PictureBar from '../../component/pictureBar_';
+import EditNavbar from '../../../components/navigation_';
+import StudentSidebar from '../../../components/StudentSidebar';
+import SidebarTwo from '../../../components/StudentSidebar/sidebar';
+
 import styles from "./styles.module.css"
 
 const BioData = () => {
@@ -24,7 +25,7 @@ const BioData = () => {
   return <div >
         <div> 
             <div className={styles.layout}>
-                <div className={styles.Sidebar}><StudentSidebar/></div>
+                <div className={styles.Sidebar}><StudentSidebar profile={styles.remote}/></div>
                 <div className={styles.editContainer}>
                     <EditNavbar emergency={styles.remote} />
                     <div className={styles.formContainer}>
@@ -79,7 +80,7 @@ const BioData = () => {
                       <input type="textarea" value={phone_no_2} onChange={(e) => setPhone_no_2(e.target.value)} />
                     </div>
                         </form>
-                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/officailInfo"> <div className={`${styles.btn} ${styles.purple}`}>Official Information</div></Link>
+                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/officailInfo"> <div className={`${styles.btn} ${styles.purple}`}>Academic History</div></Link>
                     </div>
                 </div>
                 <div className={styles.leftBar}><SidebarTwo/></div>

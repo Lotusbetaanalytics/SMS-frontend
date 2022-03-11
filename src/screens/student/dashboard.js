@@ -13,7 +13,7 @@ const StudentDashboard = () => {
   }, [dispatch]);
   return (
     <div className={styles.studentDashboard}>
-        <div className={styles.Sidebar}><StudentSidebar/></div>
+        <div className={styles.Sidebar}><StudentSidebar dashboard={styles.remote} /></div>
         <div className={styles.info}><Info/></div>
         <div className={styles.leftBar}><SidebarTwo/></div>
     </div>

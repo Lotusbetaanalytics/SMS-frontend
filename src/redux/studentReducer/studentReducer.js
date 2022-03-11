@@ -1,4 +1,4 @@
-import { STUDENT_DETAILS_REQUEST, STUDENT_DETAILS_SUCCESS, STUDENT_LOGIN_FAIL, STUDENT_LOGIN_REQUEST, STUDENT_LOGIN_RESET, STUDENT_LOGIN_SUCCESS, STUDENT_LOGOUT } from "../studentConstants/studentConstants";
+import {  FORGET_PASSWORD_FAIL, FORGET_PASSWORD_REQUEST, FORGET_PASSWORD_SUCCESS, STUDENT_DETAILS_REQUEST, STUDENT_DETAILS_SUCCESS, STUDENT_LOGIN_FAIL, STUDENT_LOGIN_REQUEST, STUDENT_LOGIN_RESET, STUDENT_LOGIN_SUCCESS, STUDENT_LOGOUT } from "../studentConstants/studentConstants";
 
 export const studentLoginReducer = (state = {}, action) => {
     switch (action.type) {
@@ -29,3 +29,16 @@ export const studentDetailsReducer = (state = {},action) => {
             return state;
     }
 }
+
+export const forgetPasswordReducer = (state = {}, action) => {
+  switch (action.type) {
+    case FORGET_PASSWORD_REQUEST:
+      return { loading: true };
+    case FORGET_PASSWORD_SUCCESS:
+      return { loading: false, success: true };
+    case FORGET_PASSWORD_FAIL:
+      return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
