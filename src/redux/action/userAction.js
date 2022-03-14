@@ -61,11 +61,11 @@ export const userDetails = () => async (dispatch, getState) => {
     const config = {
       headers: {
         "Content-Type": "application/json",
-        Authorization: `Bearer ${userInfo.token}`,
+        Authorization: `Bearer ${userInfo.access}`,
       },
     };
 
-    const { data } = await axios.get("/user/account", config);
+    const { data } = await axios.get("/user/account/", config);
     dispatch({
       type: USER_DETAILS_SUCCESS,
       payload: data,

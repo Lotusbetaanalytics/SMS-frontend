@@ -19,13 +19,18 @@ const Sidebar = () => {
     dispatch(userLogout());
   };
 
+  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const person = user;
+  console.log(person.first_name, person.last_name);
+
   return (
     <div className={styles.sidebarContainer}>
       <div className={styles.sidebarImgContent}>
         <img src={adminpic} alt="User" />
       </div>
       <div className={styles.sidebarTitle}>
-        <h3>Fonsus Ali</h3>
+        <h3>{person.first_name}</h3>
+        {/* <h3>{person.last_name}</h3> */}
       </div>
       <div className={styles.sidebarIconContainer}>
         <ul>
@@ -56,7 +61,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/">
+            <Link to="/staff/newstaff">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <IoMdPeople />
@@ -69,7 +74,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/">
+            <Link to="/staff/newfaculty">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <FaCity />
@@ -82,7 +87,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/">
+            <Link to="/staff/newdepartment">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <BsBuilding />

@@ -15,13 +15,18 @@ function WidgetPost() {
     setCalDate(calDate);
   }
 
+  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const person = user;
+  console.log(person.first_name, person.last_name);
+
   return (
     <div className={styles.widgetPostContainer}>
       <div className={styles.widgetHeader}>
         <img src={adminpic} alt="User" />
         <div className={styles.widgetUserName}>
           <div className={styles.widgetUser}>
-            <h5>Fonsus Ali</h5>
+            <h5>{person.first_name}</h5>
+            <h5>{person.last_name}</h5>
             <div className={styles.widgetIcondrop}>
               <RiArrowDownSFill />
             </div>

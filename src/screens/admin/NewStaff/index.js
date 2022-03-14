@@ -1,19 +1,19 @@
-import { useToast } from "@chakra-ui/react";
 import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
-import { createNewStudent } from "../../../redux/action/createStudentAction";
+import Header from "../../../components/Header";
 import styles from "./styles.module.css";
+import { newStaff } from "../../../redux/action/staffAction";
+import { useDispatch } from "react-redux";
+import { useToast } from "@chakra-ui/react";
 
-function NewStudent() {
+function NewStaff({ success }) {
   const [first_Name, setFirst_Name] = useState("");
   const [middle_Name, setMiddle_Name] = useState("");
   const [last_Name, setLast_Name] = useState("");
-  const [matric_no, setMatric_no] = useState("");
-  const [student_id, setStudent_id] = useState("");
   const [email, setEmail] = useState("");
   const [specialization, setSpecialization] = useState("");
+  const [employee_id, setEmployee_id] = useState("");
+  //   const [role, setRole] = useState("");
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -28,27 +28,27 @@ function NewStudent() {
         email,
         specialization,
       },
-      matric_no,
-      student_id,
+      employee_id,
       specialization,
     };
-    dispatch(createNewStudent(data, toast));
+    dispatch(newStaff(data, toast));
   };
-  const postNewStudent = useSelector((state) => state.postNewStudent);
-  const { success, error, loading } = postNewStudent;
-  console.log(postNewStudent);
+
+  // if (success) {
+  //   window.location.reload(false);
+  // }
 
   return (
-    <div className={styles.newStudentContainer}>
+    <div className={styles.newStaffContainer}>
       <Sidebar />
       <Header userN="Fonsus" />
-      <div className={styles.newStudent}>
-        <div className={styles.newStudentTitle}>
-          <span>Create New Student</span>
+      <div className={styles.newStaff}>
+        <div className={styles.newStaffTitle}>
+          <span>Create New Staff</span>
         </div>
-        <div className={styles.newStudentContent}>
+        <div className={styles.newStaffContent}>
           <form onSubmit={submitHandler}>
-            <div className={styles.newStudentForm}>
+            <div className={styles.newStaffForm}>
               {/* <div className={styles.studentCardTitle}>First Name</div> */}
               <input
                 type="text"
@@ -73,38 +73,38 @@ function NewStudent() {
                 placeholder="Last Name"
                 required={true}
               />
-              <input
-                type="number"
-                onChange={(e) =>
-                  setMatric_no(e.currentTarget.value.slice(0, 11))
-                }
-                value={matric_no}
-                placeholder="Matric No."
-                required={true}
-              />
-              <input
-                type="text"
-                onChange={(e) =>
-                  setStudent_id(e.currentTarget.value.slice(0, 11))
-                }
-                value={student_id}
-                placeholder="Student Identity Number"
-                required={true}
-              />
 
               <input
                 type="email"
                 onChange={(e) => setEmail(e.target.value)}
                 value={email}
-                placeholder="Email Address"
+                placeholder="Email"
                 required={true}
               />
+
+              <input
+                type="text"
+                onChange={(e) =>
+                  setEmployee_id(e.currentTarget.value.slice(0, 11))
+                }
+                value={employee_id}
+                placeholder="Staff Identity Number"
+                required={true}
+              />
+
+              {/* <input
+                type="text"
+                onChange={(e) => setRole(e.target.value)}
+                value={role}
+                placeholder="Role"
+                required={true}
+              /> */}
 
               <select
                 onChange={(e) => setSpecialization(e.target.value)}
                 value={specialization}
                 required={true}
-                className={styles.newStudentSelect}
+                className={styles.newStaffSelect}
               >
                 <option>Specialization..</option>
                 <option>
@@ -113,9 +113,9 @@ function NewStudent() {
               </select>
             </div>
 
-            <div className={styles.studentBtn}>
+            <div className={styles.staffBtn}>
               <button type="submit" className={styles.stBtn}>
-                Create Student
+                Create Staff
               </button>
             </div>
           </form>
@@ -125,4 +125,4 @@ function NewStudent() {
   );
 }
 
-export default NewStudent;
+export default NewStaff;

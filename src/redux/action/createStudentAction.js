@@ -32,10 +32,12 @@ export const createNewStudent =
       localStorage.setItem("userInfo", JSON.stringify(data));
       toast({
         status: "success",
+        width: "50px",
         position: "top-right",
         isClosable: true,
         duration: 9000,
         description: "Student Created",
+        maxWidth: "100%",
       });
     } catch (error) {
       console.log(error.response.data.message, error.message);

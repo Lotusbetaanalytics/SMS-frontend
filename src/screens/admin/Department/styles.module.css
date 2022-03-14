@@ -1,0 +1,13 @@
+.newDepartmentContainer {
+  margin-left: 3%;
+}
+.newDepartment {
+  padding: 2rem;
+}
+
+.newDepartmnetTitle {
+  display: flex;
+  width: 80%;
+  padding-top: 1.5rem;
+  margin-left: 40px;
+}

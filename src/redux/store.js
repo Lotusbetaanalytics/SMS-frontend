@@ -7,12 +7,16 @@ import {
   userLoginReducer,
 } from "./reducers/userReducer";
 import { createNewStudentReducer } from "./reducers/createStudentReducer";
+import { newStaffReducer } from "./reducers/staffReducer";
+import { totalStudentReducer } from "./reducers/getAllUsersReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
-  userDetails: userDetailsReducer,
+  userDetail: userDetailsReducer,
   userforgetPassword: userForgotPasswordReducer,
   postNewStudent: createNewStudentReducer,
+  postNewStaff: newStaffReducer,
+  totalStudentNo: totalStudentReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")
