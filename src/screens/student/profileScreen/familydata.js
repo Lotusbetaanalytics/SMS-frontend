@@ -1,20 +1,28 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
 import SidebarTwo from "../../../components/StudentSidebar/sidebar";
 import styles from "./styles.module.css";
 
 const FamilyData = () => {
-  const [next_of_kin_full_name, setNext_of_kin_full_name] = useState("");
-  const [next_of_kin_phone_no_1, setNext_of_kin_phone_no_1] = useState("");
-  const [next_of_kin_phone_no_2, setNext_of_kin_phone_no_2] = useState("");
-  const [next_of_kin_address, setNext_of_kin_address] = useState("");
-  const [guardian_full_name, setGuardian_full_name] = useState("");
-  const [guardian_phone_no_1, setGuardian_phone_no_1] = useState("");
-  const [guardian_phone_no_2, setGuardian_phone_no_2] = useState("");
-  const [guardian_address, setGuardian_address] = useState("");
 
-  const submitHandler = () => {};
+  const navigate = useNavigate();
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const mystudentDetails = myDetail;
+
+  const next_of_kin_full_name = mystudentDetails.next_of_kin_full_name;
+  const next_of_kin_phone_no_1 = mystudentDetails.next_of_kin_phone_no_1;
+  const next_of_kin_phone_no_2 = mystudentDetails.next_of_kin_phone_no_2;
+  const next_of_kin_address = mystudentDetails.next_of_kin_address;
+  const guardian_full_name = mystudentDetails.guardian_full_name;
+  const guardian_phone_no_1 = mystudentDetails.guardian_phone_no_1;
+  const guardian_phone_no_2 = mystudentDetails.guardian_phone_no_2;
+  const guardian_address = mystudentDetails.guardian_address;
+
+  const submitHandler = () => {
+    navigate("/student/profile/familydataEdit")
+  };
   return (
     <div>
       <div>
@@ -31,7 +39,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={next_of_kin_full_name}
-                    onChange={(e) => setNext_of_kin_full_name(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -39,7 +47,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={next_of_kin_phone_no_1}
-                    onChange={(e) => setNext_of_kin_phone_no_1(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -47,7 +55,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={next_of_kin_phone_no_2}
-                    onChange={(e) => setNext_of_kin_phone_no_2(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -55,7 +63,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={next_of_kin_address}
-                    onChange={(e) => setNext_of_kin_address(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -63,7 +71,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={guardian_full_name}
-                    onChange={(e) => setGuardian_full_name(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -71,7 +79,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={guardian_phone_no_1}
-                    onChange={(e) => setGuardian_phone_no_1(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -79,7 +87,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={guardian_phone_no_2}
-                    onChange={(e) => setGuardian_phone_no_2(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -87,7 +95,7 @@ const FamilyData = () => {
                   <input
                     type="text"
                     value={guardian_address}
-                    onChange={(e) => setGuardian_address(e.target.value)}
+                    disabled
                   />
                 </div>
               </form>
@@ -95,7 +103,7 @@ const FamilyData = () => {
                 onClick={submitHandler}
                 className={`${styles.btn} ${styles.lilac}`}
               >
-                Save information
+                Edit information
               </button>
             </div>
           </div>

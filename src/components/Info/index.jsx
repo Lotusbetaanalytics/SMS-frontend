@@ -4,12 +4,15 @@ import { FcDepartment,FcGraduationCap} from "react-icons/fc";
 import { CgAwards } from "react-icons/cg";
 import {  MdOutlineAssessment} from "react-icons/md";
 import styles from './styles.module.css'
+import data from '../../data';
+import { DoughnutChart } from '../chart/doughurt';
+import { VerticalChart } from '../chart/verticalChart';
 const Info = () => {
 
   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
   const mystudentDetails = myDetail;
   console.log(mystudentDetails)
-
+    const {department,faculty,session,cgpa,designated_course_adviser,designated_HOD,designated_dean_of_faculty,vice_chancellor,notice_board} = data
   return (
     <div className={styles.infoContainer}>
         <div className={styles.salutation}>
@@ -20,7 +23,7 @@ const Info = () => {
             <div className={styles.cardSize}>
             <Cards 
             bgColor={'rgba(45, 156, 219, 0.2)'}
-            departmentName={"Chemistry"}
+            departmentName={department}
             title={"Department"}
             icon={<FcDepartment/>}
             />
@@ -29,7 +32,7 @@ const Info = () => {
             <Cards 
             icon={<CgAwards/>}
             bgColor={'rgba(250, 179, 179, 0.35)'}
-            departmentName={"Physical sciences"}
+            departmentName={faculty}
             title={"Faculty"}
             />
             </div>
@@ -37,7 +40,7 @@ const Info = () => {
             <Cards 
             icon={<MdOutlineAssessment/>}
             bgColor={'#8AFAA359'}
-            departmentName={"2022/2023"}
+            departmentName={session}
             title={"Session"}
             />
             </div>
@@ -45,17 +48,17 @@ const Info = () => {
             <Cards 
             icon={<FcGraduationCap/>}
             bgColor={'rgba(250, 179, 179, 0.35)'}
-            departmentName={"3.87"}
+            departmentName={cgpa}
             title={"CGPA"}
             />
             </div>
         </div>
         <div className={styles.graphContainer}>
             <div className={styles.statistic}>
-                    yes
+                <DoughnutChart/>
             </div>
             <div className={styles.report}>
-                    no
+                <VerticalChart/>
             </div>
         </div>
         <div className={styles.courseHeader}>

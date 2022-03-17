@@ -12,11 +12,10 @@ import { useDispatch, useSelector } from "react-redux";
 const StudentSidebar = (props) => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  
 
-
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
-  const mystudentDetails = myDetail;
-  console.log(mystudentDetails)
+   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+   const mystudentDetails = myDetail;
 
 
 

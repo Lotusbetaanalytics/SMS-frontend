@@ -23,24 +23,25 @@ const ForgotPassword = () => {
     e.preventDefault();
     if (!email) {
       setMsg(true)
-    } else {
+    } else  {
       setMsg(false);
       dispatch(forgetpassword(email))
     }
+    if (error) {
+      toast ({
+        title: "Error",
+        description: error,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      })
+    }
+    if (success) {
+      setSuccessMsg(true)
+      setTimeout(() => navigate("/student/newpassword"), [5000]);
+    }
   };
-  if (error) {
-    toast ({
-      title: "Error",
-      description: error,
-      status: "error",
-      duration: 9000,
-      isClosable: true,
-    })
-  }
-  if (success) {
-    setSuccessMsg(true)
-    setTimeout(() => navigate("/student/login"), [5000]);
-  }
+  
   
 
   return (

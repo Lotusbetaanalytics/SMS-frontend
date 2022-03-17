@@ -13,10 +13,15 @@ import ConfirmPassword from "./screens/student/confirmPassword";
 import StudentDashboard from "./screens/student/dashboard";
 import ForgotPassword from "./screens/student/forgotPassword";
 import AcademicHistory from "./screens/student/profileScreen/academy";
-import BasicProfileInfo from "./screens/student/profileScreen/basicProfileInfo";
+import AcademicHistoryEdit from "./screens/student/profileScreen/academyEdit";
+import BasicProfile from "./screens/student/profileScreen/basicProfile";
+import EditBasicInfo from "./screens/student/profileScreen/basicProfileEdit";
 import BioData from "./screens/student/profileScreen/biodata";
+import BioDataEdit from "./screens/student/profileScreen/biodataEdit";
 import FamilyData from "./screens/student/profileScreen/familydata";
+import FamilyDataEdit from "./screens/student/profileScreen/familydataEdit";
 import HealthData from "./screens/student/profileScreen/health";
+import HealthDataEdit from "./screens/student/profileScreen/healthEdit";
 import StudentLogin from "./screens/student/studentLogin";
 
 function App() {
@@ -36,10 +41,15 @@ function App() {
         <Route path="/student/dashboard" exact element={<StudentDashboard/>} />
         <Route path="/sidebar2" exact element={<SidebarTwo/>} />
         <Route path="/student/profile/academyhistory" exact element={<AcademicHistory/>} />
-        <Route path="/student/profile/basicInfo" exact element={<BasicProfileInfo/>} />
+        <Route path="/student/profile/academyhistoryEdit" exact element={<AcademicHistoryEdit/>} />
+        <Route path="/student/profile/basicInfo" exact element={<BasicProfile/>} />
+        <Route path="/student/profile/basicInfoEdit" exact element={<EditBasicInfo/>} />
         <Route path="/student/profile/biodata" exact element={<BioData/>} />
+        <Route path="/student/profile/biodataEdit" exact element={<BioDataEdit/>} />
         <Route path="/student/profile/healthdata" exact element={<HealthData/>} />
+        <Route path="/student/profile/healthdataEdit" exact element={<HealthDataEdit/>} />
         <Route path="/student/profile/familydata" exact element={<FamilyData/>} />
+        <Route path="/student/profile/familydataEdit" exact element={<FamilyDataEdit/>} />
       </Routes>
     </Router>
   );

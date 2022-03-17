@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
 import SidebarTwo from '../../../components/StudentSidebar/sidebar';
@@ -8,13 +8,20 @@ import SidebarTwo from '../../../components/StudentSidebar/sidebar';
 import styles from "./styles.module.css"
 
 const AcademicHistory = () => {
-    const [institution,setInstitution] = useState("")
-    const [start_date,setStart_date] = useState("")
-    const [end_date,setEnd_date] = useState("")
-    const [qualification_earn,setQualification_earn] = useState("")
+    
+  const navigate= useNavigate();
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const mystudentDetails = myDetail;
+  console.log(mystudentDetails)
 
-    const submitHandler = () =>{
-      
+  const institution = mystudentDetails.institution;
+  const start_date = mystudentDetails.start_date;
+  const end_date = mystudentDetails.end_date;
+  const qualification_earn = mystudentDetails.qualification_earn;
+
+
+   const submitHandler = () =>{
+      navigate("/student/profile/academyhistoryEdit")
     }
   return <div >
         <div> 
@@ -26,22 +33,22 @@ const AcademicHistory = () => {
                         <form>
                         <div className={styles.inputContainer_}>
                       <label>Institution</label>
-                      <input type="date" value={institution} onChange={(e) => setInstitution(e.target.value)}/>
+                      <input type="date" value={institution} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Start date</label>
-                      <input type="date" value={start_date} onChange={(e) => setStart_date(e.target.value)} />
+                      <input type="date" value={start_date} disabled />
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>End date</label>
-                      <input type="date" value={end_date} onChange={(e) => setEnd_date(e.target.value)} />
+                      <input type="date" value={end_date} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Qualification Earn</label>
-                      <input type="email" value={qualification_earn} onChange={(e) => setQualification_earn(e.target.value)} />
+                      <input type="email" value={qualification_earn} />
                     </div>
                         </form>
-                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/accountInfo"> <div className={`${styles.btn} ${styles.purple}`}>Health Data</div></Link>
+                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Edit information</button> <Link to="/student/profile/healthdata"> <div className={`${styles.btn} ${styles.purple}`}>Health Data</div></Link>
                     </div>
                 </div>
                 <div className={styles.leftBar}><SidebarTwo/></div>

@@ -1,23 +1,37 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
 import SidebarTwo from '../../../components/StudentSidebar/sidebar';
 import styles from "./styles.module.css"
 
 const HealthData = () => {
-    const [bloodGroup,setBloodGroup] = useState("")
-    const [genotype,setGenotype] = useState("")
-    const [allergies ,setAllergies ] = useState("")
-    const [diabetes,setDiabetes] = useState("")
-    const [stis,setStis] = useState("")
-    const [heart_disease,setHeart_disease] = useState("")
-    const [disabilities,setDisabilities] = useState("")
-    const [respiratory_problems,setRespiratory_problems] = useState("")
+    // const [bloodGroup,setBloodGroup] = useState("")
+    // const [genotype,setGenotype] = useState("")
+    // const [allergies ,setAllergies ] = useState("")
+    // const [diabetes,setDiabetes] = useState("")
+    // const [stis,setStis] = useState("")
+    // const [heart_disease,setHeart_disease] = useState("")
+    // const [disabilities,setDisabilities] = useState("")
+    // const [respiratory_problems,setRespiratory_problems] = useState("")
     
-    
+  const navigate = useNavigate();
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const mystudentDetails = myDetail;
+  console.log(mystudentDetails)
+  
+  const blood_group = mystudentDetails.blood_group;
+  const genotype = mystudentDetails.genotype;
+  const allergies = mystudentDetails.allergies;
+  const diabetes = mystudentDetails.diabetes;
+  const stis = mystudentDetails.stis;
+  const heart_disease = mystudentDetails.heart_disease;
+  const disabilities = mystudentDetails.disabilities;
+  const Respiratory_problems = mystudentDetails.Respiratory_problems;
+
+
     const submitHandler = () =>{
-      
+      navigate("/student/profile/healthdataEdit")
     }
   return <div >
         <div> 
@@ -29,86 +43,38 @@ const HealthData = () => {
                         <form onSubmit={submitHandler}>
                         <div className={styles.inputContainer_}>
                       <label>blood Group</label>
-                      <input type="text" value={bloodGroup} onChange={(e) => setBloodGroup(e.target.value)} />
+                      <input type="text" value={blood_group} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Genotype</label>
-                      <input type="text" value={genotype} onChange={(e) => setGenotype(e.target.value)} />
+                      <input type="text" value={genotype} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Allergies</label>
-                      <select
-                        onChange={(e) => setAllergies(e.target.value)}
-                        value={allergies}
-                      >
-                      <option>Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No
-                        </option>
-                      </select>
+                      <input type="text" value={allergies} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Diabetes</label>
-                      <select
-                        onChange={(e) => setDiabetes(e.target.value)}
-                        value={diabetes}
-                      >
-                      <option>Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No
-                        </option>
-                      </select>
+                      <input type="text" value={diabetes} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>STIs</label>
-                      <select
-                        onChange={(e) => setStis(e.target.value)}
-                        value={stis}
-                      >
-                      <option>Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No
-                        </option>
-                      </select>
+                      <input type="text" value={stis} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Heart Disease</label>
-                      <select
-                        onChange={(e) => setHeart_disease(e.target.value)}
-                        value={heart_disease}
-                      >
-                      <option>Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No
-                        </option>
-                      </select>
+                      <input type="text" value={heart_disease} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Disabilities</label>
-                      <select
-                        onChange={(e) => setDisabilities(e.target.value)}
-                        value={disabilities}
-                      >
-                      <option>Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No
-                        </option>
-                      </select>
+                      <input type="text" value={disabilities} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Respiratory_problems</label>
-                      <select
-                        onChange={(e) => setRespiratory_problems(e.target.value)}
-                        value={respiratory_problems}
-                      >
-                      <option>Select</option>
-                        <option value="Yes">Yes</option>
-                        <option value="No">No
-                        </option>
-                      </select>
+                      <input type="text" value={Respiratory_problems} disabled/>
                     </div>
                         </form>
-                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Save information</button> <Link to="/edit/profileImage"> <div className={`${styles.btn} ${styles.purple}`}>Family Data</div></Link> 
+                        <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Edit information</button> <Link to="/student/profile/familydata"> <div className={`${styles.btn} ${styles.purple}`}>Family Data</div></Link> 
                     </div>
                 </div>
                 <div className={styles.leftBar}><SidebarTwo/></div>

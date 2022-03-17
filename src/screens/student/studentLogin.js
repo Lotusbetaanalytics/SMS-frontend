@@ -19,7 +19,7 @@ function StudentLogin() {
   const[successMsg,setSuccessMsg] = useState("")
 
   const studentLogin = useSelector((state) => state.studentLogin);
-  const {loading, error,studentInfo} = studentLogin
+  const {loading, error,success,userInfo} = studentLogin
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -41,14 +41,15 @@ function StudentLogin() {
     })
     dispatch({type:STUDENT_LOGIN_RESET});
   }
-  // if (success) {
-  //   setSuccessMsg(true)
-  // }
+  if (success) {
+    setSuccessMsg(true)
+  }
+  
   useEffect(()=>{
-    if (studentInfo){
+    if (userInfo){
       navigate("/student/dashboard")
     }
-  },[studentInfo,navigate])
+  },[userInfo,navigate])
   return (
     <div className={styles.pageContainer_}>
       <div className={styles.topCircle_}>

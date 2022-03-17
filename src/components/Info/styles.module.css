@@ -23,20 +23,21 @@
   margin-top: 10px;
 }
 .statistic {
-  background-color: aqua;
-  padding: 3rem;
+  padding: 0.5rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 .report {
-  background-color: yellow;
-  padding: 3rem;
+  padding: 0.5rem;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
 }
 .courseHeader {
   margin-top: 20px;
+  display: flex;
   border-radius: 5px;
   padding: 0.5rem;
-  width: 20%;
+  align-items: center;
+  justify-content: center;
+  width: 30%;
   border: 2px solid #2d9cdb;
 }
 .hi {
