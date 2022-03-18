@@ -61,7 +61,7 @@ const StudentSidebar = (props) => {
           </li>
 
           <li className={props.test}>
-            <Link to="/">
+            <Link to="/student/dashboard">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <GiBookshelf />
@@ -74,7 +74,7 @@ const StudentSidebar = (props) => {
           </li>
 
           <li className={props.result}>
-            <Link to="/">
+            <Link to="/student/dashboard">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <FaClipboardList />

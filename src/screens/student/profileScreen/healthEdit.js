@@ -13,11 +13,11 @@ import { EDITPROFILE_RESET } from "../../../redux/studentConstants/studentConsta
 import styles from "./styles.module.css";
 
 const HealthDataEdit = () => {
-  const [bloodGroup, setBloodGroup] = useState("");
+  const [blood_group, setBlood_group] = useState("");
   const [genotype, setGenotype] = useState("");
   const [allergies, setAllergies] = useState("");
   const [diabetes, setDiabetes] = useState("");
-  const [stis, setStis] = useState("");
+  const [STIs, setSTIs] = useState("");
   const [heart_disease, setHeart_disease] = useState("");
   const [disabilities, setDisabilities] = useState("");
   const [respiratory_problems, setRespiratory_problems] = useState("");
@@ -31,18 +31,19 @@ const HealthDataEdit = () => {
 
   const details = useSelector((state) => state.details);
   const { studentDetail } = details;
+  console.log(studentDetail)
 
   useEffect(() => {
     if  (studentDetail) {
       console.log("my student", studentDetail);
-      setBloodGroup(studentDetail.bloodGroup);
-      setGenotype(studentDetail.genotype);
-      setAllergies(studentDetail.allergies);
-      setDiabetes(studentDetail.diabetes);
-      setStis(studentDetail.stis);
-      setHeart_disease(studentDetail.heart_disease);
-      setDisabilities(studentDetail.disabilities);
-      setRespiratory_problems(studentDetail.respiratory_problems);
+      setBlood_group(studentDetail.biodata.health_data.blood_group);
+      setGenotype(studentDetail.biodata.health_data.genotype);
+      setAllergies(studentDetail.biodata.health_data.allergies);
+      setDiabetes(studentDetail.biodata.health_data.diabetes);
+      setSTIs(studentDetail.biodata.health_data.STIs);
+      setHeart_disease(studentDetail.biodata.health_data.heart_disease);
+      setDiabetes(studentDetail.biodata.health_data.diabetes);
+      setRespiratory_problems(studentDetail.biodata.health_data.respiratory_problems);
     }
   }, [studentDetail,dispatch]);
 
@@ -56,11 +57,11 @@ const HealthDataEdit = () => {
     const userdata = {
       biodata: {
         health_data : {
-          bloodGroup:bloodGroup,
+          blood_group:blood_group,
           genotype:genotype,
           allergies:allergies,
           diabetes:diabetes,
-          stis:stis,
+          STIs:STIs,
           heart_disease:heart_disease,
           disabilities:disabilities,
           respiratory_problems:respiratory_problems,
@@ -100,8 +101,8 @@ const HealthDataEdit = () => {
                   <label>blood Group</label>
                   <input
                     type="text"
-                    value={bloodGroup}
-                    onChange={(e) => setBloodGroup(e.target.value)}
+                    value={blood_group}
+                    onChange={(e) => setBlood_group(e.target.value)}
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -137,8 +138,8 @@ const HealthDataEdit = () => {
                 <div className={styles.inputContainer_}>
                   <label>STIs</label>
                   <select
-                    onChange={(e) => setStis(e.target.value)}
-                    value={stis}
+                    onChange={(e) => setSTIs(e.target.value)}
+                    value={STIs}
                   >
                     <option>Select</option>
                     <option value="Yes">Yes</option>

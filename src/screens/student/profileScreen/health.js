@@ -20,14 +20,14 @@ const HealthData = () => {
   const mystudentDetails = myDetail;
   console.log(mystudentDetails)
   
-  const blood_group = mystudentDetails.blood_group;
-  const genotype = mystudentDetails.genotype;
-  const allergies = mystudentDetails.allergies;
-  const diabetes = mystudentDetails.diabetes;
-  const stis = mystudentDetails.stis;
-  const heart_disease = mystudentDetails.heart_disease;
-  const disabilities = mystudentDetails.disabilities;
-  const Respiratory_problems = mystudentDetails.Respiratory_problems;
+  const blood_group = mystudentDetails.biodata.health_data.blood_group;
+  const genotype = mystudentDetails.biodata.health_data.genotype;
+  const allergies = mystudentDetails.biodata.health_data.allergies;
+  const diabetes = mystudentDetails.biodata.health_data.diabetes;
+  const stis = mystudentDetails.biodata.health_data.STIs;
+  const heart_disease = mystudentDetails.biodata.health_data.heart_disease;
+  const disabilities = mystudentDetails.biodata.health_data.disabilities;
+  const Respiratory_problems = mystudentDetails.biodata.health_data.respiratory_problems;
 
 
     const submitHandler = () =>{
@@ -40,7 +40,7 @@ const HealthData = () => {
                 <div className={styles.editContainer}>
                     <EditNavbar account={styles.remote} />
                     <div className={styles.formContainer}>
-                        <form onSubmit={submitHandler}>
+                        <form >
                         <div className={styles.inputContainer_}>
                       <label>blood Group</label>
                       <input type="text" value={blood_group} disabled/>

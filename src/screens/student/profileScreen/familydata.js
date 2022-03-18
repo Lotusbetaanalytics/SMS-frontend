@@ -11,14 +11,14 @@ const FamilyData = () => {
   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
   const mystudentDetails = myDetail;
 
-  const next_of_kin_full_name = mystudentDetails.next_of_kin_full_name;
-  const next_of_kin_phone_no_1 = mystudentDetails.next_of_kin_phone_no_1;
-  const next_of_kin_phone_no_2 = mystudentDetails.next_of_kin_phone_no_2;
-  const next_of_kin_address = mystudentDetails.next_of_kin_address;
-  const guardian_full_name = mystudentDetails.guardian_full_name;
-  const guardian_phone_no_1 = mystudentDetails.guardian_phone_no_1;
-  const guardian_phone_no_2 = mystudentDetails.guardian_phone_no_2;
-  const guardian_address = mystudentDetails.guardian_address;
+  const next_of_kin_full_name = mystudentDetails.biodata.family_data.next_of_kin_full_name;
+  const next_of_kin_phone_no_1 = mystudentDetails.biodata.family_data.next_of_kin_phone_no_1;
+  const next_of_kin_phone_no_2 = mystudentDetails.biodata.family_data.next_of_kin_phone_no_2;
+  const next_of_kin_address = mystudentDetails.biodata.family_data.next_of_kin_address;
+  const guardian_full_name = mystudentDetails.biodata.family_data.guardian_full_name;
+  const guardian_phone_no_1 = mystudentDetails.biodata.family_data.guardian_phone_no_1;
+  const guardian_phone_no_2 = mystudentDetails.biodata.family_data.guardian_phone_no_2;
+  const guardian_address = mystudentDetails.biodata.family_data.guardian_address;
 
   const submitHandler = () => {
     navigate("/student/profile/familydataEdit")

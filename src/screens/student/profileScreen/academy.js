@@ -11,13 +11,16 @@ const AcademicHistory = () => {
     
   const navigate= useNavigate();
   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
-  const mystudentDetails = myDetail;
-  console.log(mystudentDetails)
+  const healthDetails = myDetail;
+  const mystudentDetails = healthDetails.biodata.academic_history[0];
+  
+  console.log(mystudentDetails.institution)
 
   const institution = mystudentDetails.institution;
+  console.log(institution)
   const start_date = mystudentDetails.start_date;
   const end_date = mystudentDetails.end_date;
-  const qualification_earn = mystudentDetails.qualification_earn;
+  const qualification_earn = mystudentDetails.qualification_earned;
 
 
    const submitHandler = () =>{
@@ -33,7 +36,7 @@ const AcademicHistory = () => {
                         <form>
                         <div className={styles.inputContainer_}>
                       <label>Institution</label>
-                      <input type="date" value={institution} disabled/>
+                      <input type="text" value={institution} disabled/>
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Start date</label>

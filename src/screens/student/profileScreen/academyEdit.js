@@ -15,7 +15,7 @@ const AcademicHistoryEdit = () => {
   const [institution, setInstitution] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
-  const [qualification_earn, setQualification_earn] = useState("");
+  const [qualification_earned, setQualification_earned] = useState("");
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -31,10 +31,10 @@ const AcademicHistoryEdit = () => {
   React.useEffect(() => {
     if (success) {
       console.log("my student", studentDetail);
-      setInstitution(studentDetail.institution);
-      setStart_date(studentDetail.start_date);
-      setEnd_date(studentDetail.end_date);
-      setQualification_earn(studentDetail.qualification_earn);
+      setInstitution(studentDetail.biodata.academic_history[0].institution);
+      setStart_date(studentDetail.biodata.academic_history[0].start_date);
+      setEnd_date(studentDetail.biodata.academic_history[0].end_date);
+      setQualification_earned(studentDetail.biodata.academic_history[0].qualification_earned);
     }
   }, [success]);
 
@@ -53,13 +53,12 @@ const AcademicHistoryEdit = () => {
             institution:institution,
             start_date:start_date,
             end_date:end_date,
-            qualification_earned:qualification_earn
+            qualification_earned:qualification_earned
           }
         ]
     }
   }
-    // dispatch(editProfile(userdata));
-    dispatch(studentDetails());
+    dispatch(editProfile(userdata));
   };
   if (error) {
     toast({
@@ -85,7 +84,7 @@ const AcademicHistoryEdit = () => {
                 <div className={styles.inputContainer_}>
                   <label>Institution</label>
                   <input
-                    type="date"
+                    type="text"
                     value={institution}
                     onChange={(e) => setInstitution(e.target.value)}
                   />
@@ -93,9 +92,10 @@ const AcademicHistoryEdit = () => {
                 <div className={styles.inputContainer_}>
                   <label>Start date</label>
                   <input
-                    type="date"
+                    type="text"
                     value={start_date}
                     onChange={(e) => setStart_date(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -104,14 +104,15 @@ const AcademicHistoryEdit = () => {
                     type="date"
                     value={end_date}
                     onChange={(e) => setEnd_date(e.target.value)}
+                    disabled
                   />
                 </div>
                 <div className={styles.inputContainer_}>
                   <label>Qualification Earn</label>
                   <input
-                    type="email"
-                    value={qualification_earn}
-                    onChange={(e) => setQualification_earn(e.target.value)}
+                    type="text"
+                    value={qualification_earned}
+                    onChange={(e) => setQualification_earned(e.target.value)}
                   />
                 </div>
               </form>

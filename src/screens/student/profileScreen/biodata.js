@@ -45,8 +45,9 @@ const BioData = () => {
           </div>
           <div className={styles.editContainer}>
             <EditNavbar emergency={styles.remote} />
+            
             <div className={styles.formContainer}>
-              <form onSubmit={submitHandler}>
+              <form>
                 <div className={styles.inputContainer_}>
                   <label>Marital Status</label>
                   <input type="text" value={marital_status} disabled />
@@ -94,7 +95,7 @@ const BioData = () => {
                 className={`${styles.btn} ${styles.lilac}`}
               >
                 Edit information
-              </button>{" "}
+              </button>
               <Link to="/student/profile/academyhistory">
                 {" "}
                 <div className={`${styles.btn} ${styles.purple}`}>

@@ -40,16 +40,16 @@ const BioDataEdit = () => {
 
   React.useEffect(() => {
     if (studentDetail) {
-      setMarital_status(studentDetail.marital_status);
-      setGender(studentDetail.gender);
-      setReligion(studentDetail.religion);
-      setBirthday(studentDetail.birthday);
-      setNationality(studentDetail.nationality);
-      setState_of_origin(studentDetail.state_of_origin);
-      setLocal_govt(studentDetail.local_govt);
-      setAddress(studentDetail.address);
-      setPhone_no_1(studentDetail.phone_no_1);
-      setPhone_no_2(studentDetail.phone_no_2);
+      setMarital_status(studentDetail.biodata.marital_status);
+      setGender(studentDetail.biodata.gender);
+      setReligion(studentDetail.biodata.religion);
+      setBirthday(studentDetail.biodata.birthday);
+      setNationality(studentDetail.biodata.nationality);
+      setState_of_origin(studentDetail.biodata.state_of_origin);
+      setLocal_govt(studentDetail.biodata.local_govt);
+      setAddress(studentDetail.biodata.address);
+      setPhone_no_1(studentDetail.biodata.phone_no_1);
+      setPhone_no_2(studentDetail.biodata.phone_no_2);
     }
   }, [studentDetail, dispatch]);
 
@@ -99,6 +99,7 @@ const BioDataEdit = () => {
           </div>
           <div className={styles.editContainer}>
             <EditNavbar emergency={styles.remote} />
+            
             <div className={styles.formContainer}>
               {msg && (
                 <Alert status="success">Profile Updated Successfully</Alert>

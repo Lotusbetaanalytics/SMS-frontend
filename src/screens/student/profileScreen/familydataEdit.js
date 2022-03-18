@@ -35,14 +35,14 @@ const FamilyDataEdit = () => {
 
   React.useEffect(() => {
     if (studentDetail) {
-      setNext_of_kin_full_name(studentDetail.family_data.next_of_kin_full_name);
-      setNext_of_kin_phone_no_1(studentDetail.family_data.next_of_kin_phone_no_1);
-      setNext_of_kin_phone_no_2(studentDetail.family_data.next_of_kin_phone_no_2);
-      setNext_of_kin_address(studentDetail.family_data.next_of_kin_address);
-      setGuardian_full_name(studentDetail.family_data.guardian_full_name);
-      setGuardian_phone_no_1(studentDetail.family_data.guardian_phone_no_1);
-      setGuardian_phone_no_2(studentDetail.family_data.guardian_phone_no_2);
-      setGuardian_address(studentDetail.family_data.guardian_address);
+      setNext_of_kin_full_name(studentDetail.biodata.family_data.next_of_kin_full_name);
+      setNext_of_kin_phone_no_1(studentDetail.biodata.family_data.next_of_kin_phone_no_1);
+      setNext_of_kin_phone_no_2(studentDetail.biodata.family_data.next_of_kin_phone_no_2);
+      setNext_of_kin_address(studentDetail.biodata.family_data.next_of_kin_address);
+      setGuardian_full_name(studentDetail.biodata.family_data.guardian_full_name);
+      setGuardian_phone_no_1(studentDetail.biodata.family_data.guardian_phone_no_1);
+      setGuardian_phone_no_2(studentDetail.biodata.family_data.guardian_phone_no_2);
+      setGuardian_address(studentDetail.biodata.family_data.guardian_address);
     }
   }, [studentDetail,dispatch]);
 
