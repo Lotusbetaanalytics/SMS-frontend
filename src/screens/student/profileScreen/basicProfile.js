@@ -51,7 +51,7 @@ const BasicProfile = () => {
           </div>
           <div className={styles.editContainer}>
             <EditNavbar basic={styles.remote} />
-            <div className="profilePicture">this is it<img src={profile_picture}/></div>
+            <div className="profilePicture"><img src={profile_picture}/></div>
             <div className={styles.formContainer}>
               <form onSubmit={submitHandler}>
                 <div className={styles.inputContainer_}>

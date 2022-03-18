@@ -44,7 +44,7 @@ const EditBasicInfo = () => {
   
   const submitHandler = (e) => {
     e.preventDefault();
-    const userdata = {first_name } 
+    const userdata = {first_name,middle_name,last_name } 
       dispatch(editProfile(userdata))
      
       

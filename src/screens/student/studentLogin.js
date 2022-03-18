@@ -41,9 +41,7 @@ function StudentLogin() {
     })
     dispatch({type:STUDENT_LOGIN_RESET});
   }
-  if (success) {
-    setSuccessMsg(true)
-  }
+ 
   
   useEffect(()=>{
     if (userInfo){
