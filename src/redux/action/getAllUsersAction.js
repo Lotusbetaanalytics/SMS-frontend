@@ -4,10 +4,12 @@ import {
   TOTAL_STUDENT_REQUEST,
   TOTAL_STUDENT_SUCCESS,
   TOTAL_STUDENT_FAIL,
+  TOTAL_STAFF_REQUEST,
+  TOTAL_STAFF_SUCCESS,
+  TOTAL_STAFF_FAIL,
 } from "../constants/getAllUserConstants";
 
-export const totalStudent = (toast) => async (dispatch, getState) => {
-  // console.log(studentData);
+export const totalStudent = () => async (dispatch, getState) => {
   try {
     dispatch({
       type: TOTAL_STUDENT_REQUEST,
@@ -16,7 +18,6 @@ export const totalStudent = (toast) => async (dispatch, getState) => {
     const {
       userLogin: { userInfo },
     } = getState();
-    console.log(userInfo.access);
     const config = {
       headers: {
         "Content-Type": "application/json",
@@ -28,21 +29,44 @@ export const totalStudent = (toast) => async (dispatch, getState) => {
       type: TOTAL_STUDENT_SUCCESS,
       payload: data,
     });
-    console.log(data);
-    localStorage.setItem("userInfo", JSON.stringify(data));
-    //   toast({
-    //     status: "success",
-    //     width: "50px",
-    //     position: "top-right",
-    //     isClosable: true,
-    //     duration: 9000,
-    //     description: "Student Created",
-    //     maxWidth: "100%",
-    //   });
+    localStorage.setItem("getAllStudents", JSON.stringify(data));
   } catch (error) {
     console.log(error.response.data.message, error.message);
     dispatch({
       type: TOTAL_STUDENT_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const totalStaff = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: TOTAL_STAFF_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.access}`,
+      },
+    };
+    const { data } = await axios.get("/user/staff/", config);
+    dispatch({
+      type: TOTAL_STAFF_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("allStaff", JSON.stringify(data));
+  } catch (error) {
+    console.log(error.response.data.message, error.message);
+    dispatch({
+      type: TOTAL_STAFF_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

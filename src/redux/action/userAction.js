@@ -70,8 +70,8 @@ export const userDetails = () => async (dispatch, getState) => {
       type: USER_DETAILS_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("userDetails", JSON.stringify(data));
-    console.log(data);
+    localStorage.setItem("userProfileName", JSON.stringify(data));
+    console.log(data.first_name);
   } catch (error) {
     dispatch({
       type: USER_DETAILS_FAIL,

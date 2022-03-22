@@ -15,9 +15,8 @@ function WidgetPost() {
     setCalDate(calDate);
   }
 
-  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const user = JSON.parse(localStorage.getItem("userProfileName"));
   const person = user;
-  console.log(person.first_name, person.last_name);
 
   return (
     <div className={styles.widgetPostContainer}>

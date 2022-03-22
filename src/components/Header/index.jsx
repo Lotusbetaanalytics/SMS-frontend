@@ -5,8 +5,12 @@ import adminpic from "../../assets/adminpic.png";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 
-function Haeder({ userN }) {
+function Haeder() {
   const [search, setSearch] = useState("");
+
+  const user = JSON.parse(localStorage.getItem("userProfileName"));
+  const person = user;
+
   return (
     <div className={styles.headerContainer}>
       <div className={styles.header}>
@@ -23,7 +27,7 @@ function Haeder({ userN }) {
         <div className={styles.headerUser}>
           <img src={adminpic} alt="User" />
           <div className={styles.headerTitle}>
-            <h5>{userN}</h5>
+            <h5>{person.first_name}</h5>
           </div>
           <div className={styles.headerIcondrop}>
             <RiArrowDownSFill />

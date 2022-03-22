@@ -19,9 +19,8 @@ const Sidebar = () => {
     dispatch(userLogout());
   };
 
-  const user = JSON.parse(localStorage.getItem("userDetails"));
+  const user = JSON.parse(localStorage.getItem("userProfileName"));
   const person = user;
-  console.log(person.first_name, person.last_name);
 
   return (
     <div className={styles.sidebarContainer}>
@@ -100,7 +99,7 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/">
+            <Link to="/staff/registercourses">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <ImBook />
@@ -112,7 +111,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="/">
+            <Link to="/staff/noticeboard">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <FaAssistiveListeningSystems />

@@ -11,10 +11,11 @@ import Circle from "../../../components/Circle";
 import forgetpic from "../../../assets/forgetpic.png";
 import { useDispatch, useSelector } from "react-redux";
 import { userForgotPassword } from "../../../redux/action/userAction";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function ForgotPassword() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
 
   const submitHandler = (e) => {
@@ -24,6 +25,10 @@ function ForgotPassword() {
 
   const userforgetPassword = useSelector((state) => state.userforgetPassword);
   const { loading, error, success } = userforgetPassword;
+
+  if (success) {
+    setTimeout(() => navigate("/staff/confirmpassword"), [3000]);
+  }
 
   return (
     <div className={styles.pageContainer}>
@@ -41,7 +46,7 @@ function ForgotPassword() {
           {success && (
             <Alert status="success">
               <AlertIcon />
-              Check your Email to Retrieve your password
+              Check your Email to Verify
             </Alert>
           )}
           {loading ? (
@@ -61,9 +66,6 @@ function ForgotPassword() {
                 />
               </div>
               <div className={styles.input_box}>
-                <Link to="/staff/confirmpassword">
-                  <p>Confirm Password</p>
-                </Link>
                 <button
                   type={"submit"}
                   className={styles.stBtn}

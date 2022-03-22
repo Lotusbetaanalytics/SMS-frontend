@@ -8,7 +8,13 @@ import {
 } from "./reducers/userReducer";
 import { createNewStudentReducer } from "./reducers/createStudentReducer";
 import { newStaffReducer } from "./reducers/staffReducer";
-import { totalStudentReducer } from "./reducers/getAllUsersReducer";
+import {
+  totalStaffReducer,
+  totalStudentReducer,
+} from "./reducers/getAllUsersReducer";
+import { newFacultyReducer } from "./reducers/facultyReducer";
+import { postNoticeReducer } from "./reducers/noticeBoardReducer";
+import { getScopeReducer } from "./reducers/getScopeReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -17,6 +23,10 @@ const reducer = combineReducers({
   postNewStudent: createNewStudentReducer,
   postNewStaff: newStaffReducer,
   totalStudentNo: totalStudentReducer,
+  totalStaffNo: totalStaffReducer,
+  postNewFaculty: newFacultyReducer,
+  noticeBoard: postNoticeReducer,
+  scopeId: getScopeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

@@ -41,7 +41,7 @@ function NewStudent() {
   return (
     <div className={styles.newStudentContainer}>
       <Sidebar />
-      <Header userN="Fonsus" />
+      <Header />
       <div className={styles.newStudent}>
         <div className={styles.newStudentTitle}>
           <span>Create New Student</span>

@@ -34,10 +34,6 @@ function NewStaff({ success }) {
     dispatch(newStaff(data, toast));
   };
 
-  // if (success) {
-  //   window.location.reload(false);
-  // }
-
   return (
     <div className={styles.newStaffContainer}>
       <Sidebar />

@@ -67,3 +67,20 @@
   border-radius: 10px;
   padding: 15px 20px;
 }
+
+.facultyBtn {
+  display: flex;
+}
+
+.facultyRadioContainer {
+  display: flex;
+  background-color: whitesmoke;
+  margin-left: 10%;
+  border-radius: 5px;
+}
+
+.radioBtn {
+  margin: 10px;
+  padding: 10px;
+  cursor: pointer;
+}
