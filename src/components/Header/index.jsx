@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import Search from "../Search";
+import React from "react";
+// import Search from "../Search";
 import styles from "./styles.module.css";
 import adminpic from "../../assets/adminpic.png";
 import { RiArrowDownSFill } from "react-icons/ri";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 
 function Haeder() {
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   const user = JSON.parse(localStorage.getItem("userProfileName"));
   const person = user;
@@ -15,14 +15,14 @@ function Haeder() {
     <div className={styles.headerContainer}>
       <div className={styles.header}>
         <form>
-          <Search
+          {/* <Search
             type={"text"}
             name={"search"}
             placeholder={"Search..."}
             value={search}
             required={true}
             onChange={(e) => setSearch(e.target.value)}
-          />
+          /> */}
         </form>
         <div className={styles.headerUser}>
           <img src={adminpic} alt="User" />

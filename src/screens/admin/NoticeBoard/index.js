@@ -12,7 +12,7 @@ function NoticeBoard() {
   const [noticeTitle, setNoticeTitle] = useState("");
   const [noticeMessage, setNoticeMessage] = useState("");
   const [scopeDetail, setScopeDetail] = useState("");
-  const [sourceDetail, setSourceDetail] = useState("");
+  // const [sourceDetail, setSourceDetail] = useState("");
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -26,7 +26,7 @@ function NoticeBoard() {
     const noticeData = {
       title: noticeTitle,
       message: noticeMessage,
-      source: sourceDetail,
+      // source: sourceDetail,
       scope: scopeDetail,
     };
     dispatch(postNotice(noticeData, toast));
@@ -86,17 +86,14 @@ function NoticeBoard() {
                 className={styles.noticeMessage}
               />
 
-              <select
+              {/* <select
                 onChange={(e) => setSourceDetail(e.target.value)}
                 value={sourceDetail}
                 required={true}
                 className={styles.noticeBoardSelect}
               >
                 <option>Author By..</option>
-                <option>Mr Frank</option>
-                <option>Mr Henry</option>
-                <option>Mr Fonsus</option>
-              </select>
+              </select> */}
             </div>
             <div className={styles.noticeBtn}>
               <button type="submit" className={styles.stBtn}>

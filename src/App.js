@@ -11,6 +11,7 @@ import NewStaff from "./screens/admin/NewStaff";
 import NewStudent from "./screens/admin/NewStudent";
 import NoticeBoard from "./screens/admin/NoticeBoard";
 import RegisterCourses from "./screens/admin/RegisterCourses";
+import Specialization from "./screens/admin/Specialization";
 
 function App() {
   return (
@@ -38,6 +39,11 @@ function App() {
           element={<RegisterCourses />}
         />
         <Route path="/staff/noticeboard" exact element={<NoticeBoard />} />
+        <Route
+          path="/staff/specialization"
+          exact
+          element={<Specialization />}
+        />
       </Routes>
     </Router>
   );

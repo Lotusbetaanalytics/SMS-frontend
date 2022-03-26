@@ -1,14 +1,14 @@
 import axios from "axios";
 import {
-  GET_SCOPE_REQUEST,
-  GET_SCOPE_SUCCESS,
-  GET_SCOPE_FAIL,
-} from "../constants/scopeConstants";
+  GET_COURSE_REQUEST,
+  GET_COURSE_SUCCESS,
+  GET_COURSE_FAIL,
+} from "../constants/courseConstants";
 
-export const getScope = () => async (dispatch, getState) => {
+export const getCourse = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: GET_SCOPE_REQUEST,
+      type: GET_COURSE_REQUEST,
     });
 
     const {
@@ -20,16 +20,16 @@ export const getScope = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.access}`,
       },
     };
-    const { data } = await axios.get(`/information/scope/`, config);
+    const { data } = await axios.get(`/academics/course/`, config);
     dispatch({
-      type: GET_SCOPE_SUCCESS,
+      type: GET_COURSE_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("getScopeInfo", JSON.stringify(data));
+    localStorage.setItem("getCourseInfo", JSON.stringify(data));
     console.log(data);
   } catch (error) {
     dispatch({
-      type: GET_SCOPE_FAIL,
+      type: GET_COURSE_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

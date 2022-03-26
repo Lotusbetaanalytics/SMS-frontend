@@ -1,14 +1,14 @@
 import axios from "axios";
 import {
-  GET_SCOPE_REQUEST,
-  GET_SCOPE_SUCCESS,
-  GET_SCOPE_FAIL,
-} from "../constants/scopeConstants";
+  GET_LEVEL_REQUEST,
+  GET_LEVEL_SUCCESS,
+  GET_LEVEL_FAIL,
+} from "../constants/levelConstants";
 
-export const getScope = () => async (dispatch, getState) => {
+export const getLevelAction = () => async (dispatch, getState) => {
   try {
     dispatch({
-      type: GET_SCOPE_REQUEST,
+      type: GET_LEVEL_REQUEST,
     });
 
     const {
@@ -20,16 +20,16 @@ export const getScope = () => async (dispatch, getState) => {
         Authorization: `Bearer ${userInfo.access}`,
       },
     };
-    const { data } = await axios.get(`/information/scope/`, config);
+    const { data } = await axios.get(`/academics/level/`, config);
     dispatch({
-      type: GET_SCOPE_SUCCESS,
+      type: GET_LEVEL_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("getScopeInfo", JSON.stringify(data));
+    localStorage.setItem("getLevelInfo", JSON.stringify(data));
     console.log(data);
   } catch (error) {
     dispatch({
-      type: GET_SCOPE_FAIL,
+      type: GET_LEVEL_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

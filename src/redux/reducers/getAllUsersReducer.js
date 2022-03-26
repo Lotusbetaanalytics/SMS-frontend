@@ -12,7 +12,11 @@ export const totalStudentReducer = (state = { allStudents: [] }, action) => {
     case TOTAL_STUDENT_REQUEST:
       return { loading: true };
     case TOTAL_STUDENT_SUCCESS:
-      return { loading: false, success: true, allStudent: action.payload };
+      return {
+        loading: false,
+        success: true,
+        allStudent: action.payload.results,
+      };
     case TOTAL_STUDENT_FAIL:
       return { loading: false, error: action.payload };
     default:

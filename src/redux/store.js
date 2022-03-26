@@ -12,9 +12,19 @@ import {
   totalStaffReducer,
   totalStudentReducer,
 } from "./reducers/getAllUsersReducer";
-import { newFacultyReducer } from "./reducers/facultyReducer";
+import {
+  getFacultyReducer,
+  newFacultyReducer,
+} from "./reducers/facultyReducer";
 import { postNoticeReducer } from "./reducers/noticeBoardReducer";
 import { getScopeReducer } from "./reducers/getScopeReducer";
+import {
+  createDepartmentReducer,
+  getDepartmentReducer,
+  postSpecilizationReducer,
+} from "./reducers/departmentReducer";
+import { getCourseReducer } from "./reducers/courseReducer";
+import { getLevelReducer } from "./reducers/levelReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -27,6 +37,12 @@ const reducer = combineReducers({
   postNewFaculty: newFacultyReducer,
   noticeBoard: postNoticeReducer,
   scopeId: getScopeReducer,
+  listFaculty: getFacultyReducer,
+  departmentPost: createDepartmentReducer,
+  departmentGet: getDepartmentReducer,
+  courseGet: getCourseReducer,
+  postSpecialization: postSpecilizationReducer,
+  levelGet: getLevelReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

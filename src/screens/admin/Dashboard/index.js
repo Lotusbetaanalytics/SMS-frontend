@@ -7,28 +7,16 @@ import {
   totalStaff,
   totalStudent,
 } from "../../../redux/action/getAllUsersAction";
-import { userDetails } from "../../../redux/action/userAction";
+import { getfaculty } from "../../../redux/action/facultyAction";
+// import { userDetails } from "../../../redux/action/userAction";
 import styles from "./styles.module.css";
+import { getDepartment } from "../../../redux/action/departmentAction";
+import { getCourse } from "../../../redux/action/courseAction";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // const [person, setPerson] = React.useState("");
-  // const user = JSON.parse(localStorage.getItem("userProfileName"));
-  // React.useEffect(() => {
-  //   if (user) setPerson(user.data.first_name);
-  // }, [user]);
-
-  // console.log(user);
-
-  // useEffect(() => {
-  //   dispatch(userDetails());
-  // }, [dispatch]);
-
-  // const userDetail = useSelector((state) => state.userDetail);
-  // const { user } = userDetail;
-  // console.log(user);
   const userAli = JSON.parse(localStorage.getItem("userProfileName"));
   const person = userAli;
   console.log(person.first_name);
@@ -43,11 +31,9 @@ function Dashboard() {
   useEffect(() => {
     dispatch(totalStudent());
   }, [dispatch]);
+
   const totalStudentNo = useSelector((state) => state.totalStudentNo);
   const { allStudent } = totalStudentNo;
-  console.log(allStudent);
-  const getStudent = JSON.parse(localStorage.getItem("getAllStudents"));
-  const students = getStudent;
 
   useEffect(() => {
     dispatch(totalStaff());
@@ -57,6 +43,28 @@ function Dashboard() {
   console.log(allStaff);
   const staff = JSON.parse(localStorage.getItem("allStaff"));
   const staffData = staff;
+
+  useEffect(() => {
+    dispatch(getfaculty());
+  }, [dispatch]);
+
+  const listFaculty = useSelector((state) => state.listFaculty);
+  const { faculty } = listFaculty;
+
+  useEffect(() => {
+    dispatch(getDepartment());
+  }, [dispatch]);
+
+  const departmentGet = useSelector((state) => state.departmentGet);
+  const { departmentid } = departmentGet;
+
+  useEffect(() => {
+    dispatch(getCourse());
+  }, [dispatch]);
+
+  const courseGet = useSelector((state) => state.courseGet);
+  const { getCourseId } = courseGet;
+  console.log(getCourseId);
 
   return (
     <div className={styles.dashboardContainer}>
@@ -69,7 +77,7 @@ function Dashboard() {
         <div className={styles.dashboardCards}>
           <p>Total Number of Students</p>
           <div className={styles.dashboardScore}>
-            {students && students.count}
+            {allStudent && allStudent.length}
           </div>
         </div>
         <div className={styles.dashboardCards}>
@@ -80,11 +88,15 @@ function Dashboard() {
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Faculties</p>
-          <div className={styles.dashboardScore}>10</div>
+          <div className={styles.dashboardScore}>
+            {faculty && faculty.length}
+          </div>
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Department</p>
-          <div className={styles.dashboardScore}>40</div>
+          <div className={styles.dashboardScore}>
+            {departmentid && departmentid.length}
+          </div>
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Courses</p>

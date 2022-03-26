@@ -88,12 +88,9 @@ function Faculty() {
               </button>
 
               <div className={styles.facultyRadioContainer}>
-                <div
-                  className={styles.radioBtn}
-                  onChange={handleClick}
-                  // onClick={() => setClickable("false")}
-                >
+                <div className={styles.radioBtn}>
                   <input
+                    onChange={handleClick}
                     type="checkbox"
                     value={isActive}
                     disable={isActive ? "false" : "true"}
