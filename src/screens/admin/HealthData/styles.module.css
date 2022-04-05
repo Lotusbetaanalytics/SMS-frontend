@@ -1,19 +1,19 @@
-/* .bioDataContainer {
+/* .healthDataContainer {
   margin-left: 3%;
-} */
+}
 
-/* .bioData {
+.healthData {
   padding: 2rem;
 } */
 
-.bioDataTitle {
+.healthDataTitle {
   display: flex;
   width: 80%;
   padding-top: 1.5rem;
   margin-left: 40px;
 }
 
-.bioDataTitle span {
+.healthDataTitle span {
   padding: 1rem;
   width: 19%;
   margin-left: 3%;
@@ -23,7 +23,7 @@
   color: azure;
 }
 
-.bioDataForm {
+.healthDataForm {
   display: grid;
   grid-template-columns: 32% 32% 32%;
   grid-column-gap: 3%;
@@ -33,14 +33,14 @@
   padding: 2.5rem;
 }
 
-.bioDataForm input {
+.healthDataForm input {
   width: 100%;
   padding: 15px 20px;
   border-radius: 10px;
   border: 2.5px solid lightgray;
 }
 
-.bioDataSelect {
+.healthDataSelect {
   border: 2.5px solid lightgray;
   border-radius: 10px;
   padding: 15px 20px;
@@ -48,7 +48,7 @@
 
 .stBtn {
   padding: 1rem;
-  width: 15%;
+  width: 55%;
   margin-left: 2.5%;
   font-weight: bold;
   background-color: #2d9cdb;

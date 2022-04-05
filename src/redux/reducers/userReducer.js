@@ -26,7 +26,7 @@ export const userLoginReducer = (state = {}, action) => {
   }
 };
 
-export const userDetailsReducer = (state = {}, action) => {
+export const userDetailsReducer = (state = { user: [] }, action) => {
   switch (action.type) {
     case USER_DETAILS_REQUEST:
       return { loading: true };
@@ -34,7 +34,7 @@ export const userDetailsReducer = (state = {}, action) => {
       return {
         loading: false,
         success: true,
-        userName: action.payload.data,
+        username: action.payload,
       };
     case USER_DETAILS_FAIL:
       return { loading: false, error: action.payload };

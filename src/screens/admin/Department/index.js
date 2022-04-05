@@ -6,6 +6,7 @@ import { postDepartment } from "../../../redux/action/departmentAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
 import { getfaculty } from "../../../redux/action/facultyAction";
+import { totalStaff } from "../../../redux/action/getAllUsersAction";
 
 function Department() {
   const [facultyName, setFacultyName] = useState("");
@@ -43,6 +44,13 @@ function Department() {
   const listFaculty = useSelector((state) => state.listFaculty);
   const { faculty } = listFaculty;
   console.log(faculty);
+
+  useEffect(() => {
+    dispatch(totalStaff());
+  }, [dispatch]);
+
+  const totalStaffNo = useSelector((state) => state.totalStaffNo);
+  const { allStaff } = totalStaffNo;
 
   return (
     <div className={styles.newDepartmentContainer}>
@@ -95,8 +103,13 @@ function Department() {
                 required={true}
                 className={styles.newDepartmentSelect}
               >
-                <option>Head of Department..</option>
-                <option>Mr Okafor</option>
+                <option>Head of Department...</option>
+                {allStaff &&
+                  allStaff.map((item, i) => (
+                    <option key={i} value={item.id}>
+                      {item.user.full_name}
+                    </option>
+                  ))}
               </select>
 
               <input

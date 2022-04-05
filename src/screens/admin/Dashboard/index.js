@@ -8,18 +8,22 @@ import {
   totalStudent,
 } from "../../../redux/action/getAllUsersAction";
 import { getfaculty } from "../../../redux/action/facultyAction";
-// import { userDetails } from "../../../redux/action/userAction";
 import styles from "./styles.module.css";
 import { getDepartment } from "../../../redux/action/departmentAction";
 import { getCourse } from "../../../redux/action/courseAction";
+import { userDetails } from "../../../redux/action/userAction";
+import { Link } from "react-router-dom";
 
 function Dashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  const userAli = JSON.parse(localStorage.getItem("userProfileName"));
-  const person = userAli;
-  console.log(person.first_name);
+  useEffect(() => {
+    dispatch(userDetails());
+  }, [dispatch]);
+
+  const userDetail = useSelector((state) => state.userDetail);
+  const { username } = userDetail;
 
   const userName = JSON.parse(localStorage.getItem("userInfo"));
   useEffect(() => {
@@ -64,18 +68,18 @@ function Dashboard() {
 
   const courseGet = useSelector((state) => state.courseGet);
   const { getCourseId } = courseGet;
-  console.log(getCourseId);
 
   return (
     <div className={styles.dashboardContainer}>
       <Sidebar />
       <div className={styles.dashboard}>
         <div className={styles.dashboardHeader}>
-          <h2>Hi {person.first_name}!</h2>
+          <h2>Hi {username && username.first_name}!</h2>
           <h4>it's nice to see you again!</h4>
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Students</p>
+
           <div className={styles.dashboardScore}>
             {allStudent && allStudent.length}
           </div>
@@ -100,7 +104,9 @@ function Dashboard() {
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Courses</p>
-          <div className={styles.dashboardScore}>325</div>
+          <div className={styles.dashboardScore}>
+            {getCourseId && getCourseId.count}
+          </div>
         </div>
       </div>
       <WidgetPost />

@@ -10,6 +10,9 @@ import {
   CREATE_SPECIALIZATION_SUCCESS,
   CREATE_SPECIALIZATION_FAIL,
   CREATE_SPECIALIZATION_RESET,
+  GET_SPECIALIZATION_REQUEST,
+  GET_SPECIALIZATION_SUCCESS,
+  GET_SPECIALIZATION_FAIL,
 } from "../constants/departmentConstants";
 
 export const createDepartmentReducer = (state = {}, action) => {
@@ -54,6 +57,26 @@ export const postSpecilizationReducer = (state = {}, action) => {
       return { loading: false, error: action.payload };
     case CREATE_SPECIALIZATION_RESET:
       return {};
+    default:
+      return state;
+  }
+};
+
+export const getSpecializationReducer = (
+  state = { getSpecialization: [] },
+  action
+) => {
+  switch (action.type) {
+    case GET_SPECIALIZATION_REQUEST:
+      return { loading: true };
+    case GET_SPECIALIZATION_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        specializationid: action.payload.results,
+      };
+    case GET_SPECIALIZATION_FAIL:
+      return { loading: false, error: action.payload };
     default:
       return state;
   }

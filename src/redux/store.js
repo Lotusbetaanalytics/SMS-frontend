@@ -21,9 +21,16 @@ import { getScopeReducer } from "./reducers/getScopeReducer";
 import {
   createDepartmentReducer,
   getDepartmentReducer,
+  getSpecializationReducer,
   postSpecilizationReducer,
 } from "./reducers/departmentReducer";
-import { getCourseReducer } from "./reducers/courseReducer";
+import {
+  getCourseReducer,
+  getSemesterReducer,
+  getSessionReducer,
+  postAddCourseReducer,
+  postRegisterCourseReducer,
+} from "./reducers/courseReducer";
 import { getLevelReducer } from "./reducers/levelReducer";
 
 const reducer = combineReducers({
@@ -43,6 +50,11 @@ const reducer = combineReducers({
   courseGet: getCourseReducer,
   postSpecialization: postSpecilizationReducer,
   levelGet: getLevelReducer,
+  getSpecilize: getSpecializationReducer,
+  semesterGet: getSemesterReducer,
+  sessionGet: getSessionReducer,
+  postCourse: postRegisterCourseReducer,
+  postAddCourses: postAddCourseReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

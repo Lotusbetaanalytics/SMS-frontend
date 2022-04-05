@@ -9,6 +9,9 @@ import {
   CREATE_SPECIALIZATION_REQUEST,
   CREATE_SPECIALIZATION_SUCCESS,
   CREATE_SPECIALIZATION_FAIL,
+  GET_SPECIALIZATION_REQUEST,
+  GET_SPECIALIZATION_SUCCESS,
+  GET_SPECIALIZATION_FAIL,
 } from "../constants/departmentConstants";
 
 export const postDepartment =
@@ -141,3 +144,36 @@ export const postSpecialization =
       });
     }
   };
+
+export const getSpecialization = () => async (dispatch, getState) => {
+  try {
+    dispatch({
+      type: GET_SPECIALIZATION_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.access}`,
+      },
+    };
+    const { data } = await axios.get(`/academics/specialization/`, config);
+    dispatch({
+      type: GET_SPECIALIZATION_SUCCESS,
+      payload: data,
+    });
+    localStorage.setItem("getSpecializationInfo", JSON.stringify(data));
+    console.log(data);
+  } catch (error) {
+    dispatch({
+      type: GET_SPECIALIZATION_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};

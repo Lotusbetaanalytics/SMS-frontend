@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import styles from "./styles.module.css";
 import { newStaff } from "../../../redux/action/staffAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
+import { getSpecialization } from "../../../redux/action/departmentAction";
 
 function NewStaff({ success }) {
   const [first_Name, setFirst_Name] = useState("");
@@ -34,10 +35,17 @@ function NewStaff({ success }) {
     dispatch(newStaff(data, toast));
   };
 
+  useEffect(() => {
+    dispatch(getSpecialization());
+  }, [dispatch]);
+
+  const getSpecilize = useSelector((state) => state.getSpecilize);
+  const { specializationid } = getSpecilize;
+
   return (
     <div className={styles.newStaffContainer}>
       <Sidebar />
-      <Header userN="Fonsus" />
+      <Header />
       <div className={styles.newStaff}>
         <div className={styles.newStaffTitle}>
           <span>Create New Staff</span>
@@ -45,7 +53,6 @@ function NewStaff({ success }) {
         <div className={styles.newStaffContent}>
           <form onSubmit={submitHandler}>
             <div className={styles.newStaffForm}>
-              {/* <div className={styles.studentCardTitle}>First Name</div> */}
               <input
                 type="text"
                 onChange={(e) => setFirst_Name(e.target.value)}
@@ -88,14 +95,6 @@ function NewStaff({ success }) {
                 required={true}
               />
 
-              {/* <input
-                type="text"
-                onChange={(e) => setRole(e.target.value)}
-                value={role}
-                placeholder="Role"
-                required={true}
-              /> */}
-
               <select
                 onChange={(e) => setSpecialization(e.target.value)}
                 value={specialization}
@@ -103,9 +102,12 @@ function NewStaff({ success }) {
                 className={styles.newStaffSelect}
               >
                 <option>Specialization..</option>
-                <option>
-                  https://sms-lotus.herokuapp.com/academics/specialization/1/
-                </option>
+                {specializationid &&
+                  specializationid.map((item, i) => (
+                    <option key={i} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
               </select>
             </div>
 

@@ -1,9 +1,11 @@
 import { useToast } from "@chakra-ui/react";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
 import Header from "../../../components/Header";
 import Sidebar from "../../../components/Sidebar";
 import { createNewStudent } from "../../../redux/action/createStudentAction";
+import { getSpecialization } from "../../../redux/action/departmentAction";
 import styles from "./styles.module.css";
 
 function NewStudent() {
@@ -38,14 +40,26 @@ function NewStudent() {
   const { success, error, loading } = postNewStudent;
   console.log(postNewStudent);
 
+  useEffect(() => {
+    dispatch(getSpecialization());
+  }, [dispatch]);
+
+  const getSpecilize = useSelector((state) => state.getSpecilize);
+  const { specializationid } = getSpecilize;
+
   return (
     <div className={styles.newStudentContainer}>
       <Sidebar />
       <Header />
       <div className={styles.newStudent}>
-        <div className={styles.newStudentTitle}>
-          <span>Create New Student</span>
+        <div className={styles.newStudentLink}>
+          <div className={styles.newStudentTitle}>
+            <Link to="/staff/viewstudent">
+              <span>View Student Details</span>
+            </Link>
+          </div>
         </div>
+
         <div className={styles.newStudentContent}>
           <form onSubmit={submitHandler}>
             <div className={styles.newStudentForm}>
@@ -107,9 +121,12 @@ function NewStudent() {
                 className={styles.newStudentSelect}
               >
                 <option>Specialization..</option>
-                <option>
-                  https://sms-lotus.herokuapp.com/academics/specialization/1/
-                </option>
+                {specializationid &&
+                  specializationid.map((item, i) => (
+                    <option key={i} value={item.id}>
+                      {item.name}
+                    </option>
+                  ))}
               </select>
             </div>
 

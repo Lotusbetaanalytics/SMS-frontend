@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import AddCourses from "./screens/admin/AddCourses";
 import Dashboard from "./screens/admin/Dashboard";
 import Department from "./screens/admin/Department";
 import Faculty from "./screens/admin/Faculty";
@@ -12,6 +13,9 @@ import NewStudent from "./screens/admin/NewStudent";
 import NoticeBoard from "./screens/admin/NoticeBoard";
 import RegisterCourses from "./screens/admin/RegisterCourses";
 import Specialization from "./screens/admin/Specialization";
+import UserDataForm from "./screens/admin/UserDataForm";
+import ViewstudentDetails from "./screens/admin/ViewStudentDetails";
+import ViewStudentInfo from "./screens/admin/ViewStudentInfo";
 
 function App() {
   return (
@@ -43,6 +47,18 @@ function App() {
           path="/staff/specialization"
           exact
           element={<Specialization />}
+        />
+        <Route path="/student/addcourse" exact element={<AddCourses />} />
+        <Route path="/user/formdata" exact element={<UserDataForm />} />
+        <Route
+          path="/staff/viewstudent"
+          exact
+          element={<ViewstudentDetails />}
+        />
+        <Route
+          path="/viewstudentsinfo/:id"
+          exact
+          element={<ViewStudentInfo />}
         />
       </Routes>
     </Router>

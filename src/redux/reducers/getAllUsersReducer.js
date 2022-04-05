@@ -28,7 +28,11 @@ export const totalStaffReducer = (state = { allStaffs: [] }, action) => {
     case TOTAL_STAFF_REQUEST:
       return { loading: true };
     case TOTAL_STAFF_SUCCESS:
-      return { loading: false, success: true, allStaff: action.payload };
+      return {
+        loading: false,
+        success: true,
+        allStaff: action.payload.results,
+      };
     case TOTAL_STAFF_FAIL:
       return { loading: false, error: action.payload };
     default:

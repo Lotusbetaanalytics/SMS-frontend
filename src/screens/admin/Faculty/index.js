@@ -1,10 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import styles from "./styles.module.css";
 import { createNewFaculty } from "../../../redux/action/facultyAction";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
+import { totalStaff } from "../../../redux/action/getAllUsersAction";
 
 function Faculty() {
   const [faculty_Name, setFaculty_Name] = useState("");
@@ -33,6 +34,15 @@ function Faculty() {
     dispatch(createNewFaculty(facultyData, toast));
     console.log(facultyData);
   };
+
+  useEffect(() => {
+    dispatch(totalStaff());
+  }, [dispatch]);
+
+  const totalStaffNo = useSelector((state) => state.totalStaffNo);
+  const { allStaff } = totalStaffNo;
+
+  console.log(allStaff);
 
   return (
     <div className={styles.createFacultyContainer}>
@@ -70,7 +80,12 @@ function Faculty() {
                 className={styles.newFacultySelect}
               >
                 <option>Dean of Faculty..</option>
-                <option>9</option>
+                {allStaff &&
+                  allStaff.map((item, i) => (
+                    <option key={i} value={item.id}>
+                      {item.user.full_name}
+                    </option>
+                  ))}
               </select>
 
               <input
@@ -78,7 +93,6 @@ function Faculty() {
                 onChange={(e) => setDescription(e.target.value)}
                 value={description}
                 placeholder="Description (optional)"
-                required={true}
               />
             </div>
 
