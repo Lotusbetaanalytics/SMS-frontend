@@ -16,6 +16,9 @@ import Specialization from "./screens/admin/Specialization";
 import UserDataForm from "./screens/admin/UserDataForm";
 import ViewstudentDetails from "./screens/admin/ViewStudentDetails";
 import ViewStudentInfo from "./screens/admin/ViewStudentInfo";
+import ViewStaffDetails from "./screens/admin/ViewStaffDetails";
+import ViewStaffInfo from "./screens/admin/ViewStaffInfo";
+import Information from "./screens/admin/Information";
 
 function App() {
   return (
@@ -48,7 +51,9 @@ function App() {
           exact
           element={<Specialization />}
         />
+
         <Route path="/student/addcourse" exact element={<AddCourses />} />
+
         <Route path="/user/formdata" exact element={<UserDataForm />} />
         <Route
           path="/staff/viewstudent"
@@ -56,10 +61,14 @@ function App() {
           element={<ViewstudentDetails />}
         />
         <Route
-          path="/viewstudentsinfo/:id"
+          path={"/viewstudentsinfo/:id"}
           exact
           element={<ViewStudentInfo />}
         />
+        <Route path={"/staff/viewstaff"} exact element={<ViewStaffDetails />} />
+        <Route path={"/viewstaffsinfo/:id"} exact element={<ViewStaffInfo />} />
+        <Route path={"/staff/information"} exact element={<Information />} />
+        {/* <Route path={"/viewmodal/:id"} exact element={<Modal />} /> */}
       </Routes>
     </Router>
   );

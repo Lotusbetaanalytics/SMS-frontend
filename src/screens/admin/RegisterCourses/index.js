@@ -18,7 +18,6 @@ function RegisterCourses() {
   const [selectSession, setSelectSession] = useState("");
   const [selectSemester, setSelectSemester] = useState("");
   const [isActive, setIsActive] = useState("");
-  const [users, setUsers] = useState([]);
   const [filtered, setFiltered] = useState([]);
 
   const dispatch = useDispatch();

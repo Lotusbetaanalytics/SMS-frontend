@@ -86,25 +86,25 @@ function Dashboard() {
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Staff</p>
-          <div className={styles.dashboardScore}>
+          <div className={styles.dashboardScore2}>
             {staffData && staffData.count}
           </div>
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Faculties</p>
-          <div className={styles.dashboardScore}>
+          <div className={styles.dashboardScore3}>
             {faculty && faculty.length}
           </div>
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Department</p>
-          <div className={styles.dashboardScore}>
+          <div className={styles.dashboardScore4}>
             {departmentid && departmentid.length}
           </div>
         </div>
         <div className={styles.dashboardCards}>
           <p>Total Number of Courses</p>
-          <div className={styles.dashboardScore}>
+          <div className={styles.dashboardScore5}>
             {getCourseId && getCourseId.count}
           </div>
         </div>

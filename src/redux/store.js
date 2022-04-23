@@ -6,8 +6,14 @@ import {
   userForgotPasswordReducer,
   userLoginReducer,
 } from "./reducers/userReducer";
-import { createNewStudentReducer } from "./reducers/createStudentReducer";
-import { newStaffReducer } from "./reducers/staffReducer";
+import {
+  createNewStudentReducer,
+  deleteStudentByIdReducer,
+} from "./reducers/createStudentReducer";
+import {
+  deleteStaffByIdReducer,
+  newStaffReducer,
+} from "./reducers/staffReducer";
 import {
   totalStaffReducer,
   totalStudentReducer,
@@ -16,7 +22,10 @@ import {
   getFacultyReducer,
   newFacultyReducer,
 } from "./reducers/facultyReducer";
-import { postNoticeReducer } from "./reducers/noticeBoardReducer";
+import {
+  getNoticeReducer,
+  postNoticeReducer,
+} from "./reducers/noticeBoardReducer";
 import { getScopeReducer } from "./reducers/getScopeReducer";
 import {
   createDepartmentReducer,
@@ -32,6 +41,9 @@ import {
   postRegisterCourseReducer,
 } from "./reducers/courseReducer";
 import { getLevelReducer } from "./reducers/levelReducer";
+import { postUserDataReducer } from "./reducers/usersDataReducer";
+import { editStudentByIdReducer } from "./reducers/editUserDetailsReducers";
+import { getStudentByIdReducer } from "./reducers/getUserIdReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -55,6 +67,12 @@ const reducer = combineReducers({
   sessionGet: getSessionReducer,
   postCourse: postRegisterCourseReducer,
   postAddCourses: postAddCourseReducer,
+  postUsersDataInfo: postUserDataReducer,
+  deleteStudentId: deleteStudentByIdReducer,
+  deleteStaffId: deleteStaffByIdReducer,
+  noticeGet: getNoticeReducer,
+  editStudent: editStudentByIdReducer,
+  getStudentId: getStudentByIdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

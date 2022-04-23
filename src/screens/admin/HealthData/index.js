@@ -36,9 +36,12 @@ function HealthData({ allUserData, setAllUserData }) {
               <input
                 type="text"
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, bloodGroup: e.target.value })
+                  setAllUserData({
+                    ...allUserData,
+                    blood_group: e.target.value,
+                  })
                 }
-                value={allUserData.bloodGroup}
+                value={allUserData.blood_group}
                 placeholder="Blood Group"
                 required={true}
               />
@@ -96,10 +99,10 @@ function HealthData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    heartDisease: e.target.value,
+                    heart_disease: e.target.value,
                   })
                 }
-                value={allUserData.heartDisease}
+                value={allUserData.heart_disease}
                 required={true}
                 className={styles.healthDataSelect}
               >
@@ -128,10 +131,10 @@ function HealthData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    respiratoryProblems: e.target.value,
+                    respiratory_problems: e.target.value,
                   })
                 }
-                value={allUserData.respiratoryProblems}
+                value={allUserData.respiratory_problems}
                 required={true}
                 className={styles.healthDataSelect}
               >

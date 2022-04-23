@@ -53,9 +53,9 @@ function AcademicHistory({ allUserData, setAllUserData }) {
               <input
                 type={type}
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, startDate: e.target.value })
+                  setAllUserData({ ...allUserData, start_date: e.target.value })
                 }
-                value={allUserData.startDate}
+                value={allUserData.start_date}
                 placeholder="Start Date"
                 required={true}
                 onFocus={() => setType("date")}
@@ -65,9 +65,9 @@ function AcademicHistory({ allUserData, setAllUserData }) {
               <input
                 type={type}
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, endDate: e.target.value })
+                  setAllUserData({ ...allUserData, end_date: e.target.value })
                 }
-                value={allUserData.endDate}
+                value={allUserData.end_date}
                 placeholder="End Date"
                 required={true}
                 onFocus={() => setType("date")}
@@ -78,10 +78,10 @@ function AcademicHistory({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    qualificationEarned: e.target.value,
+                    qualification_earned: e.target.value,
                   })
                 }
-                value={allUserData.qualificationEarned}
+                value={allUserData.qualification_earned}
                 required={true}
                 className={styles.academicHistorySelect}
               >

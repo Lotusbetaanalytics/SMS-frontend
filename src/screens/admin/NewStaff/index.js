@@ -6,6 +6,7 @@ import { newStaff } from "../../../redux/action/staffAction";
 import { useDispatch, useSelector } from "react-redux";
 import { useToast } from "@chakra-ui/react";
 import { getSpecialization } from "../../../redux/action/departmentAction";
+import { Link } from "react-router-dom";
 
 function NewStaff({ success }) {
   const [first_Name, setFirst_Name] = useState("");
@@ -48,7 +49,9 @@ function NewStaff({ success }) {
       <Header />
       <div className={styles.newStaff}>
         <div className={styles.newStaffTitle}>
-          <span>Create New Staff</span>
+          <Link to="/staff/viewstaff">
+            <button>View Staff Details</button>
+          </Link>
         </div>
         <div className={styles.newStaffContent}>
           <form onSubmit={submitHandler}>

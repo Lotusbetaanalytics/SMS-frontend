@@ -34,10 +34,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    nkoFullName: e.target.value,
+                    next_of_kin_full_name: e.target.value,
                   })
                 }
-                value={allUserData.nkoFullName}
+                value={allUserData.next_of_kin_full_name}
                 placeholder="Next of Kin Full Name"
                 required={true}
               />
@@ -47,10 +47,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    nkoPhoneNo1: e.currentTarget.value.slice(0, 11),
+                    next_of_kin_phone_no_1: e.currentTarget.value.slice(0, 11),
                   })
                 }
-                value={allUserData.nkoPhoneNo1}
+                value={allUserData.next_of_kin_phone_no_1}
                 placeholder="Next of Kin Phone Number"
                 required={true}
               />
@@ -60,10 +60,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    nkoPhoneNo2: e.currentTarget.value.slice(0, 11),
+                    next_of_kin_phone_no_2: e.currentTarget.value.slice(0, 11),
                   })
                 }
-                value={allUserData.nkoPhoneNo2}
+                value={allUserData.next_of_kin_phone_no_2}
                 placeholder="Next of Kin Phone Number 2"
                 required={true}
               />
@@ -71,9 +71,12 @@ function FamilyData({ allUserData, setAllUserData }) {
               <input
                 type="text"
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, nkoAddress: e.target.value })
+                  setAllUserData({
+                    ...allUserData,
+                    next_of_kin_address: e.target.value,
+                  })
                 }
-                value={allUserData.nkoAddress}
+                value={allUserData.next_of_kin_address}
                 placeholder="Next of Kin Address"
                 required={true}
               />
@@ -82,10 +85,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    guardianFullName: e.target.value,
+                    guardian_full_name: e.target.value,
                   })
                 }
-                value={allUserData.guardianFullName}
+                value={allUserData.guardian_full_name}
                 placeholder="Guardian Full Name"
                 required={true}
               />
@@ -94,10 +97,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    guardianPhoneNo1: e.currentTarget.value.slice(0, 11),
+                    guardian_phone_no_1: e.currentTarget.value.slice(0, 11),
                   })
                 }
-                value={allUserData.guardianPhoneNo1}
+                value={allUserData.guardian_phone_no_1}
                 placeholder="Guardian Phone Number"
                 required={true}
               />
@@ -107,10 +110,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    guardianPhoneNo2: e.currentTarget.value.slice(0, 11),
+                    guardian_phone_no_2: e.currentTarget.value.slice(0, 11),
                   })
                 }
-                value={allUserData.guardianPhoneNo2}
+                value={allUserData.guardian_phone_no_2}
                 placeholder="Guardian Phone Number 2"
                 required={true}
               />
@@ -120,10 +123,10 @@ function FamilyData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    guardianAddress: e.target.value,
+                    guardian_address: e.target.value,
                   })
                 }
-                value={allUserData.guardianAddress}
+                value={allUserData.guardian_address}
                 placeholder="Guardian Address"
                 required={true}
               />

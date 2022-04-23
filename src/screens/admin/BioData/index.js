@@ -22,7 +22,7 @@ function BioData({ allUserData, setAllUserData }) {
         <div className={styles.bioDataContent}>
           <form onSubmit={submitHandler}>
             <div className={styles.bioDataForm}>
-              <input
+              {/* <input
                 type="text"
                 onChange={(e) =>
                   setAllUserData({ ...allUserData, user: e.target.value })
@@ -30,7 +30,7 @@ function BioData({ allUserData, setAllUserData }) {
                 value={allUserData.user}
                 placeholder="User"
                 required={true}
-              />
+              /> */}
               <select
                 onChange={(e) =>
                   setAllUserData({ ...allUserData, gender: e.target.value })
@@ -49,10 +49,10 @@ function BioData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    maritalStatus: e.target.value,
+                    marital_status: e.target.value,
                   })
                 }
-                value={allUserData.maritalStatus}
+                value={allUserData.marital_status}
                 required={true}
                 className={styles.bioDataSelect}
               >
@@ -72,8 +72,8 @@ function BioData({ allUserData, setAllUserData }) {
                 className={styles.bioDataSelect}
               >
                 <option>Religion..</option>
-                <option>Christian</option>
-                <option>Muslim</option>
+                <option>Christianity</option>
+                <option>Islam</option>
                 <option>Other</option>
               </select>
 
@@ -91,7 +91,10 @@ function BioData({ allUserData, setAllUserData }) {
 
               <select
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, country: e.target.value })
+                  setAllUserData({
+                    ...allUserData,
+                    nationality: e.target.value,
+                  })
                 }
                 value={allUserData.country}
                 required={true}
@@ -111,10 +114,10 @@ function BioData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    stateOfOrigin: e.target.value,
+                    state_of_origin: e.target.value,
                   })
                 }
-                value={allUserData.stateOfOrigin}
+                value={allUserData.state_of_origin}
                 placeholder="State of Origin"
                 required={true}
               />
@@ -123,10 +126,10 @@ function BioData({ allUserData, setAllUserData }) {
                 onChange={(e) =>
                   setAllUserData({
                     ...allUserData,
-                    localGovenrment: e.target.value,
+                    local_govt: e.target.value,
                   })
                 }
-                value={allUserData.localGovenrment}
+                value={allUserData.local_govt}
                 placeholder="Local Government"
                 required={true}
               />
@@ -142,18 +145,24 @@ function BioData({ allUserData, setAllUserData }) {
               <input
                 type="tel"
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, phoneNo1: e.target.value })
+                  setAllUserData({
+                    ...allUserData,
+                    phone_no_1: e.currentTarget.value.slice(0, 11),
+                  })
                 }
-                value={allUserData.phoneNo1}
+                value={allUserData.phone_no_1}
                 placeholder="Phone Number"
                 required={true}
               />
               <input
                 type="tel"
                 onChange={(e) =>
-                  setAllUserData({ ...allUserData, phoneNo2: e.target.value })
+                  setAllUserData({
+                    ...allUserData,
+                    phone_no_2: e.target.value.slice(0, 11),
+                  })
                 }
-                value={allUserData.phoneNo2}
+                value={allUserData.phone_no_2}
                 placeholder="Phone Number 2"
                 required={true}
               />

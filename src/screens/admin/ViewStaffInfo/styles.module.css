@@ -15,7 +15,7 @@
 }
 
 .viewInfoBtn button {
-  width: 250px;
+  width: 200px;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -54,14 +54,4 @@
   border: none;
   border-radius: 40px;
   margin-left: 10px;
-}
-
-.stBtn {
-  padding: 1rem;
-  width: 15%;
-  margin-left: 30px;
-  font-weight: bold;
-  background-color: #2d9cdb;
-  border-radius: 5px;
-  color: azure;
 }

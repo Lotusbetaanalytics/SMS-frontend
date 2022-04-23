@@ -13,9 +13,9 @@
   margin-left: 40px;
 }
 
-.newStudentTitle span {
+.newStudentTitle button {
   padding: 1rem;
-  width: 19%;
+  width: 230px;
   margin-left: 3%;
   font-weight: bold;
   background-color: #83d7f3;
@@ -27,7 +27,7 @@
   display: grid;
   grid-template-columns: 32% 32% 32%;
   grid-column-gap: 4%;
-  grid-row-gap: 20px;
+  grid-row-gap: 15px;
   margin-top: 20px;
   margin-bottom: 20px;
   padding: 2.5rem;
@@ -37,7 +37,7 @@
   width: 100%;
   padding: 15px 20px;
   border-radius: 10px;
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
 }
 
 .stBtn {
@@ -51,7 +51,7 @@
 }
 
 .newStudentSelect {
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
   border-radius: 10px;
   padding: 15px 20px;
 }

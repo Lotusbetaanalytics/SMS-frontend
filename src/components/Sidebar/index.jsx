@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import adminpic from "../../assets/adminpic.png";
 import { Link } from "react-router-dom";
@@ -11,7 +11,8 @@ import { ImBook } from "react-icons/im";
 import { FaAssistiveListeningSystems } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
 import { userLogout } from "../../redux/action/userAction";
-import { useDispatch } from "react-redux";
+import { userDetails } from "../../redux/action/userAction";
+import { useDispatch, useSelector } from "react-redux";
 
 const Sidebar = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,12 @@ const Sidebar = () => {
     dispatch(userLogout());
   };
 
-  const user = JSON.parse(localStorage.getItem("userProfileName"));
-  const person = user;
+  useEffect(() => {
+    dispatch(userDetails());
+  }, [dispatch]);
+
+  const userDetail = useSelector((state) => state.userDetail);
+  const { username } = userDetail;
 
   return (
     <div className={styles.sidebarContainer}>
@@ -28,7 +33,7 @@ const Sidebar = () => {
         <img src={adminpic} alt="User" />
       </div>
       <div className={styles.sidebarTitle}>
-        <h3>{person.first_name}</h3>
+        <h3>{username && username.first_name}</h3>
         {/* <h3>{person.last_name}</h3> */}
       </div>
       <div className={styles.sidebarIconContainer}>
@@ -60,16 +65,24 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link to="/staff/newstaff">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <IoMdPeople />
+            <div className={styles.dropdown}>
+              <Link to="/staff/newstaff">
+                <div className={styles.iconContainer}>
+                  <div className={styles.icon}>
+                    <IoMdPeople />
+                  </div>
+                  <div className={styles.iconName}>
+                    <button>Staff</button>
+                  </div>
+                  <div className={styles.dropContent}>
+                    <Link to="/staff/newstaff">Staff</Link>
+                    <Link to="/user/formdata">BioData</Link>
+                    {/* <br /> */}
+                    <Link to="/staff/specialization">Specialization</Link>
+                  </div>
                 </div>
-                <div className={styles.iconName}>
-                  <p>Staff</p>
-                </div>
-              </div>
-            </Link>
+              </Link>
+            </div>
           </li>
 
           <li>
@@ -124,16 +137,16 @@ const Sidebar = () => {
           </li>
           <li>
             <Link to="/" onClick={logoutHandler}>
-              <div className={styles.logout}>
-                <div className={styles.iconContainer}>
-                  <div className={styles.icon}>
-                    <MdOutlineLogout />
-                  </div>
-                  <div className={styles.iconName}>
-                    <p>Logout</p>
-                  </div>
+              {/* <div className={styles.logout}> */}
+              <div className={styles.iconContainer}>
+                <div className={styles.icon}>
+                  <MdOutlineLogout />
+                </div>
+                <div className={styles.iconName}>
+                  <p>Logout</p>
                 </div>
               </div>
+              {/* </div> */}
             </Link>
           </li>
         </ul>

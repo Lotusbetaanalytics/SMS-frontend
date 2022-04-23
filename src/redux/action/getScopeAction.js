@@ -26,7 +26,6 @@ export const getScope = () => async (dispatch, getState) => {
       payload: data,
     });
     localStorage.setItem("getScopeInfo", JSON.stringify(data));
-    console.log(data);
   } catch (error) {
     dispatch({
       type: GET_SCOPE_FAIL,

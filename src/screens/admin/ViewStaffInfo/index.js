@@ -1,36 +1,32 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useParams } from "react-router-dom";
-import Header from "../../../components/Header";
-import Modal from "../../../components/Modal";
+import { useParams } from "react-router";
 import Sidebar from "../../../components/Sidebar";
-import { totalStudent } from "../../../redux/action/getAllUsersAction";
+import Header from "../../../components/Header";
+import { totalStaff } from "../../../redux/action/getAllUsersAction";
 import styles from "./styles.module.css";
+import { Link } from "react-router-dom";
 
-function ViewStudentInfo() {
-  const [openModal, setOpenModal] = useState(false);
-
+function ViewStaffInfo() {
   const dispatch = useDispatch();
   let { id } = useParams();
 
-  console.log(id);
-
   useEffect(() => {
-    dispatch(totalStudent());
+    dispatch(totalStaff());
   }, [dispatch]);
 
-  const [studentInfo, setStudentInfo] = React.useState();
+  const [staffInfo, setStaffInfo] = React.useState();
 
-  const totalStudentNo = useSelector((state) => state.totalStudentNo);
-  const { allStudent = [], success: student } = totalStudentNo;
-  const data = allStudent.filter((x) => x.id === parseInt(id));
+  const totalStaffNo = useSelector((state) => state.totalStaffNo);
+  const { allStaff = [], success: staff } = totalStaffNo;
+  const data = allStaff.filter((x) => x.id === parseInt(id));
 
   React.useEffect(() => {
-    if (student) {
-      setStudentInfo(data && data);
+    if (staff) {
+      setStaffInfo(data && data);
     }
-  }, [student]);
-  console.log(studentInfo && studentInfo[0].user.first_name);
+  }, [staff]);
+  console.log(staffInfo && staffInfo[0].user.first_name);
 
   return (
     <div className={styles.viewInfoContainer}>
@@ -49,7 +45,7 @@ function ViewStudentInfo() {
             <header>First Name</header>
             <span className={styles.titleContainer}>
               <p className={styles.titleName}>
-                {studentInfo && studentInfo[0].user.first_name}
+                {staffInfo && staffInfo[0].user.first_name}
               </p>
             </span>
           </div>
@@ -58,7 +54,7 @@ function ViewStudentInfo() {
             <header>Last Name</header>
             <span className={styles.titleContainer}>
               <p className={styles.titleName}>
-                {studentInfo && studentInfo[0].user.last_name}
+                {staffInfo && staffInfo[0].user.last_name}
               </p>
             </span>
           </div>
@@ -67,7 +63,7 @@ function ViewStudentInfo() {
             <header>Matric No</header>
             <span className={styles.titleContainer}>
               <p className={styles.titleName}>
-                {studentInfo && studentInfo[0].matric_no}
+                {staffInfo && staffInfo[0].employee_id}
               </p>
             </span>
           </div>
@@ -76,26 +72,14 @@ function ViewStudentInfo() {
             <header>Email</header>
             <span className={styles.titleContainer}>
               <p className={styles.titleName}>
-                {studentInfo && studentInfo[0].user.email}
+                {staffInfo && staffInfo[0].user.email}
               </p>
             </span>
           </div>
         </div>
-        <div className={styles.editbtn}>
-          <button
-            type="button"
-            className={styles.stBtn}
-            onClick={() => {
-              setOpenModal(true);
-            }}
-          >
-            Edit Student Details
-          </button>
-        </div>
-        {openModal && <Modal closeModal={setOpenModal} />}
       </div>
     </div>
   );
 }
 
-export default ViewStudentInfo;
+export default ViewStaffInfo;

@@ -77,7 +77,7 @@ function NoticeBoard() {
                   ))}
               </select>
 
-              <input
+              <textarea
                 type="text"
                 onChange={(e) => setNoticeMessage(e.target.value)}
                 value={noticeMessage}

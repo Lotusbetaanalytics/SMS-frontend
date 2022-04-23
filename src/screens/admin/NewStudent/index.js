@@ -1,4 +1,10 @@
-import { useToast } from "@chakra-ui/react";
+import {
+  Alert,
+  AlertIcon,
+  Center,
+  CircularProgress,
+  useToast,
+} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
@@ -40,6 +46,10 @@ function NewStudent() {
   const { success, error, loading } = postNewStudent;
   console.log(postNewStudent);
 
+  if (success) {
+    window.location.reload(false);
+  }
+
   useEffect(() => {
     dispatch(getSpecialization());
   }, [dispatch]);
@@ -55,88 +65,108 @@ function NewStudent() {
         <div className={styles.newStudentLink}>
           <div className={styles.newStudentTitle}>
             <Link to="/staff/viewstudent">
-              <span>View Student Details</span>
+              <button>View Student Details</button>
             </Link>
           </div>
         </div>
 
-        <div className={styles.newStudentContent}>
-          <form onSubmit={submitHandler}>
-            <div className={styles.newStudentForm}>
-              {/* <div className={styles.studentCardTitle}>First Name</div> */}
-              <input
-                type="text"
-                onChange={(e) => setFirst_Name(e.target.value)}
-                value={first_Name}
-                placeholder="First Name"
-                required={true}
-              />
+        {error && (
+          <Alert status="error">
+            <AlertIcon />
+            {error}
+          </Alert>
+        )}
+        {success && (
+          <Alert status="success">
+            <AlertIcon />
+            Student Created Successfully
+          </Alert>
+        )}
 
-              <input
-                type="text"
-                onChange={(e) => setMiddle_Name(e.target.value)}
-                value={middle_Name}
-                placeholder="Middle Name"
-                required={true}
-              />
+        {loading ? (
+          <Center>
+            <CircularProgress isIndeterminate color="teal.300" />
+          </Center>
+        ) : (
+          <div className={styles.newStudentContent}>
+            <form onSubmit={submitHandler}>
+              <div className={styles.newStudentForm}>
+                {/* <div className={styles.studentCardTitle}>First Name</div> */}
+                {/* <label>First Name</label> */}
+                <input
+                  type="text"
+                  onChange={(e) => setFirst_Name(e.target.value)}
+                  value={first_Name}
+                  placeholder="First Name"
+                  required={true}
+                />
+                {/* <label>Middle Name</label> */}
+                <input
+                  type="text"
+                  onChange={(e) => setMiddle_Name(e.target.value)}
+                  value={middle_Name}
+                  placeholder="Middle Name"
+                  required={true}
+                />
 
-              <input
-                type="text"
-                onChange={(e) => setLast_Name(e.target.value)}
-                value={last_Name}
-                placeholder="Last Name"
-                required={true}
-              />
-              <input
-                type="number"
-                onChange={(e) =>
-                  setMatric_no(e.currentTarget.value.slice(0, 11))
-                }
-                value={matric_no}
-                placeholder="Matric No."
-                required={true}
-              />
-              <input
-                type="text"
-                onChange={(e) =>
-                  setStudent_id(e.currentTarget.value.slice(0, 11))
-                }
-                value={student_id}
-                placeholder="Student Identity Number"
-                required={true}
-              />
+                <input
+                  type="text"
+                  onChange={(e) => setLast_Name(e.target.value)}
+                  value={last_Name}
+                  placeholder="Last Name"
+                  required={true}
+                />
+                <input
+                  type="number"
+                  onChange={(e) =>
+                    setMatric_no(e.currentTarget.value.slice(0, 11))
+                  }
+                  value={matric_no}
+                  placeholder="Matric No."
+                  required={true}
+                />
+                <input
+                  type="text"
+                  onChange={(e) =>
+                    setStudent_id(e.currentTarget.value.slice(0, 11))
+                  }
+                  value={student_id}
+                  placeholder="Student Identity Number"
+                  required={true}
+                />
 
-              <input
-                type="email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-                placeholder="Email Address"
-                required={true}
-              />
+                <input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  placeholder="Email Address"
+                  required={true}
+                />
 
-              <select
-                onChange={(e) => setSpecialization(e.target.value)}
-                value={specialization}
-                required={true}
-                className={styles.newStudentSelect}
-              >
-                <option>Specialization..</option>
-                {specializationid &&
-                  specializationid.map((item, i) => (
-                    <option key={i} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-            </div>
+                <select
+                  onChange={(e) => setSpecialization(e.target.value)}
+                  value={specialization}
+                  required={true}
+                  className={styles.newStudentSelect}
+                >
+                  <option>Specialization..</option>
+                  {specializationid &&
+                    specializationid.map((item, i) => (
+                      <option key={i} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
+              </div>
 
-            <div className={styles.studentBtn}>
-              <button type="submit" className={styles.stBtn}>
-                Create Student
-              </button>
-            </div>
-          </form>
-        </div>
+              <div className={styles.studentBtn}>
+                <button type="submit" className={styles.stBtn}>
+                  Create Student
+                </button>
+              </div>
+            </form>
+          </div>
+        )}
       </div>
     </div>
   );

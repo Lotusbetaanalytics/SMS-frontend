@@ -4,27 +4,27 @@ import { Table, Tbody, Td, Th, Tr, Button } from "@chakra-ui/react";
 import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import { Link } from "react-router-dom";
-import { totalStudent } from "../../../redux/action/getAllUsersAction";
 import { useDispatch, useSelector } from "react-redux";
-import { deleteStudentId } from "../../../redux/action/createStudentAction";
+import { totalStaff } from "../../../redux/action/getAllUsersAction";
+import { deleteStaffId } from "../../../redux/action/staffAction";
 
-function ViewstudentDetails() {
+function ViewStaffDetails() {
   const dispatch = useDispatch();
 
   const handlerDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this ?")) {
-      dispatch(deleteStudentId(id));
+      dispatch(deleteStaffId(id));
       window.location.reload(false);
     }
     console.log(id);
   };
 
   useEffect(() => {
-    dispatch(totalStudent());
+    dispatch(totalStaff());
   }, [dispatch]);
 
-  const totalStudentNo = useSelector((state) => state.totalStudentNo);
-  const { allStudent } = totalStudentNo;
+  const totalStaffNo = useSelector((state) => state.totalStaffNo);
+  const { allStaff } = totalStaffNo;
 
   return (
     <div className={styles.viewContainer}>
@@ -32,7 +32,7 @@ function ViewstudentDetails() {
       <Header />
 
       <div className={styles.viewBack}>
-        <Link to="/admin/newstudent">
+        <Link to="/">
           <button>Back</button>
         </Link>
       </div>
@@ -42,18 +42,18 @@ function ViewstudentDetails() {
           <Tr>
             <Th>First Name</Th>
             <Th>Last Name</Th>
-            <Th>Matric No</Th>
             <Th>Email</Th>
+            <Th>Staff ID No</Th>
             <Th>Action</Th>
           </Tr>
-          {allStudent &&
-            allStudent.map((item, i) => (
+          {allStaff &&
+            allStaff.map((item, i) => (
               <Tbody key={i}>
-                <Tr key={item.id}>
+                <Tr key={item._id}>
                   <Td>{item.user.first_name}</Td>
                   <Td>{item.user.last_name}</Td>
-                  <Td>{item.matric_no}</Td>
                   <Td>{item.user.email}</Td>
+                  <Td>{item.employee_id}</Td>
                   <Td>
                     <Button
                       className="chakar_btn"
@@ -61,7 +61,7 @@ function ViewstudentDetails() {
                       borderRadius="10"
                       type="submit"
                     >
-                      <Link to={`/viewstudentsinfo/${item.id}`}>View More</Link>
+                      <Link to={`/viewstaffsinfo/${item.id}`}>View More</Link>
                     </Button>
                     <Button
                       className="chakar_btn"
@@ -82,4 +82,4 @@ function ViewstudentDetails() {
   );
 }
 
-export default ViewstudentDetails;
+export default ViewStaffDetails;

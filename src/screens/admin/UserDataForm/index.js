@@ -6,43 +6,55 @@ import BioData from "../BioData";
 import AcademicHistory from "../AcademicHistory";
 import HealthData from "../HealthData";
 import FamilyData from "../FamilyData";
+import { useDispatch } from "react-redux";
+import { postUsersData } from "../../../redux/action/usersDataAction";
+import { useToast } from "@chakra-ui/react";
 
 function UserDataForm() {
+  const dispatch = useDispatch();
+  const toast = useToast();
+
   const [page, setPage] = useState(0);
   const [allUserData, setAllUserData] = useState({
     user: "",
     gender: "",
-    maritalStatus: "",
+    marital_status: "",
     religion: "",
     birthday: "",
-    stateOfOrigin: "",
-    localGovenrment: "",
+    state_of_origin: "",
+    local_govt: "",
     address: "",
-    phoneNo1: "",
-    phoneNo2: "",
-    institution: "",
-    startDate: "",
-    bioData: "",
-    endDate: "",
-    qualificationEarned: "",
-    isBioData: "",
-    bloodGroup: "",
-    genotype: "",
-    allergies: "",
-    diabetes: "",
-    STIs: "",
-    heartDisease: "",
-    disabilities: "",
-    respiratoryProblems: "",
-    userBioData: "",
-    nkoFullName: "",
-    nkoPhoneNo1: "",
-    nkoPhoneNo2: "",
-    nkoAddress: "",
-    guardianFullName: "",
-    guardianPhoneNo1: "",
-    guardianPhoneNo2: "",
-    guardianAddress: "",
+    phone_no_1: "",
+    phone_no_2: "",
+    academic_history: {
+      institution: "",
+      start_date: "",
+      bioData: "",
+      end_date: "",
+      qualification_earned: "",
+    },
+    health_data: {
+      isBioData: "",
+      blood_group: "",
+      genotype: "",
+      allergies: "",
+      diabetes: "",
+      STIs: "",
+      heart_disease: "",
+      disabilities: "",
+      respiratory_problems: "",
+    },
+    family_data: {
+      userBioData: "",
+      next_of_kin_full_name: "",
+      next_of_kin_phone_no_1: "",
+      next_of_kin_phone_no_2: "",
+      next_of_kin_address: "",
+      guardian_full_name: "",
+      guardian_phone_no_1: "",
+      guardian_phone_no_2: "",
+      guardian_address: "",
+    },
   });
 
   const formTitles = [
@@ -98,10 +110,16 @@ function UserDataForm() {
             className={styles.stBtn}
             disable={page === formTitles.length - 1}
             onClick={() => {
-              setPage((currentPage) => currentPage + 1);
+              if (page === formTitles.length - 1) {
+                alert("Are you sure you want to Submit");
+                dispatch(postUsersData(allUserData, toast));
+                console.log(allUserData);
+              } else {
+                setPage((currentPage) => currentPage + 1);
+              }
             }}
           >
-            Next
+            {page === formTitles.length - 1 ? "Submit" : "Next"}
           </button>
         </div>
       </div>
