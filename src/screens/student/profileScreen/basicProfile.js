@@ -19,7 +19,13 @@ const BasicProfile = () => {
   const dispatch = useDispatch()
   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
   const mystudentDetails = myDetail;
-  
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
 
   useEffect(() => {
     dispatch(studentDetails());

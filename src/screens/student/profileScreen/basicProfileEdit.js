@@ -21,8 +21,14 @@ const EditBasicInfo = () => {
   const [msg,setMsg] = useState("")
 
   const dispatch = useDispatch()
+  const navigate = useNavigate();
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
 
-
+  useEffect(() => {
+   if (!studentLogin) {
+     navigate("/student/login")
+   }
+ }, [studentLogin,navigate,dispatch]);
 
   const details = useSelector((state) => state.details);
   const {studentDetail} = details;
@@ -39,7 +45,7 @@ const EditBasicInfo = () => {
     setLast_name( studentDetail.last_name);
     setSpecialization(studentDetail.specialization);
     }
-  }, [studentDetail,dispatch]);
+  }, [dispatch]);
 
   
   const submitHandler = (e) => {

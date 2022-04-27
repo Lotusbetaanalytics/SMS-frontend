@@ -31,7 +31,7 @@
   padding-left: 1rem;
 }
 .head {
-  font-size: 12px;
+  font-size: 14px;
   font-weight: 400;
   padding-left: 1rem;
   margin-top: 2px;
@@ -39,9 +39,11 @@
 
 .noticeBoard {
   display: flex;
+  flex-direction: column;
   height: 80px;
-  justify-content: center;
-  align-items: center;
+  padding-left: .8rem;
+  /* justify-content: center;
+  align-items: center; */
   width: 100%;
   margin-top: 5px;
   box-shadow: 2px 2px 5px 0px rgba(194, 165, 165, 0.75);
@@ -62,16 +64,23 @@
 }
 .noticeInfo {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  font-size: 12px;
+  
+  
+  font-size: 11px;
 }
 
 .infoHeader {
   display: flex;
+  font-size: 11px;
+  font-weight: bold;
+  margin-bottom: 2px;
+  margin-top: 3px;
+  color: red;
 }
 .author {
   display: flex;
   font-weight: bold;
   font-size: 10px;
+  margin-top: 3px;
+  color: rgb(118, 118, 244);
 }

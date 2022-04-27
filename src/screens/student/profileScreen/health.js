@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
@@ -14,20 +15,28 @@ const HealthData = () => {
     // const [heart_disease,setHeart_disease] = useState("")
     // const [disabilities,setDisabilities] = useState("")
     // const [respiratory_problems,setRespiratory_problems] = useState("")
-    
+  const dispatch = useDispatch() 
   const navigate = useNavigate();
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails")).biodata.health_data || {health_data:{blood_group:"",genotype:"",allergies:"",diabetes:"",STIs:"",heart_disease:"",disabilities:"",respiratory_problems:""}};
   const mystudentDetails = myDetail;
   console.log(mystudentDetails)
   
-  const blood_group = mystudentDetails.biodata.health_data.blood_group;
-  const genotype = mystudentDetails.biodata.health_data.genotype;
-  const allergies = mystudentDetails.biodata.health_data.allergies;
-  const diabetes = mystudentDetails.biodata.health_data.diabetes;
-  const stis = mystudentDetails.biodata.health_data.STIs;
-  const heart_disease = mystudentDetails.biodata.health_data.heart_disease;
-  const disabilities = mystudentDetails.biodata.health_data.disabilities;
-  const Respiratory_problems = mystudentDetails.biodata.health_data.respiratory_problems;
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
+  
+  const blood_group = mystudentDetails.blood_group;
+  const genotype = mystudentDetails.genotype;
+  const allergies = mystudentDetails.allergies;
+  const diabetes = mystudentDetails.diabetes;
+  const stis = mystudentDetails.STIs;
+  const heart_disease = mystudentDetails.heart_disease;
+  const disabilities = mystudentDetails.disabilities;
+  const Respiratory_problems = mystudentDetails.respiratory_problems;
 
 
     const submitHandler = () =>{

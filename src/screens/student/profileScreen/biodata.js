@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
@@ -18,20 +18,28 @@ const BioData = () => {
   // const [phone_no_1,setPhone_no_1] = useState("")
   // const [phone_no_2,setPhone_no_2] = useState("")
   const navigate = useNavigate();
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
-  const mystudentDetails = myDetail;
-  console.log(mystudentDetails.marital_status);
+  const dispatch = useNavigate();
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
 
-  const marital_status = mystudentDetails.biodata.marital_status;
-  const gender = mystudentDetails.biodata.gender;
-  const religion = mystudentDetails.biodata.religion;
-  const birthday = mystudentDetails.biodata.birthday;
-  const nationality = mystudentDetails.biodata.nationality;
-  const state_of_origin = mystudentDetails.biodata.state_of_origin;
-  const local_govt = mystudentDetails.biodata.local_govt;
-  const address = mystudentDetails.biodata.address;
-  const phone_no_1 = mystudentDetails.biodata.phone_no_1;
-  const phone_no_2 = mystudentDetails.biodata.phone_no_2;
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails")).biodata || {biodata:{marital_status:"",gender:"",religion:"",birthday:"",nationality:"",state_of_origin:"",local_govt:"",address:"",phone_no_1:"",phone_no_2:""}};
+  const mystudentDetails = myDetail;
+  console.log(mystudentDetails);
+
+  const marital_status = mystudentDetails.marital_status;
+  const gender =mystudentDetails.gender;
+  const religion = mystudentDetails.religion;
+  const birthday = mystudentDetails.birthday;
+  const nationality =mystudentDetails.nationality;
+  const state_of_origin = mystudentDetails.state_of_origin;
+  const local_govt =  mystudentDetails.local_govt;
+  const address = mystudentDetails.address;
+  const phone_no_1 = mystudentDetails.phone_no_1;
+  const phone_no_2 = mystudentDetails.phone_no_2;
   const submitHandler = () => {
     navigate("/student/profile/biodataEdit")
   };

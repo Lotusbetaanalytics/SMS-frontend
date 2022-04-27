@@ -1,7 +1,7 @@
 import { Button, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
 import SidebarTwo from "../../../components/StudentSidebar/sidebar";
@@ -12,6 +12,7 @@ import {
 import styles from "./styles.module.css";
 
 const AcademicHistoryEdit = () => {
+  const navigate = useNavigate();
   const [institution, setInstitution] = useState("");
   const [start_date, setStart_date] = useState("");
   const [end_date, setEnd_date] = useState("");
@@ -19,6 +20,13 @@ const AcademicHistoryEdit = () => {
 
   const dispatch = useDispatch();
   const toast = useToast();
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
 
   useEffect(() => {
     dispatch(studentDetails());
@@ -31,10 +39,10 @@ const AcademicHistoryEdit = () => {
   React.useEffect(() => {
     if (success) {
       console.log("my student", studentDetail);
-      setInstitution(studentDetail.biodata.academic_history[0].institution);
-      setStart_date(studentDetail.biodata.academic_history[0].start_date);
-      setEnd_date(studentDetail.biodata.academic_history[0].end_date);
-      setQualification_earned(studentDetail.biodata.academic_history[0].qualification_earned);
+      setInstitution(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].institution);
+      setStart_date(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].start_date);
+      setEnd_date(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].end_date);
+      setQualification_earned(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].institution.qualification_earned);
     }
   }, [success]);
 

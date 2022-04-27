@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import Cards from '../cards'
 import { FcDepartment,FcGraduationCap} from "react-icons/fc";
 import { CgAwards } from "react-icons/cg";
@@ -7,12 +7,41 @@ import styles from './styles.module.css'
 import data from '../../data';
 import { DoughnutChart } from '../chart/doughurt';
 import { VerticalChart } from '../chart/verticalChart';
+import { useDispatch, useSelector } from 'react-redux';
+import { studentDetails } from '../../redux/studentActions/studentAction';
+import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
 const Info = () => {
 
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
-  const mystudentDetails = myDetail;
-  console.log(mystudentDetails)
-    const {department,faculty,session,cgpa,designated_course_adviser,designated_HOD,designated_dean_of_faculty,vice_chancellor,notice_board} = data
+    const dispatch = useDispatch();
+
+    const details = useSelector((state) => state.details);
+  
+    const { studentDetail } = details;
+    const mystudentDetails = studentDetail;
+    
+    console.log(mystudentDetails)
+    const academicData = mystudentDetails && mystudentDetails.student[0].academic_data;
+    console.log(academicData)
+
+    const student_cgpa = academicData && academicData.cgpa
+    console.log(student_cgpa)
+
+    const student_department = academicData && academicData.department.name
+    console.log(student_department)
+
+    const student_level = academicData && academicData.level.code
+    console.log(student_level)
+
+    const student_session = academicData && academicData.session.year
+    console.log(student_session)
+
+    const student_register_course =  mystudentDetails && mystudentDetails.student[0].course_registrations;
+     console.log(student_register_course)
+    useEffect(() => {
+      dispatch(studentDetails());
+    }, [dispatch]);
+
+    
   return (
     <div className={styles.infoContainer}>
         <div className={styles.salutation}>
@@ -23,7 +52,7 @@ const Info = () => {
             <div className={styles.cardSize}>
             <Cards 
             bgColor={'rgba(45, 156, 219, 0.2)'}
-            departmentName={department}
+            departmentName={student_department}
             title={"Department"}
             icon={<FcDepartment/>}
             />
@@ -32,15 +61,15 @@ const Info = () => {
             <Cards 
             icon={<CgAwards/>}
             bgColor={'rgba(250, 179, 179, 0.35)'}
-            departmentName={faculty}
-            title={"Faculty"}
+            departmentName={student_level}
+            title={"Level"}
             />
             </div>
             <div className={styles.cardSize}>
             <Cards 
             icon={<MdOutlineAssessment/>}
             bgColor={'#8AFAA359'}
-            departmentName={session}
+            departmentName={student_session}
             title={"Session"}
             />
             </div>
@@ -48,7 +77,7 @@ const Info = () => {
             <Cards 
             icon={<FcGraduationCap/>}
             bgColor={'rgba(250, 179, 179, 0.35)'}
-            departmentName={cgpa}
+            departmentName={student_cgpa}
             title={"CGPA"}
             />
             </div>
@@ -65,7 +94,27 @@ const Info = () => {
             <div>Registered courses </div>   
         </div>
         <div className={styles.courseContainer}>
+        <Table size='sm' variant="striped" colorScheme="gray">
+                  <Thead>
+                    <Tr>
+                      <Th>ID</Th>
+                      <Th>Course</Th>
+                      <Th>Semester</Th>
+                      <Th>Session</Th>
             
+                    </Tr>
+                  </Thead>
+                  <Tbody>
+                    {  mystudentDetails && mystudentDetails.student[0].course_registrations.map((item,i) => (
+                      <Tr key={item.id}>
+                        <Td>{item.id} </Td>
+                        <Td>{item.course.code} </Td>
+                        <Td>{item.semester.semester} </Td>
+                        <Td>{item.session.year}</Td>
+                      </Tr>
+                    ))}
+                  </Tbody>
+                </Table> 
         </div>
     </div>
   )

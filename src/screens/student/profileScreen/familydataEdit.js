@@ -1,6 +1,7 @@
-import { Button, useToast } from "@chakra-ui/react";
+import { Alert,Button, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
 import SidebarTwo from "../../../components/StudentSidebar/sidebar";
@@ -20,10 +21,17 @@ const FamilyDataEdit = () => {
 
   const dispatch = useDispatch();
     const toast = useToast();
-
+    const navigate = useNavigate();
   useEffect(() => {
     dispatch(studentDetails());
   }, [dispatch]);
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
 
   const details = useSelector((state) => state.details);
   const { studentDetail } = details;
@@ -35,17 +43,18 @@ const FamilyDataEdit = () => {
 
   React.useEffect(() => {
     if (studentDetail) {
-      setNext_of_kin_full_name(studentDetail.biodata.family_data.next_of_kin_full_name);
-      setNext_of_kin_phone_no_1(studentDetail.biodata.family_data.next_of_kin_phone_no_1);
-      setNext_of_kin_phone_no_2(studentDetail.biodata.family_data.next_of_kin_phone_no_2);
-      setNext_of_kin_address(studentDetail.biodata.family_data.next_of_kin_address);
-      setGuardian_full_name(studentDetail.biodata.family_data.guardian_full_name);
-      setGuardian_phone_no_1(studentDetail.biodata.family_data.guardian_phone_no_1);
-      setGuardian_phone_no_2(studentDetail.biodata.family_data.guardian_phone_no_2);
-      setGuardian_address(studentDetail.biodata.family_data.guardian_address);
+      setNext_of_kin_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_full_name);
+      setNext_of_kin_phone_no_1(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_phone_no_1);
+      setNext_of_kin_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_phone_no_2);
+      setNext_of_kin_address(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_address);
+      setGuardian_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_full_name);
+      setGuardian_phone_no_1(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_phone_no_1);
+      setGuardian_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_phone_no_2);
+      setGuardian_address(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data &&studentDetail.biodata.family_data.guardian_address);
     }
-  }, [studentDetail,dispatch]);
+  }, [dispatch]);
 
+  
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -91,6 +100,9 @@ const FamilyDataEdit = () => {
           <div className={styles.editContainer}>
             <EditNavbar photo={styles.remote} />
             <div className={styles.formContainer}>
+            {msg && (
+                <Alert status="success">Profile Updated Successfully</Alert>
+              )}
               <form onSubmit={submitHandler}>
                 <div className={styles.inputContainer_}>
                   <label>Next of kin fullname</label>

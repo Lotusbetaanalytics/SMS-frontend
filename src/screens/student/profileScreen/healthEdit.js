@@ -1,7 +1,7 @@
 import { Button, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
 import SidebarTwo from "../../../components/StudentSidebar/sidebar";
@@ -24,28 +24,43 @@ const HealthDataEdit = () => {
 
   const dispatch = useDispatch();
   const toast = useToast();
-
+  const navigate = useNavigate()
   useEffect(() => {
     dispatch(studentDetails());
   }, [dispatch]);
 
-  const details = useSelector((state) => state.details);
+  // const details = useSelector((state) => state.details);
+  // const { studentDetail } = details;
+
+  
+
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
+
+const details = useSelector((state) => state.details);
   const { studentDetail } = details;
   console.log(studentDetail)
 
   useEffect(() => {
     if  (studentDetail) {
-      console.log("my student", studentDetail);
-      setBlood_group(studentDetail.biodata.health_data.blood_group);
-      setGenotype(studentDetail.biodata.health_data.genotype);
-      setAllergies(studentDetail.biodata.health_data.allergies);
-      setDiabetes(studentDetail.biodata.health_data.diabetes);
-      setSTIs(studentDetail.biodata.health_data.STIs);
-      setHeart_disease(studentDetail.biodata.health_data.heart_disease);
-      setDiabetes(studentDetail.biodata.health_data.diabetes);
-      setRespiratory_problems(studentDetail.biodata.health_data.respiratory_problems);
+      setBlood_group(studentDetail.biodata.health_data.blood_group );
+       setGenotype(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.genotype);
+       setAllergies(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.allergies);
+      setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
+      setSTIs(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.STIs);
+      setHeart_disease(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.heart_disease);
+      setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
+      setRespiratory_problems(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.respiratory_problems);
     }
-  }, [studentDetail,dispatch]);
+  }, [dispatch]);
+
+  console.log(blood_group)
+  
 
   const editProfile_ = useSelector((state) => state.editProfile_);
   const { loading,success, error } = editProfile_;

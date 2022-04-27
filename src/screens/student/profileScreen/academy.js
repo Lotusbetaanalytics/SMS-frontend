@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
@@ -8,19 +9,29 @@ import SidebarTwo from '../../../components/StudentSidebar/sidebar';
 import styles from "./styles.module.css"
 
 const AcademicHistory = () => {
-    
+  const dispatch = useDispatch()  
   const navigate= useNavigate();
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
-  const healthDetails = myDetail;
-  const mystudentDetails = healthDetails.biodata.academic_history[0];
-  
-  console.log(mystudentDetails.institution)
 
-  const institution = mystudentDetails.institution;
-  console.log(institution)
-  const start_date = mystudentDetails.start_date;
-  const end_date = mystudentDetails.end_date;
-  const qualification_earn = mystudentDetails.qualification_earned;
+  const myDetail = JSON.parse(localStorage.getItem("studentDetails"))
+  console.log(myDetail)
+  
+
+   const institution = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].institution || ""; ;
+   console.log(institution)
+  const start_date = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].start_date || "";
+  console.log(start_date)
+  const end_date = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].institution.end_date || "";
+  console.log(end_date)
+  const qualification_earn = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].institution.qualification_earned || "";
+  console.log(qualification_earn)
+
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
 
 
    const submitHandler = () =>{

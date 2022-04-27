@@ -3,25 +3,33 @@ import styles from "./styles.module.css";
 import adminpic from "../../assets/adminpic.png";
 import { Link, useNavigate } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
-import { GiBookshelf} from "react-icons/gi";
-import { FaRegUser,FaClipboardList } from "react-icons/fa";
+import { GiBookshelf } from "react-icons/gi";
+import { FaRegUser, FaClipboardList } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
-import { studentDetails, studentLogout } from "../../redux/studentActions/studentAction";
+import {
+  studentDetails,
+  studentLogout,
+} from "../../redux/studentActions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 
 const StudentSidebar = (props) => {
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
-  
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
 
+  // const details = useSelector((state) => state.details);
+
+  // const { studentDetail } = details;
+  // const mystudentDetails = studentDetail;
+
+  // useEffect(() => {
+  //   dispatch(studentDetails());
+  // }, [dispatch]);
    const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
    const mystudentDetails = myDetail;
 
-
-
   const logoutHandler = () => {
-    dispatch(studentLogout())
-    setTimeout(()=>navigate("/student/login"),[2000]);
+    dispatch(studentLogout());
+    setTimeout(() => navigate("/student/login"), [2000]);
   };
 
   return (
@@ -61,7 +69,7 @@ const StudentSidebar = (props) => {
           </li>
 
           <li className={props.test}>
-            <Link to="/student/dashboard">
+            <Link to="/student/taketest">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <GiBookshelf />
@@ -74,7 +82,7 @@ const StudentSidebar = (props) => {
           </li>
 
           <li className={props.result}>
-            <Link to="/student/dashboard">
+            <Link to="/student/result">
               <div className={styles.iconContainer}>
                 <div className={styles.icon}>
                   <FaClipboardList />
@@ -87,14 +95,14 @@ const StudentSidebar = (props) => {
           </li>
           <li className={styles.logout}>
             <Link to="" onClick={logoutHandler}>
-                <div className={styles.iconContainer}>
-                  <div className={styles.icon}>
-                    <MdOutlineLogout />
-                  </div>
-                  <div className={styles.iconName}>
-                    <p>Logout</p>
-                  </div>
+              <div className={styles.iconContainer}>
+                <div className={styles.icon}>
+                  <MdOutlineLogout />
                 </div>
+                <div className={styles.iconName}>
+                  <p>Logout</p>
+                </div>
+              </div>
             </Link>
           </li>
         </ul>

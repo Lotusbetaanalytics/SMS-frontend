@@ -5,6 +5,7 @@ import Cards from "./components/cards";
 import CardTwo from "./components/cards/card";
 import NotificationCard from "./components/cards/notificationCard";
 import Info from "./components/Info";
+import Navigation from "./components/navigation_/navigation";
 import StudentSidebar from "./components/StudentSidebar";
 import SidebarTwo from "./components/StudentSidebar/sidebar";
 import Dashboard from "./screens/admin/Dashboard";
@@ -22,7 +23,10 @@ import FamilyData from "./screens/student/profileScreen/familydata";
 import FamilyDataEdit from "./screens/student/profileScreen/familydataEdit";
 import HealthData from "./screens/student/profileScreen/health";
 import HealthDataEdit from "./screens/student/profileScreen/healthEdit";
+import Result from "./screens/student/result";
 import StudentLogin from "./screens/student/studentLogin";
+import TakeTest from "./screens/student/takeTest";
+import TestScreen from "./screens/student/testScreen";
 
 function App() {
   return (
@@ -33,11 +37,11 @@ function App() {
         <Route path="/student/forgotpassword" exact element={<ForgotPassword />} />
         <Route path="/admin/dashboard" exact element={<Dashboard />} />
         <Route path="/student/newpassword" exact element={<ConfirmPassword/>} />
-        {/* <Route path="/sidebar" exact element={<StudentSidebar/>} />
+         {/* <Route path="/sidebar" exact element={<StudentSidebar/>} />
         <Route path="/card" exact element={<Cards/>} />
         <Route path="/card2" exact element={<CardTwo/>} />
-        <Route path="/info" exact element={<Info/>} />
-        <Route path="/notification" exact element={<NotificationCard/>} /> */}
+        <Route path="/info" exact element={<Info/>} /> */}
+        <Route path="/notification" exact element={<NotificationCard/>} /> 
         <Route path="/student/dashboard" exact element={<StudentDashboard/>} />
         <Route path="/sidebar2" exact element={<SidebarTwo/>} />
         <Route path="/student/profile/academyhistory" exact element={<AcademicHistory/>} />
@@ -50,6 +54,10 @@ function App() {
         <Route path="/student/profile/healthdataEdit" exact element={<HealthDataEdit/>} />
         <Route path="/student/profile/familydata" exact element={<FamilyData/>} />
         <Route path="/student/profile/familydataEdit" exact element={<FamilyDataEdit/>} />
+        <Route path="/student/taketest" exact element={<TakeTest/>} />
+        <Route path="/student/taketest/:id" exact element={<TestScreen/>} />
+        <Route path="/navi" exact element={<Navigation/>} />
+        <Route path="/student/result" exact element={<Result/>} />
       </Routes>
     </Router>
   );

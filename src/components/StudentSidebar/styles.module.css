@@ -132,13 +132,13 @@
   padding: 1rem;
   border-radius: 15px;
   font-size: 12px;
-  height: 290px;
+  height: 320px;
   margin-bottom: 10px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
   width: 100%;
 }
 .board {
-  height: 60px;
+  height: 150px;
   overflow-y: scroll;
 }
 .notificationBar {
@@ -175,13 +175,14 @@
 .userImg {
   height: 40px;
   width: 40px;
+  border-radius: 50%;
   margin-right: 10px;
   justify-content: center;
   align-items: center;
 }
 .userImg img {
-  height: 90%;
-  width: 90%;
+  height: 100%;
+  width: 100%;
 }
 /* .CalendarStyling {
   .react-calendar {

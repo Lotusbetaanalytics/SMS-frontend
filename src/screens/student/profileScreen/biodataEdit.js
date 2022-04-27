@@ -1,7 +1,7 @@
 import { Alert, Button, ButtonGroup, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
 import SidebarTwo from "../../../components/StudentSidebar/sidebar";
@@ -27,19 +27,30 @@ const BioDataEdit = () => {
 
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(studentDetails());
+    console.log("this")
   }, [dispatch]);
 
-  const details = useSelector((state) => state.details);
-  const { studentDetail } = details;
+  const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
 
+ useEffect(() => {
+  if (!studentLogin) {
+    navigate("/student/login")
+  }
+}, [studentLogin,navigate,dispatch]);
+
+  const {loading:isLoading, success:isSuccess, studentDetail} = useSelector((state) => state.details);
+  // const {biodata } = studentDetail;
+  
   const editProfile_ = useSelector((state) => state.editProfile_);
   const { loading, success, error } = editProfile_;
 
   React.useEffect(() => {
-    if (studentDetail) {
+    // console.log(studentDetail.biodata)
+    if (isSuccess && studentDetail.biodata) {
       setMarital_status(studentDetail.biodata.marital_status);
       setGender(studentDetail.biodata.gender);
       setReligion(studentDetail.biodata.religion);
@@ -50,14 +61,16 @@ const BioDataEdit = () => {
       setAddress(studentDetail.biodata.address);
       setPhone_no_1(studentDetail.biodata.phone_no_1);
       setPhone_no_2(studentDetail.biodata.phone_no_2);
-    }
-  }, [studentDetail, dispatch]);
+    } 
+    },[isSuccess]);
 
 
   const [msg, setMsg] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
+    let birtDate = new Date(birthday)
+    birtDate = birtDate.setDate()
     const userdata = {
       biodata: {
         marital_status: marital_status,
@@ -118,7 +131,6 @@ const BioDataEdit = () => {
 
                   <select
                     onChange={(e) => setGender(e.target.value)}
-                    value={gender}
                   >
                     <option>Select</option>
                     <option value="Male">Male</option>
