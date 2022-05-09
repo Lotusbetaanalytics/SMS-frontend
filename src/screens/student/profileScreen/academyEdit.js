@@ -149,9 +149,9 @@ const AcademicHistoryEdit = () => {
               </Link>
             </div>
           </div>
-          <div className={styles.leftBar}>
+          {/* <div className={styles.leftBar}>
             <SidebarTwo />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

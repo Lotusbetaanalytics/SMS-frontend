@@ -44,6 +44,8 @@ const EditBasicInfo = () => {
     setMiddle_name(studentDetail.middle_name);
     setLast_name( studentDetail.last_name);
     setSpecialization(studentDetail.specialization);
+    setEmail(studentDetail.email)
+    setMatric_num(studentDetail.matric_num)
     }
   }, [dispatch]);
 
@@ -108,6 +110,7 @@ const EditBasicInfo = () => {
                     type="email"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
+                    readOnly
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -116,6 +119,7 @@ const EditBasicInfo = () => {
                     type="text"
                     value={specialization}
                     onChange={(e) => setSpecialization(e.target.value)}
+                    readOnly
                   />
                 </div>
                 <div className={styles.inputContainer_}>
@@ -124,6 +128,7 @@ const EditBasicInfo = () => {
                     type="text"
                     value={matric_num}
                     onChange={(e) => setMatric_num(e.target.value)}
+                    readOnly
                   />
                 </div>
               </form>
@@ -150,9 +155,9 @@ const EditBasicInfo = () => {
               </Link>
             </div>
           </div>
-          <div className={styles.leftBar}>
+          {/* <div className={styles.leftBar}>
             <SidebarTwo />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

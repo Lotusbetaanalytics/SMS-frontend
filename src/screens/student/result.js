@@ -48,11 +48,12 @@ const Result = () => {
   }, [studentLogin, dispatch]);
 
   return (
-    <div className={styles.studentDashboard}>
+    <div className={styles.result}>
       <div className={styles.Sidebar}>
         <StudentSidebar result={styles.remote} />
       </div>
-      <div className={styles.info}>
+      <div className={styles.resultTable}>
+      <div className={styles.label}>Results</div>
         {loading ? (
           <Center>
             <CircularProgress isIndeterminate color="purple.300" />
@@ -85,10 +86,6 @@ const Result = () => {
             </Table>
           </div>
         )}
-      </div>
-
-      <div className={styles.leftBar}>
-        <SidebarTwo />
       </div>
     </div>
   );

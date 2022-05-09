@@ -1,16 +1,17 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
-import Cards from "./components/cards";
-import CardTwo from "./components/cards/card";
+// import Cards from "./components/cards";
+// import CardTwo from "./components/cards/card";
 import NotificationCard from "./components/cards/notificationCard";
-import Info from "./components/Info";
+// import Info from "./components/Info";
 import Navigation from "./components/navigation_/navigation";
-import StudentSidebar from "./components/StudentSidebar";
+// import StudentSidebar from "./components/StudentSidebar";
 import SidebarTwo from "./components/StudentSidebar/sidebar";
 import Dashboard from "./screens/admin/Dashboard";
 import LoginPage from "./screens/admin/LoginPage";
 import ConfirmPassword from "./screens/student/confirmPassword";
+import Courses from "./screens/student/courses";
 import StudentDashboard from "./screens/student/dashboard";
 import ForgotPassword from "./screens/student/forgotPassword";
 import AcademicHistory from "./screens/student/profileScreen/academy";
@@ -58,6 +59,7 @@ function App() {
         <Route path="/student/taketest/:id" exact element={<TestScreen/>} />
         <Route path="/navi" exact element={<Navigation/>} />
         <Route path="/student/result" exact element={<Result/>} />
+        <Route path="/student/courses" exact element={<Courses/>} />
       </Routes>
     </Router>
   );

@@ -3,7 +3,7 @@
   height: 6rem;
   padding: 1rem 5rem;
   display: block;
-  background: #5759c6;
+  background: rgba(45, 156, 219, 1);
 }
 
 .title {
@@ -59,7 +59,7 @@
   height: 3.5rem;
   border-bottom-left-radius: 15px;
   border-bottom-right-radius: 15px;
-  box-shadow: 1px 8px 5px 2px rgba(92, 92, 92, 0.45);
+  /* box-shadow: 1px 8px 5px 2px rgba(92, 92, 92, 0.45); */
 }
 .navbar ul {
   display: flex;
@@ -76,7 +76,7 @@
 
 .remote {
   background-color: rgba(45, 156, 219, 1);
-  color: rgb(2, 0, 0);
-  border: solid 2px black;
+  /* color: rgb(2, 0, 0); */
+  /* border: solid 2px black; */
   border-radius: 5px;
 }

@@ -6,6 +6,8 @@ import { MdSpaceDashboard } from "react-icons/md";
 import { GiBookshelf } from "react-icons/gi";
 import { FaRegUser, FaClipboardList } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
+import { BsCardList } from "react-icons/bs";
+
 import {
   studentDetails,
   studentLogout,
@@ -45,9 +47,9 @@ const StudentSidebar = (props) => {
           <li className={props.dashboard}>
             <Link to="/student/dashboard">
               <div className={styles.iconContainer}>
-                <div className={styles.icon}>
+                <p className={styles.icon}>
                   <MdSpaceDashboard />
-                </div>
+                </p>
                 <div className={styles.iconName}>
                   <p>Dashboard</p>
                 </div>
@@ -63,6 +65,18 @@ const StudentSidebar = (props) => {
                 </div>
                 <div className={styles.iconName}>
                   <p>Profile</p>
+                </div>
+              </div>
+            </Link>
+          </li>
+          <li className={props.courses}>
+            <Link to="/student/courses">
+              <div className={styles.iconContainer}>
+                <div className={styles.icon}>
+                  <BsCardList />
+                </div>
+                <div className={styles.iconName}>
+                  <p>Courses</p>
                 </div>
               </div>
             </Link>

@@ -31,6 +31,6 @@
 
 .indicator {
     height: 1.5rem;
-    background: #5759C6;
+    background: rgba(45, 156, 219, 1);
     border-radius: 10px;
 }

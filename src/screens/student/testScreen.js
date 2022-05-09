@@ -15,9 +15,12 @@ const TestScreen = () => {
 
   console.log(id)
 
-  
+ 
   const Response = useSelector((state) => state.Response);
   const { loading, error } = Response;
+
+  const testQuestion = useSelector((state) => state.testQuestion);
+  const { questions } = testQuestion;
 
   useEffect(() => {
     dispatch(getTestquestion(id));
@@ -33,13 +36,14 @@ const TestScreen = () => {
 }, [studentLogin,navigate,dispatch]);
 
 
-   const testData = JSON.parse(localStorage.getItem("question"));
+  const testData = JSON.parse(localStorage.getItem("question"));
+  // const testData = questions
    console.log(testData)
 
-    const quizers = JSON.parse(localStorage.getItem("quiz_takers"));
-    console.log(quizers)
+   const quizers = JSON.parse(localStorage.getItem("quiz_takers"));
+//     console.log(quizers)
 
- const mytime = testData.quiz.timer
+ const mytime = testData && testData.quiz.timer
     console.log(mytime)
   
 
@@ -48,12 +52,12 @@ const [answer, setAnswer] = useState("");
 
  const questionLength = testData && testData.quiz.question_set.length;
 
- console.log(questionLength,"this is answer")
+//  console.log(questionLength,"this is answer")
 
  const quiz_taker = quizers;
-  console.log(quiz_taker,"quiz_taker")
+//   console.log(quiz_taker,"quiz_taker")
 
-//  console.log(questionLength)
+// //  console.log(questionLength)
 
   let initialMinute = mytime;
   let initialSeconds = mytime;
@@ -63,7 +67,7 @@ const [answer, setAnswer] = useState("");
   const question = testData && testData.quiz.question_set[index].id 
 
   const displayQuestion = testData && testData.quiz.question_set[index].label
-  console.log(question,"this is question")
+//   console.log(question,"this is question")
 
   const lastpage = index + 1;
   useEffect(() => {
@@ -157,17 +161,17 @@ const [answer, setAnswer] = useState("");
           <div className={styles.question}>
             {displayQuestion}
           </div>
-          <form onSubmit={submitHandler}>
+          <form className={styles.testform} onSubmit={submitHandler}>
             {testData && testData.quiz.question_set[index] && testData.quiz.question_set[index].answer_set.map((item, i) => (
                 <div key={i}>
-                  <div className="inputGroup">
+                  <div>
                     <input
                       id={`radio${i}`}
                       name="radio"
                       type="radio"
                       value={item.id}
                       onChange={(e) => setAnswer(e.target.value)}
-                    />
+                    />&nbsp; &nbsp;
                     <label htmlFor={`radio${i}`}>{item.text}</label>
                   </div>
                 </div>
@@ -182,11 +186,11 @@ const [answer, setAnswer] = useState("");
               </button>
             )}
             {lastpage === questionLength ? (
-              <button type="submit" className="btn gold">
+              <button type="submit" className={`btn ${styles.purple} ${styles.marginTop}`}>
                 submit
               </button>
             ) : (
-              <button type="submit" className="btn gold">
+              <button type="submit" className={`btn ${styles.purple} ${styles.marginTop}`}>
                 next
               </button>
             )}

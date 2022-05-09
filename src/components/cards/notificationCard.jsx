@@ -35,7 +35,7 @@ const NotificationCard = () => {
 
     
     console.log(mystudentDetails)
-    const academicData = mystudentDetails && mystudentDetails.student[0].notices
+    const academicData = mystudentDetails && mystudentDetails.student[0].notices || ""
     console.log(academicData)
 
 

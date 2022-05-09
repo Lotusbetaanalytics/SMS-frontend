@@ -16,8 +16,7 @@ const Navigation = () => {
 
 
   const logoutHandler = () => {
-    dispatch(studentLogout())
-    setTimeout(()=>navigate("/student/login"),[2000]);
+    navigate()
   };
 
   return (
@@ -31,8 +30,8 @@ const Navigation = () => {
             <h3 className={styles.paddingTop}>
               Candidate: {mystudentDetails && mystudentDetails.first_name}
             </h3> 
-            <Link to="/#" className="btn gold" onClick={logoutHandler}>
-              Log out
+            <Link to="/student/dashboard" className="btn gold" >
+              End Test
             </Link>
       </div>
     </div>

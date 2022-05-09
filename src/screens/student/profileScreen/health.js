@@ -86,7 +86,7 @@ const HealthData = () => {
                         <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Edit information</button> <Link to="/student/profile/familydata"> <div className={`${styles.btn} ${styles.purple}`}>Family Data</div></Link> 
                     </div>
                 </div>
-                <div className={styles.leftBar}><SidebarTwo/></div>
+                {/* <div className={styles.leftBar}><SidebarTwo/></div> */}
             </div>
         </div>
         </div>;

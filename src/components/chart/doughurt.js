@@ -5,15 +5,15 @@ import { Doughnut } from 'react-chartjs-2';
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export const options = {
-    responsive: false,
-    maintainAspectRatio: true,
+    responsive: true,
+    maintainAspectRatio: false,
     plugins: {
       legend: {
         position: 'bottom',
       },
       title: {
         display: true,
-        text: 'Chart.js Bar Chart',
+        text: 'Result Bar Chart',
       },
     },
   };

@@ -35,8 +35,7 @@ const Info = () => {
     const student_session = academicData && academicData.session.year
     console.log(student_session)
 
-    const student_register_course =  mystudentDetails && mystudentDetails.student[0].course_registrations;
-     console.log(student_register_course)
+    
     useEffect(() => {
       dispatch(studentDetails());
     }, [dispatch]);
@@ -46,7 +45,7 @@ const Info = () => {
     <div className={styles.infoContainer}>
         <div className={styles.salutation}>
             <div className={styles.hi}>Hi {mystudentDetails && mystudentDetails.first_name}  {mystudentDetails && mystudentDetails.middle_name}</div>
-            <div className={styles.salute}>Welcome Back</div>
+            <div className={styles.salute}>Welcome</div>
         </div>
         <div className={styles.cardContainer}>
             <div className={styles.cardSize}>
@@ -83,39 +82,16 @@ const Info = () => {
             </div>
         </div>
         <div className={styles.graphContainer}>
+        
             <div className={styles.statistic}>
-                <DoughnutChart/>
+            {/* <DoughnutChart/> */}
+            <VerticalChart/>
             </div>
             <div className={styles.report}>
-                <VerticalChart/>
+              <DoughnutChart/>  
             </div>
         </div>
-        <div className={styles.courseHeader}>
-            <div>Registered courses </div>   
-        </div>
-        <div className={styles.courseContainer}>
-        <Table size='sm' variant="striped" colorScheme="gray">
-                  <Thead>
-                    <Tr>
-                      <Th>ID</Th>
-                      <Th>Course</Th>
-                      <Th>Semester</Th>
-                      <Th>Session</Th>
-            
-                    </Tr>
-                  </Thead>
-                  <Tbody>
-                    {  mystudentDetails && mystudentDetails.student[0].course_registrations.map((item,i) => (
-                      <Tr key={item.id}>
-                        <Td>{item.id} </Td>
-                        <Td>{item.course.code} </Td>
-                        <Td>{item.semester.semester} </Td>
-                        <Td>{item.session.year}</Td>
-                      </Tr>
-                    ))}
-                  </Tbody>
-                </Table> 
-        </div>
+        
     </div>
   )
 }

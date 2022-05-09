@@ -6,11 +6,12 @@ import { Link, Navigate, useNavigate } from 'react-router-dom';
 import StudentSidebar from '../../components/StudentSidebar'
 import SidebarTwo from '../../components/StudentSidebar/sidebar';
 import { studentDetails } from '../../redux/studentActions/studentAction';
+import { getTestquestion } from '../../redux/studentActions/testQuestion';
 import styles from "./styles.module.css";
 const TakeTest = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  
+
  useEffect(() => {
   dispatch(studentDetails())
   }, [dispatch]);
@@ -37,16 +38,17 @@ const TakeTest = () => {
     // const quizTaker = item.id
     // console.log(quizTaker)
     localStorage.setItem("quiz_takers", JSON.stringify(item.id));
-
-
+    dispatch(getTestquestion(item.id))
+    
   }
 
   
 
   return (
-    <div className={styles.studentDashboard}>
-        <div className={styles.Sidebar}><StudentSidebar dashboard={styles.remote} /></div>
-        <div className={styles.info}>
+    <div className={styles.result}>
+        <div className={styles.Sidebar}><StudentSidebar test={styles.remote} /></div>
+        <div className={styles.resultTable}>
+        <div className={styles.label}>Assigned Test</div>
         {loading ? (
       <Center>
         <CircularProgress isIndeterminate color="purple.300" />
@@ -63,7 +65,7 @@ const TakeTest = () => {
         </div>
 
         
-        <div className={styles.leftBar}><SidebarTwo/></div>
+        
     </div>
   )
 }

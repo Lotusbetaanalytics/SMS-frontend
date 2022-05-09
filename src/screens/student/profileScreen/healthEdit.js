@@ -219,9 +219,9 @@ const details = useSelector((state) => state.details);
               </Link>
             </div>
           </div>
-          <div className={styles.leftBar}>
+          {/* <div className={styles.leftBar}>
             <SidebarTwo />
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

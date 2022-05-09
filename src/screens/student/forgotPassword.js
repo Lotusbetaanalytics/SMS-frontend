@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Alert, Button, useToast } from "@chakra-ui/react";
 import { forgetpassword } from "../../redux/studentActions/studentAction";
 import { useNavigate } from "react-router-dom";
+import { FORGET_PASSWORD_RESET } from "../../redux/studentConstants/studentConstants";
 
 const ForgotPassword = () => {
   const navigate = useNavigate("")
@@ -17,7 +18,7 @@ const ForgotPassword = () => {
   const toast = useToast();
 
   const forgetPassword = useSelector((state) => state.forgetPassword);
-  const {loading, error,success} = forgetPassword;
+  const {loading,error,success} = forgetPassword;
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -38,7 +39,8 @@ const ForgotPassword = () => {
     }
     if (success) {
       setSuccessMsg(true)
-      setTimeout(() => navigate("/student/newpassword"), [5000]);
+      dispatch({type:FORGET_PASSWORD_RESET})
+      // setTimeout(() => navigate("/student/newpassword"), [2000]);
     }
   };
   

@@ -18,6 +18,7 @@
   display: flex;
   align-items: center;
   margin-top: 10px;
+  height: 8rem;
 }
 
 .sidebarImgContent img {
@@ -68,6 +69,7 @@
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
+  
 }
 .iconName {
   display: flex;
@@ -88,6 +90,7 @@
   display: flex;
   margin-right: 5%;
   margin-left: 15%;
+  color: white;
 }
 
 .sidebarContainer li p {
@@ -122,21 +125,23 @@
   text-decoration: none;
 }
 .notice {
-  font-weight: bold;
+  font-weight: 800;
   font-size: 14px;
-  margin-left: 15px;
-  background-color: whitesmoke;
+  padding-left: 15px;
+  background-color: rgba(45, 156, 219, 0.2);
 }
 .calender {
   display: flex;
   padding: 1rem;
-  border-radius: 15px;
   font-size: 12px;
   height: 320px;
   margin-bottom: 10px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); */
   width: 100%;
+  border: 0;
 }
+
+
 .board {
   height: 150px;
   overflow-y: scroll;
@@ -146,6 +151,7 @@
   justify-content: space-between;
   align-items: center;
   width: 100%;
+  padding: 0 1rem;
 }
 .user {
   display: flex;
@@ -173,8 +179,8 @@
   margin-bottom: 10px;
 }
 .userImg {
-  height: 40px;
-  width: 40px;
+  height: 20px;
+  width: 20px;
   border-radius: 50%;
   margin-right: 10px;
   justify-content: center;

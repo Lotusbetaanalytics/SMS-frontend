@@ -65,7 +65,7 @@ const AcademicHistory = () => {
                         <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Edit information</button> <Link to="/student/profile/healthdata"> <div className={`${styles.btn} ${styles.purple}`}>Health Data</div></Link>
                     </div>
                 </div>
-                <div className={styles.leftBar}><SidebarTwo/></div>
+                {/* <div className={styles.leftBar}><SidebarTwo/></div> */}
             </div>
         </div>
         </div>;

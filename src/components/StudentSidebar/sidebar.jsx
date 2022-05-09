@@ -25,15 +25,17 @@ const SidebarTwo = () => {
   // useEffect(() => {
   //   dispatch(studentDetails());
   // }, [dispatch]);
+
   
   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
   const mystudentDetails = myDetail;
 
   const academicData = mystudentDetails && mystudentDetails.student[0].academic_data.course_adviser;
-    console.log(academicData)
+  console.log(academicData)
 
   const course_adviser = academicData && academicData.staff.user.full_name
   console.log(course_adviser)
+
   
   return (
     <div className={styles.SidebarTwo}>
@@ -44,11 +46,13 @@ const SidebarTwo = () => {
           </div>
           <div className={styles.bar}>
             <MdOutlineNotificationsActive />
-            <p className={styles.colorNotify}>2</p>
+            <p className={styles.colorNotify}>{mystudentDetails && mystudentDetails.student[0].notices.length} </p>
             </div>
         </div>
        <div className={styles.calender}>
-         <Calendar onChange={onChange} value={value} />  
+         <Calendar onChange={onChange} value={value} 
+
+/>  
         </div>
        <div className={styles.personel}>
             <CardTwo bgColor={'rgba(250, 179, 179, 0.35)'} name={academicData && academicData.staff.user.full_name} header={"Designated Course Adviser"}/>

@@ -1,7 +1,7 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
-import { editProfileReducer, forgetPasswordReducer, noticeReducer, studentDetailsReducer, studentLoginReducer } from "./studentReducer/studentReducer";
+import { confirmPasswordReducer, editProfileReducer, forgetPasswordReducer, noticeReducer, studentDetailsReducer, studentLoginReducer } from "./studentReducer/studentReducer";
 import { questionsReducer, ResponseReducer } from "./studentReducer/testQuestion";
 
 const reducer = combineReducers({
@@ -12,6 +12,7 @@ const reducer = combineReducers({
   notice: noticeReducer,
   testQuestion : questionsReducer,
   Response : ResponseReducer,
+  confirmpassword : confirmPasswordReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("studentInfo")

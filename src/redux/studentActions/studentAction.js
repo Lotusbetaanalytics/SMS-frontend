@@ -1,5 +1,8 @@
 import axios from "axios";
 import {
+  CONFIRM_PASSWORD_FAIL,
+  CONFIRM_PASSWORD_REQUEST,
+  CONFIRM_PASSWORD_SUCCESS,
   EDITPROFILE_FAIL,
   EDITPROFILE_REQUEST,
   EDITPROFILE_SUCCESS,
@@ -70,6 +73,36 @@ export const forgetpassword = (email) => async (dispatch) => {
     console.log(error);
     dispatch({
       type: FORGET_PASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const Confirmpassword = (password,token) => async (dispatch) => {
+  try {
+    dispatch({ type: CONFIRM_PASSWORD_REQUEST });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/password_reset/confirm/",
+      { password,token },
+      config
+    );
+    dispatch({
+      type: CONFIRM_PASSWORD_SUCCESS,
+      payload: data,
+    });
+  } catch (error) {
+    console.log(error);
+    dispatch({
+      type: CONFIRM_PASSWORD_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message
