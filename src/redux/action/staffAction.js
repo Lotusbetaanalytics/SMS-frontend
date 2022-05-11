@@ -3,6 +3,7 @@ import {
   NEWSTAFF_REQUEST,
   NEWSTAFF_SUCCESS,
   NEWSTAFF_FAIL,
+  NEWSTAFF_RESET,
   DELETE_STAFFBYID_REQUEST,
   DELETE_STAFFBYID_SUCCESS,
   DELETE_STAFFBYID_FAIL,
@@ -37,10 +38,11 @@ export const newStaff = (staffData, toast) => async (dispatch, getState) => {
       width: "80px",
       position: "top-right",
       isClosable: true,
-      duration: 6000,
+      duration: 4000,
       description: "Staff Created",
       maxWidth: "100%",
     });
+    dispatch({ type: NEWSTAFF_RESET });
   } catch (error) {
     dispatch({
       type: NEWSTAFF_FAIL,

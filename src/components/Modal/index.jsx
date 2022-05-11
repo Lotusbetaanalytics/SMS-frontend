@@ -59,7 +59,11 @@ function Modal({ closeModal }) {
     <div className={styles.modalContainer}>
       <div className={styles.modalContent}>
         <div className={styles.modalCancelButton}>
-          <button onClick={() => closeModal(false)}>X</button>
+          <button
+            onClick={() => closeModal(false, window.location.reload(true))}
+          >
+            X
+          </button>
         </div>
         <div className={styles.title}>Edit Student Details</div>
         <div className={styles.body}>
@@ -78,7 +82,7 @@ function Modal({ closeModal }) {
 
           {loading ? (
             <Center>
-              <CircularProgress isIndeterminate color="purple.300" />
+              <CircularProgress isIndeterminate color="teal.300" />
             </Center>
           ) : (
             <form onSubmit={submitHandler}>

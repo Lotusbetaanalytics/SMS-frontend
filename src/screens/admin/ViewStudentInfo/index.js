@@ -3,7 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useParams } from "react-router-dom";
 import Header from "../../../components/Header";
 import Modal from "../../../components/Modal";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
+import SidebarNav from "../../../components/SidebarNav";
 import { totalStudent } from "../../../redux/action/getAllUsersAction";
 import styles from "./styles.module.css";
 
@@ -34,7 +35,7 @@ function ViewStudentInfo() {
 
   return (
     <div className={styles.viewInfoContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
 
       <div className={styles.viewInfo}>
@@ -50,6 +51,14 @@ function ViewStudentInfo() {
             <span className={styles.titleContainer}>
               <p className={styles.titleName}>
                 {studentInfo && studentInfo[0].user.first_name}
+              </p>
+            </span>
+          </div>
+          <div className={styles.eachGridBox}>
+            <header>Middle Name</header>
+            <span className={styles.titleContainer}>
+              <p className={styles.titleName}>
+                {studentInfo && studentInfo[0].user.middle_name}
               </p>
             </span>
           </div>

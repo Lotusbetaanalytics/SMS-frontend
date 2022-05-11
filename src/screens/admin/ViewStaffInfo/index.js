@@ -1,11 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
-import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import { totalStaff } from "../../../redux/action/getAllUsersAction";
 import styles from "./styles.module.css";
 import { Link } from "react-router-dom";
+import SidebarNav from "../../../components/SidebarNav";
 
 function ViewStaffInfo() {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function ViewStaffInfo() {
 
   return (
     <div className={styles.viewInfoContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
 
       <div className={styles.viewInfo}>
@@ -49,6 +49,14 @@ function ViewStaffInfo() {
               </p>
             </span>
           </div>
+          <div className={styles.eachGridBox}>
+            <header>Middle Name</header>
+            <span className={styles.titleContainer}>
+              <p className={styles.titleName}>
+                {staffInfo && staffInfo[0].user.middle_name}
+              </p>
+            </span>
+          </div>
 
           <div className={styles.eachGridBox}>
             <header>Last Name</header>
@@ -60,7 +68,7 @@ function ViewStaffInfo() {
           </div>
 
           <div className={styles.eachGridBox}>
-            <header>Matric No</header>
+            <header>Empolyee ID</header>
             <span className={styles.titleContainer}>
               <p className={styles.titleName}>
                 {staffInfo && staffInfo[0].employee_id}

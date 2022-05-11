@@ -1,7 +1,3 @@
-.informationContainer {
-  margin-left: 3%;
-}
-
 .noticeBoard {
   padding: 2rem;
 }
@@ -18,9 +14,20 @@
   width: 19%;
   margin-left: 3%;
   font-weight: bold;
-  background-color: #83d7f3;
+  background-color: #2d9cdb;
   border-radius: 5px;
   color: azure;
+}
+
+.newForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.newForm label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .infoPic img {
@@ -43,23 +50,28 @@
   padding: 15px 20px;
   border-radius: 10px;
   border: 3px solid lightgray;
+  background-color: whitesmoke;
 }
 
 .noticeBoardForm input {
-  width: 100%;
+  width: 40%;
   padding: 15px 20px;
   border-radius: 10px;
   border: 3px solid lightgray;
+  background-color: whitesmoke;
 }
 
 .noticeMessage {
   height: 200px;
+  width: 40%;
 }
 
 .noticeBoardSelect {
   border: 3px solid lightgray;
   border-radius: 10px;
   padding: 15px 20px;
+  background-color: whitesmoke;
+  width: 40%;
 }
 
 .stBtn {

@@ -26,8 +26,12 @@ function ForgotPassword() {
   const userforgetPassword = useSelector((state) => state.userforgetPassword);
   const { loading, error, success } = userforgetPassword;
 
+  // if (success) {
+  //   navigate("/staff/confirmpassword");
+  // }
+
   if (success) {
-    setTimeout(() => navigate("/staff/confirmpassword"), [3000]);
+    navigate("/staff/confirmpassword");
   }
 
   return (

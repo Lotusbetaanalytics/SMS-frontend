@@ -1,5 +1,4 @@
 .dashboardContainer {
-  margin-left: 3%;
   display: flex;
 }
 
@@ -7,14 +6,17 @@
   width: 55%;
   height: 110vh;
   background-color: white;
+  margin-left: 29px;
+  margin-top: 20px;
 }
 
 .dashboardHeader {
   padding: 1rem;
 }
 
-.dashboardHeader h4 {
-  font-weight: 500;
+.dashboardHeader h2 {
+  font-weight: 600;
+  font-size: 24px;
 }
 
 .dashboardCards {
@@ -25,7 +27,7 @@
   margin-right: 15px;
   border-radius: 5px;
   justify-content: space-between;
-  box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 2.5px rgba(0, 0, 0, 0.25);
   margin-bottom: 15px;
 }
 

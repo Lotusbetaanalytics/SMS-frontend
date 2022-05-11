@@ -1,7 +1,3 @@
-.registerCourseContainer {
-  margin-left: 3%;
-}
-
 .registerCourse {
   padding: 2rem;
 }
@@ -37,12 +33,12 @@
   width: 100%;
   padding: 15px 20px;
   border-radius: 10px;
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
 }
 
 .stBtn {
   padding: 1rem;
-  width: 15%;
+  width: 18%;
   margin-left: 2.5%;
   font-weight: bold;
   background-color: #2d9cdb;
@@ -50,29 +46,50 @@
   color: azure;
 }
 
-.stBtn2 {
-  padding: 1rem;
-  width: 15%;
-  margin-left: 2.5%;
+.registerBtn {
+  display: flex;
+  flex-direction: row;
+}
+
+.newForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.newForm label {
+  font-size: 14px;
   font-weight: bold;
-  background-color: whitesmoke;
-  border-radius: 5px;
-  color: #2d9cdb;
-  border: 2px solid #2d9cdb;
-  margin-left: 10%;
+  margin-bottom: 10px;
 }
 
 .registerCourseSelect {
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
   border-radius: 10px;
   padding: 15px 20px;
+  background-color: whitesmoke;
 }
 
-.searchName {
+.toggleBtnContainer {
+  background-color: whitesmoke;
+  padding: 17px 20px;
+  margin-left: 2rem;
+  border-radius: 10px;
+}
+
+.toggleBtnContainer input {
+  padding: 2rem 1rem;
+}
+
+.toggleRound {
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+/* .searchName {
   position: relative;
   background-color: whitesmoke;
   border-radius: 10px;
   display: grid;
   padding: 15px 20px;
   cursor: pointer;
-}
+} */

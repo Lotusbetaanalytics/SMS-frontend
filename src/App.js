@@ -19,6 +19,12 @@ import ViewStudentInfo from "./screens/admin/ViewStudentInfo";
 import ViewStaffDetails from "./screens/admin/ViewStaffDetails";
 import ViewStaffInfo from "./screens/admin/ViewStaffInfo";
 import Information from "./screens/admin/Information";
+import { InformationImage } from "./screens/admin/InformationImage";
+import ViewInformation from "./screens/admin/ViewInformation";
+import BioData from "./screens/admin/BioData";
+import AcademicHistory from "./screens/admin/AcademicHistory";
+import HealthData from "./screens/admin/HealthData";
+import FamilyData from "./screens/admin/FamilyData";
 
 function App() {
   return (
@@ -47,6 +53,11 @@ function App() {
         />
         <Route path="/staff/noticeboard" exact element={<NoticeBoard />} />
         <Route
+          path="/informationimage/:id"
+          exact
+          element={<InformationImage />}
+        />
+        <Route
           path="/staff/specialization"
           exact
           element={<Specialization />}
@@ -67,8 +78,17 @@ function App() {
         />
         <Route path={"/staff/viewstaff"} exact element={<ViewStaffDetails />} />
         <Route path={"/viewstaffsinfo/:id"} exact element={<ViewStaffInfo />} />
+        <Route path={"/viewinformation"} exact element={<ViewInformation />} />
         <Route path={"/staff/information"} exact element={<Information />} />
-        {/* <Route path={"/viewmodal/:id"} exact element={<Modal />} /> */}
+        <Route path={"/user/biodata"} exact element={<BioData />} />
+        <Route path={"/user/healthdata"} exact element={<HealthData />} />
+        <Route path={"/user/familydata"} exact element={<FamilyData />} />
+        <Route
+          path={"/user/academichistory"}
+          exact
+          element={<AcademicHistory />}
+        />
+        {/* <Route path={"/sidebarone"} exact element={<SidebarOne />} /> */}
       </Routes>
     </Router>
   );

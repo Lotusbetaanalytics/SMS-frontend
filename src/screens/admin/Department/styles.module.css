@@ -1,6 +1,3 @@
-.newDepartmentContainer {
-  margin-left: 3%;
-}
 .newDepartment {
   padding: 2rem;
 }
@@ -24,7 +21,7 @@
 
 .newDeparmentForm {
   display: grid;
-  grid-template-columns: 32% 32% 32%;
+  grid-template-columns: 50% 50%;
   grid-column-gap: 4%;
   grid-row-gap: 20px;
   margin-top: 20px;
@@ -32,16 +29,29 @@
   padding: 2.5rem;
 }
 
+.newForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.newForm label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
 .newDeparmentForm input {
   width: 100%;
   padding: 15px 20px;
   border-radius: 10px;
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
+  background-color: whitesmoke;
+  margin-bottom: 10px;
 }
 
 .stBtn {
   padding: 1rem;
-  width: 15%;
+  width: 18%;
   margin-left: 2.5%;
   font-weight: bold;
   background-color: #2d9cdb;
@@ -49,22 +59,11 @@
   color: azure;
 }
 
-.stBtn2 {
-  padding: 1rem;
-  width: 15%;
-  margin-left: 2.5%;
-  font-weight: bold;
-  background-color: whitesmoke;
-  border-radius: 5px;
-  color: #2d9cdb;
-  border: 2px solid #2d9cdb;
-  margin-left: 10%;
-}
-
 .newDepartmentSelect {
-  border: 1px solid lightgray;
+  border: 3px solid lightgray;
   border-radius: 10px;
   padding: 15px 20px;
+  background-color: whitesmoke;
 }
 
 .departBtn {
@@ -72,14 +71,21 @@
 }
 
 .facultyRadioContainer {
-  display: flex;
   background-color: whitesmoke;
-  margin-left: 10%;
-  border-radius: 5px;
+  padding: 17px 20px;
+  margin-left: 2rem;
+  border-radius: 10px;
+}
+
+.facultyRadioContainer input {
+  padding: 2rem 1rem;
 }
 
 .radioBtn {
-  margin: 10px;
-  padding: 10px;
-  cursor: pointer;
+  margin-left: 1rem;
+  font-weight: bold;
+}
+
+.facultyRadioContainer span {
+  margin-left: 1rem;
 }

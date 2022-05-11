@@ -25,7 +25,7 @@
 
 .familyDataForm {
   display: grid;
-  grid-template-columns: 32% 32% 32%;
+  grid-template-columns: 50% 50%;
   grid-column-gap: 3%;
   grid-row-gap: 25px;
   margin-top: 30px;
@@ -34,16 +34,30 @@
 }
 
 .familyDataForm input {
-  width: 100%;
+  width: 95%;
   padding: 15px 20px;
   border-radius: 10px;
-  border: 2.5px solid lightgray;
+  border: 3px solid lightgray;
+  background-color: whitesmoke;
+}
+
+.newForm {
+  display: flex;
+  flex-direction: column;
+}
+
+.newForm label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
 }
 
 .familyDataSelect {
-  border: 2.5px solid lightgray;
+  border: 3px solid lightgray;
   border-radius: 10px;
   padding: 15px 20px;
+  background-color: whitesmoke;
+  width: 95%;
 }
 
 .stBtn {

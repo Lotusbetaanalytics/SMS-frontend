@@ -31,7 +31,7 @@ export const totalStudent = () => async (dispatch, getState) => {
     });
     localStorage.setItem("getAllStudents", JSON.stringify(data));
   } catch (error) {
-    console.log(error.response.data.message, error.message);
+    // console.log(error.response.data.message, error.message);
     dispatch({
       type: TOTAL_STUDENT_FAIL,
       payload:

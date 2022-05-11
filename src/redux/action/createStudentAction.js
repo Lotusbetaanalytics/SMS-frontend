@@ -3,6 +3,7 @@ import {
   CREATE_STUDENT_REQUEST,
   CREATE_STUDENT_SUCCESS,
   CREATE_STUDENT_FAIL,
+  CREATE_STUDENT_RESET,
   DELETE_STUDENTBYID_REQUEST,
   DELETE_STUDENTBYID_SUCCESS,
   DELETE_STUDENTBYID_FAIL,
@@ -38,12 +39,13 @@ export const createNewStudent =
         width: "50px",
         position: "top-right",
         isClosable: true,
-        duration: 9000,
+        duration: 4000,
         description: "Student Created",
         maxWidth: "100%",
       });
+      dispatch({ tyoe: CREATE_STUDENT_RESET });
     } catch (error) {
-      console.log(error.response.data.message, error.message);
+      // console.log(error.response.data.message, error.message);
       dispatch({
         type: CREATE_STUDENT_FAIL,
         payload:

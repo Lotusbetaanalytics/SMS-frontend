@@ -4,12 +4,16 @@ import {
   USER_LOGIN_REQUEST,
   USER_LOGIN_FAIL,
   USER_LOGOUT,
+  USER_LOGIN_RESET,
   USER_DETAILS_REQUEST,
   USER_DETAILS_SUCCESS,
   USER_DETAILS_FAIL,
   USER_FORGOTPASSWORD_REQUEST,
   USER_FORGOTPASSWORD_SUCCESS,
   USER_FORGOTPASSWORD_FAIL,
+  CONFIRMPASSWORD_REQUEST,
+  CONFIRMPASSWORD_SUCCESS,
+  CONFIRMPASSWORD_FAIL,
 } from "../constants/userConstants";
 
 export const loginUser = (email, password) => async (dispatch) => {
@@ -33,6 +37,7 @@ export const loginUser = (email, password) => async (dispatch) => {
       payload: data,
     });
     localStorage.setItem("userInfo", JSON.stringify(data));
+    dispatch({ type: USER_LOGIN_RESET });
   } catch (error) {
     dispatch({
       type: USER_LOGIN_FAIL,
@@ -113,6 +118,41 @@ export const userForgotPassword = (email) => async (dispatch) => {
   } catch (error) {
     dispatch({
       type: USER_FORGOTPASSWORD_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
+
+export const confirmPassword = (password, token) => async (dispatch) => {
+  try {
+    dispatch({
+      type: CONFIRMPASSWORD_REQUEST,
+    });
+
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    const { data } = await axios.post(
+      "/password_reset/confirm/",
+      {
+        password,
+        token,
+      },
+      config
+    );
+    dispatch({
+      type: CONFIRMPASSWORD_SUCCESS,
+      payload: data,
+    });
+    console.log(data);
+  } catch (error) {
+    dispatch({
+      type: CONFIRMPASSWORD_FAIL,
       payload:
         error.response && error.response.data.message
           ? error.response.data.message

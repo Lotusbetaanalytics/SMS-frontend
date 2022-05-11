@@ -1,18 +1,14 @@
-import {
-  Alert,
-  AlertIcon,
-  Center,
-  CircularProgress,
-  useToast,
-} from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
+import { Button, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "../../../components/Header";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
 import { createNewStudent } from "../../../redux/action/createStudentAction";
 import { getSpecialization } from "../../../redux/action/departmentAction";
 import styles from "./styles.module.css";
+import SidebarNav from "../../../components/SidebarNav";
+// import { CREATE_STUDENT_RESET } from "../../../redux/constants/createStudentConstants";
 
 function NewStudent() {
   const [first_Name, setFirst_Name] = useState("");
@@ -25,6 +21,11 @@ function NewStudent() {
 
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
+
+  const postNewStudent = useSelector((state) => state.postNewStudent);
+  const { loading, success } = postNewStudent;
+  console.log(postNewStudent);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -42,12 +43,9 @@ function NewStudent() {
     };
     dispatch(createNewStudent(data, toast));
   };
-  const postNewStudent = useSelector((state) => state.postNewStudent);
-  const { success, error, loading } = postNewStudent;
-  console.log(postNewStudent);
 
   if (success) {
-    window.location.reload(false);
+    window.location.reload();
   }
 
   useEffect(() => {
@@ -59,7 +57,7 @@ function NewStudent() {
 
   return (
     <div className={styles.newStudentContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
       <div className={styles.newStudent}>
         <div className={styles.newStudentLink}>
@@ -69,87 +67,82 @@ function NewStudent() {
             </Link>
           </div>
         </div>
-
-        {error && (
-          <Alert status="error">
-            <AlertIcon />
-            {error}
-          </Alert>
-        )}
-        {success && (
-          <Alert status="success">
-            <AlertIcon />
-            Student Created Successfully
-          </Alert>
-        )}
-
-        {loading ? (
-          <Center>
-            <CircularProgress isIndeterminate color="teal.300" />
-          </Center>
-        ) : (
-          <div className={styles.newStudentContent}>
-            <form onSubmit={submitHandler}>
-              <div className={styles.newStudentForm}>
-                {/* <div className={styles.studentCardTitle}>First Name</div> */}
-                {/* <label>First Name</label> */}
+        <div className={styles.newStudentContent}>
+          <form onSubmit={submitHandler}>
+            <div className={styles.newStudentForm}>
+              <div className={styles.newForm}>
+                <label>First Name</label>
                 <input
                   type="text"
                   onChange={(e) => setFirst_Name(e.target.value)}
                   value={first_Name}
-                  placeholder="First Name"
                   required={true}
                 />
-                {/* <label>Middle Name</label> */}
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Middle Name</label>
                 <input
                   type="text"
                   onChange={(e) => setMiddle_Name(e.target.value)}
                   value={middle_Name}
-                  placeholder="Middle Name"
                   required={true}
                 />
+              </div>
 
+              <div className={styles.newForm}>
+                <label>Last Name</label>
                 <input
                   type="text"
                   onChange={(e) => setLast_Name(e.target.value)}
                   value={last_Name}
-                  placeholder="Last Name"
                   required={true}
                 />
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Matric No.</label>
                 <input
                   type="number"
                   onChange={(e) =>
                     setMatric_no(e.currentTarget.value.slice(0, 11))
                   }
                   value={matric_no}
-                  placeholder="Matric No."
                   required={true}
                 />
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Student Identity Number</label>
                 <input
                   type="text"
                   onChange={(e) =>
                     setStudent_id(e.currentTarget.value.slice(0, 11))
                   }
                   value={student_id}
-                  placeholder="Student Identity Number"
                   required={true}
                 />
+              </div>
 
+              <div className={styles.newForm}>
+                <label>Email Address</label>
                 <input
                   type="email"
                   onChange={(e) => setEmail(e.target.value)}
                   value={email}
-                  placeholder="Email Address"
                   required={true}
                 />
+              </div>
 
+              <div className={styles.newForm}>
+                <label>Specialization</label>
                 <select
                   onChange={(e) => setSpecialization(e.target.value)}
                   value={specialization}
                   required={true}
                   className={styles.newStudentSelect}
                 >
-                  <option>Specialization..</option>
+                  <option></option>
                   {specializationid &&
                     specializationid.map((item, i) => (
                       <option key={i} value={item.id}>
@@ -158,15 +151,27 @@ function NewStudent() {
                     ))}
                 </select>
               </div>
+            </div>
 
-              <div className={styles.studentBtn}>
+            <div className={styles.studentBtn}>
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Validating Credentials..."
+                  colorScheme="teal"
+                  variant="outline"
+                  isFullWidth
+                  style={{ height: "5rem" }}
+                />
+              ) : (
                 <button type="submit" className={styles.stBtn}>
                   Create Student
                 </button>
-              </div>
-            </form>
-          </div>
-        )}
+              )}
+            </div>
+          </form>
+        </div>
+        {/* )} */}
       </div>
     </div>
   );

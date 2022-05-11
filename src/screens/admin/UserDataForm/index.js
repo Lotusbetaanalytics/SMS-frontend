@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import styles from "./styles.module.css";
 import BioData from "../BioData";
@@ -9,6 +9,7 @@ import FamilyData from "../FamilyData";
 import { useDispatch } from "react-redux";
 import { postUsersData } from "../../../redux/action/usersDataAction";
 import { useToast } from "@chakra-ui/react";
+import SidebarNav from "../../../components/SidebarNav";
 
 function UserDataForm() {
   const dispatch = useDispatch();
@@ -16,45 +17,68 @@ function UserDataForm() {
 
   const [page, setPage] = useState(0);
   const [allUserData, setAllUserData] = useState({
-    user: "",
-    gender: "",
+    // user: "",
     marital_status: "",
+    gender: "",
     religion: "",
     birthday: "",
+    nationality: "",
     state_of_origin: "",
     local_govt: "",
+    permanent_address: "",
     address: "",
     phone_no_1: "",
     phone_no_2: "",
-    academic_history: {
-      institution: "",
-      start_date: "",
-      bioData: "",
-      end_date: "",
-      qualification_earned: "",
-    },
-    health_data: {
-      isBioData: "",
-      blood_group: "",
-      genotype: "",
-      allergies: "",
-      diabetes: "",
-      STIs: "",
-      heart_disease: "",
-      disabilities: "",
-      respiratory_problems: "",
-    },
-    family_data: {
-      userBioData: "",
-      next_of_kin_full_name: "",
-      next_of_kin_phone_no_1: "",
-      next_of_kin_phone_no_2: "",
-      next_of_kin_address: "",
-      guardian_full_name: "",
-      guardian_phone_no_1: "",
-      guardian_phone_no_2: "",
-      guardian_address: "",
-    },
+    // biodata: "",
+    institution: "",
+    start_date: "",
+    end_date: "",
+    qualification_earned: "",
+    // academic_history:
+    //   {
+    //     biodata: "",
+    //     institution: "",
+    //     start_date: "",
+    //     end_date: "",
+    //     qualification_earned: "",
+    //   },
+
+    blood_group: "",
+    genotype: "",
+    allergies: "",
+    diabetes: "",
+    STIs: "",
+    heart_disease: "",
+    disabilities: "",
+    respiratory_problems: "",
+    // health_data: {
+    //   blood_group: "",
+    //   genotype: "",
+    //   allergies: "",
+    //   diabetes: "",
+    //   STIs: "",
+    //   heart_disease: "",
+    //   disabilities: "",
+    //   respiratory_problems: "",
+    // },
+    next_of_kin_full_name: "",
+    next_of_kin_phone_no_1: "",
+    next_of_kin_phone_no_2: "",
+    next_of_kin_address: "",
+    guardian_full_name: "",
+    guardian_phone_no_1: "",
+    guardian_phone_no_2: "",
+    guardian_address: "",
+    // family_data: {
+    //   next_of_kin_full_name: "",
+    //   next_of_kin_phone_no_1: "",
+    //   next_of_kin_phone_no_2: "",
+    //   next_of_kin_address: "",
+    //   guardian_full_name: "",
+    //   guardian_phone_no_1: "",
+    //   guardian_phone_no_2: "",
+    //   guardian_address: "",
+    // },
   });
 
   const formTitles = [
@@ -89,7 +113,7 @@ function UserDataForm() {
 
   return (
     <div className={styles.userDataFormContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
       <div className={styles.userDataForm}>
         <div className={styles.userDataFormTitle}>

@@ -57,7 +57,7 @@ function LoginPage() {
           ) : (
             <form onSubmit={submitHandler}>
               <div className={styles.input_box}>
-                <div className={styles.title}>Login</div>
+                <div className={styles.title}>Admin</div>
                 <div>Username</div>
                 <Input
                   type={"text"}

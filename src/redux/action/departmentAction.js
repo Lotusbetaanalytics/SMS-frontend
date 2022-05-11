@@ -3,6 +3,7 @@ import {
   CREATE_DEPARTMENT_REQUEST,
   CREATE_DEPARTMENT_SUCCESS,
   CREATE_DEPARTMENT_FAIL,
+  CREATE_DEPARTMENT_RESET,
   GET_DEPARTMENT_REQUEST,
   GET_DEPARTMENT_SUCCESS,
   GET_DEPARTMENT_FAIL,
@@ -51,6 +52,7 @@ export const postDepartment =
         duration: 4000,
         description: "Deparmnet Created",
       });
+      dispatch({ type: CREATE_DEPARTMENT_RESET });
     } catch (error) {
       //   console.log(error.response.data.message, error.message);
       dispatch({

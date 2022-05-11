@@ -2,6 +2,7 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import {
+  confirmPasswordReducer,
   userDetailsReducer,
   userForgotPasswordReducer,
   userLoginReducer,
@@ -24,9 +25,14 @@ import {
 } from "./reducers/facultyReducer";
 import {
   getNoticeReducer,
+  informationImageReducer,
+  postInformationReducer,
   postNoticeReducer,
 } from "./reducers/noticeBoardReducer";
-import { getScopeReducer } from "./reducers/getScopeReducer";
+import {
+  getInfoImageReducer,
+  getScopeReducer,
+} from "./reducers/getScopeReducer";
 import {
   createDepartmentReducer,
   getDepartmentReducer,
@@ -41,7 +47,12 @@ import {
   postRegisterCourseReducer,
 } from "./reducers/courseReducer";
 import { getLevelReducer } from "./reducers/levelReducer";
-import { postUserDataReducer } from "./reducers/usersDataReducer";
+import {
+  postAcademicDataReducer,
+  postFamilyDataReducer,
+  postHealthDataReducer,
+  postUserDataReducer,
+} from "./reducers/usersDataReducer";
 import { editStudentByIdReducer } from "./reducers/editUserDetailsReducers";
 import { getStudentByIdReducer } from "./reducers/getUserIdReducer";
 
@@ -49,6 +60,7 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userDetail: userDetailsReducer,
   userforgetPassword: userForgotPasswordReducer,
+  passwordConfirmed: confirmPasswordReducer,
   postNewStudent: createNewStudentReducer,
   postNewStaff: newStaffReducer,
   totalStudentNo: totalStudentReducer,
@@ -60,19 +72,25 @@ const reducer = combineReducers({
   departmentPost: createDepartmentReducer,
   departmentGet: getDepartmentReducer,
   courseGet: getCourseReducer,
-  postSpecialization: postSpecilizationReducer,
+  postSpecializations: postSpecilizationReducer,
   levelGet: getLevelReducer,
   getSpecilize: getSpecializationReducer,
   semesterGet: getSemesterReducer,
   sessionGet: getSessionReducer,
   postCourse: postRegisterCourseReducer,
-  postAddCourses: postAddCourseReducer,
-  postUsersDataInfo: postUserDataReducer,
+  postNewCourse: postAddCourseReducer,
+  postBioDataInfo: postUserDataReducer,
+  postAcademic: postAcademicDataReducer,
+  postHealth: postHealthDataReducer,
+  postFamily: postFamilyDataReducer,
   deleteStudentId: deleteStudentByIdReducer,
   deleteStaffId: deleteStaffByIdReducer,
   noticeGet: getNoticeReducer,
   editStudent: editStudentByIdReducer,
   getStudentId: getStudentByIdReducer,
+  postImageInfo: informationImageReducer,
+  postInfo: postInformationReducer,
+  getInfoImage: getInfoImageReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

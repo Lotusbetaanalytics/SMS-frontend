@@ -1,28 +1,48 @@
 import React, { useState } from "react";
-// import Sidebar from "../../../components/Sidebar";
-// import Header from "../../../components/Header";
+// import { useDispatch } from "react-redux";
+// import { postUsersData } from "../../../redux/action/usersDataAction";
+import SidebarNav from "../../../components/SidebarNav";
+import Header from "../../../components/Header";
 import styles from "./styles.module.css";
+import { Button, useToast } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { postAcademicData } from "../../../redux/action/usersDataAction";
 // import { useNavigate } from "react-router";
 
-function AcademicHistory({ allUserData, setAllUserData }) {
+function AcademicHistory() {
+  const [institution, setInstitution] = useState("");
+  const [start_date, setStart_date] = useState("");
+  const [end_date, setEnd_date] = useState("");
+  const [qualification_earned, setQualification_earned] = useState("");
   const [type, setType] = useState("text");
 
-  const submitHandler = () => {};
+  const dispatch = useDispatch();
+  const toast = useToast();
 
-  // let navigate = useNavigate();
-  // function handleClick() {
-  //   navigate("/user/healthdata");
-  // }
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const academicdata = {
+      institution: institution,
+      start_date: start_date,
+      end_date: end_date,
+      qualification_earned: qualification_earned,
+    };
+    dispatch(postAcademicData(academicdata, toast));
+    console.log(academicdata);
+  };
+
+  const postAcademic = useSelector((state) => state.postAcademic);
+  const { loading } = postAcademic;
 
   return (
     <div className={styles.academicHistoryContainer}>
-      {/* <Sidebar />
-      <Header /> */}
+      <SidebarNav />
+      <Header />
 
       <div className={styles.academicHistory}>
-        {/* <div className={styles.academicHistoryTitle}>
+        <div className={styles.academicHistoryTitle}>
           <span>Create Academic History</span>
-        </div> */}
+        </div>
 
         <div className={styles.academicHistoryContent}>
           <form onSubmit={submitHandler}>
@@ -37,60 +57,71 @@ function AcademicHistory({ allUserData, setAllUserData }) {
                 <option>1</option>
               </select> */}
 
-              <input
-                type="text"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    institution: e.target.value,
-                  })
-                }
-                value={allUserData.institution}
-                placeholder="Institution"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Institution</label>
+                <input
+                  type="text"
+                  onChange={(e) => setInstitution(e.target.value)}
+                  value={institution}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type={type}
-                onChange={(e) =>
-                  setAllUserData({ ...allUserData, start_date: e.target.value })
-                }
-                value={allUserData.start_date}
-                placeholder="Start Date"
-                required={true}
-                onFocus={() => setType("date")}
-                onBlur={() => setType("text")}
-              />
+              <div className={styles.newForm}>
+                <label>Start Date</label>
+                <input
+                  type={type}
+                  onChange={(e) => setStart_date(e.target.value)}
+                  value={start_date}
+                  // required={true}
+                  onFocus={() => setType("date")}
+                  onBlur={() => setType("text")}
+                />
+              </div>
 
-              <input
-                type={type}
-                onChange={(e) =>
-                  setAllUserData({ ...allUserData, end_date: e.target.value })
-                }
-                value={allUserData.end_date}
-                placeholder="End Date"
-                required={true}
-                onFocus={() => setType("date")}
-                onBlur={() => setType("text")}
-              />
+              <div className={styles.newForm}>
+                <label>End Data</label>
+                <input
+                  type={type}
+                  onChange={(e) => setEnd_date(e.target.value)}
+                  value={end_date}
+                  required={true}
+                  onFocus={() => setType("date")}
+                  onBlur={() => setType("text")}
+                />
+              </div>
 
-              <select
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    qualification_earned: e.target.value,
-                  })
-                }
-                value={allUserData.qualification_earned}
-                required={true}
-                className={styles.academicHistorySelect}
-              >
-                <option>Qualification Earned..</option>
-                <option>JSSCE</option>
-                <option>SSCE</option>
-                <option>Bachelors</option>
-                <option>Others</option>
-              </select>
+              <div className={styles.newForm}>
+                <label>Qualification Earned</label>
+                <select
+                  onChange={(e) => setQualification_earned(e.target.value)}
+                  value={qualification_earned}
+                  required={true}
+                  className={styles.academicHistorySelect}
+                >
+                  <option></option>
+                  <option>JSSCE</option>
+                  <option>SSCE</option>
+                  <option>Bachelors</option>
+                  <option>Others</option>
+                </select>
+              </div>
+            </div>
+            <div className={styles.staffBtn}>
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Validating Credentials..."
+                  colorScheme="teal"
+                  variant="outline"
+                  isFullWidth
+                  style={{ height: "5rem" }}
+                />
+              ) : (
+                <button type="submit" className={styles.stBtn}>
+                  Create Academic History
+                </button>
+              )}
             </div>
 
             {/* <button

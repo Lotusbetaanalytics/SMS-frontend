@@ -1,140 +1,164 @@
 import React, { useState } from "react";
-// import Sidebar from "../../../components/Sidebar";
-// import Header from "../../../components/Header";
+import SidebarNav from "../../../components/SidebarNav";
+import Header from "../../../components/Header";
 import styles from "./styles.module.css";
+import { Button, useToast } from "@chakra-ui/react";
+import { useDispatch, useSelector } from "react-redux";
+import { postFamilyData } from "../../../redux/action/usersDataAction";
 
-function FamilyData({ allUserData, setAllUserData }) {
-  const submitHandler = () => {};
+function FamilyData() {
+  const [next_of_kin_full_name, setNext_of_kin_full_name] = useState("");
+  const [next_of_kin_phone_no_1, setNext_of_kin_phone_no_1] = useState("");
+  const [next_of_kin_phone_no_2, setNext_of_kin_phone_no_2] = useState("");
+  const [next_of_kin_address, setNext_of_kin_address] = useState("");
+  const [guardian_full_name, setGuardian_full_name] = useState("");
+  const [guardian_phone_no_1, setGuardian_phone_no_1] = useState("");
+  const [guardian_phone_no_2, setGuardian_phone_no_2] = useState("");
+  const [guardian_address, setGuardian_address] = useState("");
+
+  const dispatch = useDispatch();
+  const toast = useToast();
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const familydata = {
+      next_of_kin_full_name: next_of_kin_full_name,
+      next_of_kin_phone_no_1: next_of_kin_phone_no_1,
+      next_of_kin_phone_no_2: next_of_kin_phone_no_2,
+      next_of_kin_address: next_of_kin_address,
+      guardian_full_name: guardian_full_name,
+      guardian_phone_no_1: guardian_phone_no_1,
+      guardian_phone_no_2: guardian_phone_no_2,
+      guardian_address: guardian_address,
+    };
+    dispatch(postFamilyData(familydata, toast));
+    console.log(familydata);
+  };
+
+  const postFamily = useSelector((state) => state.postFamily);
+  const { loading } = postFamily;
 
   return (
     <div className={styles.familyDataContainer}>
-      {/* <Sidebar />
-      <Header /> */}
+      <SidebarNav />
+      <Header />
 
       <div className={styles.familyData}>
-        {/* <div className={styles.familyDataTitle}>
+        <div className={styles.familyDataTitle}>
           <span>Create Family Data</span>
-        </div> */}
+        </div>
 
         <div className={styles.familyDataContent}>
           <form onSubmit={submitHandler}>
             <div className={styles.familyDataForm}>
-              {/* <select
-                onChange={(e) => setUserBioData(e.target.value)}
-                value={userBioData}
-                required={true}
-                className={styles.familyDataSelect}
-              >
-                <option>Bio Data..</option>
-                <option>1</option>
-              </select> */}
+              <div className={styles.newForm}>
+                <label>Next of Kin Full Name</label>
+                <input
+                  type="text"
+                  onChange={(e) => setNext_of_kin_full_name(e.target.value)}
+                  value={next_of_kin_full_name}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type="text"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    next_of_kin_full_name: e.target.value,
-                  })
-                }
-                value={allUserData.next_of_kin_full_name}
-                placeholder="Next of Kin Full Name"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Next of Kin Phone Number</label>
+                <input
+                  type="tel"
+                  onChange={(e) =>
+                    setNext_of_kin_phone_no_1(
+                      e.currentTarget.value.slice(0, 11)
+                    )
+                  }
+                  value={next_of_kin_phone_no_1}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type="tel"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    next_of_kin_phone_no_1: e.currentTarget.value.slice(0, 11),
-                  })
-                }
-                value={allUserData.next_of_kin_phone_no_1}
-                placeholder="Next of Kin Phone Number"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Next of Kin Phone 2</label>
+                <input
+                  type="tel"
+                  onChange={(e) =>
+                    setNext_of_kin_phone_no_2(
+                      e.currentTarget.value.slice(0, 11)
+                    )
+                  }
+                  value={next_of_kin_phone_no_2}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type="tel"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    next_of_kin_phone_no_2: e.currentTarget.value.slice(0, 11),
-                  })
-                }
-                value={allUserData.next_of_kin_phone_no_2}
-                placeholder="Next of Kin Phone Number 2"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Next of Kin Address</label>
+                <input
+                  type="text"
+                  onChange={(e) => setNext_of_kin_address(e.target.value)}
+                  value={next_of_kin_address}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type="text"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    next_of_kin_address: e.target.value,
-                  })
-                }
-                value={allUserData.next_of_kin_address}
-                placeholder="Next of Kin Address"
-                required={true}
-              />
-              <input
-                type="text"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    guardian_full_name: e.target.value,
-                  })
-                }
-                value={allUserData.guardian_full_name}
-                placeholder="Guardian Full Name"
-                required={true}
-              />
-              <input
-                type="tel"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    guardian_phone_no_1: e.currentTarget.value.slice(0, 11),
-                  })
-                }
-                value={allUserData.guardian_phone_no_1}
-                placeholder="Guardian Phone Number"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Guardian Full Name</label>
+                <input
+                  type="text"
+                  onChange={(e) => setGuardian_full_name(e.target.value)}
+                  value={guardian_full_name}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type="tel"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    guardian_phone_no_2: e.currentTarget.value.slice(0, 11),
-                  })
-                }
-                value={allUserData.guardian_phone_no_2}
-                placeholder="Guardian Phone Number 2"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Guardian Phone Number</label>
+                <input
+                  type="tel"
+                  onChange={(e) =>
+                    setGuardian_phone_no_1(e.currentTarget.value.slice(0, 11))
+                  }
+                  value={guardian_phone_no_1}
+                  // required={true}
+                />
+              </div>
 
-              <input
-                type="address"
-                onChange={(e) =>
-                  setAllUserData({
-                    ...allUserData,
-                    guardian_address: e.target.value,
-                  })
-                }
-                value={allUserData.guardian_address}
-                placeholder="Guardian Address"
-                required={true}
-              />
+              <div className={styles.newForm}>
+                <label>Guardian Phone Number 2</label>
+                <input
+                  type="tel"
+                  onChange={(e) =>
+                    setGuardian_phone_no_2(e.currentTarget.value.slice(0, 11))
+                  }
+                  value={guardian_phone_no_2}
+                  // required={true}
+                />
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Guardian Address</label>
+                <input
+                  type="address"
+                  onChange={(e) => setGuardian_address(e.target.value)}
+                  value={guardian_address}
+                  // required={true}
+                />
+              </div>
             </div>
-
-            {/* <button type="submit" className={styles.stBtn}>
-              Submit
-            </button> */}
+            <div className={styles.staffBtn}>
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Validating Credentials..."
+                  colorScheme="teal"
+                  variant="outline"
+                  isFullWidth
+                  style={{ height: "5rem" }}
+                />
+              ) : (
+                <button type="submit" className={styles.stBtn}>
+                  Create Bio-Data
+                </button>
+              )}
+            </div>
           </form>
         </div>
       </div>

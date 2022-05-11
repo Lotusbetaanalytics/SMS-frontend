@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
 import WidgetPost from "../../../components/WidgetPost";
 import {
   totalStaff,
@@ -12,7 +12,8 @@ import styles from "./styles.module.css";
 import { getDepartment } from "../../../redux/action/departmentAction";
 import { getCourse } from "../../../redux/action/courseAction";
 import { userDetails } from "../../../redux/action/userAction";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
+import SidebarNav from "../../../components/SidebarNav";
 
 function Dashboard() {
   const dispatch = useDispatch();
@@ -71,7 +72,7 @@ function Dashboard() {
 
   return (
     <div className={styles.dashboardContainer}>
-      <Sidebar />
+      <SidebarNav />
       <div className={styles.dashboard}>
         <div className={styles.dashboardHeader}>
           <h2>Hi {username && username.first_name}!</h2>

@@ -1,12 +1,12 @@
 import React, { useEffect } from "react";
 import styles from "./styles.module.css";
 import { Table, Tbody, Td, Th, Tr, Button } from "@chakra-ui/react";
-import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { totalStaff } from "../../../redux/action/getAllUsersAction";
 import { deleteStaffId } from "../../../redux/action/staffAction";
+import SidebarNav from "../../../components/SidebarNav";
 
 function ViewStaffDetails() {
   const dispatch = useDispatch();
@@ -28,7 +28,7 @@ function ViewStaffDetails() {
 
   return (
     <div className={styles.viewContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
 
       <div className={styles.viewBack}>

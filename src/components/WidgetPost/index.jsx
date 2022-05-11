@@ -51,7 +51,11 @@ function WidgetPost() {
         </div>
       </div>
       <div className={styles.widgetCalendarContainer}>
-        <Calendar onChange={onChange} value={calDate} />
+        <Calendar
+          onChange={onChange}
+          value={calDate}
+          className={styles.calendarCon}
+        />
       </div>
       <div className={styles.noticeContainer}>
         <div className={styles.noticeTitle}>
@@ -60,12 +64,14 @@ function WidgetPost() {
         {allNotice &&
           allNotice.map((item, i) => (
             <div key={i} className={styles.noticeCards}>
-              <div className={styles.noticeContent}>
-                <img src={class1} alt="Notice" />
-              </div>
-              <div className={styles.noticeTitles}>
-                <div className={styles.noticeAnnoces}>{item.title}</div>
-                <div className={styles.noticeUser}>{item.message}</div>
+              <div className={styles.noticeGrid}>
+                <div className={styles.noticeContent}>
+                  <img src={class1} alt="Notice" />
+                </div>
+                <div className={styles.noticeTitles}>
+                  <div className={styles.noticeAnnoces}>{item.title}</div>
+                  <div className={styles.noticeUser}>{item.message}</div>
+                </div>
               </div>
             </div>
           ))}

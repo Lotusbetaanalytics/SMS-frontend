@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import styles from "./styles.module.css";
 import {
@@ -7,9 +7,10 @@ import {
   postSpecialization,
 } from "../../../redux/action/departmentAction";
 import { useDispatch, useSelector } from "react-redux";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
 import { getLevelAction } from "../../../redux/action/levelAction";
 import { CREATE_SPECIALIZATION_RESET } from "../../../redux/constants/departmentConstants";
+import SidebarNav from "../../../components/SidebarNav";
 
 function Specialization() {
   const [departmentName, setDepartmentName] = useState("");
@@ -17,7 +18,7 @@ function Specialization() {
   const [specializationName, setSpecializationName] = useState("");
   const [codeName, setCodeName] = useState("");
   const [descName, setDescName] = useState("");
-  const [isActive, setIsActive] = useState("");
+  const [isActive, setIsActive] = useState(false);
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -30,7 +31,7 @@ function Specialization() {
       code: codeName,
       max_level: maxLevel,
       description: descName,
-      isActive: isActive,
+      is_active: isActive,
     };
     dispatch(postSpecialization(specializeData, toast));
     dispatch({ type: CREATE_SPECIALIZATION_RESET });
@@ -48,6 +49,13 @@ function Specialization() {
   const departmentGet = useSelector((state) => state.departmentGet);
   const { departmentid } = departmentGet;
 
+  const postSpecializations = useSelector((state) => state.postSpecializations);
+  const { loading, success } = postSpecializations;
+
+  if (success) {
+    window.location.reload();
+  }
+
   useEffect(() => {
     dispatch(getLevelAction());
   }, [dispatch]);
@@ -58,7 +66,7 @@ function Specialization() {
 
   return (
     <div className={styles.specializationContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
       <div className={styles.specialization}>
         <div className={styles.specializationTitle}>
@@ -67,73 +75,99 @@ function Specialization() {
         <div className={styles.specializationContent}>
           <form onSubmit={submitHandler}>
             <div className={styles.specializationForm}>
-              <select
-                onChange={(e) => setDepartmentName(e.target.value)}
-                value={departmentName}
-                required={true}
-                className={styles.specializationSelect}
-              >
-                <option>Department..</option>
-                {departmentid &&
-                  departmentid.map((item, i) => (
-                    <option key={i} value={item.id}>
-                      {item.name}
-                    </option>
-                  ))}
-              </select>
-
-              <input
-                type="text"
-                onChange={(e) => setSpecializationName(e.target.value)}
-                value={specializationName}
-                placeholder="Name"
-                required={true}
-              />
-              <select
-                onChange={(e) => setMaxLevel(e.target.value)}
-                value={maxLevel}
-                required={true}
-                className={styles.specializationSelect}
-              >
-                <option>Max Level..</option>
-                {getLevelId &&
-                  getLevelId.map((item, i) => (
-                    <option key={i} value={item.id}>
-                      {item.code}
-                    </option>
-                  ))}
-              </select>
-              <input
-                type="number"
-                onChange={(e) => setCodeName(e.target.value)}
-                value={codeName}
-                placeholder="Code"
-                required={true}
-              />
-              <input
-                type="text"
-                onChange={(e) => setDescName(e.target.value)}
-                value={descName}
-                placeholder="Description (optional)"
-                required={true}
-              />
-
-              <div className={styles.specializationCheckbox}>
-                <div className={styles.checkboxDiv}>
-                  <input
-                    onChange={handleClick}
-                    type="checkbox"
-                    value={isActive}
-                    disable={isActive ? "false" : "true"}
-                    className={styles.checkInput}
-                  />
-                  <label>Publish</label>
-                </div>
+              <div className={styles.newForm}>
+                <label>Deparment Name</label>
+                <select
+                  onChange={(e) => setDepartmentName(e.target.value)}
+                  value={departmentName}
+                  required={true}
+                  className={styles.specializationSelect}
+                >
+                  <option></option>
+                  {departmentid &&
+                    departmentid.map((item, i) => (
+                      <option key={i} value={item.id}>
+                        {item.name}
+                      </option>
+                    ))}
+                </select>
               </div>
-              <div className={styles.btnSpec}>
+
+              <div className={styles.newForm}>
+                <label>Specialization Name</label>
+                <input
+                  type="text"
+                  onChange={(e) => setSpecializationName(e.target.value)}
+                  value={specializationName}
+                  required={true}
+                />
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Max Level</label>
+                <select
+                  onChange={(e) => setMaxLevel(e.target.value)}
+                  value={maxLevel}
+                  required={true}
+                  className={styles.specializationSelect}
+                >
+                  <option></option>
+                  {getLevelId &&
+                    getLevelId.map((item, i) => (
+                      <option key={i} value={item.id}>
+                        {item.code}
+                      </option>
+                    ))}
+                </select>
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Specialization Code</label>
+                <input
+                  type="number"
+                  onChange={(e) => setCodeName(e.target.value)}
+                  value={codeName}
+                  required={true}
+                />
+              </div>
+
+              <div className={styles.newForm}>
+                <label>Description (optional)</label>
+                <input
+                  type="text"
+                  onChange={(e) => setDescName(e.target.value)}
+                  value={descName}
+                  required={true}
+                />
+              </div>
+            </div>
+            <div className={styles.btnSpec}>
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Validating Credentials..."
+                  colorScheme="teal"
+                  variant="outline"
+                  isFullWidth
+                  style={{ height: "5rem" }}
+                />
+              ) : (
                 <button type="submit" className={styles.stBtn}>
                   Submit
                 </button>
+              )}
+
+              <div className={styles.toggleBtnContainer}>
+                <div className={styles.toggleBtn} onChange={handleClick}>
+                  <input
+                    type="checkbox"
+                    value={isActive}
+                    disable={isActive ? "false" : "true"}
+                  />
+                  <span className={styles.toggleRound}>
+                    Publish Specialization
+                  </span>
+                </div>
               </div>
             </div>
           </form>

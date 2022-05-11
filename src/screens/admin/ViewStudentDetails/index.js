@@ -1,12 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import styles from "./styles.module.css";
+// import Pagination from "../../../components/Pagination/Pagination";
 import { Table, Tbody, Td, Th, Tr, Button } from "@chakra-ui/react";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import { Link } from "react-router-dom";
 import { totalStudent } from "../../../redux/action/getAllUsersAction";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteStudentId } from "../../../redux/action/createStudentAction";
+import SidebarNav from "../../../components/SidebarNav";
+
+// let PageSize = 5;
 
 function ViewstudentDetails() {
   const dispatch = useDispatch();
@@ -26,9 +30,18 @@ function ViewstudentDetails() {
   const totalStudentNo = useSelector((state) => state.totalStudentNo);
   const { allStudent } = totalStudentNo;
 
+  // const [currentPage, setCurrentPage] = useState(1);
+
+  // const currentTableData = useMemo(() => {
+  //   const firstPageIndex = (currentPage - 1) * PageSize;
+  //   const lastPageIndex = firstPageIndex + PageSize;
+
+  //   return allStudent && allStudent.slice(firstPageIndex, lastPageIndex);
+  // }, [currentPage]);
+
   return (
     <div className={styles.viewContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
 
       <div className={styles.viewBack}>
@@ -77,6 +90,13 @@ function ViewstudentDetails() {
               </Tbody>
             ))}
         </Table>
+        {/* <Pagination
+          className="pagination-bar"
+          currentPage={currentPage}
+          totalCount={allStudent && allStudent.length}
+          pageSize={PageSize}
+          onPageChange={(page) => setCurrentPage(page)}
+        /> */}
       </div>
     </div>
   );

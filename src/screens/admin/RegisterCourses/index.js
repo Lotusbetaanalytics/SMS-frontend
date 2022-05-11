@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import Sidebar from "../../../components/Sidebar";
+// import Sidebar from "../../../components/Sidebar";
 import Header from "../../../components/Header";
 import styles from "./styles.module.css";
-import { totalStudent } from "../../../redux/action/getAllUsersAction";
+// import { totalStudent } from "../../../redux/action/getAllUsersAction";
 import { useDispatch, useSelector } from "react-redux";
 import {
   getCourse,
@@ -10,15 +10,21 @@ import {
   getSession,
   postRegisterCourses,
 } from "../../../redux/action/courseAction";
-import { useToast } from "@chakra-ui/react";
+import { Button, useToast } from "@chakra-ui/react";
+import SidebarNav from "../../../components/SidebarNav";
 
 function RegisterCourses() {
   const [studentName, setStudentName] = useState("");
   const [selectCourse, setSelectCourse] = useState("");
   const [selectSession, setSelectSession] = useState("");
   const [selectSemester, setSelectSemester] = useState("");
-  const [isActive, setIsActive] = useState("");
-  const [filtered, setFiltered] = useState([]);
+  const [isActive, setIsActive] = useState(false);
+  // const [filtered, setFiltered] = useState([]);
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+  console.log(isActive);
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -30,7 +36,7 @@ function RegisterCourses() {
       student: studentName,
       session: selectSession,
       semester: selectSemester,
-      isActive: isActive,
+      is_active: isActive,
     };
     dispatch(postRegisterCourses(courseData, toast));
     console.log(courseData);
@@ -86,6 +92,13 @@ function RegisterCourses() {
   const semesterGet = useSelector((state) => state.semesterGet);
   const { getSemesterId } = semesterGet;
 
+  const postCourse = useSelector((state) => state.postCourse);
+  const { loading, success } = postCourse;
+
+  if (success) {
+    window.location.reload();
+  }
+
   useEffect(() => {
     dispatch(getSession());
   }, [dispatch]);
@@ -96,7 +109,7 @@ function RegisterCourses() {
 
   return (
     <div className={styles.registerCourseContainer}>
-      <Sidebar />
+      <SidebarNav />
       <Header />
       <div className={styles.registerCourse}>
         <div className={styles.registerCourseTitle}>
@@ -135,19 +148,22 @@ function RegisterCourses() {
                   })}
               </div> */}
 
-              <select
-                onChange={(e) => setSelectCourse(e.target.value)}
-                value={selectCourse}
-                required={true}
-                className={styles.registerCourseSelect}
-              >
-                <option>Select Course...</option>
-                {sample.map((item, i) => (
-                  <option key={i} value={item.id}>
-                    {item.code}
-                  </option>
-                ))}
-              </select>
+              <div className={styles.newForm}>
+                <label>Select Course</label>
+                <select
+                  onChange={(e) => setSelectCourse(e.target.value)}
+                  value={selectCourse}
+                  required={true}
+                  className={styles.registerCourseSelect}
+                >
+                  <option></option>
+                  {sample.map((item, i) => (
+                    <option key={i} value={item.id}>
+                      {item.code}
+                    </option>
+                  ))}
+                </select>
+              </div>
 
               {/* <select
                 onChange={(e) => setSelectSession(e.target.value)}
@@ -164,26 +180,50 @@ function RegisterCourses() {
                   ))}
               </select> */}
 
-              <select
-                onChange={(e) => setSelectSemester(e.target.value)}
-                value={selectSemester}
-                required={true}
-                className={styles.registerCourseSelect}
-              >
-                <option>Select Semester...</option>
-                {getSemesterId &&
-                  getSemesterId.map((item, i) => (
-                    <option key={i} value={item.id}>
-                      {item.semester}
-                    </option>
-                  ))}
-              </select>
+              <div className={styles.newForm}>
+                <label>Select Semester</label>
+                <select
+                  onChange={(e) => setSelectSemester(e.target.value)}
+                  value={selectSemester}
+                  required={true}
+                  className={styles.registerCourseSelect}
+                >
+                  <option></option>
+                  {getSemesterId &&
+                    getSemesterId.map((item, i) => (
+                      <option key={i} value={item.id}>
+                        {item.semester}
+                      </option>
+                    ))}
+                </select>
+              </div>
             </div>
 
             <div className={styles.registerBtn}>
-              <button type="submit" className={styles.stBtn} disable="true">
-                Register
-              </button>
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Validating Credentials..."
+                  colorScheme="teal"
+                  variant="outline"
+                  isFullWidth
+                  style={{ height: "5rem" }}
+                />
+              ) : (
+                <button type="submit" className={styles.stBtn} disable="true">
+                  Register
+                </button>
+              )}
+              <div className={styles.toggleBtnContainer}>
+                <div className={styles.toggleBtn} onChange={handleClick}>
+                  <input
+                    type="checkbox"
+                    value={isActive}
+                    disable={isActive ? "false" : "true"}
+                  />
+                  <span className={styles.toggleRound}>Publish Course</span>
+                </div>
+              </div>
             </div>
           </form>
         </div>
