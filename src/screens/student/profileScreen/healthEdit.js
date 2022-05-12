@@ -1,10 +1,10 @@
-import { Button, useToast } from "@chakra-ui/react";
+import { Alert, Button, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
+
 import {
   editProfile,
   studentDetails,
@@ -48,7 +48,7 @@ const details = useSelector((state) => state.details);
 
   useEffect(() => {
     if  (studentDetail) {
-      setBlood_group(studentDetail.biodata.health_data.blood_group );
+      setBlood_group(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.blood_group );
        setGenotype(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.genotype);
        setAllergies(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.allergies);
       setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
@@ -57,7 +57,7 @@ const details = useSelector((state) => state.details);
       setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
       setRespiratory_problems(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.respiratory_problems);
     }
-  }, [dispatch]);
+  }, [studentDetail,dispatch]);
 
   console.log(blood_group)
   
@@ -111,6 +111,9 @@ const details = useSelector((state) => state.details);
           <div className={styles.editContainer}>
             <EditNavbar account={styles.remote} />
             <div className={styles.formContainer}>
+            {msg && (
+                <Alert status="success">Profile Updated Successfully</Alert>
+              )}
               <form onSubmit={submitHandler}>
                 <div className={styles.inputContainer_}>
                   <label>blood Group</label>

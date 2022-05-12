@@ -8,12 +8,11 @@ import {
     Thead,
     Tr,
   } from "@chakra-ui/react";
-  import React, { useEffect, useState } from "react";
+  import React, { useEffect } from "react";
   import { useDispatch, useSelector } from "react-redux";
-  import { Link, useNavigate } from "react-router-dom";
+  import {  useNavigate } from "react-router-dom";
   
   import StudentSidebar from "../../components/StudentSidebar";
-  import SidebarTwo from "../../components/StudentSidebar/sidebar";
   import { studentDetails } from "../../redux/studentActions/studentAction";
   
   import styles from "./styles.module.css";
@@ -48,7 +47,7 @@ import {
       if (!studentLogin) {
         navigate("/student/login");
       }
-    }, [studentLogin, dispatch]);
+    }, [studentLogin,navigate, dispatch]);
   
     return (
       <div className={styles.result}>
@@ -75,14 +74,14 @@ import {
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {  mystudentDetails && mystudentDetails.student[0].course_registrations.map((item,i) => (
+                    {  mystudentDetails && mystudentDetails.student[0].course_registrations ? mystudentDetails && mystudentDetails.student[0].course_registrations.map((item,i) => (
                       <Tr key={item.id}>
                         <Td>{item.id} </Td>
                         <Td>{item.course.code} </Td>
                         <Td>{item.semester.semester} </Td>
-                        <Td>{item.session.year}</Td>
+                        <Td>{item.session.year} </Td>
                       </Tr>
-                    ))}
+                    )) : "there are courses registered for you"}
                   </Tbody>
                 </Table> 
             </div>

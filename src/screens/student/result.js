@@ -8,12 +8,11 @@ import {
   Thead,
   Tr,
 } from "@chakra-ui/react";
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 import StudentSidebar from "../../components/StudentSidebar";
-import SidebarTwo from "../../components/StudentSidebar/sidebar";
 import { studentDetails } from "../../redux/studentActions/studentAction";
 
 import styles from "./styles.module.css";
@@ -34,6 +33,9 @@ const Result = () => {
   const academic = mystudentDetails && mystudentDetails.student[0].result;
   console.log(academic);
 
+  const theResult = mystudentDetails && mystudentDetails.student[0].results;
+  console.log(theResult)
+
   useEffect(() => {
     dispatch(studentDetails());
   }, [dispatch]);
@@ -45,7 +47,7 @@ const Result = () => {
     if (!studentLogin) {
       navigate("/student/login");
     }
-  }, [studentLogin, dispatch]);
+  }, [studentLogin,navigate, dispatch]);
 
   return (
     <div className={styles.result}>
@@ -68,6 +70,7 @@ const Result = () => {
                   <Th>Session</Th>
                   <Th>Semester</Th>
                   <Th>Grade</Th>
+                  <Th>value</Th>
                 </Tr>
               </Thead>
               <Tbody>
@@ -79,6 +82,7 @@ const Result = () => {
                       <Td>{item.session.year}</Td>
                       <Td>{item.semester.semester}</Td>
                       <Td>{item.grade}</Td>
+                      <Td>{item.value}</Td>
                       
                     </Tr>
                   ))}

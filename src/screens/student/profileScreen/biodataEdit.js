@@ -1,10 +1,10 @@
-import { Alert, Button, ButtonGroup, useToast } from "@chakra-ui/react";
+import { Alert, Button, useToast } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
+
 import {
   editProfile,
   studentDetails,
@@ -42,7 +42,7 @@ const BioDataEdit = () => {
   }
 }, [studentLogin,navigate,dispatch]);
 
-  const {loading:isLoading, success:isSuccess, studentDetail} = useSelector((state) => state.details);
+  const {success:isSuccess, studentDetail} = useSelector((state) => state.details);
   // const {biodata } = studentDetail;
   
   const editProfile_ = useSelector((state) => state.editProfile_);
@@ -69,8 +69,6 @@ const BioDataEdit = () => {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    let birtDate = new Date(birthday)
-    birtDate = birtDate.setDate()
     const userdata = {
       biodata: {
         marital_status: marital_status,
@@ -120,11 +118,15 @@ const BioDataEdit = () => {
               <form onSubmit={submitHandler}>
                 <div className={styles.inputContainer_}>
                   <label>Marital Status</label>
-                  <input
-                    type="text"
-                    value={marital_status}
+                  <select
                     onChange={(e) => setMarital_status(e.target.value)}
-                  />
+                  >
+                    <option>Select</option>
+                    <option value="Single">Single</option>
+                    <option value="Married">Married</option>
+                    <option value="Divorced">Divorced</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
                 <div className={styles.inputContainer_}>
                   <label>Gender</label>
@@ -140,11 +142,14 @@ const BioDataEdit = () => {
 
                 <div className={styles.inputContainer_}>
                   <label>Religion</label>
-                  <input
-                    type="text"
-                    value={religion}
+                  <select
                     onChange={(e) => setReligion(e.target.value)}
-                  />
+                  >
+                    <option>Select</option>
+                    <option value="Christianity">Christianity</option>
+                    <option value="Islam">Islam</option>
+                    <option value="Other">Other</option>
+                  </select>
                 </div>
                 <div className={styles.inputContainer_}>
                   <label>Birthday</label>

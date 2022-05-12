@@ -36,21 +36,23 @@ function ConfirmPassword() {
       setMsg(false);
       dispatch(Confirmpassword(password,token))
     }
-    if (error) {
-      toast ({
-        title: "Error",
-        description: error,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      })
-    }
-    if (success) {
-      setSuccessMsg(true)
-      dispatch({type: CONFIRM_PASSWORD_RESET})
-      setTimeout(() => navigate("/student/login"), [2000]);
-    }
   }
+
+  if (error) {
+    toast ({
+      title: "Error",
+      description: error,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    })
+  }
+  if (success) {
+    setSuccessMsg(true)
+    dispatch({type: CONFIRM_PASSWORD_RESET})
+    navigate("/student/login");
+  }
+
   return (
     <div className={styles.pageContainer_}>
       <div className={styles.topCircle_}>

@@ -1,20 +1,13 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
-import SidebarTwo from '../../../components/StudentSidebar/sidebar';
+
 import styles from "./styles.module.css"
 
 const HealthData = () => {
-    // const [bloodGroup,setBloodGroup] = useState("")
-    // const [genotype,setGenotype] = useState("")
-    // const [allergies ,setAllergies ] = useState("")
-    // const [diabetes,setDiabetes] = useState("")
-    // const [stis,setStis] = useState("")
-    // const [heart_disease,setHeart_disease] = useState("")
-    // const [disabilities,setDisabilities] = useState("")
-    // const [respiratory_problems,setRespiratory_problems] = useState("")
+    
   const dispatch = useDispatch() 
   const navigate = useNavigate();
   const myDetail = JSON.parse(localStorage.getItem("studentDetails")).biodata.health_data || {health_data:{blood_group:"",genotype:"",allergies:"",diabetes:"",STIs:"",heart_disease:"",disabilities:"",respiratory_problems:""}};
@@ -37,6 +30,8 @@ const HealthData = () => {
   const heart_disease = mystudentDetails.heart_disease;
   const disabilities = mystudentDetails.disabilities;
   const Respiratory_problems = mystudentDetails.respiratory_problems;
+
+  console.log(stis)
 
 
     const submitHandler = () =>{

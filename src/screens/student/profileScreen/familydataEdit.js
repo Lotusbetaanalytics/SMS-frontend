@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
+
 import { editProfile, studentDetails } from "../../../redux/studentActions/studentAction";
 import { EDITPROFILE_RESET } from "../../../redux/studentConstants/studentConstants";
 import styles from "./styles.module.css";
@@ -52,7 +52,7 @@ const FamilyDataEdit = () => {
       setGuardian_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_phone_no_2);
       setGuardian_address(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data &&studentDetail.biodata.family_data.guardian_address);
     }
-  }, [dispatch]);
+  }, [studentDetail, dispatch]);
 
   
 

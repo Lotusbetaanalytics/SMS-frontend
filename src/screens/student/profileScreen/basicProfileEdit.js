@@ -32,6 +32,8 @@ const EditBasicInfo = () => {
 
   const details = useSelector((state) => state.details);
   const {studentDetail} = details;
+
+  console.log(studentDetail)
   
 
   const editProfile_ = useSelector((state) => state.editProfile_);
@@ -45,7 +47,7 @@ const EditBasicInfo = () => {
     setLast_name( studentDetail.last_name);
     setSpecialization(studentDetail.specialization);
     setEmail(studentDetail.email)
-    setMatric_num(studentDetail.matric_num)
+    setMatric_num(studentDetail.student[0].matric_no)
     }
   }, [dispatch]);
 

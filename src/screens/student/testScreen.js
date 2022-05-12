@@ -19,8 +19,8 @@ const TestScreen = () => {
   const Response = useSelector((state) => state.Response);
   const { loading, error } = Response;
 
-  const testQuestion = useSelector((state) => state.testQuestion);
-  const { questions } = testQuestion;
+  // const testQuestion = useSelector((state) => state.testQuestion);
+  // const { questions } = testQuestion;
 
   useEffect(() => {
     dispatch(getTestquestion(id));
@@ -38,13 +38,13 @@ const TestScreen = () => {
 
   const testData = JSON.parse(localStorage.getItem("question"));
   // const testData = questions
-   console.log(testData)
+  //  console.log(testData)
 
    const quizers = JSON.parse(localStorage.getItem("quiz_takers"));
 //     console.log(quizers)
 
  const mytime = testData && testData.quiz.timer
-    console.log(mytime)
+    // console.log(mytime)
   
 
  const [index, setIndex] = useState(0);
@@ -176,7 +176,11 @@ const [answer, setAnswer] = useState("");
                   </div>
                 </div>
               ))}
-            {index > 0 && (
+           
+          </form>
+        </div>
+        <div className={styles.btnContainer}>
+        {index > 0 && (
               <button
                 type="button"
                 className={`btn ${styles.purple} ${styles.marginTop}`}
@@ -186,16 +190,16 @@ const [answer, setAnswer] = useState("");
               </button>
             )}
             {lastpage === questionLength ? (
-              <button type="submit" className={`btn ${styles.purple} ${styles.marginTop}`}>
+              <button type="button" onClick={submitHandler} className={`btn ${styles.purple} ${styles.marginTop}`}>
                 submit
               </button>
             ) : (
-              <button type="submit" className={`btn ${styles.purple} ${styles.marginTop}`}>
+              <button type="button" onClick={submitHandler} className={`btn ${styles.purple} ${styles.marginTop}`}>
                 next
               </button>
             )}
-          </form>
         </div>
+        
       </div>
     )}
   </div>

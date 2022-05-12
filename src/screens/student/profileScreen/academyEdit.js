@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
 import {
   editProfile,
   studentDetails,
@@ -38,18 +37,17 @@ const AcademicHistoryEdit = () => {
 
   React.useEffect(() => {
     if (success) {
-      console.log("my student", studentDetail);
+     
       setInstitution(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].institution);
       setStart_date(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].start_date);
       setEnd_date(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].end_date);
-      setQualification_earned(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].institution.qualification_earned);
+      setQualification_earned(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].qualification_earned);
     }
-  }, [success]);
+  }, [success,studentDetail]);
 
   const editProfile_ = useSelector((state) => state.editProfile_);
   const { loading, error } = editProfile_;
 
-  const [msg, setMsg] = useState("");
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -77,6 +75,7 @@ const AcademicHistoryEdit = () => {
       isClosable: true,
     });
   }
+
 
   return (
     <div>
@@ -117,11 +116,16 @@ const AcademicHistoryEdit = () => {
                 </div>
                 <div className={styles.inputContainer_}>
                   <label>Qualification Earn</label>
-                  <input
-                    type="text"
-                    value={qualification_earned}
+                  <select
                     onChange={(e) => setQualification_earned(e.target.value)}
-                  />
+                  >
+                    <option>Select</option>
+                    <option value="JSSCE">JSSCE</option>
+                    <option value="SSCE">SSCE</option>
+                    <option value="Bachelors">Bachelors</option>
+                    <option value="Other">Other</option>
+                  </select>
+
                 </div>
               </form>
               {loading ? (

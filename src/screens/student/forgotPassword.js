@@ -6,11 +6,11 @@ import logo from "../../assets/Rectangle 73girl.png"
 import { useDispatch, useSelector } from "react-redux";
 import { Alert, Button, useToast } from "@chakra-ui/react";
 import { forgetpassword } from "../../redux/studentActions/studentAction";
-import { useNavigate } from "react-router-dom";
+
 import { FORGET_PASSWORD_RESET } from "../../redux/studentConstants/studentConstants";
 
 const ForgotPassword = () => {
-  const navigate = useNavigate("")
+  
   const [email, setEmail] = useState("");
   const [msg,setMsg] = useState("");
   const [successMsg,setSuccessMsg] = useState("")
@@ -28,21 +28,22 @@ const ForgotPassword = () => {
       setMsg(false);
       dispatch(forgetpassword(email))
     }
-    if (error) {
-      toast ({
-        title: "Error",
-        description: error,
-        status: "error",
-        duration: 9000,
-        isClosable: true,
-      })
-    }
-    if (success) {
-      setSuccessMsg(true)
-      dispatch({type:FORGET_PASSWORD_RESET})
-      // setTimeout(() => navigate("/student/newpassword"), [2000]);
-    }
-  };
+ };
+
+  if (success) {
+    setSuccessMsg(true)
+    dispatch({type:FORGET_PASSWORD_RESET})
+    
+  }
+  if (error) {
+    toast ({
+      title: "Error",
+      description: error,
+      status: "error",
+      duration: 9000,
+      isClosable: true,
+    })
+  }
   
   
 

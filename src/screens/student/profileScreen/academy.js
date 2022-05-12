@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import EditNavbar from '../../../components/navigation_';
 import StudentSidebar from '../../../components/StudentSidebar';
-import SidebarTwo from '../../../components/StudentSidebar/sidebar';
+
 
 
 import styles from "./styles.module.css"
@@ -16,13 +16,13 @@ const AcademicHistory = () => {
   console.log(myDetail)
   
 
-   const institution = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].institution || ""; ;
+   const institution = myDetail && myDetail.biodata ? myDetail && myDetail.biodata.academic_history[0].institution : ""; ;
    console.log(institution)
-  const start_date = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].start_date || "";
+  const start_date = myDetail && myDetail.biodata? myDetail && myDetail.biodata.academic_history[0].start_date : "";
   console.log(start_date)
-  const end_date = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].institution.end_date || "";
+  const end_date = myDetail && myDetail.biodata? myDetail && myDetail.biodata.academic_history[0].end_date : "";
   console.log(end_date)
-  const qualification_earn = myDetail && myDetail.biodata.academic_history[0] && myDetail.biodata.academic_history[0].institution.qualification_earned || "";
+  const qualification_earn = myDetail && myDetail.biodata ? myDetail && myDetail.biodata.academic_history[0].qualification_earned : "";
   console.log(qualification_earn)
 
   const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
@@ -59,7 +59,7 @@ const AcademicHistory = () => {
                     </div>
                     <div className={styles.inputContainer_}>
                       <label>Qualification Earn</label>
-                      <input type="email" value={qualification_earn} />
+                      <input type="text" value={qualification_earn} />
                     </div>
                         </form>
                         <button onClick={submitHandler} className={`${styles.btn} ${styles.lilac}`}>Edit information</button> <Link to="/student/profile/healthdata"> <div className={`${styles.btn} ${styles.purple}`}>Health Data</div></Link>

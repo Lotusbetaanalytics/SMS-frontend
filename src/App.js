@@ -14,6 +14,7 @@ import ConfirmPassword from "./screens/student/confirmPassword";
 import Courses from "./screens/student/courses";
 import StudentDashboard from "./screens/student/dashboard";
 import ForgotPassword from "./screens/student/forgotPassword";
+import Notification from "./screens/student/notifications";
 import AcademicHistory from "./screens/student/profileScreen/academy";
 import AcademicHistoryEdit from "./screens/student/profileScreen/academyEdit";
 import BasicProfile from "./screens/student/profileScreen/basicProfile";
@@ -60,6 +61,7 @@ function App() {
         <Route path="/navi" exact element={<Navigation/>} />
         <Route path="/student/result" exact element={<Result/>} />
         <Route path="/student/courses" exact element={<Courses/>} />
+        <Route path="/student/notification" exact element={<Notification/>} />
       </Routes>
     </Router>
   );

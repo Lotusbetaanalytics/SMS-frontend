@@ -16,10 +16,10 @@ function StudentLogin() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [msg,setMsg] = useState("");
-  const[successMsg,setSuccessMsg] = useState("")
+  const[successMsg] = useState("")
 
   const studentLogin = useSelector((state) => state.studentLogin);
-  const {loading, error,success,userInfo} = studentLogin
+  const {loading, error,userInfo} = studentLogin
 
   const submitHandler = (e) => {
     e.preventDefault();

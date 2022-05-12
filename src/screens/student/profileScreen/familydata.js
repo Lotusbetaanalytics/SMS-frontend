@@ -1,17 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect} from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
-import { studentDetails } from "../../../redux/studentActions/studentAction";
 import styles from "./styles.module.css";
 
 const FamilyData = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails"))
-   const mystudentDetails = myDetail && myDetail.biodata.family_data || {family_data:{next_of_kin_full_name:"",next_of_kin_phone_no_1:"",next_of_kin_phone_no_2:"",next_of_kin_address:"",guardian_full_name:"",guardian_phone_no_1:"",guardian_phone_no_2:"",guardian_address:""}};
+   const mystudentDetails = JSON.parse(localStorage.getItem("studentDetails")).biodata.family_data || {family_data:{next_of_kin_full_name:"",next_of_kin_phone_no_1:"",next_of_kin_phone_no_2:"",next_of_kin_address:"",guardian_full_name:"",guardian_phone_no_1:"",guardian_phone_no_2:"",guardian_address:""}};
   console.log(mystudentDetails)
 
   const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));

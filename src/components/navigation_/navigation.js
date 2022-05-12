@@ -1,24 +1,14 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Link, useHistory, useNavigate } from "react-router-dom";
-import { studentLogout } from "../../redux/studentActions/studentAction";
+import React from "react";
+
+import { Link} from "react-router-dom";
 import styles from "./styles.module.css";
 
 
 const Navigation = () => {
-  const navigate = useNavigate();
-  const dispatch = useDispatch();
  
-
   const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
   const mystudentDetails = myDetail;
   
-
-
-  const logoutHandler = () => {
-    navigate()
-  };
-
   return (
     <div className={styles.navigation}>
       <div className={styles.title}>

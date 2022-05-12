@@ -1,22 +1,13 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
+
 
 import styles from "./styles.module.css";
 
 const BioData = () => {
-  // const [marital_status,setMarital_status] = useState("")
-  // const [gender,setGender] = useState("")
-  // const [religion,setReligion] = useState("")
-  // const [birthday,setBirthday] = useState("")
-  // const [nationality,setNationality] = useState("")
-  // const [state_of_origin,setState_of_origin] = useState("")
-  // const [local_govt,setLocal_govt] = useState("")
-  // const [address,setAddress] = useState("")
-  // const [phone_no_1,setPhone_no_1] = useState("")
-  // const [phone_no_2,setPhone_no_2] = useState("")
+  
   const navigate = useNavigate();
   const dispatch = useNavigate();
   const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));

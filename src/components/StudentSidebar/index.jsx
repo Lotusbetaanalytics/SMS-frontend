@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import styles from "./styles.module.css";
 import adminpic from "../../assets/adminpic.png";
 import { Link, useNavigate } from "react-router-dom";
@@ -9,10 +9,9 @@ import { MdOutlineLogout } from "react-icons/md";
 import { BsCardList } from "react-icons/bs";
 
 import {
-  studentDetails,
-  studentLogout,
+  studentLogout
 } from "../../redux/studentActions/studentAction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 const StudentSidebar = (props) => {
   const dispatch = useDispatch();
@@ -28,6 +27,8 @@ const StudentSidebar = (props) => {
   // }, [dispatch]);
    const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
    const mystudentDetails = myDetail;
+
+  //  console.log(mystudentDetails.biodata.profile_picture)
 
   const logoutHandler = () => {
     dispatch(studentLogout());

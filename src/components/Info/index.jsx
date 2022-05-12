@@ -4,12 +4,11 @@ import { FcDepartment,FcGraduationCap} from "react-icons/fc";
 import { CgAwards } from "react-icons/cg";
 import {  MdOutlineAssessment} from "react-icons/md";
 import styles from './styles.module.css'
-import data from '../../data';
 import { DoughnutChart } from '../chart/doughurt';
 import { VerticalChart } from '../chart/verticalChart';
 import { useDispatch, useSelector } from 'react-redux';
 import { studentDetails } from '../../redux/studentActions/studentAction';
-import { Table, Tbody, Td, Th, Thead, Tr } from '@chakra-ui/react';
+
 const Info = () => {
 
     const dispatch = useDispatch();

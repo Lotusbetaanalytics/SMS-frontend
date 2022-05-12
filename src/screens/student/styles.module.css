@@ -219,7 +219,7 @@
   display: block;
 }
 
-.inputContainer input,
+/* .inputContainer input,
 select {
   width: 100%;
   height: 4rem;
@@ -227,7 +227,7 @@ select {
   padding: 1rem 3rem;
   border: 1px solid gainsboro;
   outline: none;
-}
+} */
 
 .inputContainer input::placeholder {
   font-size: 1rem;
@@ -250,7 +250,7 @@ select {
 .purple {
   background:rgba(45, 156, 219, 1);
   color: white;
-  margin-right: 1rem;
+  /* margin-right: 1rem; */
 }
 
 .scores {
@@ -285,7 +285,7 @@ select {
 }
 .marginTop {
   margin-top: 30px;
-  margin-right: 57%;
+  /* margin-right: 57%; */
 }
 .spaceleft {
   margin-right: 20px;
@@ -299,4 +299,28 @@ select {
   font-size: 12px;
   display: flex;
   justify-content: center;
+}
+.btnContainer{
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  justify-content: space-between;
+}
+.noticeBoard{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: .2%;
+  background-color: whitesmoke;
+  padding: 1%;
+}
+.infoHeader{
+  margin-bottom: 10px;
+  color: red;
+}
+
+.author{
+  margin-top: 4px;
+  font-size: 10px;
 }

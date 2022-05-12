@@ -1,19 +1,13 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Link, Navigate, useNavigate } from "react-router-dom";
+import React, { useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
+
 import { studentDetails } from "../../../redux/studentActions/studentAction";
 import styles from "./styles.module.css";
 
 const BasicProfile = () => {
-  // const [firstName, setFirstName] = useState("");
-  // const [middleName, setMiddleName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [email, setEmail] = useState("");
-  // const [specialization, setSpecialization] = useState("");
-  // const [matric_num, setMatric_num] = useState("");
 
   const navigate= useNavigate();
   const dispatch = useDispatch()
@@ -32,15 +26,13 @@ const BasicProfile = () => {
   }, [dispatch]);
 
 
-  // const details = useSelector((state) => state.details);
-  // const {studentDetail} = details;
-  // const mystudentDetails = studentDetail;
+  
   
 
   const first_Name = mystudentDetails && mystudentDetails.first_name;
   const last_Name = mystudentDetails && mystudentDetails.last_name;
   const middle_Name = mystudentDetails && mystudentDetails.middle_name;
-  const profile_picture = mystudentDetails && mystudentDetails.profile_picture;
+  // const profile_picture = mystudentDetails && mystudentDetails.profile_picture;
   const email_ =mystudentDetails &&  mystudentDetails.email;
   const specialization_ =mystudentDetails && mystudentDetails.specialization;
   const matricNum = mystudentDetails && mystudentDetails.student[0].matric_no;

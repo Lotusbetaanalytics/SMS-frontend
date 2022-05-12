@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react'
 import styles from './styles.module.css'
-import adminpic from "../../assets/adminpic.png";
-import data from '../../data';
-import { studentDetails, studentNotice } from '../../redux/studentActions/studentAction';
-import { useDispatch, useSelector } from 'react-redux';
+import { studentDetails } from '../../redux/studentActions/studentAction';
+import { useDispatch, useSelector} from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const NotificationCard = () => {
 
@@ -35,23 +34,23 @@ const NotificationCard = () => {
 
     
     console.log(mystudentDetails)
-    const academicData = mystudentDetails && mystudentDetails.student[0].notices || ""
+    const academicData = mystudentDetails && mystudentDetails.student[0].notices;
     console.log(academicData)
 
-
+    let slicedMessage;
 
   return (
     <div >
-      {mystudentDetails && mystudentDetails.student[0].notices.map((item,i)=>(
-
-              <div className={styles.noticeBoard} key={i}>
-                <div className={styles.infoHeader}>{item.title}</div>          
-                <div className={styles.noticeInfo}>{item.message}</div>
+      {mystudentDetails && mystudentDetails.student[0].notices ? mystudentDetails && mystudentDetails.student[0].notices.map((item,i)=>(
+         slicedMessage = item.message.slice(0,100) + "......",
+         <Link to="/student/notification"> <div className={styles.noticeBoard} key={i}>
+                <div className={styles.infoHeader}>{item.title}</div>
+                <div className={styles.noticeInfo}>{slicedMessage}</div>
                 <div className={styles.author}>Source : {item.source}</div>
-              </div>
+              </div></Link>
  
 
-      ))}
+      )): (<div className={styles.noNew}> There are no notice yet </div>)}
             
     </div>
   )

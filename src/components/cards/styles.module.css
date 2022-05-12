@@ -19,8 +19,8 @@
 .departmentName {
   display: grid;
   font-weight: bold;
-  margin-top: 10px;
-  font-size: 14x;
+  margin-top: 5px;
+  font-size: 14px;
 }
 .container2 {
   display: flex;
@@ -39,7 +39,12 @@
   padding-left: 1rem;
   margin-top: 2px;
 }
-
+.noNew{
+  display: flex;
+  font-size: 14px;
+  margin-top: 10px;
+  padding-left: 15px;
+}
 .noticeBoard {
   display: flex;
   flex-direction: column;
