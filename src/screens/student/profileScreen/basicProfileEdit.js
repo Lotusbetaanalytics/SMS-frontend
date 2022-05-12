@@ -49,7 +49,7 @@ const EditBasicInfo = () => {
     setEmail(studentDetail.email)
     setMatric_num(studentDetail.student[0].matric_no)
     }
-  }, [dispatch]);
+  }, [studentDetail, dispatch]);
 
   
   const submitHandler = (e) => {

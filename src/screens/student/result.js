@@ -30,11 +30,14 @@ const Result = () => {
   const academicData =
     mystudentDetails && mystudentDetails.student[0].academic_data;
   console.log(academicData);
-  const academic = mystudentDetails && mystudentDetails.student[0].result;
-  console.log(academic);
+  // const academic = mystudentDetails && mystudentDetails.student[0].result;
+  // console.log(academic);
 
   const theResult = mystudentDetails && mystudentDetails.student[0].results;
   console.log(theResult)
+
+  // const filteredResult = theResult.score.filter(failedscore => failedscore < 5);
+  // console.log(filteredResult)
 
   useEffect(() => {
     dispatch(studentDetails());
