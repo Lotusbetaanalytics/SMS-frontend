@@ -1,10 +1,10 @@
-import { Alert, Button, useToast } from "@chakra-ui/react";
+import { Alert, Button } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import EditNavbar from "../../../components/navigation_";
 import StudentSidebar from "../../../components/StudentSidebar";
-import SidebarTwo from "../../../components/StudentSidebar/sidebar";
+
 import { editProfile, studentDetails } from "../../../redux/studentActions/studentAction";
 import { EDITPROFILE_RESET } from "../../../redux/studentConstants/studentConstants";
 // import { EDITPROFILE_REQUEST, EDITPROFILE_RESET, STUDENT_DETAILS_SUCCESS } from "../../../redux/studentConstants/studentConstants";
@@ -37,7 +37,7 @@ const EditBasicInfo = () => {
   
 
   const editProfile_ = useSelector((state) => state.editProfile_);
-  const {loading,error,success} = editProfile_
+  const {loading,success} = editProfile_
 
     
   useEffect(() => {

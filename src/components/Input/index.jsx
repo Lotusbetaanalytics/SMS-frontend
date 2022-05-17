@@ -1,11 +1,11 @@
 import React from "react";
 import styles from "./styles.module.css";
 
-function Input({type,onChange,value}) {
+function Input({type,onChange,value,placeholder}) {
   return <div className={styles.inputContainer}>
               <input
             type={type}
-            
+            placeholder={placeholder}
             onChange={onChange}
             value={value}
         />

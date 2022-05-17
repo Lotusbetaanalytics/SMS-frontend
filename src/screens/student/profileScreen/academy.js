@@ -44,7 +44,7 @@ const AcademicHistory = () => {
                 <div className={styles.editContainer}>
                     <EditNavbar official={styles.remote} />
                     <div className={styles.formContainer}>
-                        <form>
+                        <form >
                         <div className={styles.inputContainer_}>
                       <label>Institution</label>
                       <input type="text" value={institution} disabled/>

@@ -6,8 +6,8 @@ import logo from "../../assets/Rectangle 73girl.png"
 import { useDispatch, useSelector } from "react-redux";
 import { Alert, Button, useToast } from "@chakra-ui/react";
 import { forgetpassword } from "../../redux/studentActions/studentAction";
-
 import { FORGET_PASSWORD_RESET } from "../../redux/studentConstants/studentConstants";
+import { Link } from "react-router-dom";
 
 const ForgotPassword = () => {
   
@@ -48,33 +48,41 @@ const ForgotPassword = () => {
   
 
   return (
-    <div className={styles.pageContainer_}>
-      <div className={styles.topCircle_}>
-        <Circle />
-      </div>
-      <div className={styles.center_}>
-        <form onSubmit={submitHandler} className={styles.left_}>
+    <div className={styles.pageContainer}>
+
+        <div className={styles.left}>
+          <div className={styles.homepageContent}>
+          <h2 className={styles.welcome}>Welcome to the </h2>
+          <h1>Student Management Portal</h1>
+          </div>
+          <div className={styles.rectangle}>
+            
+            <div className={styles.rectangle_dark}></div>
+            <div className={styles.rectangle_white}></div>
+            <div className={styles.rectangle_dark}></div>
+          </div>
+        </div>
+        <div className={styles.centerInputContainer}>
         {msg && (
-        <Alert status="warning">
-          please input your password
-        </Alert>
-      )}
+    <Alert status="warning">
+       Please input your email
+    </Alert>
+  )}
       {successMsg && (
         <Alert warning="success">
-          check email to retrieve password
+          Check your mail to reset your password
         </Alert>
       )}
-          <div className={styles.input_box_}>
-            <div className={styles.title_}>Forgot Password</div>
-            <div>Email</div>
-            <Input
-              type={"text"}
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
+          <div className={styles.loginMessage}>
+            <div className={styles.salutation}>Reset Password </div>  
           </div>
-          <div className={styles.input_box_}>
-          {loading? (
+          <Input
+          type={"email"}
+          placeholder={"Email"}
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          />
+          {loading ? (
               <Button
               isLoading
               loadingText="Validating Credentials..."
@@ -83,19 +91,14 @@ const ForgotPassword = () => {
               isFullWidth
               style={{ height: "5rem" }}
             />):(
-              <button type="submit" className={styles.blue_}>
-                login
+              <button type="submit" onClick={submitHandler} className={styles.blue_}>
+                Submit
               </button>
             )}
-          </div>
-        </form>
-        <div className={styles.right_}>
-          <img src={logo} alt="caption"/>
+          <Link to={"/student/login"} ><div className={styles.forgot} > Remember your Password?</div></Link>
         </div>
-      </div>
-      <div className={styles.downCircle_}>
-        <Circle />
-      </div>
+        
+        <div className={styles.right}></div> 
     </div>
   );
 }

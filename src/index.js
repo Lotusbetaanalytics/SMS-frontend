@@ -11,7 +11,7 @@ ReactDOM.render(
   <Provider store={store}>
   <ChakraProvider>
     <App />
-  </ChakraProvider>,
+  </ChakraProvider>
   </Provider>,
   document.getElementById('root')
 );

@@ -12,7 +12,8 @@ const reducer = combineReducers({
   notice: noticeReducer,
   testQuestion : questionsReducer,
   Response : ResponseReducer,
-  confirmpassword : confirmPasswordReducer
+  confirmpassword : confirmPasswordReducer,
+  
 });
 
 const userInfoFromStorage = localStorage.getItem("studentInfo")

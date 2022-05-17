@@ -49,42 +49,47 @@ function StudentLogin() {
     }
   },[userInfo,navigate])
   return (
-    <div className={styles.pageContainer_}>
-      <div className={styles.topCircle_}>
-        <Circle />
-      </div>
-      <div className={styles.center_}>    
-        <form onSubmit={submitHandler} className={styles.left_}>
+    <div className={styles.pageContainer}>
+
+        <div className={styles.left}>
+          <div className={styles.homepageContent}>
+          <h2 className={styles.welcome}>Welcome to the </h2>
+          <h1>Student Management Portal</h1>
+          </div>
+          <div className={styles.rectangle}>
+            <div className={styles.rectangle_white}></div>
+            <div className={styles.rectangle_dark}></div>
+            <div className={styles.rectangle_dark}></div>
+          </div>
+        </div>
+        <div className={styles.centerInputContainer}>
         {msg && (
         <Alert status="warning">
-          All field are Required
+           Password not the same as confirm password
         </Alert>
       )}
       {successMsg && (
         <Alert warning="success">
-          Login Successfully
+          Password changed successfully
         </Alert>
       )}
-          <div className={styles.input_box_}>
-            <div className={styles.title_}>Student Login</div>
-            <div>Email</div>
-            <Input
-              type={"text"}
-              onChange={(e) => setEmail(e.target.value)}
-              value={email}
-            />
+          <div className={styles.loginMessage}>
+            <div className={styles.salutation}>Hello There ! </div>
+            <div className={styles.salutation2}>it's Nice seeing you</div>
           </div>
-          <div className={styles.input_box_}>
-            <div>Password</div>
-            <Input
-              type={"password"}
-              onChange={(e) => setPassword(e.target.value)}
-              value={password}
-            />
-            <div className={styles.forgot_}><Link to="/student/forgotpassword">forgot password?</Link></div>
-          </div>
-          <div className={styles.input_box_}>
-            {loading? (
+          <Input
+          type={"email"}
+          placeholder={"Email"}
+          onChange={(e) => setEmail(e.target.value)}
+          value={email}
+          />
+          <Input
+          type={"password"}
+          placeholder={"Password"}
+          onChange={(e) => setPassword(e.target.value)}
+          value={password}
+          />
+          {loading ? (
               <Button
               isLoading
               loadingText="Validating Credentials..."
@@ -93,20 +98,14 @@ function StudentLogin() {
               isFullWidth
               style={{ height: "5rem" }}
             />):(
-              <button type="submit" className={styles.blue_}>
-                login
+              <button type="submit" onClick={submitHandler} className={styles.blue_}>
+                Login
               </button>
             )}
-            
-          </div>
-        </form>
-        <div className={styles.right_}>
-          <img src={logo} alt="caption"/>
+          <Link to={"/student/forgotpassword"} ><div className={styles.forgot} > Forgot Password?</div></Link>
         </div>
-      </div>
-      <div className={styles.downCircle_}>
-        <Circle />
-      </div>
+        
+        <div className={styles.right}></div> 
     </div>
   );
 }

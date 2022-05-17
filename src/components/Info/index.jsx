@@ -22,14 +22,17 @@ const Info = () => {
     const academicData = mystudentDetails && mystudentDetails.student[0].academic_data;
     console.log(academicData)
 
-    const student_cgpa = academicData && academicData.cgpa
-    console.log(student_cgpa)
+    // const student_cgpa = academicData && academicData.cgpa
+    // console.log(student_cgpa)
 
     const student_department = academicData && academicData.department.name
     console.log(student_department)
 
     const student_level = academicData && academicData.level.code
     console.log(student_level)
+
+    const student_qualification = academicData && academicData.qualification
+    console.log(student_qualification)
 
     const student_session = academicData && academicData.session.year
     console.log(student_session)
@@ -75,8 +78,8 @@ const Info = () => {
             <Cards 
             icon={<FcGraduationCap/>}
             bgColor={'rgba(250, 179, 179, 0.35)'}
-            departmentName={student_cgpa}
-            title={"CGPA"}
+            departmentName={student_qualification}
+            title={"Qualification"}
             />
             </div>
         </div>

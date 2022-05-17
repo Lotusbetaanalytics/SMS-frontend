@@ -38,6 +38,12 @@ function ConfirmPassword() {
     }
   }
 
+  if (success) {
+    setSuccessMsg(true)
+    dispatch({type: CONFIRM_PASSWORD_RESET})
+    navigate("/student/login");
+  }
+
   if (error) {
     toast ({
       title: "Error",
@@ -47,71 +53,67 @@ function ConfirmPassword() {
       isClosable: true,
     })
   }
-  if (success) {
-    setSuccessMsg(true)
-    dispatch({type: CONFIRM_PASSWORD_RESET})
-    navigate("/student/login");
-  }
+  
 
   return (
-    <div className={styles.pageContainer_}>
-      <div className={styles.topCircle_}>
-        <Circle />
+    <div className={styles.pageContainer}>
+
+    <div className={styles.left}>
+      <div className={styles.homepageContent}>
+      <h2 className={styles.welcome}>Welcome to the </h2>
+      <h1>Student Management Portal</h1>
       </div>
-      <div className={styles.center_}>
-        <form onSubmit={submitHandler} className={styles.left_}>
-        {msg && (
-        <Alert status="warning">
-           Password not the same as confirm password
-        </Alert>
-      )}
-      {successMsg && (
-        <Alert warning="success">
-          Password changed successfully
-        </Alert>
-      )}
-          <div className={styles.input_box_}>
-            <div className={styles.title_}>Change Password</div>
-            <div>New Password</div>
-            <Input
-              type={"password"}
-              onChange={(e) => setNewPassword(e.target.value)}
-              value={password}
-            />
-          </div>
-          <div className={styles.input_box_}>
-            <div>Confirm Password</div>
-            <Input
-              type={"password"}
-              onChange={(e) => setConfirmPassword(e.target.value)}
-              value={confirmPassword}
-            />
-          </div>
-          <div className={styles.input_box_}>
-          {loading ? (
-              <Button
-              isLoading
-              loadingText="Validating Credentials..."
-              colorScheme="teal"
-              variant="outline"
-              isFullWidth
-              style={{ height: "5rem" }}
-            />):(
-              <button type="submit" className={styles.blue_}>
-                Submit
-              </button>
-            )}
-          </div>
-        </form>
+      <div className={styles.rectangle}>
         
-        <div className={styles.right_}>
-          <img src={logo} alt="caption"/>
-        </div>
-      </div>
-      <div className={styles.downCircle_}>
-        <Circle />
+        <div className={styles.rectangle_dark}></div>
+        <div className={styles.rectangle_dark}></div>
+        <div className={styles.rectangle_white}></div>
       </div>
     </div>
+    <div className={styles.centerInputContainer}>
+    {msg && (
+    <Alert status="warning">
+       Password not the same as confirm password
+    </Alert>
+  )}
+  {successMsg && (
+    <Alert warning="success">
+      Password changed successfully
+    </Alert>
+  )}
+      <div className={styles.loginMessage}>
+        <div className={styles.salutation}>Reset Password</div>
+        
+      </div>
+      <Input
+      type={"password"}
+      placeholder={"Input New Password"}
+      onChange={(e) => setNewPassword(e.target.value)}
+      value={password}
+      />
+      <Input
+      type={"password"}
+      placeholder={"Confirm Password"}
+      onChange={(e) => setConfirmPassword(e.target.value)}
+      value={confirmPassword}
+      />
+      {loading ? (
+          <Button
+          isLoading
+          loadingText="Validating Credentials..."
+          colorScheme="teal"
+          variant="outline"
+          isFullWidth
+          style={{ height: "5rem" }}
+        />):(
+          <button type="submit" onClick={submitHandler} className={styles.blue_}>
+            Submit
+          </button>
+        )}
+    </div>
+    
+    <div className={styles.right}></div> 
+</div>
   );
 }
 
