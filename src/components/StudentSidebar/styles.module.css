@@ -1,0 +1,214 @@
+.sidebarContainer {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 3px;
+  margin: 0;
+}
+.SidebarTwo {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+.sidebarImgContent {
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+  height: 8rem;
+}
+
+.sidebarImgContent img {
+  width: 95%;
+  height: 95%;
+  border-radius: 50%;
+}
+
+.sidebarTitle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: rgb(0, 0, 0);
+  height: 30px;
+  margin-bottom: 20px;
+}
+
+.sidebarIconContainer {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.sidebarIconContainer ul {
+  list-style: none;
+  font-size: 16px;
+  padding: 0;
+  margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.sidebarIconContainer ul li {
+  width: 100%;
+  display: flex;
+  height: 3.3rem;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+}
+
+.iconContainer {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  
+}
+.iconName {
+  display: flex;
+  width: 100%;
+  margin-top: 3px;
+}
+
+.logout {
+  margin-top: 55px;
+}
+.iconName p {
+  display: flex;
+  width: 100%;
+  color: rgb(0, 0, 0);
+}
+
+.icon {
+  display: flex;
+  margin-right: 5%;
+  margin-left: 15%;
+  color: white;
+}
+
+.sidebarContainer li p {
+  display: flex;
+}
+
+.sidebarContainer ul li a {
+  text-decoration: none;
+  color: whitesmoke;
+}
+
+.sidebarContainer ul li:hover {
+  background-color: rgba(45, 156, 219, 1);
+  color: white;
+  transition: all 0.5s;
+}
+.sidebarContainer ul li a svg :hover {
+  color: white;
+  transition: all 0.5s;
+}
+
+.sidebarContainer ul li a svg {
+  font-size: 20px;
+  color: rgb(0, 0, 0);
+}
+
+.sidebarContainer a {
+  text-decoration: none;
+}
+
+.icon ul {
+  text-decoration: none;
+}
+.notice {
+  font-weight: 800;
+  font-size: 14px;
+  padding-left: 15px;
+  background-color: rgba(45, 156, 219, 0.2);
+}
+.calender {
+  display: flex;
+  padding: 1rem;
+  font-size: 12px;
+  height: 320px;
+  margin-bottom: 10px;
+  /* box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25); */
+  width: 100%;
+  border: 0;
+}
+
+
+.board {
+  height: 180px;
+  overflow-y: scroll;
+}
+.notificationBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+.user {
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+.userName {
+  font-size: 12px;
+}
+.bar {
+  display: flex;
+  align-items: center;
+}
+.colorNotify {
+  height: 15px;
+  width: 15px;
+  color: white;
+  display: flex;
+  border-radius: 50%;
+  background-color: green;
+  font-size: 8px;
+  justify-content: center;
+  align-items: center;
+  margin-left: -3px;
+  margin-bottom: 10px;
+}
+.userImg {
+  height: 20px;
+  width: 20px;
+  border-radius: 50%;
+  margin-right: 10px;
+  justify-content: center;
+  align-items: center;
+}
+.userImg img {
+  height: 100%;
+  width: 100%;
+}
+/* .CalendarStyling {
+  .react-calendar {
+    width: 350px;
+    max-width: 100%;
+    background-color: white;
+    border: 1px solid #a0a096;
+    font-family: Arial, Helvetica, sans-serif;
+    line-height: 1.125em;
+  }
+} */
+
+.react-calendar {
+  width: 350px;
+  max-width: 100%;
+  background: rgb(2, 1, 1) te;
+  border: 1px solid #a0a096;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.125em;
+}
+.react-calendar--doubleView {
+  width: 300px;
+}
