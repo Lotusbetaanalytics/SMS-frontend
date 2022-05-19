@@ -1,136 +1,120 @@
 import React from "react";
 import styles from "./styles.module.css";
 import adminpic from "../../assets/adminpic.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { MdSpaceDashboard } from "react-icons/md";
-import { IoIosPeople } from "react-icons/io";
-import { IoMdPeople } from "react-icons/io";
-import { FaCity } from "react-icons/fa";
-import { BsBuilding } from "react-icons/bs";
-import { ImBook } from "react-icons/im";
-import { FaAssistiveListeningSystems } from "react-icons/fa";
+import { GiBookshelf } from "react-icons/gi";
+import { FaRegUser, FaClipboardList } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
+import { BsCardList } from "react-icons/bs";
 
-const Sidebar = () => {
-  const logoutHandler = () => {};
+// import {
+//   studentLogout
+// } from "../../redux/studentActions/studentAction";
+// import { useDispatch } from "react-redux";
+
+const StudentSidebar = (props) => {
+  // const dispatch = useDispatch();
+  // const navigate = useNavigate();
+
+  // const details = useSelector((state) => state.details);
+
+  // const { studentDetail } = details;
+  // const mystudentDetails = studentDetail;
+
+  // useEffect(() => {
+  //   dispatch(studentDetails());
+  // }, [dispatch]);
+  //  const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
+  //  const mystudentDetails = myDetail;
+
+  //  console.log(mystudentDetails.biodata.profile_picture)
+
+  // const logoutHandler = () => {
+  //   dispatch(studentLogout());
+  //   setTimeout(() => navigate("/student/login"), [2000]);
+  // };
+  const user = "jide"
 
   return (
-    <div className={styles.sidebarContainer}>
-      <div className={styles.sidebarImgContent}>
-        <img src={adminpic} alt="User" />
-      </div>
-      <div className={styles.sidebarTitle}>
-        <h3>Fonsus Ali</h3>
-      </div>
-      <div className={styles.sidebarIconContainer}>
-        <ul>
-          <li>
-            <Link to="/admin/dashboard">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <MdSpaceDashboard />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Dashboard</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <IoIosPeople />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Student</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <IoMdPeople />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Staff</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <FaCity />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Faculty</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <BsBuilding />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Department</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-
-          <li>
-            <Link to="/">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <ImBook />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Courses</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="/">
-              <div className={styles.iconContainer}>
-                <div className={styles.icon}>
-                  <FaAssistiveListeningSystems />
-                </div>
-                <div className={styles.iconName}>
-                  <p>Notice</p>
-                </div>
-              </div>
-            </Link>
-          </li>
-          <li>
-            <Link to="" onClick={logoutHandler}>
-              <div className={styles.logout}>
-                <div className={styles.iconContainer}>
-                  <div className={styles.icon}>
-                    <MdOutlineLogout />
-                  </div>
-                  <div className={styles.iconName}>
-                    <p>Logout</p>
-                  </div>
-                </div>
-              </div>
-            </Link>
-          </li>
-        </ul>
-      </div>
+    <div className={styles.sideBar_container}>
+    <div className={styles.logo}>
+      <img src={adminpic} alt="avatar" />
+      <div className={styles.User}>{user}</div>
     </div>
+    
+    <div className={styles.url}>
+        <ul>
+          <Link to="/#">
+            <li className={props.dashboard}>
+              <div className={styles.svg}>
+                <MdSpaceDashboard />
+              </div>
+              Dashboard
+            </li>
+          </Link>
+          <Link to="/#">
+            <li className={props.configure_role}>
+              <div className={styles.svg}>
+                <div>
+                  <FaRegUser />
+                </div>
+              </div>
+              Profile
+            </li>
+          </Link>
+          <Link to="/#">
+            <li className={props.configure_role}>
+              <div className={styles.svg}>
+                <div>
+                  < GiBookshelf />
+                </div>
+              </div>
+              Courses
+            </li>
+          </Link>
+          <Link to="/#">
+            <li className={props.configure_role}>
+              <div className={styles.svg}>
+                <div>
+                  <FaClipboardList />
+                </div>
+              </div>
+              Assignment
+            </li>
+          </Link>
+          <Link to="/#">
+            <li className={props.configure_role}>
+              <div className={styles.svg}>
+                <div>
+                  <FaRegUser />
+                </div>
+              </div>
+              Test
+            </li>
+          </Link>
+          
+        </ul>
+    </div>
+  <div className={styles.url}>
+    <div>
+    <ul>
+      <Link to="/#">
+        <li className={props.logout}>
+          <div className={styles.svg}>
+                <div>
+                  <MdOutlineLogout />
+                </div>
+          </div>
+            Logout
+          </li>
+          </Link>
+    </ul>
+    </div>
+   
+  </div>
+  </div>
   );
 };
 
-export default Sidebar;
+export default StudentSidebar;

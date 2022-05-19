@@ -1,116 +1,66 @@
-.sidebarContainer {
+.sideBar_container {
+  display: flex;
   width: 15%;
-  margin-top: 0;
-  height: 110vh;
-  padding-left: 2%;
-  float: left;
-  background: rgba(45, 156, 219, 0.8);
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
-  border-radius: 3px;
+  height: 100vh;
+  flex-direction: column;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 20px 25px -5px;
+  padding: 3rem 0;
+  background: rgb(255, 255, 255);
+  margin: 0 ;
+  align-items: center;
+  justify-content: space-around;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  align-items: center;
+  font-size: 14px;
 }
-
-.sidebarImgContent {
-  display: grid;
+.logo {
+  display: flex;
+  flex-direction: column;
+  padding: 0.2rem;
+  height: 7rem;
+  overflow: hidden;
   justify-content: center;
   align-items: center;
-  margin-right: 20px;
-  padding-top: 50px;
+}
+.logo img {
+  object-fit: contain;
+  max-height: 4rem;
+}
+.User {
+    display: flex;
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+.url {
+  display: flex;
 }
 
-.sidebarImgContent img {
-  width: 95%;
-  height: 95%;
-  border-radius: 50%;
-}
-
-.sidebarTitle {
-  display: grid;
-  justify-content: center;
-  align-items: center;
-  margin-right: 30px;
-  color: whitesmoke;
-}
-
-.sidebarIconContainer {
-  flex-direction: row;
-  margin-top: 3rem;
-}
-
-.sidebarIconContainer ul {
-  /* padding: 0;
-  margin: 0; */
+.url ul {
+  display: inline-block;
   list-style: none;
-  font-size: 16px;
+  flex-direction: column;
+  
 }
 
-.sidebarIconContainer ul li {
-  width: 100%;
+.url ul li {
   display: flex;
-  padding: 0;
-  margin: 0;
-  height: 3.5rem;
-}
-
-.iconContainer {
-  width: 200px;
-  display: flex;
-  justify-content: center;
+  padding: 0.6rem 1rem;
+  margin: 0.5rem;
   align-items: center;
 }
-.iconName {
-  display: flex;
-  width: 100%;
-  margin-top: 3px;
+.svg {
+  margin-right: 12px;
+ 
 }
 
-.logout {
-  margin-top: 60px;
-}
-.iconName p {
-  display: flex;
-  width: 100%;
-}
+.url ul li:hover {
+  background: linear-gradient(360deg, 
+  rgba(72, 30, 47, 0.62)4%,
+  rgba(59, 15, 33, 0.34)96%);
+  border-radius: 8px;
+  font-weight: 800;
+  }
 
-.icon {
-  display: flex;
-  margin-right: 10%;
-  justify-content: center;
-  align-items: center;
-}
-
-.sidebarContainer li p {
-  display: flex;
-}
-
-.sidebarContainer ul li a {
-  text-decoration: none;
-  color: whitesmoke;
-  padding-bottom: 12rem;
-}
-
-.sidebarContainer ul li a :hover {
-  background-color: whitesmoke;
-  color: black;
-  border-radius: 10px;
-  margin-left: 5px;
-  transition: all 0.5s;
-}
-
-.icon :hover {
-  color: black;
-}
-
-.sidebarContainer ul li a svg {
-  /* margin-top: 14px;
-    margin-right: 2rem; */
-  font-size: 20px;
-  color: whitesmoke;
-}
-
-.sidebarContainer a {
-  text-decoration: none;
-}
-
-.icon ul {
-  text-decoration: none;
-}
+  

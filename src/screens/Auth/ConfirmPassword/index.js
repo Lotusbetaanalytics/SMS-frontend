@@ -1,14 +1,15 @@
 import React, { useState } from "react";
-import Button from "../../components/Button";
-import Circle from "../../components/Circle";
-import Input from "../../components/Input";
+import Button from "../../../components/Button";
+import Input from "../../../components/Input";
 import styles from "./styles.module.css";
-import logo from "../../assets/Rectangle 73girl.png"
+
 import { Alert, useToast } from "@chakra-ui/react";
-import { Confirmpassword } from "../../redux/studentActions/studentAction";
+
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CONFIRM_PASSWORD_RESET } from "../../redux/studentConstants/studentConstants";
+import { CONFIRM_PASSWORD_RESET } from "../../../redux/Constants/auth";
+import { Confirmpassword } from "../../../redux/Actions/auth";
+
 
 function ConfirmPassword() {
   const navigate = useNavigate();
@@ -58,7 +59,7 @@ function ConfirmPassword() {
   return (
     <div className={styles.pageContainer}>
 
-    <div className={styles.left}>
+    <div className={styles.confirm}>
       <div className={styles.homepageContent}>
       <h2 className={styles.welcome}>Welcome to the </h2>
       <h1>Student Management Portal</h1>

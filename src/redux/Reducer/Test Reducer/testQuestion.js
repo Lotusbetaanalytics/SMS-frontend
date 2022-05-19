@@ -1,4 +1,4 @@
-import { QUESTION_FAIL, QUESTION_REQUEST, QUESTION_SUCCESS, RESPONSE_FAIL, RESPONSE_REQUEST, RESPONSE_SUCCESS } from "../studentConstants/testQuestion";
+import { QUESTION_FAIL, QUESTION_REQUEST, QUESTION_SUCCESS, RESPONSE_FAIL, RESPONSE_REQUEST, RESPONSE_SUCCESS } from "../../Constants/Test Constants/testQuestion";
 
 export const questionsReducer = (state = {questions:[]}, action) => {
     switch (action.type) {

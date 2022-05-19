@@ -1,0 +1,172 @@
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: black;
+    width: 100%;
+    font-family: "Poppins", sans-serif;
+    flex-direction: row;
+    margin: 0;
+    padding: 0;
+   
+  }
+  
+  .confirm{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    padding: 4%;
+    /* align-items: center; */
+    flex-direction: column;
+    color: black;
+    background: linear-gradient(359.39deg,
+        rgba(0, 0, 0, 0.6)45.04%,
+        rgba(255, 255, 255, 0) 88.88%),
+      url(../../../assets/smiling-african-student-pointing-with-pencil-laptop-screen-concentrated-blonde-woman-glasses-propping-chin-with-hand-while-working-with-computer-office.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    align-items: flex-start;
+    justify-content: flex-end;
+  }
+ 
+  
+  
+  .homepageContent{
+    margin-bottom: 20px;
+    color: white;
+    width: 330px;
+  }
+  
+  
+  .confirm h1{
+    font-size: 40px;
+    line-height: 40px;
+    margin-top: 10px;
+    
+  }
+  .welcome::after {
+    content: ""; 
+    display: block; 
+    margin: 0 0; 
+    width: 15%; 
+    padding-top: 2px; 
+    border-bottom: 1px solid black; 
+    background-color: #fff;
+    margin-bottom: 2px;
+  }
+  .rectangle_white{
+    height: 20px;
+    width:20px;
+    background-color: #fff;
+    margin-right: 4px;
+  }
+  .rectangle_dark{
+    height: 20px;
+    width:20px;
+    background-color: #717171;
+    margin-right: 4px;
+  }
+  
+  .confirm h2{
+    font-size: 22px;
+    font-weight: 300;
+  }
+  .rectangle{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 50px;
+  }
+  .centerInputContainer{
+  display: flex;
+  flex-direction: column;
+  background-color: #fff;
+  padding: 1.5rem 2.5rem;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 20%;
+  left: 35%;
+  bottom: 20%;
+  right: 35%;
+  border-top-left-radius: 10px;
+  border-bottom-right-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  }
+  
+  .loginMessage{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 20px;
+    justify-content: center;
+    align-items: center;
+  }
+  .salutation{
+    padding: 1px 4px;
+    font-size: 20px;
+    margin-right: 5px;
+  }
+  .salutation2{
+    font-size: 12px;
+    
+  }
+  
+  .forgot{
+    margin-top: 20px;
+    font-size: 12px;
+  }
+  .right{
+    width: 50%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    
+    color: black;
+    background-color: rgba(153, 149, 149, 0.17);
+  }
+  
+  .center_ {
+    height: 80vh;
+    width: 80vw;
+    display: flex;
+    color: black;
+  }
+  
+  .title_ {
+    margin-right: auto;
+    margin-bottom: 2rem;
+    margin-top: 50px;
+    font-weight: bold;
+    color: rgba(32, 24, 24, 1);
+  }
+  
+  
+  
+  .input_box_ {
+    width: 80%;
+    height: auto;
+    margin: 10px 0px;
+    color: rgba(32, 24, 24, 1);
+  }
+  
+  .studentDashboard {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+  }
+  
+  .blue_ {
+    display: flex;
+    padding: 10px 16px;
+    height: 50px;
+    border: none;
+    color: white;
+    align-items: center;
+    font-size: 14px;
+    justify-content: center;
+    width: 100%;
+    background-color: #341A25;
+  }
+  
