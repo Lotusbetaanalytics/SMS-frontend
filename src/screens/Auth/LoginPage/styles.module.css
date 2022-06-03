@@ -4,3 +4,100 @@
   background-size: cover;
   background-repeat: no-repeat;
 }
+
+.loginPageContent {
+  min-height: 85%;
+  display: flex;
+  grid-template-columns: 50% 50%;
+  justify-content: center;
+  align-items: center;
+  gap: 20%;
+  padding: 1rem;
+}
+
+.loginTitle {
+  width: 25%;
+  color: whitesmoke;
+  margin-bottom: 50px;
+}
+
+.loginTitle h2 {
+  font-size: 80px;
+  /* margin-top: 90px; */
+}
+
+.loginTitle p {
+  font-size: 30px;
+}
+
+.adminTitle {
+  font-size: 30px;
+  font-weight: 900;
+  margin-top: 20px;
+  margin-bottom: 40px;
+}
+
+.newForm {
+  display: flex;
+  flex-direction: column;
+  margin-top: 10px;
+}
+
+.newForm label {
+  font-size: 14px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.loginContent {
+  background-color: white;
+  height: 550px;
+  width: 150%;
+  padding: 3rem;
+  border-radius: 30px;
+}
+
+.loginContent input {
+  width: 100%;
+  padding: 15px 20px;
+  border: none;
+  border-bottom: 3px solid lightgray;
+  margin-bottom: 40px;
+  outline: none;
+}
+
+/* .loginContent input[type="text"]::placeholder {
+  margin-right: 10px;
+} */
+
+.forgotpassword_btn {
+  display: flex;
+  margin-top: 40px;
+  justify-content: space-between;
+}
+
+.forgotpassword {
+  margin-top: 10px;
+}
+
+.stBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30%;
+  background-color: #341a25;
+  color: #ffffff;
+  transition: transform 0.7s;
+  margin-bottom: 20px;
+  border-radius: 30px;
+  box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.2);
+}
+
+.stBtn:hover {
+  transform: scale(1.2);
+}
+
+.stBtn {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
