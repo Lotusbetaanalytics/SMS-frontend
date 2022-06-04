@@ -6,6 +6,7 @@ import {Alert, useToast, Button} from  "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginStudent } from "../../../redux/Actions/auth";
+import { studentDetails } from "../../../redux/Actions/studentActions/studentAction";
 
 
 
@@ -44,9 +45,10 @@ function StudentLogin() {
   
   useEffect(()=>{
     if (userInfo){
-      navigate("/student/newpassword")
+      dispatch(studentDetails())
+      navigate("/student/dashboard")
     }
-  },[userInfo,navigate])
+  },[userInfo,navigate,dispatch])
   return (
     <div className={styles.pageContainer}>
 

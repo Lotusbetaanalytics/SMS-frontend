@@ -1,11 +1,12 @@
-import { QUESTION_FAIL, QUESTION_REQUEST, QUESTION_SUCCESS, RESPONSE_FAIL, RESPONSE_REQUEST, RESPONSE_SUCCESS } from "../../Constants/Test Constants/testQuestion";
+import { QUESTION_FAIL, QUESTION_REQUEST, QUESTION_SUCCESS, RESPONSE_FAIL, RESPONSE_REQUEST, RESPONSE_SUCCESS } from "../../Constants/studentConstants/testQuestion";
+
 
 export const questionsReducer = (state = {questions:[]}, action) => {
     switch (action.type) {
       case QUESTION_REQUEST:
         return { loading: true };
       case QUESTION_SUCCESS:
-        return { loading: false, success: true, questions: action.payload.data };
+        return { loading: false, success: true, questions: action.payload };
       case QUESTION_FAIL:
         return { loading: false, error: action.payload };
       default:
@@ -18,7 +19,7 @@ export const ResponseReducer = (state = {}, action) => {
       case RESPONSE_REQUEST:
         return { loading: true };
       case RESPONSE_SUCCESS:
-        return { loading: false, success: true };
+        return { loading: false, success: true, response:action.payload };
       case RESPONSE_FAIL:
         return { loading: false, error: action.payload };
       default:

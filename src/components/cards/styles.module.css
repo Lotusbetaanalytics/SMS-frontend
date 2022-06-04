@@ -1,8 +1,9 @@
 .container {
   display: grid;
-  grid-template-columns: 30% 67%;
+  grid-template-columns: 30% 65%;
   justify-content: center;
   align-items: center;
+  height: 80px;
   padding: .4rem .8rem;
   box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -10,21 +11,23 @@
 }
 .icons {
   display: grid;
-  font-size: 25px;
+  font-size: 23px;
   border: 50%;
   border-radius: 50%;
   height: 50px;
   width:50px ;
   justify-content: center;
   align-items: center;
+  margin-right: 5px;
   
 }
 .card_body{
   display: grid;
-  padding:8% 0px;
+  padding:8% 0px 0px 5% 8%;
 }
 .body{
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 600;
 }
 .title{
   display: flex;
@@ -85,27 +88,28 @@
   color: rgba(82, 69, 159, 1);
   font-size: 14px;
   margin-top: 10px;
-   padding: .7rem .2rem;
+   padding: .7rem 1.2rem;
   border-radius: 8px;
-  width: 60%;
 }
 /* cardTwo ends */
 .noNew{
   display: flex;
   font-size: 14px;
   margin-top: 10px;
-  padding-left: 15px;
+  padding-left: 4px;
 }
 .noticeBoard {
   display: flex;
   flex-direction: column;
   height: 90px;
   padding-left: .8rem;
-  /* justify-content: center;
-  align-items: center; */
+  background-color: #fff;
+  justify-content: center;
+  /* border-radius: 20px; */
+  /* align-items: center;  */
   width: 100%;
   margin-top: 5px;
-  box-shadow: 2px 2px 5px 0px rgba(194, 165, 165, 0.75);
+  /* box-shadow: 2px 2px 5px 0px rgba(194, 165, 165, 0.75); */
 }
 .noticePicture {
   height: 50px;
@@ -133,7 +137,7 @@
   font-size: 11px;
   font-weight: bold;
   margin-bottom: 2px;
-  margin-top: 3px;
+  margin-top: 5px;
   color: red;
 }
 .author {

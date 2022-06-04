@@ -2,12 +2,20 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { confirmPasswordReducer, forgetPasswordReducer, studentLoginReducer } from "./Reducer/auth";
+import { studentDetailsReducer } from "./Reducer/studentReducer/studentReducer";
+import { editProfileReducer } from "./Reducer/Profile Reducer/profile";
+import { questionsReducer, ResponseReducer } from "./Reducer/Test Reducer/testQuestion";
+
 
 
 const reducer = combineReducers({
   studentLogin : studentLoginReducer,
   forgetPassword : forgetPasswordReducer,
   confirmpassword : confirmPasswordReducer,
+  details : studentDetailsReducer,
+  editProfile_: editProfileReducer,
+  testQuestion : questionsReducer,
+  testResponse : ResponseReducer,
   
 });
 

@@ -12,3 +12,41 @@ body {
   margin: 0;
   font-family: 'poppins', sans-serif;
 }
+.page_container{
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+}
+.right_container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  background: rgba(217, 217, 217, 0.35); 
+
+  height: 100vh;
+}
+.right_content_container{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  height: 100vh;
+  justify-content: center;
+ 
+  overflow-y: scroll;
+  height: 100vh;
+}
+.active {
+  background: linear-gradient(89.89deg, rgba(52, 26, 37, 0.32) 26.29%, rgba(52, 26, 37, 0) 122.26%);
+  border-radius: 8px;
+  font-weight: 800;
+  color:#341A25;
+  /* color: aliceblue; */
+  }
+
+.active svg{
+  background-color: rgb(255, 255, 255);
+  padding: 10%;
+  font-size: 26px;
+  border-radius: 5px;
+}

@@ -1,47 +1,120 @@
-.box{
-    position: absolute;
-    height:600px;
-    width: 500px;
-    margin-top: 10px;
-    background-color: yellow;
-}
 .studentDashboard{
     display: flex;
     flex-direction: row;
+    height: 100vh;
 }
 .dashboard_info{
-    display: block;
-    width: 60%;
-    /* background-color: red; */
-}
-.info_container{
-    display: block;
-    padding: .5rem 1rem 0 1rem;
-    background-color: #fff;
-    display: absolute;
-    margin-left: 5px;
+    height: 100%;
+    width: 70%;
+    display: flex ;
+    flex-direction: column;
+   margin-left: 2px;
+    background: rgba(255, 255, 255, 1);
+    padding: 0 2% 0 2%;
     
-}
-.card_container{
-   display: grid;
-   grid-template-columns: 30% 30% 30%;
-   justify-content: center;
-   grid-gap:2%;
-   padding-top: 2%;
-   margin-top: 20px;
-   
 }
 .book{
     position: absolute;
-    height: 250px;
-    width: 250px;
-    z-index: 1;
-    top: 20px;
-    bottom: 0;
-    left: 55%;
+    top: -2%;
+    right: 30%;
     
+    z-index: 1;
 }
 .book img{
-    width: 100%;
+    height: 300px;
+    width:300px;
+}
+.searchContainer{
+    margin-bottom: 20px;
+}
+.card_container{
+display: grid;
+grid-template-columns: 30% 30% 30%;
+justify-content: center;
+grid-gap: 2%;
+margin-top: 20px;
+}
+.widget{
+    padding: .5% 2% 0 2%;
+    background: rgba(52, 26, 37, 0.07)
+}
+.headerbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    color: white;
+    padding: 2% 1% 2% 1%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.bellContainer{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    color: blue;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 2%;
+   
+}
+
+.bellContainer svg {
+    font-size: 20px;
+}
+.bellContainer svg :hover{
+    font-size: 30px;
+
+}
+.notice_count{
+    margin-left: -12px;
+    margin-top: -4px;
+    height: 15px;
+    width: 15px;
+    font-size: 6px;
+    color: white;
+    border-radius: 50%;
+    justify-content: center;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+}
+.userName{
+ background-color: #fff; 
+ color: black;
+ padding: 1%;  
+ display: flex;
+ flex-direction: row;
+ font-size: 14px;
+ justify-content: space-around;
+ align-items: center;
+ font-weight: bold;
+ border-radius: 5px;
+}
+.avatar{
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    
+}
+.avatar img {
     height: 100%;
+    width: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+.logout_btn{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logout_btn :hover{
+    font-size: 20px;
+}
+.notice_container{
+    margin-top: 20px;
+}
+.noticeTitle{
+font-weight: bold;
 }
