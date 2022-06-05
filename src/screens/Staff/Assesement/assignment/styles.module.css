@@ -1,0 +1,94 @@
+.info_container{
+    display: flex;
+    flex-direction: row;
+    height: 85vh;
+   
+    padding-top:2% ;
+    padding-bottom: 2%;
+}
+.left{
+    width:30%;
+    height: 80vh;
+    padding:0 0 2% 2%;
+    
+}
+.image_container{
+    width: 100%;
+    height: 80%;
+    
+}
+.image_container{
+    height: 100%;
+    width: 100%;
+}
+.right{
+    display: flex;
+    flex-direction: row;
+    width:70%;
+    height: 80vh;
+    margin-right: 20px;
+    overflow-y: scroll;
+    background-color: rgb(255, 255, 255);
+
+}
+
+
+.btnContainer{
+    display: flex;
+    height: 60px;
+    width: 17%;
+    position: fixed;
+    right: 0;
+    margin-right: -50px;
+   
+}
+.btnContainer button{
+    margin-top: 10px;
+    padding: .4rem 2rem;
+    font-size: 14px;
+    border-radius: 8px;
+}
+.brown{
+    color: white;
+    
+    background: rgba(69, 159, 100, 1);
+}
+.editContainer{
+    
+    display: flex;
+    justify-content: center;
+    flex-direction: row;
+    padding-top: 2%;
+    padding-bottom: 5%;
+    width: 83%;
+    background-color: blue;
+    
+}
+.editinfo{
+    display: flex;
+    flex-direction: column;
+    background-color: red;
+    height: 20px;
+}
+.editContainer select{
+    height: 3rem;
+    color: black;
+    padding: .8rem 1rem;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.29);
+    border-radius: 15px;
+    outline: none;
+    border-radius: 5px;
+  }
+
+  .editinfo textarea{
+    width: 100%;
+  height: 150px;
+    color: black;
+    padding: .8rem 1rem;
+    display: block;
+    border: 1px solid rgba(0, 0, 0, 0.29);
+    border-radius: 15px;
+    outline: none;
+    border-radius: 5px;
+  }

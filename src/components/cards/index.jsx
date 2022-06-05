@@ -11,8 +11,6 @@ const Cards = ({bgColor,body,title,icon,iconBorder,iconColor}) => {
                 <div className={styles.title}>{title}</div>
                 <div className={styles.body}>{body}</div>
             </div>
-            
-       
     </div>
   )
 }

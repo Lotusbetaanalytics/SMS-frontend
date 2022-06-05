@@ -1,0 +1,35 @@
+import React, { useState } from 'react'
+import styles from './styles.module.css'
+import { BiBell } from "react-icons/bi";
+import adminpic from "../../assets/profile.jpg";
+const LecturerHeader = ({ title }) => {
+  return (
+    <div className={styles.container}>
+      <div className={styles.Title}>
+        <h2>{title}</h2>  
+      </div>
+
+      <div className={styles.avatar}>
+        <h3>name</h3>
+
+        <div className={styles.headerbar}>
+        <div className={styles.userName}>
+            <button className={styles.vatar}>
+            <img src={adminpic} alt="avatar" />
+            </button>
+          </div>
+          <button className={styles.bellContainer}>
+              <BiBell/>
+          <div className={styles.notice_count}>
+              2
+          </div>
+          </button>
+         
+           
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default LecturerHeader

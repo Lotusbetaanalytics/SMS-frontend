@@ -34,7 +34,7 @@ const EditAcademyData = () => {
 
   const details = useSelector((state) => state.details);
   const { success, studentDetail } = details;
-  console.log(studentDetail)
+ 
   const editProfile_ = useSelector((state) => state.editProfile_);
   const { success:isSuccess,loading, error } = editProfile_;
 

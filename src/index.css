@@ -26,6 +26,13 @@ body {
 
   height: 100vh;
 }
+.right_container2{
+  display: block;
+  width: 90%;
+  background: rgba(217, 217, 217, 0.35); 
+
+  height: 100vh;
+}
 .right_content_container{
   width: 100%;
   display: flex;
@@ -50,3 +57,9 @@ body {
   font-size: 26px;
   border-radius: 5px;
 }
+
+.focus {
+  background: rgba(217, 217, 217, 0.1);
+  border-radius: 8px;
+  font-weight: 800;
+  }

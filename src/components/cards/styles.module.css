@@ -127,8 +127,6 @@
 }
 .noticeInfo {
   display: flex;
-  
-  
   font-size: 11px;
 }
 
@@ -150,4 +148,30 @@
 .flexy{
   display: flex;
   flex-direction: row;
+}
+.card_container{
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+  color: white;
+  font-size: 14px;
+  
+}
+.card_icons{
+  display: flex;
+
+}
+.number{
+  font-size: 40px;
+  color: black;
+  margin-bottom: 10px;
+  font-weight: bold;
+}
+.label{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

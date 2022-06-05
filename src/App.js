@@ -1,8 +1,10 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
+import LectureSidebar from "./components/lecturerSidebar";
 import StudentSidebar from "./components/Sidebar";
-import {  AcademyData, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, FamilyData, ForgotPassword, HealthData, Home, ProfilePicture, StartPage, TestList, TestScreen } from "./screens";
+import {  AcademyData, Assignment, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerProfile, ProfilePicture, StartPage, TestList, TestScreen } from "./screens";
+import LecturerDashboard from "./screens/Staff/Dashboard";
 
 function App() {
   return (
@@ -29,7 +31,11 @@ function App() {
         <Route path="/student/test/:id" exact element={<StartPage/>} />
         <Route path="/student/test/testscreen" exact element={<TestScreen/>} />
         <Route path="/student/profile/picture" exact element={<ProfilePicture/>} />
-
+        <Route path="/lecturer" exact element={<LectureSidebar/>} />
+        <Route path="/lecturer/dashboard" exact element={<LecturerDashboard/>} />
+        <Route path="/lecturer/profile" exact element={<LecturerProfile/>} />
+        <Route path="/lecturer/profile/edit" exact element={<EditLecturerProfile/>} />
+        <Route path="/lecturer/assessment/assignment" exact element={<Assignment/>} />
       </Routes>
     </Router>
   );

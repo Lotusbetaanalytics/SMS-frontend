@@ -10,6 +10,7 @@ import { BsBarChart, BsCalendar2Event, BsCaretDown } from "react-icons/bs";
 import { BiLineChart,BiBell } from "react-icons/bi";
 import { GiBookshelf, GiTeacher } from "react-icons/gi";
 import styles from "./styles.module.css"
+import adminpic from "../../assets/profile.jpg";
 import StudentSidebar from "../../components/Sidebar";
 import SearchWidget from "../../components/Input/Search";
 import CardTwo from "../../components/cards/card";
@@ -158,17 +159,17 @@ const StudentDashboard = () => {
       </div>
       <div className={styles.widget}>
         <div className={styles.headerbar}>
-          <div className={styles.bellContainer}>
+          <button className={styles.bellContainer}>
             
               <BiBell/>
           
           <div className={styles.notice_count}>
               2
           </div>
-          </div>
+          </button>
           <div className={styles.userName}>
             <div className={styles.avatar}>
-            <img src={book} alt="avatar" />
+            <img src={adminpic} alt="avatar" />
             </div>
             {mystudentDetails && mystudentDetails.full_name}  <button className={styles.logout_btn}><BsCaretDown/></button></div>
            

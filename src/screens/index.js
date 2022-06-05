@@ -18,3 +18,6 @@ export {default as TestList} from "./Test/index";
 export {default as StartPage} from "./Test/startpage";
 export {default as TestScreen} from "./Test/testscreen";
 export {default as ProfilePicture} from "./Profile/ProfileImage/index"
+export {default as LecturerProfile} from "./Staff/Profile";
+export {default as EditLecturerProfile} from "./Staff/Profile/Editprofile"
+export {default as Assignment} from "./Staff/Assesement/assignment/index"
