@@ -6,7 +6,26 @@ import {
   POST_COURSE_SUCCESS,
   POST_COURSE_FAIL,
   POST_COURSE_RESET,
+  POST_ADDCOURSE_REQUEST,
+  POST_ADDCOURSE_SUCCESS,
+  POST_ADDCOURSE_FAIL,
+  POST_ADDCOURSE_RESET,
 } from "../constants/courseConstant";
+
+export const postAddCourseReducer = (state = {}, action) => {
+  switch (action.type) {
+    case POST_ADDCOURSE_REQUEST:
+      return { loading: true };
+    case POST_ADDCOURSE_SUCCESS:
+      return { loading: false, success: true, user: action.payload };
+    case POST_ADDCOURSE_FAIL:
+      return { loading: false, error: action.payload };
+    case POST_ADDCOURSE_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
 
 export const getCourseReducer = (state = { getCourseArr: [] }, action) => {
   switch (action.type) {

@@ -8,11 +8,12 @@ import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { postHealthData } from "../../redux/action/userProfileDataAction";
 import { HEALTH_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function HealthData() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [blood_group, setBlood_group] = useState("");
   const [genotype, setGenotype] = useState("");
@@ -41,6 +42,12 @@ function HealthData() {
 
   const postHealth = useSelector((state) => state.postHealth);
   const { loading, success, error } = postHealth;
+
+  if (success) {
+    setInterval(() => {
+      navigate("/admin/academicdata");
+    }, 3000);
+  }
 
   if (success) {
     toast({
@@ -93,25 +100,13 @@ function HealthData() {
                   <BiArrowBack />
                   Cancel
                 </button>
-
-                {loading ? (
-                  <Button
-                    isLoading
-                    loadingText="Validating Credentials..."
-                    colorScheme="teal"
-                    variant="outline"
-                    isfullWidth
-                    style={{ height: "5rem" }}
-                  />
-                ) : (
-                  <button
-                    type="submit"
-                    className={styles.subButton}
-                    onClick={submitHandler}
-                  >
-                    Submit
-                  </button>
-                )}
+                <button
+                  type="submit"
+                  className={styles.subButton}
+                  onClick={submitHandler}
+                >
+                  Submit
+                </button>
               </div>
             </div>
           </div>
@@ -225,11 +220,20 @@ function HealthData() {
                 </div>
 
                 <div className={styles.inputBox}>
-                  <button>
-                    <Link to="/admin/academicdata">
+                  {loading ? (
+                    <Button
+                      isLoading
+                      loadingText="Validating Credentials..."
+                      colorScheme="green"
+                      variant="outline"
+                      isfullWidth
+                      style={{ height: "5rem" }}
+                    />
+                  ) : (
+                    <button onClick={submitHandler} type="submit">
                       <p>Next</p>
-                    </Link>
-                  </button>
+                    </button>
+                  )}
                 </div>
               </div>
             )}

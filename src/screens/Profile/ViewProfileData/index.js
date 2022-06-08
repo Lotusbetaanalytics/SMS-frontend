@@ -1,22 +1,20 @@
 import React, { useEffect, useState } from "react";
-import HeaderNav from "../../components/HeaderNav";
-import Sidebar from "../../components/Sidebar";
-import personlog from "../../assets/personlog.png";
+import HeaderNav from "../../../components/HeaderNav";
+import Sidebar from "../../../components/Sidebar";
+import personlog from "../../../assets/personlog.png";
 import styles from "./styles.module.css";
-import { BsFillCameraFill } from "react-icons/bs";
 // import { BiArrowBack } from "react-icons/bi";
-import datas from "../../datas";
+// import datas from "../../datas";
 // import { Link } from "react-router-dom";
-// import { postUsersData } from "../../redux/action/userProfileDataAction";
+import { postUsersData } from "../../../redux/action/userProfileDataAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
-import { USERS_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
+import { USERS_DATA_RESET } from "../../../redux/constants/userProfileDataConstant";
 import { useNavigate } from "react-router-dom";
-import stateData from "../../stateData";
-import { userDetails } from "../../redux/action/userAction";
-import { editUserProfile } from "../../redux/action/editUserProfileAction";
+// import stateData from "../../stateData";
+import { userDetails } from "../../../redux/action/userAction";
 
-function Profile() {
+function ViewProfileData() {
   const [first_name, setFirst_name] = useState("");
   const [last_name, setLast_name] = useState("");
   const [middle_name, setMiddle_name] = useState("");
@@ -35,8 +33,8 @@ function Profile() {
   // const [cancel, setCancel] = useState(false);
   const [type, setType] = useState("text");
 
-  const countryData = datas;
-  const fonsusStateData = stateData;
+  //   const countryData = datas;
+  //   const fonsusStateData = stateData;
 
   const dispatch = useDispatch();
   const toast = useToast();
@@ -44,13 +42,7 @@ function Profile() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const editprofiledata = {
-      account: {
-        first_name: first_name,
-        middle_name: middle_name,
-        last_name: last_name,
-        email: email,
-      },
+    const biodata = {
       marital_status: marital_status,
       religion: religion,
       birthday: birthday,
@@ -61,16 +53,27 @@ function Profile() {
       phone_no_1: phone_no_1,
       phone_no_2: phone_no_2,
     };
-    dispatch(editUserProfile(editprofiledata));
-    console.log(editprofiledata);
+    dispatch(postUsersData(biodata));
+    console.log(biodata);
   };
+  const postBioDataInfo = useSelector((state) => state.postBioDataInfo);
+  const { loading, success, error } = postBioDataInfo;
 
-  const editProfileUser = useSelector((state) => state.editProfileUser);
-  const { loading, success, error } = editProfileUser;
+  // if (success) {
+  //   setInterval(() => {
+  //     navigate("/admin/healthdata");
+  //   }, 3000);
+  // }
+
+  // const saveProfile = () => {
+  //   setMarital_status(data.value);
+  // };
 
   const userDetail = useSelector((state) => state.userDetail);
   const { username, success: isSuccess } = userDetail;
   console.log(username);
+
+  console.log(username && username.first_name);
 
   useEffect(() => {
     dispatch(userDetails());
@@ -93,22 +96,10 @@ function Profile() {
     }
   }, [dispatch]);
 
-  console.log(marital_status);
-
-  // if (success) {
-  //   setInterval(() => {
-  //     navigate("/admin/healthdata");
-  //   }, 3000);
-  // }
-
-  // const saveProfile = () => {
-  //   setMarital_status(data.value);
-  // };
-
   if (success) {
     toast({
       title: "Notification",
-      description: "Profile Edited Successfully",
+      description: "Profile Created Successfully",
       status: "success",
       duration: 4000,
       isClosable: true,
@@ -127,8 +118,8 @@ function Profile() {
     dispatch({ type: USERS_DATA_RESET });
   }
 
-  const nextHandler = () => {
-    navigate("/admin/dashboard");
+  const cancelHandler = () => {
+    navigate("/admin/profile");
   };
 
   return (
@@ -141,20 +132,20 @@ function Profile() {
           <div className={styles.profileHeader}>
             <div className={styles.cameraButton}>
               <img src={personlog} alt="" />
-              <BsFillCameraFill />
+              {/* <BsFillCameraFill /> */}
               <div className={styles.titleProfile}>
-                <p>Edit Profile Bio</p>
+                <p>Profile</p>
               </div>
             </div>
             <div className={styles.profileContent}>
               <div className={styles.submitButton}>
                 <button
-                  type="submit"
+                  type="button"
                   className={styles.cancelButton}
-                  onClick={submitHandler}
+                  onClick={cancelHandler}
                 >
                   {/* <BiArrowBack /> */}
-                  Update Profile
+                  Edit Profile
                 </button>
               </div>
             </div>
@@ -172,7 +163,7 @@ function Profile() {
                     type="text"
                     value={first_name}
                     onChange={(e) => setFirst_name(e.target.value)}
-                    required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -181,6 +172,7 @@ function Profile() {
                     type="text"
                     value={middle_name}
                     onChange={(e) => setMiddle_name(e.target.value)}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -190,6 +182,7 @@ function Profile() {
                     value={last_name}
                     onChange={(e) => setLast_name(e.target.value)}
                     required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -199,11 +192,19 @@ function Profile() {
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
                   <label>Marital Status</label>
-                  <select
+                  <input
+                    type="text"
+                    value={marital_status}
+                    onChange={(e) => setMarital_status(e.target.value)}
+                    required={true}
+                    readOnly={true}
+                  />
+                  {/* <select
                     value={marital_status}
                     onChange={(e) => setMarital_status(e.target.value)}
                     required={true}
@@ -213,11 +214,18 @@ function Profile() {
                     <option>Married</option>
                     <option>Divorced</option>
                     <option>Other</option>
-                  </select>
+                  </select> */}
                 </div>
                 <div className={styles.inputBox}>
                   <label>Gender</label>
-                  <select
+                  <input
+                    type="text"
+                    value={gender}
+                    onChange={(e) => setGender(e.target.value)}
+                    required={true}
+                    readOnly={true}
+                  />
+                  {/* <select
                     value={gender}
                     onChange={(e) => setGender(e.target.value)}
                     required={true}
@@ -226,11 +234,18 @@ function Profile() {
                     <option>Male</option>
                     <option>Female</option>
                     <option>Other</option>
-                  </select>
+                  </select> */}
                 </div>
                 <div className={styles.inputBox}>
                   <label>Religion</label>
-                  <select
+                  <input
+                    type="text"
+                    value={religion}
+                    onChange={(e) => setReligion(e.target.value)}
+                    required={true}
+                    readOnly={true}
+                  />
+                  {/* <select
                     value={religion}
                     onChange={(e) => setReligion(e.target.value)}
                     required={true}
@@ -240,7 +255,7 @@ function Profile() {
                     <option>Christianity</option>
                     <option>Islam</option>
                     <option>Other</option>
-                  </select>
+                  </select> */}
                 </div>
 
                 <div className={styles.inputBox}>
@@ -252,12 +267,20 @@ function Profile() {
                     required={true}
                     onFocus={() => setType("date")}
                     onBlur={() => setType("text")}
+                    readOnly={true}
                   />
                 </div>
 
                 <div className={styles.inputBox}>
                   <label>Select Country</label>
-                  <select
+                  <input
+                    type="text"
+                    value={nationality}
+                    onChange={(e) => setNationality(e.target.value)}
+                    required={true}
+                    readOnly={true}
+                  />
+                  {/* <select
                     onChange={(e) => setNationality(e.target.value)}
                     value={nationality}
                     required={true}
@@ -270,12 +293,19 @@ function Profile() {
                           {item.label}
                         </option>
                       ))}
-                  </select>
+                  </select> */}
                 </div>
 
                 <div className={styles.inputBox}>
                   <label>State Of Origin</label>
-                  <select
+                  <input
+                    type="text"
+                    value={state_of_origin}
+                    onChange={(e) => setState_of_origin(e.target.value)}
+                    required={true}
+                    readOnly={true}
+                  />
+                  {/* <select
                     type="text"
                     value={state_of_origin}
                     onChange={(e) => setState_of_origin(e.target.value)}
@@ -288,7 +318,7 @@ function Profile() {
                           {item.state}
                         </option>
                       ))}
-                  </select>
+                  </select> */}
                 </div>
                 <div className={styles.inputBox}>
                   <label>Local Government</label>
@@ -297,6 +327,7 @@ function Profile() {
                     value={local_govt}
                     onChange={(e) => setLocal_govt(e.target.value)}
                     required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -306,6 +337,7 @@ function Profile() {
                     value={permanent_address}
                     onChange={(e) => setPermanent_address(e.target.value)}
                     required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -315,6 +347,7 @@ function Profile() {
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -326,6 +359,7 @@ function Profile() {
                       setPhone_no_1(e.currentTarget.value.slice(0, 11))
                     }
                     required={true}
+                    readOnly={true}
                   />
                 </div>
                 <div className={styles.inputBox}>
@@ -337,13 +371,27 @@ function Profile() {
                       setPhone_no_2(e.currentTarget.value.slice(0, 11))
                     }
                     required={true}
+                    readOnly={true}
                   />
+                </div>
+                <div className={styles.inputBox}>
+                  {loading ? (
+                    <Button
+                      isLoading
+                      loadingText="Validating Credentials..."
+                      colorScheme="whatsapp"
+                      variant="outline"
+                      isfullWidth
+                      style={{ height: "5rem" }}
+                    />
+                  ) : (
+                    <button onClick={submitHandler} type="submit">
+                      <p>Next</p>
+                    </button>
+                  )}
                 </div>
               </div>
             )}
-          </div>
-          <div className={styles.nextButton}>
-            <button>Next</button>
           </div>
         </div>
       </div>
@@ -351,4 +399,4 @@ function Profile() {
   );
 }
 
-export default Profile;
+export default ViewProfileData;

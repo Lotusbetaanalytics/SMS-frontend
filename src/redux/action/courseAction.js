@@ -7,7 +7,49 @@ import {
   POST_COURSE_SUCCESS,
   POST_COURSE_FAIL,
   //   POST_COURSE_RESET,
+  POST_ADDCOURSE_REQUEST,
+  POST_ADDCOURSE_SUCCESS,
+  POST_ADDCOURSE_FAIL,
 } from "../constants/courseConstant";
+
+export const postAddCourses = (addcourseData) => async (dispatch, getState) => {
+  // console.log(studentData);
+  try {
+    dispatch({
+      type: POST_ADDCOURSE_REQUEST,
+    });
+
+    const {
+      userLogin: { userInfo },
+    } = getState();
+    console.log(userInfo.access);
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${userInfo.access}`,
+      },
+    };
+    const { data } = await axios.post(
+      "/academics/course/",
+      addcourseData,
+      config
+    );
+    dispatch({
+      type: POST_ADDCOURSE_SUCCESS,
+      payload: data,
+    });
+    console.log(data);
+  } catch (error) {
+    console.log(error.response.data.message, error.message);
+    dispatch({
+      type: POST_ADDCOURSE_FAIL,
+      payload:
+        error.response && error.response.data.message
+          ? error.response.data.message
+          : error.message,
+    });
+  }
+};
 
 export const getCourse = () => async (dispatch, getState) => {
   try {
@@ -29,7 +71,6 @@ export const getCourse = () => async (dispatch, getState) => {
       type: GET_COURSE_SUCCESS,
       payload: data,
     });
-    localStorage.setItem("getCourseInfo", JSON.stringify(data));
     console.log(data.name);
   } catch (error) {
     dispatch({

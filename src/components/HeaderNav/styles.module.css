@@ -4,12 +4,25 @@
   justify-content: space-around;
   align-items: center;
   margin-top: 20px;
+  /* position: fixed;
+  width: 100%; */
 }
 
 .headerTitle h1 {
   font-size: 40px;
   font-weight: bold;
   /* margin-right: 90px; */
+}
+
+.headerTitleDate {
+  display: flex;
+}
+
+.headerTitleDate h2 {
+  display: flex;
+  place-items: center;
+  margin-top: 15px;
+  margin-left: 10px;
 }
 
 .headerTitle h6 {

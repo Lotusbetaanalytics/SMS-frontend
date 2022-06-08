@@ -8,10 +8,15 @@ import Dashboard from "./screens/Dashboard";
 import Faculty from "./screens/Faculty";
 import FamilyData from "./screens/FamilyData";
 import HealthData from "./screens/HealthData";
+import ManageStudent from "./screens/ManageStudent";
+import NewCourse from "./screens/NewCourse";
 import NewDepartment from "./screens/NewDepartment";
+import NoticeBoard from "./screens/NoticeBoard";
 import Profile from "./screens/Profile";
+import ViewProfileData from "./screens/Profile/ViewProfileData";
 import StaffData from "./screens/StaffData";
 import StudentData from "./screens/StudentData";
+import StudentHomePage from "./screens/StudentHomePage";
 
 function App() {
   return (
@@ -37,6 +42,19 @@ function App() {
         <Route path="/admin/familydata" exact element={<FamilyData />} />
         <Route path="/admin/faculty" exact element={<Faculty />} />
         <Route path="/admin/department" exact element={<NewDepartment />} />
+        <Route path="/admin/course" exact element={<NewCourse />} />
+        <Route path="/admin/noticeboard" exact element={<NoticeBoard />} />
+        <Route path="/admin/managestudent" exact element={<ManageStudent />} />
+        <Route
+          path="/admin/viewprofiledata"
+          exact
+          element={<ViewProfileData />}
+        />
+        <Route
+          path="/admin/student/homepage"
+          exact
+          element={<StudentHomePage />}
+        />
       </Routes>
     </Router>
   );

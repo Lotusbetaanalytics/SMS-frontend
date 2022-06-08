@@ -6,6 +6,9 @@ import {
   TOTAL_STUDENT_REQUEST,
   TOTAL_STUDENT_SUCCESS,
   TOTAL_STUDENT_FAIL,
+  DELETE_STUDENTBYID_REQUEST,
+  DELETE_STUDENTBYID_SUCCESS,
+  DELETE_STUDENTBYID_FAIL,
 } from "../constants/studentConstant";
 
 export const createNewStudentReducer = (state = {}, action) => {
@@ -35,6 +38,35 @@ export const totalStudentReducer = (state = { allStudents: [] }, action) => {
       };
     case TOTAL_STUDENT_FAIL:
       return { loading: false, error: action.payload };
+    default:
+      return state;
+  }
+};
+
+export const deleteStudentByIdReducer = (
+  state = { deleteStudentById: [] },
+  action
+) => {
+  switch (action.type) {
+    case DELETE_STUDENTBYID_REQUEST:
+      return {
+        ...state,
+        deleteStudentById: state.deleteStudentById.filter(
+          (x) => x.id !== action.payload.id
+        ),
+        loading: true,
+      };
+    case DELETE_STUDENTBYID_SUCCESS:
+      return {
+        loading: false,
+        success: true,
+        deleteStudents: action.payload,
+      };
+    case DELETE_STUDENTBYID_FAIL:
+      return {
+        loading: false,
+        error: action.payload,
+      };
     default:
       return state;
   }

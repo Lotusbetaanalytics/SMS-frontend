@@ -1,4 +1,4 @@
-const data = [
+const datas = [
   {
     value: "AF",
     label: "Afghanistan",
@@ -997,4 +997,4 @@ const data = [
   },
 ];
 
-export default data;
+export default datas;

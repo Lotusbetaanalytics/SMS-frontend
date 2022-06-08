@@ -4,12 +4,12 @@ import { Link } from "react-router-dom";
 import personlog from "../../assets/personlog.png";
 import { RiDashboardFill } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
-import { IoMdMail } from "react-icons/io";
 import { FaUserGraduate } from "react-icons/fa";
 import { MdGroups } from "react-icons/md";
 import { FaCity } from "react-icons/fa";
 import { BsBuilding } from "react-icons/bs";
 import { ImBook } from "react-icons/im";
+import { BsFillInfoSquareFill } from "react-icons/bs";
 import { RiLogoutCircleLine } from "react-icons/ri";
 import { userLogout } from "../../redux/action/userAction";
 import { useDispatch } from "react-redux";
@@ -36,7 +36,8 @@ function Sidebar() {
               <p>Dashboard</p>
             </li>
           </Link>
-          <Link to="/admin/profile">
+
+          <Link to="/admin/viewprofiledata">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <CgProfile />
@@ -44,15 +45,8 @@ function Sidebar() {
               <p>Profile</p>
             </li>
           </Link>
-          <Link to="/#">
-            <li className={styles.iconsBody}>
-              <div className={styles.icons}>
-                <IoMdMail />
-              </div>
-              <p>Mail</p>
-            </li>
-          </Link>
-          <Link to="/admin/student">
+
+          <Link to="/admin/student/homepage">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <FaUserGraduate />
@@ -84,12 +78,20 @@ function Sidebar() {
               <p>Department</p>
             </li>
           </Link>
-          <Link to="/#">
+          <Link to="/admin/course">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <ImBook />
               </div>
               <p>Course</p>
+            </li>
+          </Link>
+          <Link to="/admin/noticeboard">
+            <li className={styles.iconsBody}>
+              <div className={styles.icons}>
+                <BsFillInfoSquareFill />
+              </div>
+              <p>Notice</p>
             </li>
           </Link>
 

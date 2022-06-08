@@ -12,10 +12,12 @@ import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { getSpecialization } from "../../redux/action/userProfileDataAction";
 import { BiArrowBack } from "react-icons/bi";
 import { CREATE_STUDENT_RESET } from "../../redux/constants/studentConstant";
+import { useNavigate } from "react-router-dom";
 
 function StudentData() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [first_Name, setFirst_Name] = useState("");
   const [middle_Name, setMiddle_Name] = useState("");
@@ -66,6 +68,10 @@ function StudentData() {
   const getSpecilize = useSelector((state) => state.getSpecilize);
   const { specializationid } = getSpecilize;
   console.log(specializationid);
+
+  const backHandler = () => {
+    navigate("/admin/student/homepage");
+  };
 
   if (success) {
     setFirst_Name("");
@@ -123,10 +129,10 @@ function StudentData() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
-                  Cancel
+                  Back
                 </button>
 
                 {loading ? (

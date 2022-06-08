@@ -136,8 +136,13 @@ const Dashboard = () => {
             <div className={styles.calendarTitle}>
               <span>Calendar</span>
             </div>
-            <div className={styles.calendar}>
-              <Calendar onChange={onChange} value={calDate} />
+            <div className={styles.reactCalendar}>
+              <Calendar
+                onChange={onChange}
+                value={calDate}
+                className={styles.react__calendar}
+                // styles={{ height: "100" }}
+              />
             </div>
           </div>
           <div className={styles.dashboardNotice}>

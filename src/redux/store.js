@@ -8,7 +8,10 @@ import {
   userForgotPasswordReducer,
   userLoginReducer,
 } from "./reducer/userReducer";
-import { getNoticeReducer } from "./reducer/noticeBoardReducer";
+import {
+  getNoticeReducer,
+  postNoticeReducer,
+} from "./reducer/noticeBoardReducer";
 import {
   getSpecializationReducer,
   postAcademicDataReducer,
@@ -19,6 +22,7 @@ import {
 import { newStaffReducer, totalStaffReducer } from "./reducer/staffReducer";
 import {
   createNewStudentReducer,
+  deleteStudentByIdReducer,
   totalStudentReducer,
 } from "./reducer/studentReducer";
 import { getFacultyReducer, newFacultyReducer } from "./reducer/facultyReducer";
@@ -26,7 +30,12 @@ import {
   createDepartmentReducer,
   getDepartmentReducer,
 } from "./reducer/departmentReducer";
-import { getCourseReducer } from "./reducer/courseReducer";
+import {
+  getCourseReducer,
+  postAddCourseReducer,
+} from "./reducer/courseReducer";
+import { getScopeReducer } from "./reducer/scopeReducer";
+import { editUserProfileReducer } from "./reducer/editUserProfileReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -48,6 +57,11 @@ const reducer = combineReducers({
   departmentPost: createDepartmentReducer,
   departmentGet: getDepartmentReducer,
   courseGet: getCourseReducer,
+  postNewCourse: postAddCourseReducer,
+  noticeBoard: postNoticeReducer,
+  scopeId: getScopeReducer,
+  editProfileUser: editUserProfileReducer,
+  deleteStudentId: deleteStudentByIdReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

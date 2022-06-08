@@ -17,13 +17,26 @@ function HeaderNav({ title }) {
   const userDetail = useSelector((state) => state.userDetail);
   const { username } = userDetail;
 
-  console.log();
+  // const current = new Date();
+  // const date = `${current.getDate()}/${
+  //   current.getMonth() + 1
+  // }/${current.getFullYear()}`;
+
+  const current = new Date();
+
+  const month = current.toLocaleString("default", { month: "long" });
+  const date = `${month} ${current.getDate()}, ${current.getFullYear()}`;
 
   return (
     <div className={styles.headerNavContainer}>
       <div className={styles.headerTitle}>
-        <h1>{title}</h1>
-        <h6>Good day John nice to see you Again..</h6>
+        <div className={styles.headerTitleDate}>
+          <h1>{title}</h1>
+          <h2>{date}</h2>
+        </div>
+        <h6>
+          Good day {username && username.first_name} nice to see you Again..
+        </h6>
       </div>
       <div className={styles.headerSearch}>
         <input

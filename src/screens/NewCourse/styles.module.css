@@ -12,7 +12,7 @@
   height: 700px;
   margin: 3.5%;
   border-radius: 15px;
-  box-shadow: 0px 5px 6px 0px rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.1);
 }
 
 .profileHeader {
@@ -44,19 +44,19 @@
 }
 
 .staffDetails svg {
-  font-size: 60px;
-  color: #ff7870;
+  font-size: 50px;
+  color: #7f6fdf;
+  margin-left: 10p;
 }
 
 .staffDetails h1 {
-  font-size: 35px;
+  font-size: 39px;
   color: lightgray;
   margin-left: 10px;
   margin-top: 10px;
 }
 
 .staffDetails h2 {
-  margin-top: -5px;
   font-size: 15px;
 }
 
@@ -211,12 +211,4 @@
 .checkboxBtn span {
   font-size: 14px;
   font-weight: bold;
-}
-
-.inputBox textarea {
-  border: 1px solid lightgray;
-  border-radius: 10px;
-  height: 55px;
-  padding: 10px 15px;
-  outline: none;
 }

@@ -2,73 +2,69 @@ import React, { useEffect, useState } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
-import { FaCity } from "react-icons/fa";
-import { BiArrowBack } from "react-icons/bi";
-import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
+import { ImBook } from "react-icons/im";
 import { useDispatch, useSelector } from "react-redux";
-import { createNewFaculty, getfaculty } from "../../redux/action/facultyAction";
-import { totalStaff } from "../../redux/action/staffAction";
-import { CREATE_FACULTY_RESET } from "../../redux/constants/facultyConstant";
-// import { useNavigate } from "react-router-dom";
+import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
+import { getCourse, postAddCourses } from "../../redux/action/courseAction";
+import { BiArrowBack } from "react-icons/bi";
+import { POST_ADDCOURSE_RESET } from "../../redux/constants/courseConstant";
+import { getSpecialization } from "../../redux/action/userProfileDataAction";
 
-function Faculty() {
+function NewCourse() {
   const dispatch = useDispatch();
   const toast = useToast();
-  // const navigate = useNavigate();
 
-  const [faculty_Name, setFaculty_Name] = useState("");
-  const [faculty_Code, setFaculty_Code] = useState("");
-  const [deanOfFaculty, setDeanOfFaculty] = useState("");
+  const [specialization, setSpecialization] = useState("");
+  const [courseName, setCourseName] = useState("");
+  const [courseCode, setCourseCode] = useState("");
   const [description, setDescription] = useState("");
+  const [coordinator, setCoordinator] = useState("");
   const [isActive, setIsActive] = useState(false);
+
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const addcourseData = {
+      specialization: specialization,
+      name: courseName,
+      code: courseCode,
+      description: description,
+      coordinator: coordinator,
+      is_active: isActive,
+    };
+    dispatch(postAddCourses(addcourseData));
+    console.log(addcourseData);
+  };
+
+  const postNewCourse = useSelector((state) => state.postNewCourse);
+  const { loading, success, error } = postNewCourse;
 
   const handleClick = () => {
     setIsActive(!isActive);
   };
-  console.log(isActive);
-
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const facultyData = {
-      name: faculty_Name,
-      code: faculty_Code,
-      description: description,
-      dean: deanOfFaculty,
-      is_active: isActive,
-    };
-    dispatch(createNewFaculty(facultyData));
-    console.log(facultyData);
-  };
-
-  const postNewFaculty = useSelector((state) => state.postNewFaculty);
-  const { loading, success, error } = postNewFaculty;
 
   useEffect(() => {
-    dispatch(getfaculty());
+    dispatch(getCourse());
   }, [dispatch]);
 
-  const listFaculty = useSelector((state) => state.listFaculty);
-  const { faculty } = listFaculty;
+  const courseGet = useSelector((state) => state.courseGet);
+  const { getCourseId } = courseGet;
 
   useEffect(() => {
-    dispatch(totalStaff());
+    dispatch(getSpecialization());
   }, [dispatch]);
-  const totalStaffNo = useSelector((state) => state.totalStaffNo);
-  const { allStaff } = totalStaffNo;
+
+  const getSpecilize = useSelector((state) => state.getSpecilize);
+  const { specializationid } = getSpecilize;
 
   if (success) {
-    setFaculty_Name("");
-    setFaculty_Code("");
-    setDescription("");
-    setDeanOfFaculty("");
     toast({
       title: "Notification",
-      description: "Faculty Successfully Added",
+      description: "Course Created Successfully",
       status: "success",
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: CREATE_FACULTY_RESET });
+    dispatch({ type: POST_ADDCOURSE_RESET });
   }
 
   if (error) {
@@ -79,29 +75,29 @@ function Faculty() {
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: CREATE_FACULTY_RESET });
+    dispatch({ type: POST_ADDCOURSE_RESET });
   }
 
   return (
     <div className={styles.profileContainer}>
       <Sidebar />
       <div className={styles.profile}>
-        <HeaderNav title="Faculty" />
+        <HeaderNav title="Course" />
 
         <div className={styles.profileBox}>
           <div className={styles.profileHeader}>
             <div className={styles.staffCount}>
               <div className={styles.staffDetails}>
                 <div className={styles.staffIcon}>
-                  <FaCity />
-                  <h2>Faculty</h2>
+                  <ImBook />
+                  <h2>Course</h2>
                 </div>
                 <h1>|</h1>
-                <h4>{faculty && faculty.length}</h4>
+                <h4>{getCourseId && getCourseId.count}</h4>
               </div>
 
               <div className={styles.titleProfile}>
-                <p>Create New Faculty</p>
+                <p>Create New Course</p>
               </div>
             </div>
             <div className={styles.profileContent}>
@@ -121,7 +117,6 @@ function Faculty() {
                     loadingText="Validating Credentials..."
                     colorScheme="teal"
                     variant="outline"
-                    isfullWidth
                     style={{ height: "5rem" }}
                   />
                 ) : (
@@ -139,55 +134,73 @@ function Faculty() {
           <div className={styles.inputContainer}>
             {loading ? (
               <Center>
-                <CircularProgress isIndeterminate color="blue.500" />
+                <CircularProgress isIndeterminate color="purple.500" />
               </Center>
             ) : (
               <div className={styles.inputField}>
                 <div className={styles.inputBox}>
-                  <label>Faculty</label>
-                  <input
-                    type="text"
-                    onChange={(e) => setFaculty_Name(e.target.value)}
-                    value={faculty_Name}
-                    required={true}
-                  />
-                </div>
-                <div className={styles.inputBox}>
-                  <label>Faculty Code</label>
-                  <input
-                    type="text"
-                    onChange={(e) =>
-                      setFaculty_Code(e.currentTarget.value.slice(0, 11))
-                    }
-                    value={faculty_Code}
-                    required={true}
-                  />
-                </div>
-                <div className={styles.inputBox}>
-                  <label>Dean of Faculty</label>
+                  <label>Specialization</label>
                   <select
-                    onChange={(e) => setDeanOfFaculty(e.target.value)}
-                    value={deanOfFaculty}
+                    onChange={(e) => setSpecialization(e.target.value)}
+                    value={specialization}
                     required={true}
-                    className={styles.newFacultySelect}
+                    className={styles.addCourseSelect}
                   >
                     <option></option>
-                    {allStaff &&
-                      allStaff.map((item, i) => (
+                    {specializationid &&
+                      specializationid.map((item, i) => (
                         <option key={i} value={item.id}>
-                          {item.user.full_name}
+                          {item.name}
                         </option>
                       ))}
                   </select>
                 </div>
-
+                <div className={styles.inputBox}>
+                  <label>Course Name</label>
+                  <input
+                    type="text"
+                    onChange={(e) => setCourseName(e.target.value)}
+                    value={courseName}
+                    required={true}
+                  />
+                </div>
+                <div className={styles.inputBox}>
+                  <label>Course Code</label>
+                  <input
+                    type="text"
+                    onChange={(e) =>
+                      setCourseCode(e.currentTarget.value.slice(0, 11))
+                    }
+                    value={courseCode}
+                    required={true}
+                  />
+                </div>
                 <div className={styles.inputBox}>
                   <label>Description (optional)</label>
-                  <textarea
+                  <input
                     type="text"
                     onChange={(e) => setDescription(e.target.value)}
                     value={description}
                   />
+                </div>
+
+                <div className={styles.inputBox}>
+                  <label>Coordinator</label>
+                  <select
+                    onChange={(e) => setCoordinator(e.target.value)}
+                    value={coordinator}
+                    required={true}
+                    className={styles.addCourseSelect}
+                  >
+                    <option></option>
+                    <option>1</option>
+                    {/* {allStaff &&
+                    allStaff.map((item, i) => (
+                      <option key={i} value={item.id}>
+                        {item.user.full_name}
+                      </option>
+                    ))} */}
+                  </select>
                 </div>
                 <div className={styles.inputBox}>
                   <div className={styles.checkboxBtn} onClick={handleClick}>
@@ -196,7 +209,9 @@ function Faculty() {
                       value={isActive}
                       disable={isActive ? "false" : "true"}
                     />
-                    <span className={styles.toggleRound}>Publish Faculty</span>
+                    <span className={styles.toggleRound}>
+                      Publish Department
+                    </span>
                   </div>
                 </div>
               </div>
@@ -208,4 +223,4 @@ function Faculty() {
   );
 }
 
-export default Faculty;
+export default NewCourse;
