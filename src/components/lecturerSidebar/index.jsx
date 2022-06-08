@@ -56,7 +56,7 @@ const LectureSidebar = (props) => {
             </li>
           </Link>
           <Link to="/lecturer/assessment/assignment">
-            <li className={props.accessment}>
+            <li className={props.assessment}>
               <div className={styles.svg}>
                 <div>
                   < GiBookshelf />

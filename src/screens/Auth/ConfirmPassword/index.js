@@ -42,7 +42,7 @@ function ConfirmPassword() {
   if (success) {
     setSuccessMsg(true)
     dispatch({type: CONFIRM_PASSWORD_RESET})
-    navigate("/student/login");
+    navigate("/");
   }
 
   if (error) {

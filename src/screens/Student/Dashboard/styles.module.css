@@ -1,0 +1,132 @@
+.studentDashboard{
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+}
+.dashboard_info{
+    height: 100%;
+    width: 60%;
+    display: flex ;
+    flex-direction: column;
+   margin-left: 2px;
+    background: rgba(255, 255, 255, 1);
+    padding: 0 2% 0 2%;
+    
+}
+.book{
+    position: absolute;
+    top: -2%;
+    right: 28%;
+    
+    z-index: 1;
+}
+.book img{
+    height: 300px;
+    width:300px;
+}
+.searchContainer{
+    margin-bottom: 20px;
+}
+.card_container{
+display: grid;
+grid-template-columns: 30% 30% 30%;
+justify-content: center;
+grid-gap: 2%;
+margin-top: 20px;
+}
+.widget{
+    padding: .5% 2% 0 2%;
+    background: rgba(52, 26, 37, 0.07);
+    height:100vh;
+    overflow-y: scroll;
+    width: 28%;
+}
+.headerbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+    align-items: center;
+    color: white;
+    padding: 2% 1% 2% 1%;
+    margin-bottom: 20px;
+    border-radius: 5px;
+}
+.bellContainer{
+    background-color: white;
+    display: flex;
+    flex-direction: row;
+    color: blue;
+    justify-content: center;
+    border-radius: 5px;
+    padding: 2%;
+   
+}
+
+.bellContainer svg {
+    font-size: 20px;
+}
+.bellContainer svg :hover{
+    font-size: 40px;
+}
+.reactCalender{
+    display: flex;
+    justify-content: center;
+
+}
+.notice_count{
+    margin-left: -12px;
+    margin-top: -4px;
+    height: 15px;
+    width: 15px;
+    font-size: 6px;
+    color: white;
+    border-radius: 50%;
+    justify-content: center;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    font-size: 10px;
+}
+.userName{
+ background-color: #fff; 
+ color: black;
+ padding: 1.5%;  
+ display: flex;
+ flex-direction: row;
+ font-size: 10px;
+ justify-content: space-around;
+ align-items: center;
+ font-weight: bold;
+ border-radius: 5px;
+}
+.avatar{
+    height: 30px;
+    width: 30px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+.avatar img {
+    height: 100%;
+    width: 100px;
+    object-fit: contain;
+    border-radius: 5px;
+}
+.logout_btn{
+    margin-left: 5px;
+    margin-right: 5px;
+}
+.logout_btn :hover{
+    font-size: 20px;
+}
+
+.noticeTitle{
+font-weight: bold;
+margin-top: 10px;
+}
+.table_container{
+    width: 100%;
+    margin-top: 20px;
+    height: 100%;
+    padding: 2%;
+}

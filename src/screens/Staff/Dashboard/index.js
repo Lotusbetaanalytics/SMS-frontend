@@ -6,6 +6,7 @@ import styles from "./styles.module.css";
 import Calendar from "react-calendar";
 import { AiOutlineFileMarkdown } from "react-icons/ai";
 import NotificationCard from "../../../components/cards/notificationCard";
+import LecturerNotice from "../../../components/cards/lecturerNotice";
 const LecturerDashboard = () => {
     const [value, onChange] = useState(new Date());
   return (
@@ -97,7 +98,7 @@ const LecturerDashboard = () => {
 
             <div  className={styles.notice_container}>
           <div className={styles.noticeTitle}>New Notification</div>
-          <div className={styles.notice}><NotificationCard/></div>
+          <div className={styles.notice}><LecturerNotice/></div>
           </div>
           </div>
         </div>

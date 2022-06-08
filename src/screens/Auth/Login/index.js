@@ -29,7 +29,7 @@ function StudentLogin() {
     } else {
       setMsg(false);
       dispatch(LoginStudent(email,password))
-      console.log("click")
+      
     }
   };
   if (error) {
@@ -42,6 +42,7 @@ function StudentLogin() {
     })
   }
  
+  
   
   useEffect(()=>{
     if (userInfo){
@@ -78,6 +79,7 @@ function StudentLogin() {
             <div className={styles.salutation}>Hello There ! | </div>
             <div className={styles.salutation2}>it's Nice seeing you</div>
           </div>
+          <form onSubmit={submitHandler}>
           <Input
           type={"email"}
           placeholder={"Email"}
@@ -103,6 +105,8 @@ function StudentLogin() {
                 Login
               </button>
             )}
+          </form>
+         
           <Link to={"/student/forgotpassword"} ><div className={styles.forgot} > Forgot Password?</div></Link>
         </div>
         

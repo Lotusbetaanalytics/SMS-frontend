@@ -5,6 +5,7 @@ import { confirmPasswordReducer, forgetPasswordReducer, studentLoginReducer } fr
 import { studentDetailsReducer } from "./Reducer/studentReducer/studentReducer";
 import { editProfileReducer } from "./Reducer/Profile Reducer/profile";
 import { questionsReducer, ResponseReducer } from "./Reducer/Test Reducer/testQuestion";
+import { addCourseReducer, deleteCourseReducer } from "./Reducer/CourseReducer/courseReducer";
 
 
 
@@ -16,6 +17,8 @@ const reducer = combineReducers({
   editProfile_: editProfileReducer,
   testQuestion : questionsReducer,
   testResponse : ResponseReducer,
+  addCourse_: addCourseReducer,
+  deleteCourse_ : deleteCourseReducer,
   
 });
 

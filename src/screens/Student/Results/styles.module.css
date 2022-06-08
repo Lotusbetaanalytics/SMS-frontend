@@ -1,0 +1,40 @@
+.profile_bg{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-radius: 10px;
+    padding: 5%;
+    width: 90%;
+    background: rgb(255, 255, 255);
+    box-shadow: 0px 0px 30px 5px rgba(153, 149, 149, 0.11);
+}
+.header{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    height: 50px; 
+    padding: .2rem .2rem;
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.header_title{
+    padding: .6rem 3rem .4rem .8rem;
+    background:linear-gradient(89.89deg, rgba(52, 26, 37, 0.32) 26.29%, rgba(52, 26, 37, 0) 122.26%);
+    border-radius: 20px;
+    font-weight: bold;
+}
+.tableContainer{
+    display: flex;
+    padding-top: 1%;
+    height: 100%;
+    flex-direction: column;
+    
+    
+}
+.table_btn{
+     background: rgba(52, 26, 37, 1);
+    padding: .5rem 1.2rem;
+    color: white;
+    border-radius: 10px;
+}

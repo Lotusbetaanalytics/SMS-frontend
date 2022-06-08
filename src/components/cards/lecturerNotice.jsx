@@ -2,7 +2,8 @@ import React from 'react'
 import styles from './styles.module.css'
 import { useDispatch, useSelector} from 'react-redux';
 import { Link } from 'react-router-dom';
-const NotificationCard = () => {
+import data  from '../data';
+const LecturerNotice = () => {
 
     const details = useSelector((state) => state.details);
     const { studentDetail } = details;
@@ -16,7 +17,7 @@ const NotificationCard = () => {
 
   return (
     <div >
-      {mystudentDetails && mystudentDetails.student[0].notices.length > 0 ? mystudentDetails && mystudentDetails.student[0].notices.map((item,i)=>(
+      {mystudentDetails && mystudentDetails.student[0].notices ? mystudentDetails && mystudentDetails.student[0].notices.map((item,i)=>(
          slicedMessage = item.message.slice(0,90) + "....",
          <Link to="/student/notification"> <div className={styles.noticeBoard} key={i}>
                 <div className={styles.infoHeader}>{item.title}</div>
@@ -25,10 +26,15 @@ const NotificationCard = () => {
               </div></Link>
  
 
-      )): (<div className={styles.noNew}> There are no notice yet </div>)}
-            
-    </div>
+      )): (
+      <div>
+           {data && data.map((item) => (
+              <div className={styles.noNew}>{item.message}</div> 
+           ))}
+        </div>
+        )}
+     </div>
   )
-}
+};
 
-export default NotificationCard
+export default LecturerNotice

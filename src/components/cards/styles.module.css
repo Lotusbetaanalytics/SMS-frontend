@@ -94,9 +94,13 @@
 /* cardTwo ends */
 .noNew{
   display: flex;
-  font-size: 14px;
-  margin-top: 10px;
-  padding-left: 4px;
+  font-size: 12px;
+  margin-bottom: 10px;
+  background-color: rgb(255, 255, 255);
+  margin-right: 2%;
+  padding: .5rem .5rem;
+  border-right: 5px solid green;
+  font-weight: bold;
 }
 .noticeBoard {
   display: flex;

@@ -8,6 +8,7 @@ import { FaRegUser, FaClipboardList } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
 import { BsCardList } from "react-icons/bs";
 import { AiOutlineCamera} from "react-icons/ai";
+import { RiFileList2Line} from "react-icons/ri";
 
 import { useDispatch, useSelector } from "react-redux";
 import { studentLogout } from "../../redux/Actions/auth";
@@ -22,10 +23,6 @@ const StudentSidebar = (props) => {
   const details = useSelector((state) => state.details);
     const { studentDetail } = details;
     const mystudentDetails = studentDetail;
-
-  // const myDetail = JSON.parse(localStorage.getItem("studentDetails"));
-  //   const mystudentDetails = myDetail;
-
 
   const logoutHandler = () => {
     dispatch(studentLogout());
@@ -61,7 +58,7 @@ const StudentSidebar = (props) => {
               Profile
             </li>
           </Link>
-          <Link to="/student/course/registeration">
+          <Link to="/student/course/registration">
             <li className={props.courses}>
               <div className={styles.svg}>
                 <div>
@@ -84,14 +81,19 @@ const StudentSidebar = (props) => {
           <Link to="/student/test">
             <li className={props.test}>
               <div className={styles.svg}>
-                <div className={styles.svgli}>
                   <FaRegUser />
-                </div>
               </div>
               Test
             </li>
           </Link>
-          
+          <Link to="/student/result">
+            <li className={props.result}>
+              <div className={styles.svg}>
+                  <RiFileList2Line />
+              </div>
+              Results
+            </li>
+          </Link>
         </ul>
     </div>
    
