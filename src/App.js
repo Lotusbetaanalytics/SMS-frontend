@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LectureSidebar from "./components/lecturerSidebar";
 import StudentSidebar from "./components/Sidebar";
-import {  AcademyData, Assignment, AssignmentQuestionBank, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerProfile, LecturerTest, ProfilePicture, RegisteredCourses, Result, StartPage, TestList, TestqustionBank, TestScreen } from "./screens";
+import {  AcademyData, Assignment, AssignmentQuestionBank, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerForgetPassword, LecturerLogin, LecturerProfile, LecturerResetPassword, LecturerTest, ProfilePicture, RegisteredCourses, Result, StartPage, TestList, TestqustionBank, TestScreen } from "./screens";
 import LecturerDashboard from "./screens/Staff/Dashboard";
 
 function App() {
@@ -41,6 +41,9 @@ function App() {
         <Route path="/lecturer/assessment/test/history" exact element={<TestqustionBank/>} />
         <Route path="/lecturer/assessment/test/history" exact element={<RegisteredCourses/>} />
         <Route path="/student/result" exact element={<Result/>} />
+        <Route path="/lecturer/login" exact element={<LecturerLogin/>} />
+        <Route path="/lecturer/forgetpassword" exact element={<LecturerForgetPassword/>} />
+        <Route path="/lecturer/resetpassword" exact element={<LecturerResetPassword/>} />
       </Routes>
     </Router>
   );

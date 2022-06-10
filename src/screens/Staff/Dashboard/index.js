@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Card3 from "../../../components/cards/card3";
 import LecturerHeader from "../../../components/lecturerHeader";
 import LectureSidebar from "../../../components/lecturerSidebar";
@@ -7,8 +7,21 @@ import Calendar from "react-calendar";
 import { AiOutlineFileMarkdown } from "react-icons/ai";
 import NotificationCard from "../../../components/cards/notificationCard";
 import LecturerNotice from "../../../components/cards/lecturerNotice";
+import { studentDetails } from "../../../redux/Actions/studentActions/studentAction";
+import { useDispatch, useSelector } from "react-redux";
+import { lecturerDetailsAction } from "../../../redux/Actions/lecturer/lecturerDetail";
 const LecturerDashboard = () => {
+  const dispatch = useDispatch();
     const [value, onChange] = useState(new Date());
+    useEffect(() => {
+      dispatch(lecturerDetailsAction());
+    }, []);
+
+    const lecturerDetails = useSelector((state) => state.lecturerDetails);
+  const {lecturerDetail}  = lecturerDetails;
+    const username =  lecturerDetail && lecturerDetail.first_name
+
+
   return (
     <div className="page_container">
       <LectureSidebar dashboard={"focus"} />
@@ -19,7 +32,7 @@ const LecturerDashboard = () => {
            
             <div className={styles.infoheader}>
               <div className={styles.salutation}>
-                <h1>Hi Jane</h1>
+                <h1>Hi {username}</h1>
                 <p>its nice seeing you again</p>
               </div>
               <div className={styles.infoBtn}>

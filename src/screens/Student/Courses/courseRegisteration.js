@@ -25,6 +25,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { studentDetails } from '../../../redux/Actions/studentActions/studentAction';
 import { deleteCourse, deleteCourseAction } from '../../../redux/Actions/courseAction/courseAction';
 import { STUDENT_DETAILS_REQUEST } from '../../../redux/Constants/studentConstants/studentConstants';
+import { DELETE_COURSE_RESET } from '../../../redux/Constants/courseRegisteration/courseRegisteration';
 
 const RegisteredCourses = () => {
   const dispatch = useDispatch();
@@ -40,7 +41,8 @@ const RegisteredCourses = () => {
         dispatch(deleteCourseAction(id))
         if (deleteSuccess) {
           setMsg(true)
-          dispatch(studentDetails())
+          dispatch({type:DELETE_COURSE_RESET})
+          
         }
       };
 

@@ -11,7 +11,7 @@
    
   }
   
-  .confirm{
+  .left_forgot{
     width: 50%;
     height: 100vh;
     display: flex;
@@ -22,14 +22,15 @@
     background: linear-gradient(359.39deg,
         rgba(0, 0, 0, 0.6)45.04%,
         rgba(255, 255, 255, 0) 88.88%),
-      url(../../../assets/smiling-african-student-pointing-with-pencil-laptop-screen-concentrated-blonde-woman-glasses-propping-chin-with-hand-while-working-with-computer-office.jpg);
+      url(../../../../assets/graduates.jpg);
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
     align-items: flex-start;
     justify-content: flex-end;
+    
   }
- 
+  
   
   
   .homepageContent{
@@ -39,7 +40,7 @@
   }
   
   
-  .confirm h1{
+  .left_forgot h1{
     font-size: 40px;
     line-height: 40px;
     margin-top: 10px;
@@ -68,7 +69,7 @@
     margin-right: 4px;
   }
   
-  .confirm h2{
+  .left_forgot h2{
     font-size: 22px;
     font-weight: 300;
   }
@@ -107,6 +108,7 @@
     padding: 1px 4px;
     font-size: 20px;
     margin-right: 5px;
+    
   }
   .salutation2{
     font-size: 12px;

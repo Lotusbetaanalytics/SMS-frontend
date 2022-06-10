@@ -1,6 +1,6 @@
-export {default as Home} from "./Auth/Login/index";
-export {default as ForgotPassword} from "../screens/Auth/ForgetPassword/index";
-export {default as ConfirmPassword} from "../screens/Auth/ConfirmPassword/index";
+export {default as Home} from "./Auth/Student/Login/index";
+export {default as ForgotPassword} from "../screens/Auth/Student/ForgetPassword";
+export {default as ConfirmPassword} from "../screens/Auth/Student/ConfirmPassword/index";
 export {default as DashBoard} from "./Student/Dashboard/index";
 export {default as BasicProfile} from "../screens/Student/Profile/BasicInformation";
 export {default as EditBasicProfile} from "../screens/Student/Profile/BasicInformation/editBasicInformation";
@@ -25,4 +25,7 @@ export {default as AssignmentQuestionBank} from "./Staff/Assesement/assignment/q
 export {default as LecturerTest} from "./Staff/Assesement/Test/index"
 export {default as TestqustionBank} from "./Staff/Assesement/Test/testquestionBank"
 export {default as RegisteredCourses } from "./Student/Courses/courseRegisteration"
-export {default as Result} from "./Student/Results"
+export {default as Result} from "./Student/Results";
+export {default as LecturerLogin} from "../screens/Auth/lecturer/login"
+export {default as LecturerForgetPassword} from "../screens/Auth/lecturer/forgetPassword"
+export {default as LecturerResetPassword} from "../screens/Auth/lecturer/ResetPassword"

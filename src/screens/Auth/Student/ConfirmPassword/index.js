@@ -1,14 +1,14 @@
 import React, { useState } from "react";
-import Button from "../../../components/Button";
-import Input from "../../../components/Input";
+import Button from "../../../../components/Button";
+import Input from "../../../../components/Input";
 import styles from "./styles.module.css";
 
 import { Alert, useToast } from "@chakra-ui/react";
 
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { CONFIRM_PASSWORD_RESET } from "../../../redux/Constants/auth";
-import { Confirmpassword } from "../../../redux/Actions/auth";
+import { CONFIRM_PASSWORD_RESET } from "../../../../redux/Constants/auth";
+import { Confirmpassword } from "../../../../redux/Actions/auth";
 
 
 function ConfirmPassword() {
