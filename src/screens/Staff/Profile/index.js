@@ -6,16 +6,18 @@ import LectureSidebar from '../../../components/lecturerSidebar'
 import { studentDetails } from '../../../redux/Actions/studentActions/studentAction'
 import styles from "./styles.module.css"
 import adminpic from "../../../assets/profile.jpg";
+import { lecturerDetailsAction } from '../../../redux/Actions/lecturer/lecturerDetail'
 const LecturerProfile = () => {
     const navigate = useNavigate();
     const dispatch = useNavigate();
-    const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
+
+    const lecturerLogin = JSON.parse(localStorage.getItem("lecturerInfo"));
     useEffect(() => {
-        dispatch(studentDetails())
+        dispatch(lecturerDetailsAction())
       }, [dispatch]);
 
-    const details = useSelector((state) => state.details);
-  const { studentDetail,success } = details;
+    const lecturerDetails = useSelector((state) => state.lecturerDetails);
+  const {lecturerDetail,success}  = lecturerDetails;
     
     const [first_name, setFirst_name] = useState("");
     const [middle_name, setMiddle_name] = useState("");
@@ -60,43 +62,43 @@ const LecturerProfile = () => {
 
     React.useEffect(() => {
         if (success) {
-     setFirst_name( studentDetail && studentDetail.first_name);
-     setLast_name( studentDetail && studentDetail.last_name);
-     setMiddle_name( studentDetail && studentDetail.middle_name);
-     setEmail(studentDetail &&  studentDetail.email);
-     setSpecialization(studentDetail && studentDetail.specialization);
-     setMarital_status(  studentDetail && studentDetail.biodata && studentDetail.bioda.marital_status);
-     setGender( studentDetail && studentDetail.biodata && studentDetail.biodata.gender);
-     setReligion(  studentDetail && studentDetail.tata && studentDetail.bioda.religion);
-     setBirthday(  studentDetail && studentDetail.biodata && studentDetail.biodata.birthday);
-     setNationality( studentDetail && studentDetail.biodata && studentDetail.biodata.nationality);
-     setState_of_origin(  studentDetail && studentDetail.biodata && studentDetail.biodata.state_of_origin);
-     setLocal_govt(   studentDetail && studentDetail.biodata && studentDetail.biodata.local_govt);
-     setAddress(  studentDetail && studentDetail.biodata && studentDetail.biodata.address);
-     setPhone_no_1(  studentDetail && studentDetail.biodata && studentDetail.biodata.phone_no_1);
-     setPhone_no_2(  studentDetail && studentDetail.biodata && studentDetail.biodata.phone_no_2);
-     setInstitution(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].institution);
-      setStart_date(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].start_date);
-      setEnd_date(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].end_date);
-      setQualification_earned(studentDetail && studentDetail.biodata && studentDetail.biodata.academic_history[0] && studentDetail.biodata.academic_history[0].qualification_earned);
-      setNext_of_kin_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.next_of_kin_full_name) ;
-  setNext_of_kin_phone_no_1(studentDetail && studentDetail.biodata &&studentDetail.biodata.next_of_kin_phone_no_1);
-  setNext_of_kin_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.next_of_kin_phone_no_2);
-  setNext_of_kin_address(studentDetail && studentDetail.biodata && studentDetail.biodata.next_of_kin_address);
-  setGuardian_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.guardian_full_name);
-  setGuardian_phone_no_1(studentDetail && studentDetail.biodata &&studentDetail.biodata.guardian_phone_no_1);
-  setGuardian_phone_no_2(studentDetail && studentDetail.biodata &&studentDetail.biodata.guardian_phone_no_2);
-  setGuardian_address(studentDetail && studentDetail.biodata &&studentDetail.biodata.guardian_address);
-  setBlood_group(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.blood_group );
-        setGenotype(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.genotype);
-        setAllergies(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.allergies);
-       setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
-       setSTIs(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.STIs);
-       setHeart_disease(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.heart_disease);
-       setDisabilities(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
-       setRespiratory_problems(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.respiratory_problems);
+     setFirst_name( lecturerDetail && lecturerDetail.first_name);
+     setLast_name( lecturerDetail && lecturerDetail.last_name);
+     setMiddle_name( lecturerDetail && lecturerDetail.middle_name);
+     setEmail(lecturerDetail &&  lecturerDetail.email);
+     setSpecialization(lecturerDetail && lecturerDetail.specialization);
+     setMarital_status(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.marital_status);
+     setGender( lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.gender);
+     setReligion(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.religion);
+     setBirthday(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.birthday);
+     setNationality( lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.nationality);
+     setState_of_origin(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.state_of_origin);
+     setLocal_govt(   lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.local_govt);
+     setAddress(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.address);
+     setPhone_no_1(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.phone_no_1);
+     setPhone_no_2(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.phone_no_2);
+     setInstitution(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.academic_history[0] && lecturerDetail.biodata.academic_history[0].institution);
+      setStart_date(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.academic_history[0] && lecturerDetail.biodata.academic_history[0].start_date);
+      setEnd_date(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.academic_history[0] && lecturerDetail.biodata.academic_history[0].end_date);
+      setQualification_earned(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.academic_history[0] && lecturerDetail.biodata.academic_history[0].qualification_earned);
+      setNext_of_kin_full_name(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.family_data.next_of_kin_full_name) ;
+  setNext_of_kin_phone_no_1(lecturerDetail && lecturerDetail.biodata &&lecturerDetail.biodata.family_data.next_of_kin_phone_no_1);
+  setNext_of_kin_phone_no_2(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.family_data.next_of_kin_phone_no_2);
+  setNext_of_kin_address(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.family_data.next_of_kin_address);
+  setGuardian_full_name(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.family_data.guardian_full_name);
+  setGuardian_phone_no_1(lecturerDetail && lecturerDetail.biodata &&lecturerDetail.biodata.family_data.guardian_phone_no_1);
+  setGuardian_phone_no_2(lecturerDetail && lecturerDetail.biodata &&lecturerDetail.biodata.family_data.guardian_phone_no_2);
+  setGuardian_address(lecturerDetail && lecturerDetail.biodata &&lecturerDetail.biodata.family_data.guardian_address);
+  setBlood_group(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.blood_group );
+        setGenotype(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.genotype);
+        setAllergies(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.allergies);
+       setDiabetes(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.diabetes);
+       setSTIs(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.STIs);
+       setHeart_disease(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.heart_disease);
+       setDisabilities(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.disabilities);
+       setRespiratory_problems(lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.health_data && lecturerDetail.biodata.health_data.respiratory_problems);
     }
-}, [success,studentDetail]);
+}, [success,lecturerDetail]);
     
       
   return (

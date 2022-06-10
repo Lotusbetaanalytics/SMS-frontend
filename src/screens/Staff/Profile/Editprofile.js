@@ -1,27 +1,30 @@
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import LecturerHeader from "../../../components/lecturerHeader";
 import LectureSidebar from "../../../components/lecturerSidebar";
-import { studentDetails } from "../../../redux/Actions/studentActions/studentAction";
+
 import styles from "./styles.module.css";
 import adminpic from "../../../assets/profile.jpg";
 import Input from "../../../components/Input";
 import { EDITPROFILE_RESET } from "../../../redux/Constants/ProfileConstants/profileConstants";
-import { Button, toast } from "@chakra-ui/react";
-import { editProfile } from "../../../redux/Actions/ProfileActions/profile";
+import { Button, toast, useToast } from "@chakra-ui/react";
+
+import { lecturerDetailsAction } from "../../../redux/Actions/lecturer/lecturerDetail";
+import { editLecturerProfile, editProfile } from "../../../redux/Actions/ProfileActions/profile";
 const EditLecturerProfile = () => {
+  const toast = useToast()
   const navigate = useNavigate();
-  const dispatch = useNavigate();
+  const dispatch = useDispatch();
 
   const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
   useEffect(() => {
-    dispatch(studentDetails());
+    dispatch(lecturerDetailsAction());
   }, [dispatch]);
   
 
-  const details = useSelector((state) => state.details);
-  const { studentDetail, success } = details;
+  const lecturerDetails = useSelector((state) => state.lecturerDetails);
+  const {lecturerDetail,success}  = lecturerDetails;
 
   const [first_name, setFirst_name] = useState("");
   const [middle_name, setMiddle_name] = useState("");
@@ -110,7 +113,8 @@ const EditLecturerProfile = () => {
             
           }
         } 
-      dispatch(editProfile(userdata))   
+      dispatch(editLecturerProfile(userdata)) 
+      console.log("yeye")  
   };
   if (isSuccess) {
     setMsg(true)
@@ -128,167 +132,167 @@ const EditLecturerProfile = () => {
 
   React.useEffect(() => {
     if (success) {
-      setFirst_name(studentDetail && studentDetail.first_name);
-      setLast_name(studentDetail && studentDetail.last_name);
-      setMiddle_name(studentDetail && studentDetail.middle_name);
-      setEmail(studentDetail && studentDetail.email);
-      setSpecialization(studentDetail && studentDetail.specialization);
+      setFirst_name(lecturerDetail && lecturerDetail.first_name);
+      setLast_name(lecturerDetail && lecturerDetail.last_name);
+      setMiddle_name(lecturerDetail && lecturerDetail.middle_name);
+      setEmail(lecturerDetail && lecturerDetail.email);
+      setSpecialization(lecturerDetail && lecturerDetail.specialization);
       setMarital_status(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.bioda.marital_status
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.marital_status
       );
       setGender(
-        studentDetail && studentDetail.biodata && studentDetail.biodata.gender
+        lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.gender
       );
       setReligion(
-        studentDetail && studentDetail.tata && studentDetail.bioda.religion
+        lecturerDetail && lecturerDetail.tata && lecturerDetail.bioda.religion
       );
       setBirthday(
-        studentDetail && studentDetail.biodata && studentDetail.biodata.birthday
+        lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.birthday
       );
       setNationality(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.nationality
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.nationality
       );
       setState_of_origin(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.state_of_origin
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.state_of_origin
       );
       setLocal_govt(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.local_govt
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.local_govt
       );
       setAddress(
-        studentDetail && studentDetail.biodata && studentDetail.biodata.address
+        lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.address
       );
       setPhone_no_1(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.phone_no_1
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.phone_no_1
       );
       setPhone_no_2(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.phone_no_2
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.phone_no_2
       );
       setInstitution(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.academic_history[0] &&
-          studentDetail.biodata.academic_history[0].institution
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.academic_history[0] &&
+          lecturerDetail.biodata.academic_history[0].institution
       );
       setStart_date(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.academic_history[0] &&
-          studentDetail.biodata.academic_history[0].start_date
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.academic_history[0] &&
+          lecturerDetail.biodata.academic_history[0].start_date
       );
       setEnd_date(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.academic_history[0] &&
-          studentDetail.biodata.academic_history[0].end_date
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.academic_history[0] &&
+          lecturerDetail.biodata.academic_history[0].end_date
       );
       setQualification_earned(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.academic_history[0] &&
-          studentDetail.biodata.academic_history[0].qualification_earned
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.academic_history[0] &&
+          lecturerDetail.biodata.academic_history[0].qualification_earned
       );
       setNext_of_kin_full_name(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.next_of_kin_full_name
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.next_of_kin_full_name
       );
       setNext_of_kin_phone_no_1(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.next_of_kin_phone_no_1
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.next_of_kin_phone_no_1
       );
       setNext_of_kin_phone_no_2(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.next_of_kin_phone_no_2
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.next_of_kin_phone_no_2
       );
       setNext_of_kin_address(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.next_of_kin_address
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.next_of_kin_address
       );
       setGuardian_full_name(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.guardian_full_name
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.guardian_full_name
       );
       setGuardian_phone_no_1(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.guardian_phone_no_1
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.guardian_phone_no_1
       );
       setGuardian_phone_no_2(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.guardian_phone_no_2
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.guardian_phone_no_2
       );
       setGuardian_address(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.guardian_address
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.family_data.guardian_address
       );
       setBlood_group(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.blood_group
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.blood_group
       );
       setGenotype(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.genotype
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.genotype
       );
       setAllergies(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.allergies
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.allergies
       );
       setDiabetes(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.diabetes
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.diabetes
       );
       setSTIs(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.STIs
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.STIs
       );
       setHeart_disease(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.heart_disease
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.heart_disease
       );
       setDisabilities(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.diabetes
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.disabilities
       );
       setRespiratory_problems(
-        studentDetail &&
-          studentDetail.biodata &&
-          studentDetail.biodata.health_data &&
-          studentDetail.biodata.health_data.respiratory_problems
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.health_data &&
+          lecturerDetail.biodata.health_data.respiratory_problems
       );
     }
-  }, [success, studentDetail]);
+  }, [success, lecturerDetail]);
 
   return (
     <div className="page_container">
@@ -380,7 +384,7 @@ const EditLecturerProfile = () => {
                 <div className={styles.editinfo}>
                   <Input
                     label={"Birthday"}
-                    type="type"
+                    type="date"
                     value={birthday}
                     onChange={(e) => setBirthday(e.target.value)}
                   />
@@ -524,7 +528,7 @@ const EditLecturerProfile = () => {
                 <Input
                   label={"Guardian phone number 2"}
                   type="text"
-                  value={setGuardian_phone_no_2}
+                  value={guardian_phone_no_2}
                   onChange={(e) => setGuardian_phone_no_2(e.target.value)}
                 />
                 </div>
@@ -572,8 +576,8 @@ const EditLecturerProfile = () => {
                   value={diabetes}
                 >
                   <option>Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
                   
                 </select>
               </div>
@@ -636,7 +640,7 @@ const EditLecturerProfile = () => {
               isFullWidth
               style={{ height: "5rem" }}
             />):(
-                <button className={styles.brown} onClick={submitHandler}>upload</button>
+                <button className={styles.brown} onClick={submitHandler}>Update</button>
             )}
             </div>
           </div>

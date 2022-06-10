@@ -1,29 +1,49 @@
-import React, { useState } from 'react'
+import { CircularProgress } from '@chakra-ui/react';
+import React, { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Input from '../../../../components/Input';
 import LecturerHeader from '../../../../components/lecturerHeader';
 import LectureSidebar from '../../../../components/lecturerSidebar';
+import { lecturerCourseAction } from '../../../../redux/Actions/lecturer/lecturerCourses';
+import { lecturerDetailsAction } from '../../../../redux/Actions/lecturer/lecturerDetail';
 import data from '../../data';
 import styles from "./styles.module.css"
 
 const Assignment = () => {
+    const dispatch = useDispatch();
     const navigate = useNavigate();
     const [deadline,setDeadline] = useState("");
     const [title,setTitle] = useState("");
     const [question,setQuestion] = useState("");
     const [courseTitle,setCourseTitle] = useState("")
     const [course_code,setCourse_code] = useState("")
+    const [max_score,setMax_score] = useState("")
+    const [course,setCourse] = useState("")
 
-        const mydata = data;
-        console.log(mydata)
+    const mydata = data && data
+    const id = JSON.parse(localStorage.getItem("lecturerDetails"));
+    console.log(id)
+
+
+    useEffect(()=>{
+      dispatch(lecturerCourseAction(id))
+    },[dispatch])
+
+    const lecturerCourse = useSelector((state) => state.lecturerCourse);
+    const {lecturerCourses, loading}  = lecturerCourse;
+
+    const mycourses = lecturerCourses && lecturerCourses.specialization && lecturerCourses.specialization.courses
+    console.log(mycourses)
 
     const courseHandler=(e) =>{
          setCourse_code(e.target.value)
-        console.log(e.target.value)
+        setCourseTitle(e.target.value.name)
+        setCourse(e.target.value.id)
     }
 
     const submitHandler = () => {
-        console.log("yes")
+        
     }
     const questionBank = () => {
         navigate("/lecturer/assessment/assignment/history")
@@ -40,6 +60,9 @@ const Assignment = () => {
     <LectureSidebar assessment={"focus"} />
     <div className="right_container2">
       <LecturerHeader title={"Assignment"} />
+      {loading && (
+              <CircularProgress isIndeterminate color='green.300' />
+        )}
       <div className={styles.info_container}>
         <div className={styles.left}>
           <button className={styles.green} onClick={createAssignment}>Create Assignment</button>
@@ -55,23 +78,25 @@ const Assignment = () => {
                     value={course_code}>
                     <option value="" disabled>select</option>
                      onChange={(e) => setTitle(e.target.value)}
-                    {mydata && mydata.map((item) =>(
-                        <option value={item.id}>{item.code}
+                    {mycourses && mycourses.map((item) =>(
+                        <option value={item}>{item.code}
                             
                         </option>
                     ))}
                     
                   </select>
                 </div>
-                
                 <div className={styles.editinfo}>
                   <Input
-                    label={"Title"}
-                    type="type"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
+                    label={"Course Title"}
+                    type="text"
+                    value={courseTitle}
+                    onChange={(e) => setCourseTitle(e.target.value)}
                   />
                 </div>
+                
+               
+                
                 <div className={styles.editinfo}>
                     <label>Question</label>
                   <textarea
@@ -82,12 +107,21 @@ const Assignment = () => {
                 </div>
                 <div className={styles.editinfo}>
                   <Input
-                    label={"Course Title"}
-                    type="text"
-                    value={courseTitle}
-                    onChange={(e) => setCourseTitle(e.target.value)}
+                    label={"Title"}
+                    type="type"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
+
+                <div className={styles.editinfo}>
+                  <Input
+                    label={"Maximum scores"}
+                    type="number"
+                    value={max_score}
+                    onChange={(e) => setMax_score(e.target.value)}
+                  />
+               </div>
                 <div className={styles.editinfo}>
                   <Input
                     label={"Deadline"}

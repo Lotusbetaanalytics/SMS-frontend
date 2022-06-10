@@ -1,8 +1,19 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './styles.module.css'
 import { BiBell } from "react-icons/bi";
 import adminpic from "../../assets/profile.jpg";
+import { useDispatch, useSelector } from 'react-redux';
+import { lecturerDetailsAction } from '../../redux/Actions/lecturer/lecturerDetail';
 const LecturerHeader = ({ title }) => {
+  const dispatch = useDispatch()
+  useEffect(() => {
+    dispatch(lecturerDetailsAction());
+  }, []);
+
+  const lecturerDetails = useSelector((state) => state.lecturerDetails);
+const {lecturerDetail}  = lecturerDetails;
+  const username =  lecturerDetail && lecturerDetail.first_name
+
   return (
     <div className={styles.container}>
       <div className={styles.Title}>
@@ -10,7 +21,7 @@ const LecturerHeader = ({ title }) => {
       </div>
 
       <div className={styles.avatar}>
-        <h3>name</h3>
+        <h3>{username}</h3>
 
         <div className={styles.headerbar}>
         <div className={styles.userName}>

@@ -7,6 +7,7 @@ import { editProfileReducer } from "./Reducer/Profile Reducer/profile";
 import { questionsReducer, ResponseReducer } from "./Reducer/Test Reducer/testQuestion";
 import { addCourseReducer, deleteCourseReducer } from "./Reducer/CourseReducer/courseReducer";
 import { lecturerDetailsReducer } from "./Reducer/lecturer/lecturerDetail";
+import { lecturerCoursesReducer } from "./Reducer/lecturer/lecturerCourse";
 
 
 
@@ -24,15 +25,20 @@ const reducer = combineReducers({
   lecturerForgetPassword: lecturerforgetPasswordReducer,
   lecturerConfirmpassword : lecturerconfirmPasswordReducer,
   lecturerDetails : lecturerDetailsReducer,
+  lecturerCourse:lecturerCoursesReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("studentInfo")
   ? JSON.parse(localStorage.getItem("studentInfo"))
   : null;
 
+  const lecturerInfoFromStorage = localStorage.getItem("lecturerInfo")
+  ? JSON.parse(localStorage.getItem("lecturerInfo"))
+  : null;
+
 const initialState = {
   studentLogin: { userInfo: userInfoFromStorage },
-  lecturerLogin: { userInfo: userInfoFromStorage }
+  lecturerLogin: { userInfo: lecturerInfoFromStorage }
 };
 
 const middleware = [thunk];
