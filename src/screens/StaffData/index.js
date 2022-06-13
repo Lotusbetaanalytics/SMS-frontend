@@ -2,17 +2,19 @@ import React, { useEffect, useState } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
-import { MdGroups } from "react-icons/md";
+import { FaPeopleArrows } from "react-icons/fa";
 import { BiArrowBack } from "react-icons/bi";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { getSpecialization } from "../../redux/action/userProfileDataAction";
 import { newStaff, totalStaff } from "../../redux/action/staffAction";
 import { NEWSTAFF_RESET } from "../../redux/constants/staffConstant";
+import { useNavigate } from "react-router-dom";
 
 function StaffData() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
   // const [loading, setLoading] = useState(false);
 
   const [first_Name, setFirst_Name] = useState("");
@@ -64,6 +66,14 @@ function StaffData() {
   const getSpecilize = useSelector((state) => state.getSpecilize);
   const { specializationid } = getSpecilize;
 
+  const pageHandler = () => {
+    navigate("/admin/specialization");
+  };
+
+  const cancelHandler = () => {
+    navigate("/admin/staff/homepage");
+  };
+
   if (success) {
     setFirst_Name("");
     setMiddle_Name("");
@@ -99,7 +109,7 @@ function StaffData() {
             <div className={styles.staffCount}>
               <div className={styles.staffDetails}>
                 <div className={styles.staffIcon}>
-                  <MdGroups />
+                  <FaPeopleArrows />
                   <h2>Staffs</h2>
                 </div>
                 <h1>|</h1>
@@ -111,35 +121,7 @@ function StaffData() {
               </div>
             </div>
             <div className={styles.profileContent}>
-              <div className={styles.submitButton}>
-                <button
-                  type="button"
-                  className={styles.cancelButton}
-                  // onClick={cancelHandler}
-                >
-                  <BiArrowBack />
-                  Cancel
-                </button>
-
-                {loading ? (
-                  <Button
-                    isLoading
-                    loadingText="Validating Credentials..."
-                    colorScheme="teal"
-                    variant="outline"
-                    isfullWidth
-                    style={{ height: "5rem" }}
-                  />
-                ) : (
-                  <button
-                    type="submit"
-                    className={styles.subButton}
-                    onClick={submitHandler}
-                  >
-                    Submit
-                  </button>
-                )}
-              </div>
+              <button onClick={pageHandler}>Create Specialization</button>
             </div>
           </div>
           <div className={styles.inputContainer}>
@@ -227,6 +209,36 @@ function StaffData() {
                   </div>
                 </div>
               </div>
+            )}
+          </div>
+
+          <div className={styles.submitButton}>
+            <button
+              type="button"
+              className={styles.cancelButton}
+              onClick={cancelHandler}
+            >
+              <BiArrowBack />
+              Cancel
+            </button>
+
+            {loading ? (
+              <Button
+                isLoading
+                loadingText="Validating Credentials..."
+                colorScheme="teal"
+                variant="outline"
+                isfullWidth
+                style={{ height: "5rem" }}
+              />
+            ) : (
+              <button
+                type="submit"
+                className={styles.subButton}
+                onClick={submitHandler}
+              >
+                Submit
+              </button>
             )}
           </div>
         </div>

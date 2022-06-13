@@ -4,17 +4,17 @@ import Sidebar from "../../components/Sidebar";
 import personlog from "../../assets/personlog.png";
 import styles from "./styles.module.css";
 import { BsFillCameraFill } from "react-icons/bs";
-// import { BiArrowBack } from "react-icons/bi";
+import { BiArrowBack } from "react-icons/bi";
 import datas from "../../datas";
 // import { Link } from "react-router-dom";
 // import { postUsersData } from "../../redux/action/userProfileDataAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
-import { USERS_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
 import { useNavigate } from "react-router-dom";
 import stateData from "../../stateData";
 import { userDetails } from "../../redux/action/userAction";
 import { editUserProfile } from "../../redux/action/editUserProfileAction";
+import { EDIT_USERPROFILE_RESET } from "../../redux/constants/editUserProfileConstant";
 
 function Profile() {
   const [first_name, setFirst_name] = useState("");
@@ -32,7 +32,6 @@ function Profile() {
   const [address, setAddress] = useState("");
   const [phone_no_1, setPhone_no_1] = useState("");
   const [phone_no_2, setPhone_no_2] = useState("");
-  // const [cancel, setCancel] = useState(false);
   const [type, setType] = useState("text");
 
   const countryData = datas;
@@ -65,16 +64,22 @@ function Profile() {
     console.log(editprofiledata);
   };
 
+  const backHandler = () => {
+    navigate("/admin/viewprofiledata");
+  };
+
   const editProfileUser = useSelector((state) => state.editProfileUser);
   const { loading, success, error } = editProfileUser;
 
   const userDetail = useSelector((state) => state.userDetail);
   const { username, success: isSuccess } = userDetail;
-  console.log(username);
 
   useEffect(() => {
     dispatch(userDetails());
-    if (isSuccess) {
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (isSuccess && username && username.biodata) {
       setFirst_name(username && username.first_name);
       setLast_name(username && username.last_name);
       setMiddle_name(username && username.middle_name);
@@ -91,7 +96,7 @@ function Profile() {
       setPhone_no_1(username && username.biodata.phone_no_1);
       setPhone_no_2(username && username.biodata.phone_no_2);
     }
-  }, [dispatch]);
+  }, [isSuccess, username]);
 
   console.log(marital_status);
 
@@ -113,7 +118,7 @@ function Profile() {
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: USERS_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   if (error) {
@@ -124,11 +129,11 @@ function Profile() {
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: USERS_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   const nextHandler = () => {
-    navigate("/admin/dashboard");
+    navigate("/admin/healthdata");
   };
 
   return (
@@ -148,12 +153,15 @@ function Profile() {
             </div>
             <div className={styles.profileContent}>
               <div className={styles.submitButton}>
+                <button className={styles.backButton} onClick={backHandler}>
+                  <BiArrowBack />
+                  Back
+                </button>
                 <button
                   type="submit"
-                  className={styles.cancelButton}
+                  className={styles.updateButton}
                   onClick={submitHandler}
                 >
-                  {/* <BiArrowBack /> */}
                   Update Profile
                 </button>
               </div>
@@ -302,7 +310,7 @@ function Profile() {
                 <div className={styles.inputBox}>
                   <label>Permanent Address</label>
                   <input
-                    type="text"
+                    type="address"
                     value={permanent_address}
                     onChange={(e) => setPermanent_address(e.target.value)}
                     required={true}
@@ -311,7 +319,7 @@ function Profile() {
                 <div className={styles.inputBox}>
                   <label>Address</label>
                   <input
-                    type="text"
+                    type="address"
                     value={address}
                     onChange={(e) => setAddress(e.target.value)}
                     required={true}
@@ -342,7 +350,7 @@ function Profile() {
               </div>
             )}
           </div>
-          <div className={styles.nextButton}>
+          <div className={styles.nextButton} onClick={nextHandler}>
             <button>Next</button>
           </div>
         </div>

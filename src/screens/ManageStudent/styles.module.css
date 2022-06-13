@@ -10,21 +10,21 @@
 .profileBox {
   background-color: white;
   height: 550px;
-  margin: 3.5%;
+  margin: 2%;
   border-radius: 15px;
   width: 70%;
 }
 
 .profileBox2 {
   height: 550px;
-  margin: 2%;
+  margin: 1%;
   border-radius: 15px;
   width: 30%;
   margin-top: 50px;
 }
 
 .statsBox {
-  width: 40%;
+  width: 50%;
 }
 
 .statsRating {
@@ -55,9 +55,9 @@
   margin-bottom: -4%;
 }
 
-.profileGridCard {
+/* .profileGridCard {
   padding: 1rem;
-}
+} */
 
 .profileEachCard {
   display: flex;
@@ -75,11 +75,11 @@
 }
 
 .profileContentCard h2 {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .profileContentCard h2 {
-  font-size: 12px;
+  font-size: 10px;
 }
 
 .profileContentCard {
@@ -244,7 +244,7 @@
   height: 550px;
   margin: 3.5%;
   border-radius: 15px;
-  width: 70%;
+  width: 75%;
   overflow-y: scroll;
 }
 
@@ -252,7 +252,7 @@
   height: 550px;
   margin: 2%;
   border-radius: 15px;
-  width: 30%;
+  width: 25%;
   margin-top: 50px;
 }
 
@@ -467,6 +467,16 @@
   font-weight: 900;
 }
 
-.chakar_btn {
+.chakar_btn1 svg {
   font-size: 25px;
+  color: #2d9cdb;
+}
+
+.chakar_btn2 svg {
+  font-size: 25px;
+  color: #ef3838;
+}
+
+.chakar_btn2 {
+  margin-left: 20px;
 }

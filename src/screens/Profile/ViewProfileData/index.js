@@ -40,21 +40,8 @@ function ViewProfileData() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  const submitHandler = (e) => {
-    e.preventDefault();
-    const biodata = {
-      marital_status: marital_status,
-      religion: religion,
-      birthday: birthday,
-      nationality: nationality,
-      state_of_origin: state_of_origin,
-      local_govt: local_govt,
-      address: address,
-      phone_no_1: phone_no_1,
-      phone_no_2: phone_no_2,
-    };
-    dispatch(postUsersData(biodata));
-    console.log(biodata);
+  const nextHandler = () => {
+    navigate("/admin/healthdata");
   };
   const postBioDataInfo = useSelector((state) => state.postBioDataInfo);
   const { loading, success, error } = postBioDataInfo;
@@ -385,7 +372,7 @@ function ViewProfileData() {
                       style={{ height: "5rem" }}
                     />
                   ) : (
-                    <button onClick={submitHandler} type="submit">
+                    <button onClick={nextHandler} type="submit">
                       <p>Next</p>
                     </button>
                   )}

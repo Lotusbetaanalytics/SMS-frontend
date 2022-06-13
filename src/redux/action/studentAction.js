@@ -103,7 +103,6 @@ export const deleteStudentId = (id) => async (dispatch, getState) => {
       type: DELETE_STUDENTBYID_SUCCESS,
       payload: data,
     });
-    console.log(data);
     // localStorage.setItem("userInfo", JSON.stringify(data));
   } catch (error) {
     // console.log(error.response.data.message, error.message);

@@ -3,22 +3,42 @@ import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
 import { FaUserGraduate } from "react-icons/fa";
-import { totalStudent } from "../../redux/action/studentAction";
+import {
+  deleteStudentId,
+  // deleteStudentId,
+  totalStudent,
+} from "../../redux/action/studentAction";
 import { useDispatch, useSelector } from "react-redux";
-import { Button, Table, Tbody, Td, Th, Tr } from "@chakra-ui/react";
+import {
+  Button,
+  Center,
+  CircularProgress,
+  Table,
+  Tbody,
+  Td,
+  Th,
+  Tr,
+  useToast,
+} from "@chakra-ui/react";
 import { BiArrowBack } from "react-icons/bi";
-import { BsPersonFill } from "react-icons/bs";
-import { FaPlay } from "react-icons/fa";
-import { BsPersonXFill } from "react-icons/bs";
-import { BsPersonCheckFill } from "react-icons/bs";
+// import { BsPersonFill } from "react-icons/bs";
+// import { FaPlay } from "react-icons/fa";
+// import { BsPersonXFill } from "react-icons/bs";
+// import { BsPersonCheckFill } from "react-icons/bs";
 import { GrView } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
-import { BsFillPersonDashFill } from "react-icons/bs";
+// import { BsFillPersonDashFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
+// import { editStudentId } from "../../redux/action/editStudentIdAction";
+import { DELETE_STUDENTBYID_RESET } from "../../redux/constants/studentConstant";
+// import { EDIT_STUDENTBYID_RESET } from "../../redux/constants/editStudentIdConstant";
 
 function ManageStudent() {
+  // const [isActive, setIsActive] = useState(false);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const toast = useToast();
 
   useEffect(() => {
     dispatch(totalStudent());
@@ -26,15 +46,50 @@ function ManageStudent() {
 
   const totalStudentNo = useSelector((state) => state.totalStudentNo);
   const { allStudent } = totalStudentNo;
+  console.log(allStudent);
 
-  const postNewStudent = useSelector((state) => state.postNewStudent);
-  const { loading } = postNewStudent;
+  const deleteStudentById = useSelector((state) => state.deleteStudentById);
+  const { loading, success, error } = deleteStudentById;
 
-  const backHandler = () => {
-    navigate("/admin/dashboard");
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure you want to delete this ?")) {
+      dispatch(deleteStudentId(id));
+      console.log(id);
+    }
   };
 
-  const handlerDelete = () => {};
+  // const deactivateHandler = (id, is_active) => {
+  //   editStudentId(id, is_active);
+  //   setIsActive(!isActive);
+  // };
+  // console.log(isActive);
+
+  if (success) {
+    toast({
+      title: "Notification",
+      description: "Student Deleted Successfully",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    });
+    window.location.reload();
+    dispatch({ type: DELETE_STUDENTBYID_RESET });
+  }
+
+  if (error) {
+    toast({
+      title: "Notification",
+      description: "Error Deleting Student",
+      status: "error",
+      duration: 4000,
+      isClosable: true,
+    });
+    dispatch({ type: DELETE_STUDENTBYID_RESET });
+  }
+
+  const backHandler = () => {
+    navigate("/admin/student/homepage");
+  };
 
   return (
     <div className={styles.profileContainer}>
@@ -54,24 +109,14 @@ function ManageStudent() {
           </div>
           <div className={styles.profileContent}>
             <div className={styles.submitButton}>
-              {loading ? (
-                <Button
-                  isLoading
-                  loadingText="Loading..."
-                  colorScheme="green"
-                  variant="outline"
-                  style={{ height: "2rem" }}
-                />
-              ) : (
-                <button
-                  type="button"
-                  className={styles.cancelButton}
-                  onClick={backHandler}
-                >
-                  <BiArrowBack />
-                  Back
-                </button>
-              )}
+              <button
+                type="button"
+                className={styles.cancelButton}
+                onClick={backHandler}
+              >
+                <BiArrowBack />
+                Back
+              </button>
             </div>
           </div>
         </div>
@@ -81,50 +126,62 @@ function ManageStudent() {
               <span>Student Details</span>
             </div>
             <div className={styles.viewTable}>
-              <Table varient="striped" colorScheme="gray" size="md">
-                <Tr>
-                  <Th>First Name</Th>
-                  <Th>Last Name</Th>
-                  <Th>Matric No</Th>
-                  <Th>Email</Th>
-                  <Th>Action</Th>
-                </Tr>
-                {allStudent &&
-                  allStudent.map((item, i) => (
-                    <Tbody key={i}>
-                      <Tr key={item.id}>
-                        <Td>{item.user.first_name}</Td>
-                        <Td>{item.user.last_name}</Td>
-                        <Td>{item.matric_no}</Td>
-                        <Td>{item.user.email}</Td>
-                        <Td>
-                          <Button
-                            className="chakar_btn"
-                            // colorScheme="yellow"
-                            borderRadius="10"
-                            type="submit"
-                          >
-                            <Link to={`/viewstudentsinfo/${item.id}`}>
-                              <GrView />
-                            </Link>
-                          </Button>
-                          <Button
-                            className="chakar_btn"
-                            // colorScheme="red"
-                            borderRadius="10"
-                            key={item._id}
-                            onClick={() => handlerDelete(item.id)}
-                          >
-                            <MdDeleteForever />
-                          </Button>
-                        </Td>
-                      </Tr>
-                    </Tbody>
-                  ))}
-              </Table>
+              {loading ? (
+                <Center>
+                  <CircularProgress isIndeterminate color="purple.500" />
+                </Center>
+              ) : (
+                <Table varient="striped" colorScheme="gray" size="md">
+                  <Tr>
+                    <Th>First Name</Th>
+                    <Th>Last Name</Th>
+                    <Th>Matric No</Th>
+                    <Th>Email</Th>
+                    <Th>Spec.</Th>
+                    <Th>Stud.ID</Th>
+
+                    <Th>Action</Th>
+                  </Tr>
+                  {allStudent &&
+                    allStudent.map((item, i) => (
+                      <Tbody key={i}>
+                        <Tr key={item.id}>
+                          <Td>{item.user.first_name}</Td>
+                          <Td>{item.user.last_name}</Td>
+                          <Td>{item.matric_no}</Td>
+                          <Td>{item.user.email}</Td>
+                          <Td>{item.user.specialization}</Td>
+                          <Td>{item.student_id}</Td>
+                          <Td>
+                            <Button
+                              className={styles.chakar_btn1}
+                              // colorScheme="yellow"
+                              borderRadius="10"
+                              type="submit"
+                            >
+                              <Link to={`/admin/manageviewstudent/${item.id}`}>
+                                <GrView />
+                              </Link>
+                            </Button>
+                            <Button
+                              className={styles.chakar_btn2}
+                              borderRadius="10"
+                              key={item._id}
+                              onClick={() => deleteHandler(item.id)}
+                              // value={isActive}
+                              // disabled={isActive ? "true" : "false"}
+                            >
+                              <MdDeleteForever />
+                            </Button>
+                          </Td>
+                        </Tr>
+                      </Tbody>
+                    ))}
+                </Table>
+              )}
             </div>
           </div>
-          <div className={styles.profileBox2}>
+          {/* <div className={styles.profileBox2}>
             <div className={styles.pageTitle2}>
               <span>Statistics</span>
             </div>
@@ -178,7 +235,7 @@ function ManageStudent() {
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>

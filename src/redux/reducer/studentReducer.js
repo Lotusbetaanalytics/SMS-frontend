@@ -9,6 +9,7 @@ import {
   DELETE_STUDENTBYID_REQUEST,
   DELETE_STUDENTBYID_SUCCESS,
   DELETE_STUDENTBYID_FAIL,
+  DELETE_STUDENTBYID_RESET,
 } from "../constants/studentConstant";
 
 export const createNewStudentReducer = (state = {}, action) => {
@@ -67,6 +68,8 @@ export const deleteStudentByIdReducer = (
         loading: false,
         error: action.payload,
       };
+    case DELETE_STUDENTBYID_RESET:
+      return {};
     default:
       return state;
   }

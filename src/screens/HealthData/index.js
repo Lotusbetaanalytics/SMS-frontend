@@ -44,10 +44,12 @@ function HealthData() {
   const { loading, success, error } = postHealth;
 
   if (success) {
-    setInterval(() => {
-      navigate("/admin/academicdata");
-    }, 3000);
+    navigate("/admin/academicdata");
   }
+
+  const backHandler = () => {
+    navigate("/admin/profile");
+  };
 
   if (success) {
     toast({
@@ -95,10 +97,10 @@ function HealthData() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
-                  Cancel
+                  Back
                 </button>
                 <button
                   type="submit"

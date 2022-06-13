@@ -6,6 +6,10 @@ import {
   GET_SPECIALIZATION_REQUEST,
   GET_SPECIALIZATION_SUCCESS,
   GET_SPECIALIZATION_FAIL,
+  CREATE_SPECIALIZATION_REQUEST,
+  CREATE_SPECIALIZATION_SUCCESS,
+  CREATE_SPECIALIZATION_FAIL,
+  CREATE_SPECIALIZATION_RESET,
   ACADEMIC_DATA_REQUEST,
   ACADEMIC_DATA_SUCCESS,
   ACADEMIC_DATA_FAIL,
@@ -64,6 +68,21 @@ export const postAcademicDataReducer = (state = {}, action) => {
     case ACADEMIC_DATA_FAIL:
       return { loading: false, error: action.payload };
     case ACADEMIC_DATA_RESET:
+      return {};
+    default:
+      return state;
+  }
+};
+
+export const postSpecilizationReducer = (state = {}, action) => {
+  switch (action.type) {
+    case CREATE_SPECIALIZATION_REQUEST:
+      return { loading: true };
+    case CREATE_SPECIALIZATION_SUCCESS:
+      return { loading: false, success: true, specialization: action.payload };
+    case CREATE_SPECIALIZATION_FAIL:
+      return { loading: false, error: action.payload };
+    case CREATE_SPECIALIZATION_RESET:
       return {};
     default:
       return state;

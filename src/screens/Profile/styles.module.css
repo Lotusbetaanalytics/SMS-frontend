@@ -23,7 +23,7 @@
 
 .profileHeader img {
   width: 15%;
-  height: 160px;
+  height: 130px;
   border-radius: 50%;
 }
 
@@ -46,7 +46,7 @@
 }
 
 .cameraButton svg {
-  margin-top: 110px;
+  margin-top: 90px;
   margin-left: -43px;
 }
 
@@ -63,7 +63,7 @@
   margin-right: 35px;
 }
 
-.cancelButton {
+.updateButton {
   width: 200px;
   display: flex;
   justify-content: center;
@@ -74,6 +74,21 @@
   color: #f8f8fd;
   box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.1);
   font-weight: bold;
+  margin-left: 20px;
+}
+
+.backButton {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgb(238, 97, 97);
+  padding: 1rem 2.5rem;
+  border-radius: 30px;
+  color: #f8f8fd;
+  box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.1);
+  font-weight: bold;
+  margin-left: 20px;
 }
 
 .cancelButton svg {

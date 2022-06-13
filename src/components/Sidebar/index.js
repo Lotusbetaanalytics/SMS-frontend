@@ -54,7 +54,7 @@ function Sidebar() {
               <p>Student</p>
             </li>
           </Link>
-          <Link to="/admin/staffs">
+          <Link to="/admin/staff/homepage">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <MdGroups />
@@ -62,7 +62,7 @@ function Sidebar() {
               <p>Staffs</p>
             </li>
           </Link>
-          <Link to="/admin/faculty">
+          <Link to="/admin/faculty/homepage">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <FaCity />

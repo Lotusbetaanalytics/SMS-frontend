@@ -9,12 +9,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { createNewFaculty, getfaculty } from "../../redux/action/facultyAction";
 import { totalStaff } from "../../redux/action/staffAction";
 import { CREATE_FACULTY_RESET } from "../../redux/constants/facultyConstant";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Faculty() {
   const dispatch = useDispatch();
   const toast = useToast();
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const [faculty_Name, setFaculty_Name] = useState("");
   const [faculty_Code, setFaculty_Code] = useState("");
@@ -55,6 +55,10 @@ function Faculty() {
   }, [dispatch]);
   const totalStaffNo = useSelector((state) => state.totalStaffNo);
   const { allStaff } = totalStaffNo;
+
+  const backHandler = () => {
+    navigate("/admin/faculty/homepage");
+  };
 
   if (success) {
     setFaculty_Name("");
@@ -109,7 +113,7 @@ function Faculty() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
                   Cancel

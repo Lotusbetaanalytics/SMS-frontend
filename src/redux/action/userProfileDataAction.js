@@ -6,6 +6,9 @@ import {
   GET_SPECIALIZATION_REQUEST,
   GET_SPECIALIZATION_SUCCESS,
   GET_SPECIALIZATION_FAIL,
+  CREATE_SPECIALIZATION_REQUEST,
+  CREATE_SPECIALIZATION_SUCCESS,
+  CREATE_SPECIALIZATION_FAIL,
   ACADEMIC_DATA_REQUEST,
   ACADEMIC_DATA_SUCCESS,
   ACADEMIC_DATA_FAIL,
@@ -54,6 +57,46 @@ export const postUsersData = (biodata) => async (dispatch, getState) => {
     });
   }
 };
+
+export const postSpecialization =
+  (specializeData) => async (dispatch, getState) => {
+    console.log(specializeData);
+    try {
+      dispatch({
+        type: CREATE_SPECIALIZATION_REQUEST,
+      });
+
+      const {
+        userLogin: { userInfo },
+      } = getState();
+      console.log(userInfo.access);
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.access}`,
+        },
+      };
+      const { data } = await axios.post(
+        "/academics/specialization/",
+        specializeData,
+        config
+      );
+      dispatch({
+        type: CREATE_SPECIALIZATION_SUCCESS,
+        payload: data,
+      });
+      console.log(data);
+    } catch (error) {
+      //   console.log(error.response.data.message, error.message);
+      dispatch({
+        type: CREATE_SPECIALIZATION_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
 
 export const getSpecialization = () => async (dispatch, getState) => {
   try {

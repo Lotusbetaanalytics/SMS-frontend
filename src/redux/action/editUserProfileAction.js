@@ -26,7 +26,7 @@ export const editUserProfile = () => async (dispatch, getState) => {
       type: EDIT_USERPROFILE_SUCCESS,
       payload: data,
     });
-    // localStorage.setItem("getfacultyInfo", JSON.stringify(data));
+    localStorage.setItem("userInfo", JSON.stringify(data));
     console.log(data);
   } catch (error) {
     dispatch({

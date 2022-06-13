@@ -45,6 +45,8 @@
 
 .iconsBody p {
   margin-top: 5px;
+  font-size: 15px;
+  font-weight: bold;
 }
 
 .iconsBody:hover {

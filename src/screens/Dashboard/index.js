@@ -16,8 +16,9 @@ import { totalStudent } from "../../redux/action/studentAction";
 import { totalStaff } from "../../redux/action/staffAction";
 import { getDepartment } from "../../redux/action/departmentAction";
 import { getCourse } from "../../redux/action/courseAction";
+// import MyCalendar from "../../components/Calendar";
 
-const Dashboard = () => {
+const Dashboard = (props) => {
   const [calDate, setCalDate] = useState(new Date());
 
   const dispatch = useDispatch();
@@ -47,7 +48,6 @@ const Dashboard = () => {
   }, [dispatch]);
   const totalStaffNo = useSelector((state) => state.totalStaffNo);
   const { allStaff } = totalStaffNo;
-  console.log(allStaff);
 
   const listFaculty = useSelector((state) => state.listFaculty);
   const { faculty } = listFaculty;
@@ -72,7 +72,6 @@ const Dashboard = () => {
 
   const noticeGet = useSelector((state) => state.noticeGet);
   const { allNotice } = noticeGet;
-  console.log(allNotice);
 
   return (
     <div className={styles.dashboardConatiner}>
@@ -137,12 +136,8 @@ const Dashboard = () => {
               <span>Calendar</span>
             </div>
             <div className={styles.reactCalendar}>
-              <Calendar
-                onChange={onChange}
-                value={calDate}
-                className={styles.react__calendar}
-                // styles={{ height: "100" }}
-              />
+              <Calendar onChange={onChange} value={calDate} />
+              {/* <MyCalendar styles={{ height: "500", width: "100" }} /> */}
             </div>
           </div>
           <div className={styles.dashboardNotice}>
