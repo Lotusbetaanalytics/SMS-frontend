@@ -8,6 +8,9 @@ import { questionsReducer, ResponseReducer } from "./Reducer/Test Reducer/testQu
 import { addCourseReducer, deleteCourseReducer } from "./Reducer/CourseReducer/courseReducer";
 import { lecturerDetailsReducer } from "./Reducer/lecturer/lecturerDetail";
 import { lecturerCoursesReducer } from "./Reducer/lecturer/lecturerCourse";
+import { lecturerPostAssignmentReducer } from "./Reducer/lecturer/lecturerAssesmentReducer";
+import { lecturerDeleteNoticeReducer, lecturerEditNoticeReducer, lecturerGetNoticeByIdReducer, lecturerGetNoticeReducer, lecturerGetScopeReducer, lecturerPostNoticeReducer } from "./Reducer/lecturer/lecturerNotice";
+import { lecturerGetStudentReducer } from "./Reducer/lecturer/lecturerGetStudent";
 
 
 
@@ -25,7 +28,15 @@ const reducer = combineReducers({
   lecturerForgetPassword: lecturerforgetPasswordReducer,
   lecturerConfirmpassword : lecturerconfirmPasswordReducer,
   lecturerDetails : lecturerDetailsReducer,
-  lecturerCourse:lecturerCoursesReducer
+  lecturerCourse:lecturerCoursesReducer,
+  lecturerPostAssignment: lecturerPostAssignmentReducer,
+  lecturerPostNotice:lecturerPostNoticeReducer,
+  lecturerGetScope:lecturerGetScopeReducer,
+  lecturerGetNotice:lecturerGetNoticeReducer,
+  lecturerEditNotice:lecturerEditNoticeReducer,
+  lecturerDeleteNotice:lecturerDeleteNoticeReducer,
+  lecturerGetNoticeById:lecturerGetNoticeByIdReducer,
+  lecturerGetStudent: lecturerGetStudentReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("studentInfo")

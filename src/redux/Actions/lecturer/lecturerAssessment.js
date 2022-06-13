@@ -37,37 +37,37 @@ export const lecturerPostAssignmentAction =
   };
 
 
-  export const postResponse =
-  (quiz_taker,question, answer) => async (dispatch,getState) => {
-    try {
-      dispatch({ type: RESPONSE_REQUEST });
-      const {
-        studentLogin: { userInfo },
-      } = getState();
+//   export const postResponse =
+//   (quiz_taker,question, answer) => async (dispatch,getState) => {
+//     try {
+//       dispatch({ type: RESPONSE_REQUEST });
+//       const {
+//         studentLogin: { userInfo },
+//       } = getState();
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          "Access-Control-Allow-Origin": "*",
-          Authorization: `Bearer ${userInfo.access}`,
-        },
-      };
-      const { data } = await axios.post(
-        "/assessment/response/",
-        { quiz_taker,question, answer },
-        config
-      );
-      dispatch({
-        type: RESPONSE_SUCCESS,
-        payload: data,
-      });
-    } catch (error) {
-      dispatch({
-        type: RESPONSE_FAIL,
-        payload:
-          error.response && error.response.data.message
-            ? error.response.data.message
-            : error.message,
-      });
-    }
-  };
+//       const config = {
+//         headers: {
+//           "Content-Type": "application/json",
+//           "Access-Control-Allow-Origin": "*",
+//           Authorization: `Bearer ${userInfo.access}`,
+//         },
+//       };
+//       const { data } = await axios.post(
+//         "/assessment/response/",
+//         { quiz_taker,question, answer },
+//         config
+//       );
+//       dispatch({
+//         type: RESPONSE_SUCCESS,
+//         payload: data,
+//       });
+//     } catch (error) {
+//       dispatch({
+//         type: RESPONSE_FAIL,
+//         payload:
+//           error.response && error.response.data.message
+//             ? error.response.data.message
+//             : error.message,
+//       });
+//     }
+//   };

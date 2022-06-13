@@ -7,7 +7,7 @@ import { GiBookshelf } from "react-icons/gi";
 import { FaRegUser, FaClipboardList } from "react-icons/fa";
 import { MdOutlineLogout } from "react-icons/md";
 import { BsCardList } from "react-icons/bs";
-import { AiOutlineCamera} from "react-icons/ai";
+import { AiOutlineCamera,AiFillNotification} from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
 import { studentLogout } from "../../redux/Actions/auth";
@@ -65,7 +65,7 @@ const LectureSidebar = (props) => {
               assessment
             </li>
           </Link>
-          <Link to="/lecturer/student">
+          <Link to="/lecturer/student/assignment">
             <li className={props.student}>
               <div className={styles.svg}>
                 <div>
@@ -79,7 +79,7 @@ const LectureSidebar = (props) => {
             <li className={props.notification}>
               <div className={styles.svg}>
                 <div className={styles.svg}>
-                  <FaRegUser />
+                  <AiFillNotification />
                 </div>
               </div>
               notification

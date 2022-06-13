@@ -3,8 +3,11 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LectureSidebar from "./components/lecturerSidebar";
 import StudentSidebar from "./components/Sidebar";
-import {  AcademyData, Assignment, AssignmentQuestionBank, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerForgetPassword, LecturerLogin, LecturerProfile, LecturerResetPassword, LecturerTest, ProfilePicture, RegisteredCourses, Result, StartPage, TestList, TestqustionBank, TestScreen } from "./screens";
+import {  AcademyData, Assignment, AssignmentQuestionBank, AssignmentStudent, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerEditNotice, LecturerForgetPassword, LecturerLogin, LecturerNotice, LecturerProfile, LecturerResetPassword, LecturerTest, NoticeBank, ProfilePicture, RegisteredCourses, Result, StartPage, TestList, TestqustionBank, TestScreen, TestStudent } from "./screens";
 import LecturerDashboard from "./screens/Staff/Dashboard";
+import AllStudent from "./screens/Staff/Student/allStudent";
+
+
 
 function App() {
   return (
@@ -44,6 +47,12 @@ function App() {
         <Route path="/lecturer/login" exact element={<LecturerLogin/>} />
         <Route path="/lecturer/forgetpassword" exact element={<LecturerForgetPassword/>} />
         <Route path="/lecturer/resetpassword" exact element={<LecturerResetPassword/>} />
+        <Route path="/lecturer/notification" exact element={<LecturerNotice/>} />
+        <Route path="/lecturer/notification/history" exact element={<NoticeBank/>} />
+        <Route path="/lecturer/notification/:id" exact element={<LecturerEditNotice/>} />
+        <Route path="/lecturer/student/assignment" exact element={<AssignmentStudent/>} />
+        <Route path="/lecturer/student/student" exact element={<AllStudent/>} />
+        <Route path="/lecturer/student/test" exact element={<TestStudent/>} />
       </Routes>
     </Router>
   );

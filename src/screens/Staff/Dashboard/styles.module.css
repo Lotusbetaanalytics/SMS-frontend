@@ -27,7 +27,7 @@ margin-bottom: 20px;
     justify-content: space-between;
     width: 40%;
 }
-.infoBtn select{
+.infoBtn button{
     height: 2.5rem;
     padding: .4rem 1rem;
     color: rgba(0, 0, 0, 0.4);;
@@ -36,6 +36,7 @@ margin-bottom: 20px;
     border-radius: 15px;
     outline: none;
     border-radius: 5px;
+    background-color: #fff;
   }
   .card_container{
       display: grid;

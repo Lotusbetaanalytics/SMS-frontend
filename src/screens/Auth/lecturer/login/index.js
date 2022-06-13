@@ -6,6 +6,7 @@ import girl from "../../../../assets/Ellipse 44bc.png"
 import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { lecturerLoginAction } from '../../../../redux/Actions/auth'
+import { LECTURER_LOGIN_RESET } from '../../../../redux/Constants/auth'
 const LecturerLogin = () => {
     const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -37,6 +38,7 @@ const LecturerLogin = () => {
           duration: 9000,
           isClosable: true,
         })
+        dispatch({type:LECTURER_LOGIN_RESET})
       }
 
     useEffect(()=>{

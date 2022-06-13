@@ -1,28 +1,35 @@
-import { CircularProgress } from '@chakra-ui/react';
+import { CircularProgress, toast, useToast } from '@chakra-ui/react';
+
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Navigate, useNavigate } from 'react-router-dom';
 import Input from '../../../../components/Input';
 import LecturerHeader from '../../../../components/lecturerHeader';
 import LectureSidebar from '../../../../components/lecturerSidebar';
+import { lecturerPostAssignmentAction } from '../../../../redux/Actions/lecturer/lecturerAssessment';
 import { lecturerCourseAction } from '../../../../redux/Actions/lecturer/lecturerCourses';
 import { lecturerDetailsAction } from '../../../../redux/Actions/lecturer/lecturerDetail';
 import data from '../../data';
+import "../../../../App.css"
 import styles from "./styles.module.css"
+// import { detectOverflow } from '@popperjs/core'
+// import { DateTimePickerComponent } from '@syncfusion/ej2-react-calendars';
+
 
 const Assignment = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    const [deadline,setDeadline] = useState("");
+    const toast = useToast();
+    const [due_date,setDue_date] = useState("");
     const [title,setTitle] = useState("");
     const [question,setQuestion] = useState("");
-    const [courseTitle,setCourseTitle] = useState("")
-    const [course_code,setCourse_code] = useState("")
     const [max_score,setMax_score] = useState("")
     const [course,setCourse] = useState("")
+    const [msg,setMsg] = useState("")
 
-    const mydata = data && data
-    const id = JSON.parse(localStorage.getItem("lecturerDetails"));
+    
+    const getId = JSON.parse(localStorage.getItem("lecturerDetails"));
+    const id = getId.staff[0].id
     console.log(id)
 
 
@@ -33,17 +40,43 @@ const Assignment = () => {
     const lecturerCourse = useSelector((state) => state.lecturerCourse);
     const {lecturerCourses, loading}  = lecturerCourse;
 
+    const lecturerPostAssignment = useSelector((state) => state.lecturerPostAssignment);
+    const {success, loading:isLoading,error}  = lecturerPostAssignment;
+
     const mycourses = lecturerCourses && lecturerCourses.specialization && lecturerCourses.specialization.courses
     console.log(mycourses)
 
     const courseHandler=(e) =>{
-         setCourse_code(e.target.value)
-        setCourseTitle(e.target.value.name)
-        setCourse(e.target.value.id)
+         setCourse(e.target.value)
+        console.log(course,"this is it")
+
     }
 
+
     const submitHandler = () => {
-        
+        if (!title || !due_date || !title || !course || !max_score  ) {
+          setMsg(true)
+        } else {
+          dispatch(lecturerPostAssignmentAction(title,question,course,max_score,due_date))
+        }
+    }
+    if (success) {
+      toast ({
+        title: "Success",
+        description: success,
+        status: "success",
+        duration: 9000,
+        isClosable: true,
+      })
+    }
+    if (error) {
+      toast ({
+        title: "Error",
+        description: error,
+        status: "error",
+        duration: 9000,
+        isClosable: true,
+      })
     }
     const questionBank = () => {
         navigate("/lecturer/assessment/assignment/history")
@@ -55,6 +88,8 @@ const Assignment = () => {
         navigate("/lecturer/assessment/assignment")
     }
 
+    console.log(due_date)
+
   return (
     <div className="page_container">
     <LectureSidebar assessment={"focus"} />
@@ -62,6 +97,12 @@ const Assignment = () => {
       <LecturerHeader title={"Assignment"} />
       {loading && (
               <CircularProgress isIndeterminate color='green.300' />
+        )}
+        {isLoading && (
+              <CircularProgress isIndeterminate color='green.300' />
+        )}
+        {msg && (
+              <div> all field are required </div>
         )}
       <div className={styles.info_container}>
         <div className={styles.left}>
@@ -73,28 +114,27 @@ const Assignment = () => {
         <div className={styles.editContainer}>
                 <h1>Assignment</h1>     
                 <div className={styles.editinfo}>
-                  <label>Course Code</label>
+                  <label>Course Name</label>
                   <select onChange={courseHandler}
-                    value={course_code}>
-                    <option value="" disabled>select</option>
-                     onChange={(e) => setTitle(e.target.value)}
-                    {mycourses && mycourses.map((item) =>(
-                        <option value={item}>{item.code}
+                    value={course}>
+                    {mycourses && mycourses.map((item,i) =>(
+                        <option key={i} value={item.id}>{item.name}
                             
                         </option>
                     ))}
                     
                   </select>
                 </div>
+                
                 <div className={styles.editinfo}>
                   <Input
-                    label={"Course Title"}
-                    type="text"
-                    value={courseTitle}
-                    onChange={(e) => setCourseTitle(e.target.value)}
+                    label={"Title"}
+                    type="type"
+                    value={title}
+                    onChange={(e) => setTitle(e.target.value)}
                   />
                 </div>
-                
+
                
                 
                 <div className={styles.editinfo}>
@@ -105,15 +145,7 @@ const Assignment = () => {
                     onChange={(e) => setQuestion(e.target.value)}
                   />
                 </div>
-                <div className={styles.editinfo}>
-                  <Input
-                    label={"Title"}
-                    type="type"
-                    value={title}
-                    onChange={(e) => setTitle(e.target.value)}
-                  />
-                </div>
-
+               
                 <div className={styles.editinfo}>
                   <Input
                     label={"Maximum scores"}
@@ -124,11 +156,12 @@ const Assignment = () => {
                </div>
                 <div className={styles.editinfo}>
                   <Input
-                    label={"Deadline"}
-                    type="date"
-                    value={deadline}
-                    onChange={(e) => setDeadline(e.target.value)}
+                    label={"Due_date"}
+                    type="time"
+                    value={due_date}
+                    onChange={(e) => setDue_date(e.target.value)}
                   />
+                 
                 </div>
                 <div className={styles.editinfo}>
                 <div className={styles.btn_container}>

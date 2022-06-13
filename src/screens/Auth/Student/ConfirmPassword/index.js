@@ -53,6 +53,7 @@ function ConfirmPassword() {
       duration: 9000,
       isClosable: true,
     })
+    dispatch({type:CONFIRM_PASSWORD_RESET})
   }
   
 

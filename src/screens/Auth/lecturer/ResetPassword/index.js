@@ -6,7 +6,7 @@ import girl from "../../../../assets/Ellipse 44bc.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { lecturerConfirmpasswordAction } from "../../../../redux/Actions/auth";
-import { CONFIRM_PASSWORD_RESET } from "../../../../redux/Constants/auth";
+import { CONFIRM_PASSWORD_RESET, LECTURER_CONFIRM_PASSWORD_RESET } from "../../../../redux/Constants/auth";
 const LecturerResetPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -47,6 +47,7 @@ const LecturerResetPassword = () => {
       duration: 9000,
       isClosable: true,
     });
+    dispatch({type:LECTURER_CONFIRM_PASSWORD_RESET})
   }
 
   return (

@@ -103,21 +103,41 @@
     outline: none;
     border-radius: 5px;
   }
-.blue{
-    background: rgba(82, 69, 159, 1);
+.center{
+    
     color: white;
     margin-top: 10px;
+}
+.left_Curve{
+    background: white;
+    color: black;
+    margin-top: 10px;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+}
+.right_Curve{
+    color: black;
+    margin-top: 10px;
+    border-top-right-radius:20px;
+    border-bottom-right-radius: 20px;
+}
+.green {
+    background: rgba(69, 159, 100, 1);
+    color: white;
+}
+.white{
+    background-color: #fff;
 }
 .white_container{
     display: flex;
     flex-direction: row;
     margin: 1% 2% ;
-    width:95%;
+    width:90%;
     padding: 2% 5%;
     height: 72vh;
     background-color: rgb(255, 255, 255);
     overflow-y: scroll;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px; 
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px;
 }
 .dropDown{
     margin: 1% 2% ;
@@ -140,9 +160,9 @@
   }
   
 .dropDown_container button{
-    padding: .8rem 2rem;
-    font-size: 14px;
-    border-radius: 8px;
+    width: 100px;
+    padding: .8rem .8rem;
+    font-size: 12px;
     margin-bottom: 10px; 
 }
 .table_container{

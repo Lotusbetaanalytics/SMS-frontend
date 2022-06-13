@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginStudent } from "../../../../redux/Actions/auth";
 import { studentDetails } from "../../../../redux/Actions/studentActions/studentAction";
+import { STUDENT_LOGIN_RESET } from "../../../../redux/Constants/auth";
 
 function StudentLogin() {
   const dispatch = useDispatch()
@@ -38,6 +39,7 @@ function StudentLogin() {
       duration: 9000,
       isClosable: true,
     })
+    dispatch({type:STUDENT_LOGIN_RESET})
   }
  
   

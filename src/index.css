@@ -1,5 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100&family=Noto+Sans&family=Open+Sans:wght@300&family=Poppins:wght@100;200;400&display=swap");
-
+@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
 body {
   margin: 0;
   padding: 0;

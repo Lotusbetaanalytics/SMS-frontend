@@ -10,7 +10,9 @@ import LecturerNotice from "../../../components/cards/lecturerNotice";
 import { studentDetails } from "../../../redux/Actions/studentActions/studentAction";
 import { useDispatch, useSelector } from "react-redux";
 import { lecturerDetailsAction } from "../../../redux/Actions/lecturer/lecturerDetail";
+import { Navigate, useNavigate } from "react-router-dom";
 const LecturerDashboard = () => {
+  const navigate = useNavigate()
   const dispatch = useDispatch();
     const [value, onChange] = useState(new Date());
     useEffect(() => {
@@ -20,7 +22,12 @@ const LecturerDashboard = () => {
     const lecturerDetails = useSelector((state) => state.lecturerDetails);
   const {lecturerDetail}  = lecturerDetails;
     const username =  lecturerDetail && lecturerDetail.first_name
-
+const assignment = () =>{
+  navigate("/lecturer/assessment/assignment/history")
+}
+const test = () =>{
+  navigate("/lecturer/assessment/test/history")
+}
 
   return (
     <div className="page_container">
@@ -36,21 +43,12 @@ const LecturerDashboard = () => {
                 <p>its nice seeing you again</p>
               </div>
               <div className={styles.infoBtn}>
-                <div>
-                  <select>
-                    <option>Assignments</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
+                
+                    <button onClick={assignment}>Assignments</button>
+                
+                    <button onClick={test}>Tests</button>
+                    
                 </div>
-                <div>
-                  <select>
-                    <option>Tests</option>
-                    <option value="Yes">Yes</option>
-                    <option value="No">No</option>
-                  </select>
-                </div>
-              </div>
             </div>
             <div className={styles.card_container}>
                   <Card3 number={"20"}

@@ -1,4 +1,4 @@
-import { Alert, CircularProgress } from '@chakra-ui/react';
+import { Alert, CircularProgress,useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react';
 import { forwardRef } from 'react';
 import SearchWidget from '../../../components/Input/Search';
@@ -28,23 +28,43 @@ import { STUDENT_DETAILS_REQUEST } from '../../../redux/Constants/studentConstan
 import { DELETE_COURSE_RESET } from '../../../redux/Constants/courseRegisteration/courseRegisteration';
 
 const RegisteredCourses = () => {
+  const toast = useToast()
   const dispatch = useDispatch();
     const [msg,setMsg] = useState("");
 
     const deleteCourse_ = useSelector((state) => state.deleteCourse_);
-    const {loading:deleteLoading, success:deleteSuccess } = deleteCourse_;
+    const {loading:deleteLoading, success:deleteSuccess, error } = deleteCourse_;
 
     const handleAssign = (rowData) => {
         console.log(rowData);
         const id = rowData.id
         console.log(id)
         dispatch(deleteCourseAction(id))
-        if (deleteSuccess) {
-          setMsg(true)
-          dispatch({type:DELETE_COURSE_RESET})
-          
-        }
+        
       };
+      
+      if (deleteSuccess) {
+        toast ({
+          title: "Success",
+          description: deleteSuccess,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+        dispatch({ type: DELETE_COURSE_RESET });
+        window.location.reload()
+      }
+      if (error) {
+        toast ({
+          title: "Error",
+          description: error,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+        dispatch({ type: DELETE_COURSE_RESET });
+      }
+
 
       useEffect(() => {
         dispatch(studentDetails());

@@ -15,7 +15,7 @@ export const lecturerDetailsAction = () => async (dispatch,getState) => {
       const { data } = await axios.get("/user/account/", config);
       dispatch({ type: LECTURER_DETAILS_SUCCESS, payload: data });
       
-      localStorage.setItem("lecturerDetails", JSON.stringify(data.staff[0].id));
+      localStorage.setItem("lecturerDetails", JSON.stringify(data));
       
     } catch (error) {
       dispatch({

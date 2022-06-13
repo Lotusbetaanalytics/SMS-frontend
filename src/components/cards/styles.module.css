@@ -8,6 +8,7 @@
   box-shadow: 0px 0px 10px  rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   margin-bottom: 10px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 .icons {
   display: grid;
@@ -162,8 +163,11 @@
   padding-top: 10px;
   color: white;
   font-size: 14px;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+  
   
 }
+
 .card_icons{
   display: flex;
 

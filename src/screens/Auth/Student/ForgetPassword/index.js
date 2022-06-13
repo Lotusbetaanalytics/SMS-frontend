@@ -42,6 +42,7 @@ const ForgotPassword = () => {
       duration: 9000,
       isClosable: true,
     })
+    dispatch({type:FORGET_PASSWORD_RESET})
   }
   
   

@@ -1,4 +1,4 @@
-import { Alert, CircularProgress } from '@chakra-ui/react';
+import { Alert, CircularProgress,useToast } from '@chakra-ui/react';
 import React, { useEffect, useState } from 'react'
 import { forwardRef } from 'react';
 import MaterialTable from "material-table";
@@ -25,7 +25,9 @@ import SaveAlt from '@material-ui/icons/SaveAlt';
 import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { useNavigate } from 'react-router-dom';
+import { ADD_COURSE_RESET } from '../../../redux/Constants/courseRegisteration/courseRegisteration';
 const AvailableCourses = () => {
+  const toast = useToast()
   const navigate = useNavigate();
   const dispatch = useDispatch();
     const [msg,setMsg] = useState("");
@@ -54,7 +56,7 @@ const AvailableCourses = () => {
     
   
   const addCourse_ = useSelector((state) => state.addCourse_);
-  const { loading:isLoading, success } = addCourse_;
+  const { loading:isLoading, success,error:isError } = addCourse_;
 
     const handleAssign = (rowData) => {
         console.log(rowData);
@@ -63,12 +65,31 @@ const AvailableCourses = () => {
         const student = student_id
         const semester = rowData.semester.id
         dispatch(addCourseAction(course,student,session,semester))
-        if (success) {
-          setMsg(true)
-        } else {
-          setError(true)
-        }
+        
       };
+      if (success) {
+        toast ({
+          title: "Success",
+          description: success,
+          status: "success",
+          duration: 9000,
+          isClosable: true,
+        })
+        dispatch({ type: ADD_COURSE_RESET });
+      }
+      if (isError) {
+        toast ({
+          title: "Error",
+          description: error,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        })
+        dispatch({ type: ADD_COURSE_RESET });
+      }
+
+
+
       const nextHandler = () => {
         navigate("/student/course/registered")
     }

@@ -9,6 +9,7 @@ import { editProfile } from "../../../../redux/Actions/ProfileActions/profile";
 import { studentDetails } from "../../../../redux/Actions/studentActions/studentAction";
 import { EDITPROFILE_RESET } from "../../../../redux/Constants/ProfileConstants/profileConstants";
 import Input from "../../../../components/Input";
+import NaijaStates from 'naija-state-local-government';
 
 const Editbiodata = () => {
   const [marital_status, setMarital_status] = useState("");
@@ -102,6 +103,15 @@ const backHandler = () => {
   navigate("/student/profile/basic")
 }
 
+ 
+
+console.log(NaijaStates.all());
+const statesSelect =  NaijaStates.states()
+console.log(state_of_origin)
+// const selectLGA = NaijaStates.lgas(state_of_origin)
+// console.log(NaijaStates.states());
+// console.log(NaijaStates.lgas())
+
   return (
     <div className="page_container">
       <StudentSidebar profile={"active"}/>
@@ -159,20 +169,39 @@ const backHandler = () => {
                 </div>
                 <div className={styles.editinfo}>
                   <Input
-                    label={"State of Origin"}
-                    type="text"
-                    value={state_of_origin}
-                    onChange={(e) => setState_of_origin(e.target.value)}
-                  />
-                </div>
-                <div className={styles.editinfo}>
-                  <Input
                     label={"Nationality"}
                     type="text"
                     value={nationality}
                     onChange={(e) => setNationality(e.target.value)}
+                    disabled
                   />
                 </div>
+                <div className={styles.editinfo}>
+                  <label>State of Origin</label>
+
+                  <select onChange={(e) => setState_of_origin(e.target.value)}
+                  value={state_of_origin}>
+                     {statesSelect && statesSelect.map((item,i) =>(
+                        <option key={i} value={item}>{item}
+                            
+                        </option>
+                    ))}
+                   
+                  </select>
+                </div>
+                {/* <div className={styles.editinfo}>
+                  <label>Local Government</label>
+
+                  <select onChange={(e) => setState_of_origin(e.target.value)}
+                  value={state_of_origin}>
+                     {selectLGA && selectLGA.map((item,i) =>(
+                        <option key={i} value={item}>{item}
+                            
+                        </option>
+                    ))}
+                   
+                  </select>
+                </div> */}
                 <div className={styles.editinfo}>
                   <Input
                     label={"Local Government"}
