@@ -51,6 +51,10 @@ function HealthData() {
     navigate("/admin/profile");
   };
 
+  const nextHandler = () => {
+    navigate("/admin/academicdata");
+  };
+
   if (success) {
     toast({
       title: "Notification",
@@ -121,21 +125,38 @@ function HealthData() {
               <div className={styles.inputField}>
                 <div className={styles.inputBox}>
                   <label>Blood Group</label>
-                  <input
+                  <select
                     type="text"
                     onChange={(e) => setBlood_group(e.target.value)}
                     value={blood_group}
                     // required={true}
-                  />
+                  >
+                    <option></option>
+                    <option>A RhD positive (A+)</option>
+                    <option>A RhD negative (A-)</option>
+                    <option>B RhD positive (B+)</option>
+                    <option>B RhD negative (B-)</option>
+                    <option>O RhD positive (O+)</option>
+                    <option>O RhD negative (O-)</option>
+                    <option>AB RhD positive (AB+)</option>
+                    <option>AB RhD negative (AB-)</option>
+                  </select>
                 </div>
                 <div className={styles.inputBox}>
                   <label>Genotype</label>
-                  <input
+                  <select
                     type="text"
                     onChange={(e) => setGenotype(e.target.value)}
                     value={genotype}
                     // required={true}
-                  />
+                  >
+                    <option></option>
+                    <option>AA</option>
+                    <option>AS</option>
+                    <option>AC</option>
+                    <option>SS</option>
+                    <option>SC</option>
+                  </select>
                 </div>
                 <div className={styles.inputBox}>
                   <label>Allergies</label>
@@ -232,7 +253,7 @@ function HealthData() {
                       style={{ height: "5rem" }}
                     />
                   ) : (
-                    <button onClick={submitHandler} type="submit">
+                    <button onClick={nextHandler} type="submit">
                       <p>Next</p>
                     </button>
                   )}

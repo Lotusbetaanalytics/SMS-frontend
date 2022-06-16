@@ -99,7 +99,7 @@ function NoticeBoard() {
             </div>
             <div className={styles.dashboardNoticeForm}>
               <div className={styles.noticeFormTitle}>
-                <span>Create Notice Board</span>
+                <span>Create Notice</span>
               </div>
               {loading ? (
                 <Center>

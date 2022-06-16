@@ -70,7 +70,7 @@ function Sidebar() {
               <p>Faculty</p>
             </li>
           </Link>
-          <Link to="/admin/department">
+          <Link to="/admin/department/homepage">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <BsBuilding />
@@ -78,7 +78,7 @@ function Sidebar() {
               <p>Department</p>
             </li>
           </Link>
-          <Link to="/admin/course">
+          <Link to="/admin/course/homepage">
             <li className={styles.iconsBody}>
               <div className={styles.icons}>
                 <ImBook />

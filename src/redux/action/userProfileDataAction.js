@@ -12,11 +12,9 @@ import {
   ACADEMIC_DATA_REQUEST,
   ACADEMIC_DATA_SUCCESS,
   ACADEMIC_DATA_FAIL,
-  ACADEMIC_DATA_RESET,
   HEALTH_DATA_REQUEST,
   HEALTH_DATA_SUCCESS,
   HEALTH_DATA_FAIL,
-  HEALTH_DATA_RESET,
   FAMILY_DATA_REQUEST,
   FAMILY_DATA_SUCCESS,
   FAMILY_DATA_RESET,
@@ -158,8 +156,15 @@ export const postAcademicData =
         payload: data,
       });
       console.log(data);
+      toast({
+        status: "success",
+        width: "50px",
+        position: "top-right",
+        isClosable: true,
+        duration: 4000,
+        description: "Academic Data Created",
+      });
       // localStorage.setItem("academicInfo", JSON.stringify(data));
-      dispatch({ type: ACADEMIC_DATA_RESET });
     } catch (error) {
       //   console.log(error.response.data.message, error.message);
       dispatch({
@@ -200,15 +205,14 @@ export const postHealthData =
       });
       console.log(data);
       // localStorage.setItem("academicInfo", JSON.stringify(data));
-      // toast({
-      //   status: "success",
-      //   width: "50px",
-      //   position: "top-right",
-      //   isClosable: true,
-      //   duration: 4000,
-      //   description: "Academic History Created",
-      // });
-      dispatch({ type: HEALTH_DATA_RESET });
+      toast({
+        status: "success",
+        width: "50px",
+        position: "top-right",
+        isClosable: true,
+        duration: 4000,
+        description: "Health Data Created",
+      });
     } catch (error) {
       //   console.log(error.response.data.message, error.message);
       dispatch({
@@ -255,7 +259,7 @@ export const postFamilyData =
         position: "top-right",
         isClosable: true,
         duration: 4000,
-        description: "Academic History Created",
+        description: "Family Data Created",
       });
       dispatch({ type: FAMILY_DATA_RESET });
     } catch (error) {

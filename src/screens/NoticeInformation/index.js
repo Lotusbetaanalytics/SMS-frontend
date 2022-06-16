@@ -89,7 +89,13 @@ function NoticeInformation() {
                 <div key={i} className={styles.noticeContent}>
                   <h2>{item.timestamp}</h2>
                   <h4>{item.title}</h4>
-                  {/* <h4>{item.images}</h4> */}
+                  <h4>
+                    {item.images.map((image, x) => (
+                      <div key={x}>
+                        <img src={image.image} alt="Information Blog" />
+                      </div>
+                    ))}
+                  </h4>
                   <h5 className={styles.noticeComment}>{item.body}</h5>
                 </div>
               ))}
@@ -104,7 +110,7 @@ function NoticeInformation() {
             </div>
             <div className={styles.dashboardNoticeForm}>
               <div className={styles.noticeFormTitle}>
-                <span>Create Information Board</span>
+                <span>Create Information</span>
               </div>
               {loading ? (
                 <Center>

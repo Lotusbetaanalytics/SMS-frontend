@@ -8,10 +8,12 @@ import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { postFamilyData } from "../../redux/action/userProfileDataAction";
 import { FAMILY_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
+import { useNavigate } from "react-router-dom";
 
 function FamilyData() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [next_of_kin_full_name, setNext_of_kin_full_name] = useState("");
   const [next_of_kin_phone_no_1, setNext_of_kin_phone_no_1] = useState("");
@@ -41,7 +43,19 @@ function FamilyData() {
   const postFamily = useSelector((state) => state.postFamily);
   const { loading, success, error } = postFamily;
 
+  const backHandler = () => {
+    navigate("/admin/academicdata");
+  };
+
   if (success) {
+    setNext_of_kin_full_name("");
+    setNext_of_kin_phone_no_1("");
+    setNext_of_kin_phone_no_2("");
+    setNext_of_kin_address("");
+    setGuardian_full_name("");
+    setGuardian_phone_no_1("");
+    setGuardian_phone_no_2("");
+    setGuardian_address("");
     toast({
       title: "Notification",
       description: "Family Credentials Created",
@@ -87,10 +101,10 @@ function FamilyData() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
-                  Cancel
+                  Back
                 </button>
 
                 {loading ? (

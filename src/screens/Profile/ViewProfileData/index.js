@@ -6,7 +6,6 @@ import styles from "./styles.module.css";
 // import { BiArrowBack } from "react-icons/bi";
 // import datas from "../../datas";
 // import { Link } from "react-router-dom";
-import { postUsersData } from "../../../redux/action/userProfileDataAction";
 import { useDispatch, useSelector } from "react-redux";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { USERS_DATA_RESET } from "../../../redux/constants/userProfileDataConstant";
@@ -64,24 +63,39 @@ function ViewProfileData() {
 
   useEffect(() => {
     dispatch(userDetails());
+  }, [dispatch]);
+
+  useEffect(() => {
     if (isSuccess) {
       setFirst_name(username && username.first_name);
       setLast_name(username && username.last_name);
       setMiddle_name(username && username.middle_name);
       setEmail(username && username.email);
-      setMarital_status(username && username.biodata.marital_status);
-      setGender(username && username.biodata.gender);
-      setReligion(username && username.biodata.religion);
-      setBirthday(username && username.biodata.birthday);
-      setNationality(username && username.biodata.nationality);
-      setState_of_origin(username && username.biodata.state_of_origin);
-      setLocal_govt(username && username.biodata.local_govt);
-      setPermanent_address(username && username.biodata.permanent_address);
-      setAddress(username && username.biodata.address);
-      setPhone_no_1(username && username.biodata.phone_no_1);
-      setPhone_no_2(username && username.biodata.phone_no_2);
+      setMarital_status(
+        username && username.biodata && username.biodata.marital_status
+      );
+      setGender(username && username.biodata && username.biodata.gender);
+      setReligion(username && username.biodata && username.biodata.religion);
+      setBirthday(username && username.biodata && username.biodata.birthday);
+      setNationality(
+        username && username.biodata && username.biodata.nationality
+      );
+      setState_of_origin(
+        username && username.biodata && username.biodata.state_of_origin
+      );
+      setLocal_govt(
+        username && username.biodata && username.biodata.local_govt
+      );
+      setPermanent_address(
+        username && username.biodata && username.biodata.permanent_address
+      );
+      setAddress(username && username.biodata && username.biodataaddress);
+      setPhone_no_1(
+        username && username.biodata && username.biodata.phone_no_1
+      );
+      setPhone_no_2(username && username.biodata && username.biodataphone_no_2);
     }
-  }, [dispatch]);
+  }, [isSuccess, username]);
 
   if (success) {
     toast({

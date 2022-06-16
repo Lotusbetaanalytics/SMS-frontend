@@ -35,13 +35,13 @@ function HeaderNav({ title }) {
           <h2>{date}</h2>
         </div>
         <h6>
-          Good day {username && username.first_name} nice to see you Again..
+          Good day {username && username.first_name}! nice to see you Again..
         </h6>
       </div>
       <div className={styles.headerSearch}>
         <input
           type="text"
-          placeholder="Search..."
+          placeholder="Search.."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />

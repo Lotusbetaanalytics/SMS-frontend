@@ -120,6 +120,12 @@
   font-weight: bold;
 }
 
+.subButton:hover {
+  transition: transform 300ms;
+  transform: scale(1.1);
+  transition: ease 0.5s;
+}
+
 .inputContainer {
   padding: 2rem;
   display: flex;
@@ -156,30 +162,39 @@
 }
 .inputBox select {
   width: 100%;
-  padding: 15px 20px;
-  border-radius: 10px;
-  border: 1px solid lightgray;
+  height: 3.5rem;
   outline: none;
+  border: 1px solid rgba(0, 0, 0, 0.26);
+  background: white;
+  padding: 0.5rem 2rem;
+  border: 1px solid gainsboro;
+  border-radius: 10px;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1em;
+  margin-bottom: 15px;
 }
 
 .inputBox p {
   margin-top: 30px;
   font-size: 20px;
   font-weight: bold;
-  background-color: #009834;
+  background-color: rgb(244, 88, 88);
   width: 40%;
   padding: 13px 15px;
-  border-radius: 30px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.1);
   color: white;
 }
 
-.inputBox p:hover {
+/* .inputBox p:hover {
   transition: transform 300ms;
   transform: scale(1.1);
   transition: ease 0.5s;
-}
+} */
 
 .checkboxBtn {
   display: flex;

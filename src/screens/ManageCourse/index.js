@@ -15,46 +15,43 @@ import {
   useToast,
 } from "@chakra-ui/react";
 import { BiArrowBack } from "react-icons/bi";
-// import { BsPersonFill } from "react-icons/bs";
-// import { FaPlay } from "react-icons/fa";
-// import { BsPersonXFill } from "react-icons/bs";
-// import { BsPersonCheckFill } from "react-icons/bs";
 import { GrView } from "react-icons/gr";
 import { MdDeleteForever } from "react-icons/md";
 // import { BsFillPersonDashFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
-import { deleteDepartmentId } from "../../redux/action/editDepartmentIdAction";
-import { DELETE_DEPARTMENTBYID_RESET } from "../../redux/constants/editDepartmentIdConstant";
-import { getDepartment } from "../../redux/action/departmentAction";
-import { BsBuilding } from "react-icons/bs";
+import { deleteCourseId } from "../../redux/action/editCourseIdAction";
+import { getCourse } from "../../redux/action/courseAction";
+import { DELETE_COURSEBYID_RESET } from "../../redux/constants/editCourseIdConstant";
+import { ImAddressBook, ImBook } from "react-icons/im";
 
-function ManageDepartment() {
+function ManageCourse() {
   // const [isActive, setIsActive] = useState(false);
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const toast = useToast();
 
-  const deleteDepartmentById = useSelector(
-    (state) => state.deleteDepartmentById
-  );
-  const { loading, success, error } = deleteDepartmentById;
+  const deleteCourseById = useSelector((state) => state.deleteCourseById);
+  const { loading, success, error } = deleteCourseById;
 
   const deleteHandler = (id) => {
     if (window.confirm("Are you sure you want to delete this ?")) {
-      dispatch(deleteDepartmentId(id));
+      dispatch(deleteCourseId(id));
       console.log(id);
     }
   };
 
   useEffect(() => {
-    dispatch(getDepartment());
+    dispatch(getCourse());
   }, [dispatch]);
 
-  const departmentGet = useSelector((state) => state.departmentGet);
-  const { departmentid } = departmentGet;
+  const courseGet = useSelector((state) => state.courseGet);
+  const { getCourseId } = courseGet;
 
-  console.log(departmentid);
+  console.log(getCourseId && getCourseId.results);
+
+  const dataCourse = getCourseId && getCourseId.results;
+  console.log(dataCourse);
 
   // const deactivateHandler = (id, is_active) => {
   //   editStudentId(id, is_active);
@@ -65,44 +62,44 @@ function ManageDepartment() {
   if (success) {
     toast({
       title: "Notification",
-      description: "Department Deleted Successfully",
+      description: "Course Deleted Successfully",
       status: "success",
       duration: 4000,
       isClosable: true,
     });
     window.location.reload();
-    dispatch({ type: DELETE_DEPARTMENTBYID_RESET });
+    dispatch({ type: DELETE_COURSEBYID_RESET });
   }
 
   if (error) {
     toast({
       title: "Notification",
-      description: "Error Deleting Staff",
+      description: "Error Deleting Course",
       status: "error",
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: DELETE_DEPARTMENTBYID_RESET });
+    dispatch({ type: DELETE_COURSEBYID_RESET });
   }
 
   const backHandler = () => {
-    navigate("/admin/department/homepage");
+    navigate("/admin/course/homepage");
   };
 
   return (
     <div className={styles.profileContainer}>
       <Sidebar />
       <div className={styles.profile}>
-        <HeaderNav title="Department" />
+        <HeaderNav title="Course" />
         <div className={styles.profileHeader}>
           <div className={styles.staffCount}>
             <div className={styles.staffDetail}>
               <div className={styles.staffIcon}>
-                <BsBuilding />
-                <h2>Department</h2>
+                <ImAddressBook />
+                <h2>Course</h2>
               </div>
               <h1>|</h1>
-              <h4>{departmentid && departmentid.length}</h4>
+              <h4>{getCourseId && getCourseId.count}</h4>
             </div>
           </div>
           <div className={styles.profileContent}>
@@ -121,7 +118,7 @@ function ManageDepartment() {
         <div className={styles.statsContainer}>
           <div className={styles.profileBox}>
             <div className={styles.pageTitle}>
-              <span>Department Details</span>
+              <span>Course Details</span>
             </div>
             <div className={styles.viewTable}>
               {loading ? (
@@ -131,22 +128,22 @@ function ManageDepartment() {
               ) : (
                 <Table varient="striped" colorScheme="gray" size="md">
                   <Tr>
-                    <Th>Faculty Name</Th>
-                    <Th>Name Of Department</Th>
-                    <Th>Department Code</Th>
+                    <Th>Spec. Name</Th>
+                    <Th>Course Name</Th>
+                    <Th>Course Code</Th>
                     <Th>Description</Th>
-                    <Th>Head Of Department</Th>
+                    <Th>Coordinator</Th>
                     <Th>Action</Th>
                   </Tr>
-                  {departmentid &&
-                    departmentid.map((item, i) => (
+                  {dataCourse &&
+                    dataCourse.map((item, i) => (
                       <Tbody key={i}>
                         <Tr key={item.id}>
-                          <Td>{item.faculty.name}</Td>
+                          <Td>{item.specialization.name}</Td>
                           <Td>{item.name}</Td>
                           <Td>{item.code}</Td>
                           <Td>{item.description}</Td>
-                          <Td>{item.head}</Td>
+                          <Td>{item.coordinator}</Td>
                           <Td>
                             <Button
                               className={styles.chakar_btn1}
@@ -154,9 +151,7 @@ function ManageDepartment() {
                               borderRadius="10"
                               type="submit"
                             >
-                              <Link
-                                to={`/admin/manageviewdepartment/${item.id}`}
-                              >
+                              <Link to={`/admin/manageviewcourse/${item.id}`}>
                                 <GrView />
                               </Link>
                             </Button>
@@ -239,4 +234,4 @@ function ManageDepartment() {
   );
 }
 
-export default ManageDepartment;
+export default ManageCourse;

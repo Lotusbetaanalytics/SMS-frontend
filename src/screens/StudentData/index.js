@@ -26,7 +26,7 @@ function StudentData() {
   const [student_id, setStudent_id] = useState("");
   const [email, setEmail] = useState("");
   const [specialization, setSpecialization] = useState("");
-  const [isActive, setIsActive] = useState(false);
+  const [isActive, setIsActive] = useState(true);
 
   const handleClick = () => {
     setIsActive(!isActive);

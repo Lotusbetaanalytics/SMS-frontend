@@ -77,6 +77,10 @@ function StaffData() {
   if (success) {
     setFirst_Name("");
     setMiddle_Name("");
+    setLast_Name("");
+    setEmail("");
+    setSpecialization("");
+    setEmployee_id("");
     toast({
       title: "Notification",
       description: "Staff Successfully Added",

@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { loginUser } from "../../../redux/action/userAction";
-// import { USER_LOGIN_RESET } from "../../../redux/constants/userContstant";
+import { USER_LOGIN_RESET } from "../../../redux/constants/userContstant";
 import styles from "./styles.module.css";
 
 function LoginPage() {
@@ -27,6 +27,10 @@ function LoginPage() {
   console.log(userInfo);
 
   if (success) {
+    navigate("/admin/dashboard");
+  }
+
+  if (success) {
     toast({
       title: "Notification",
       description: "Login Successfully",
@@ -34,10 +38,6 @@ function LoginPage() {
       duration: 4000,
       isClosable: true,
     });
-  }
-
-  if (success) {
-    navigate("/admin/dashboard");
   }
 
   if (error) {
@@ -48,6 +48,7 @@ function LoginPage() {
       duration: 4000,
       isClosable: true,
     });
+    dispatch({ type: USER_LOGIN_RESET });
   }
 
   // useEffect(() => {
@@ -61,7 +62,7 @@ function LoginPage() {
       <div className={styles.loginPageContent}>
         <div className={styles.loginTitle}>
           <h2> Welcome</h2>
-          <p>To the Student Management System</p>
+          <p>To the School Management System</p>
         </div>
         <div className={styles.loginForm}>
           {error && (
@@ -81,49 +82,47 @@ function LoginPage() {
               <CircularProgress isIndeterminate color="purple.500" />
             </Center>
           ) : (
-            <form onSubmit={submitHandler}>
-              <div className={styles.loginContent}>
-                <div className={styles.adminTitle}>Admin Login</div>
-                <div className={styles.newForm}>
-                  {/* <label>Username</label> */}
-                  <input
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    required={true}
-                    placeholder="Username"
-                  />
+            <div className={styles.loginContent}>
+              <div className={styles.adminTitle}>Admin Login</div>
+              <div className={styles.newForm}>
+                {/* <label>Username</label> */}
+                <input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  required={true}
+                  placeholder="Username"
+                />
+              </div>
+              <div className={styles.newForm}>
+                {/* <label>Password</label> */}
+                <input
+                  type="password"
+                  onChange={(e) => setPassword(e.target.value)}
+                  value={password}
+                  required={true}
+                  placeholder="Password"
+                />
+              </div>
+              <div className={styles.forgotpassword_btn}>
+                <div className={styles.forgotpassword}>
+                  <Link to="/auth/confirmpassword">
+                    <h5>Forgot Password ?</h5>
+                  </Link>
                 </div>
-                <div className={styles.newForm}>
-                  {/* <label>Password</label> */}
-                  <input
-                    type="password"
-                    onChange={(e) => setPassword(e.target.value)}
-                    value={password}
-                    required={true}
-                    placeholder="Password"
-                  />
-                </div>
-                <div className={styles.forgotpassword_btn}>
-                  <div className={styles.forgotpassword}>
-                    <Link to="/auth/confirmpassword">
-                      <h5>Forgot Password ?</h5>
-                    </Link>
-                  </div>
 
-                  <div className={styles.stBtn}>
-                    <button
-                      type="submit"
-                      className={styles.btn}
-                      onClick={submitHandler}
-                      disabled={!email || !password}
-                    >
-                      Login
-                    </button>
-                  </div>
+                <div className={styles.stBtn}>
+                  <button
+                    type="submit"
+                    className={styles.btn}
+                    onClick={submitHandler}
+                    disabled={!email || !password}
+                  >
+                    Login
+                  </button>
                 </div>
               </div>
-            </form>
+            </div>
           )}
         </div>
       </div>

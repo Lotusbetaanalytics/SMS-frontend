@@ -34,22 +34,22 @@ const ManageViewStudent = () => {
   const [specialization, setSpecialization] = useState("");
   const [isActive, setIsActive] = useState("");
 
-  React.useEffect(() => {
-    dispatch(
-      getStudentId(
-        id,
-        setFirst_Name,
-        setMiddle_Name,
-        setLast_Name,
-        setEmail,
-        setMatric_no,
-        setStudent_id,
-        setSpecialization,
-        setIsActive,
-        onChangeHandler
-      )
-    );
-  }, [id, dispatch]);
+  // React.useEffect(() => {
+  //   dispatch(
+  //     getStudentId(
+  //       id,
+  //       setFirst_Name,
+  //       setMiddle_Name,
+  //       setLast_Name,
+  //       setEmail,
+  //       setMatric_no,
+  //       setStudent_id,
+  //       setSpecialization,
+  //       setIsActive
+  //       onChangeHandler
+  //     )
+  //   );
+  // }, [id, dispatch]);
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -70,16 +70,16 @@ const ManageViewStudent = () => {
   };
   console.log(id);
 
-  const onChangeHandler = (e) => {
-    setFirst_Name(e.target.value);
-    setMiddle_Name(e.target.value);
-    setLast_Name(e.target.value);
-    setEmail(e.target.value);
-    setMatric_no(e.target.value);
-    setStudent_id(e.target.value);
-    setSpecialization(e.target.value);
-    setIsActive(e.target.value);
-  };
+  // const onChangeHandler = (e) => {
+  //   setFirst_Name(e.target.value);
+  //   setMiddle_Name(e.target.value);
+  //   setLast_Name(e.target.value);
+  //   setEmail(e.target.value);
+  //   setMatric_no(e.target.value);
+  //   setStudent_id(e.target.value);
+  //   setSpecialization(e.target.value);
+  //   setIsActive(e.target.value);
+  // };
 
   useEffect(() => {
     dispatch(totalStudent());
@@ -256,6 +256,9 @@ const ManageViewStudent = () => {
                     <label>First Name</label>
                     <input
                       type="text"
+                      placeholder={
+                        studentInfo && studentInfo[0].user.first_name
+                      }
                       onChange={(e) => setFirst_Name(e.target.value)}
                       value={first_Name}
                       required={true}
@@ -265,6 +268,9 @@ const ManageViewStudent = () => {
                     <label>Middle Name</label>
                     <input
                       type="text"
+                      placeholder={
+                        studentInfo && studentInfo[0].user.middle_name
+                      }
                       onChange={(e) => setMiddle_Name(e.target.value)}
                       value={middle_Name}
                       required={true}
@@ -274,6 +280,7 @@ const ManageViewStudent = () => {
                     <label>Last Name</label>
                     <input
                       type="text"
+                      placeholder={studentInfo && studentInfo[0].user.last_name}
                       onChange={(e) => setLast_Name(e.target.value)}
                       value={last_Name}
                       required={true}
@@ -284,6 +291,7 @@ const ManageViewStudent = () => {
                     <label>Email Address</label>
                     <input
                       type="email"
+                      placeholder={studentInfo && studentInfo[0].user.email}
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       required={true}
@@ -293,6 +301,7 @@ const ManageViewStudent = () => {
                     <label>Martic No.</label>
                     <input
                       type="number"
+                      placeholder={studentInfo && studentInfo[0].matric_no}
                       onChange={(e) => setMatric_no(e.target.value)}
                       value={matric_no}
                       required={true}
@@ -304,6 +313,9 @@ const ManageViewStudent = () => {
                       onChange={(e) => setSpecialization(e.target.value)}
                       value={specialization}
                       required={true}
+                      placeholder={
+                        studentInfo && studentInfo[0].specialization.name
+                      }
                       className={styles.newStudentSelect}
                     >
                       <option></option>
@@ -319,6 +331,7 @@ const ManageViewStudent = () => {
                     <label>Student ID</label>
                     <input
                       type="text"
+                      placeholder={studentInfo && studentInfo[0].student_id}
                       onChange={(e) => setStudent_id(e.target.value)}
                       value={student_id}
                       required={true}
@@ -328,6 +341,9 @@ const ManageViewStudent = () => {
                     <label>Active Student</label>
                     <input
                       type="text"
+                      placeholder={
+                        studentInfo && studentInfo[0].is_active.toString()
+                      }
                       onChange={(e) => setIsActive(e.target.value)}
                       value={isActive}
                       required={true}
@@ -347,7 +363,7 @@ const ManageViewStudent = () => {
                         className={styles.modalBtn}
                         onClick={submitHandler}
                       >
-                        Upadate
+                        Update
                       </button>
                     )}
                   </div>

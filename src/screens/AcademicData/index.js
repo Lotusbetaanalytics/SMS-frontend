@@ -8,11 +8,12 @@ import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
 import { postAcademicData } from "../../redux/action/userProfileDataAction";
 import { ACADEMIC_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function AcademicData() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [institution, setInstitution] = useState("");
   const [start_date, setStart_date] = useState("");
@@ -34,6 +35,10 @@ function AcademicData() {
 
   const postAcademic = useSelector((state) => state.postAcademic);
   const { loading, success, error } = postAcademic;
+
+  const backHandler = () => {
+    navigate("/admin/healthdata");
+  };
 
   if (success) {
     toast({
@@ -81,10 +86,10 @@ function AcademicData() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
-                  Cancel
+                  Back
                 </button>
 
                 {loading ? (

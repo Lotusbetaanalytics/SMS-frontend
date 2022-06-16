@@ -9,10 +9,13 @@ import { getCourse, postAddCourses } from "../../redux/action/courseAction";
 import { BiArrowBack } from "react-icons/bi";
 import { POST_ADDCOURSE_RESET } from "../../redux/constants/courseConstant";
 import { getSpecialization } from "../../redux/action/userProfileDataAction";
+import { totalStaff } from "../../redux/action/staffAction";
+import { useNavigate } from "react-router-dom";
 
 function NewCourse() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [specialization, setSpecialization] = useState("");
   const [courseName, setCourseName] = useState("");
@@ -55,6 +58,17 @@ function NewCourse() {
 
   const getSpecilize = useSelector((state) => state.getSpecilize);
   const { specializationid } = getSpecilize;
+
+  useEffect(() => {
+    dispatch(totalStaff());
+  }, [dispatch]);
+  const totalStaffNo = useSelector((state) => state.totalStaffNo);
+  const { allStaff } = totalStaffNo;
+  console.log(allStaff);
+
+  const backHandler = () => {
+    navigate("/admin/course/homepage");
+  };
 
   if (success) {
     toast({
@@ -105,7 +119,7 @@ function NewCourse() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
                   Cancel
@@ -193,13 +207,12 @@ function NewCourse() {
                     className={styles.addCourseSelect}
                   >
                     <option></option>
-                    <option>1</option>
-                    {/* {allStaff &&
-                    allStaff.map((item, i) => (
-                      <option key={i} value={item.id}>
-                        {item.user.full_name}
-                      </option>
-                    ))} */}
+                    {allStaff &&
+                      allStaff.map((item, i) => (
+                        <option key={i} value={item.id}>
+                          {item.user.full_name}
+                        </option>
+                      ))}
                   </select>
                 </div>
                 <div className={styles.inputBox}>
@@ -209,9 +222,7 @@ function NewCourse() {
                       value={isActive}
                       disable={isActive ? "false" : "true"}
                     />
-                    <span className={styles.toggleRound}>
-                      Publish Department
-                    </span>
+                    <span className={styles.toggleRound}>Publish Course</span>
                   </div>
                 </div>
               </div>

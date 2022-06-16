@@ -94,7 +94,7 @@ function InformationImage() {
             </div>
             <div className={styles.dashboardNoticeForm}>
               <div className={styles.noticeFormTitle}>
-                <span>Create Information Board</span>
+                <span>Create Information</span>
               </div>
               {loading ? (
                 <Center>

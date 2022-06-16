@@ -13,7 +13,7 @@ export const createDepartmentReducer = (state = {}, action) => {
     case CREATE_DEPARTMENT_REQUEST:
       return { loading: true };
     case CREATE_DEPARTMENT_SUCCESS:
-      return { loading: false, success: true, departmentid: action.payload };
+      return { loading: false, success: true, department: action.payload };
     case CREATE_DEPARTMENT_FAIL:
       return { loading: false, error: action.payload };
     case CREATE_DEPARTMENT_RESET:

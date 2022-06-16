@@ -2,59 +2,56 @@ import React, { useEffect } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
-import { FaUserGraduate } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
-import { totalStudent } from "../../redux/action/studentAction";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaPlay } from "react-icons/fa";
-import { BsPersonFill } from "react-icons/bs";
-import { BsPersonXFill } from "react-icons/bs";
-import { BsFillPersonDashFill } from "react-icons/bs";
-import { BsPersonCheckFill } from "react-icons/bs";
+import { BsPersonCheckFill, BsPersonFill } from "react-icons/bs";
+import { getCourse } from "../../redux/action/courseAction";
+import { ImBook } from "react-icons/im";
 
-function StudentHomePage() {
+function CourseHomePage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
   useEffect(() => {
-    dispatch(totalStudent());
+    dispatch(getCourse());
   }, [dispatch]);
 
-  const totalStudentNo = useSelector((state) => state.totalStudentNo);
-  const { allStudent } = totalStudentNo;
+  const courseGet = useSelector((state) => state.courseGet);
+  const { getCourseId } = courseGet;
 
-  const postNewStudent = useSelector((state) => state.postNewStudent);
-  const { loading } = postNewStudent;
+  const postNewCourse = useSelector((state) => state.postNewCourse);
+  const { loading } = postNewCourse;
 
   const nextHandler = () => {
-    navigate("/admin/student");
+    navigate("/admin/course");
   };
   const manageHandler = () => {
-    navigate("/admin/managestudent");
+    navigate("/admin/managecourse");
   };
 
-  const percentage = 59;
-  const percentage2 = 9;
-  const percentage3 = 15;
-  const percentage4 = 87;
+  const percentage = 2;
+  const percentage2 = 19;
+  const percentage3 = 39;
+  const percentage4 = 0;
 
   return (
     <div className={styles.profileContainer}>
       <Sidebar />
       <div className={styles.profile}>
-        <HeaderNav title="Students" />
+        <HeaderNav title="Course" />
         <div className={styles.profileHeader}>
           <div className={styles.staffCount}>
             <div className={styles.staffDetails}>
               <div className={styles.staffIcon}>
-                <FaUserGraduate />
-                <h2>Students</h2>
+                <ImBook />
+                <h2>Course</h2>
               </div>
               <h1>|</h1>
-              <h4>{allStudent && allStudent.length}</h4>
+              <h4>{getCourseId && getCourseId.count}</h4>
             </div>
           </div>
           <div className={styles.profileContent}>
@@ -73,7 +70,7 @@ function StudentHomePage() {
                   className={styles.cancelButton}
                   onClick={nextHandler}
                 >
-                  Create Student
+                  Create Course
                 </button>
               )}
 
@@ -92,7 +89,7 @@ function StudentHomePage() {
                   className={styles.subButton}
                   onClick={manageHandler}
                 >
-                  Manage Student
+                  Manage Course
                 </button>
               )}
             </div>
@@ -107,7 +104,7 @@ function StudentHomePage() {
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
                   <h6>Art</h6>
-                  <h5>13</h5>
+                  <h5>2</h5>
                 </div>
                 <h1>|</h1>
                 <div className={styles.statsRating}>
@@ -122,8 +119,8 @@ function StudentHomePage() {
               </div>
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
-                  <h6>Business Administration</h6>
-                  <h5>7</h5>
+                  <h6>Economics</h6>
+                  <h5>12</h5>
                 </div>
                 <h1>|</h1>
                 <div className={styles.statsRating}>
@@ -138,7 +135,7 @@ function StudentHomePage() {
               </div>
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
-                  <h6>Health Science</h6>
+                  <h6>Bio Chemistry</h6>
                   <h5>3</h5>
                 </div>
                 <h1>|</h1>
@@ -155,7 +152,7 @@ function StudentHomePage() {
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
                   <h6>Human Hospitality</h6>
-                  <h5>13</h5>
+                  <h5>7</h5>
                 </div>
                 <h1>|</h1>
                 <div className={styles.statsRating}>
@@ -171,7 +168,7 @@ function StudentHomePage() {
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
                   <h6>Agriculture</h6>
-                  <h5>200</h5>
+                  <h5>10</h5>
                 </div>
                 <h1>|</h1>
                 <div className={styles.statsRating}>
@@ -187,7 +184,7 @@ function StudentHomePage() {
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
                   <h6>Science</h6>
-                  <h5>60</h5>
+                  <h5>4</h5>
                 </div>
                 <h1>|</h1>
                 <div className={styles.statsRating}>
@@ -212,8 +209,8 @@ function StudentHomePage() {
                   <BsPersonFill />
                 </div>
                 <div className={styles.profileContentCard}>
-                  <h2>Newly Created Students</h2>
-                  <h3>38</h3>
+                  <h2>Newly Created Course</h2>
+                  <h3>7</h3>
                 </div>
                 <div className={styles.profileCardIcon}>
                   <FaPlay />
@@ -224,20 +221,8 @@ function StudentHomePage() {
                   <BsPersonCheckFill />
                 </div>
                 <div className={styles.profileContentCard}>
-                  <h2>All Created Students</h2>
-                  <h3>129</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsFillPersonDashFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Deleted Students</h2>
-                  <h3>53</h3>
+                  <h2>All Created Course</h2>
+                  <h3>50</h3>
                 </div>
                 <div className={styles.profileCardIcon}>
                   <FaPlay />
@@ -251,4 +236,4 @@ function StudentHomePage() {
   );
 }
 
-export default StudentHomePage;
+export default CourseHomePage;

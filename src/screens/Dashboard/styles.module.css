@@ -200,16 +200,6 @@
   margin-left: 10px;
 }
 
-.reactCalendar {
-  width: 400px;
-}
-
-.reactCalendar {
-  display: grid;
-  place-items: center;
-  width: 100%;
-}
-
 .reactCalendar button {
   font-size: 20px;
   border-radius: 5px;
@@ -222,6 +212,7 @@
   border-radius: 10px;
   overflow-y: scroll;
   height: 650px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .noticeTitle {
@@ -235,6 +226,9 @@
 
 .noticeContent {
   padding: 20px;
+  margin: 25px 15px 25px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .noticeContent h2 {
@@ -252,8 +246,8 @@
 
 .noticeComment {
   padding: 5px;
-  box-shadow: 0px 2px 0px 0px rgba(0, 0, 0, 0.2);
+
   border: none;
-  border-radius: 10px;
+  border-radius: 5px;
   font-size: 13px;
 }

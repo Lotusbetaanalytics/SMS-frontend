@@ -57,6 +57,17 @@ import {
   editFacultyByIdReducer,
   getFacultyByIdReducer,
 } from "./reducer/editFacultyIdReducer";
+import {
+  deleteDepartmentByIdReducer,
+  editDepartmentByIdReducer,
+  getDepartmentByIdReducer,
+} from "./reducer/editDepartmentIdReducer";
+import {
+  deleteCourseByIdReducer,
+  editCourseByIdReducer,
+  getCourseByIdReducer,
+} from "./reducer/editCourseIdReducer";
+import { profilePictureReducer } from "./reducer/profilePictureReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -96,6 +107,13 @@ const reducer = combineReducers({
   editFaculty: editFacultyByIdReducer,
   getFacultyId: getFacultyByIdReducer,
   deleteFacultyById: deleteFacultyByIdReducer,
+  deleteDepartmentById: deleteDepartmentByIdReducer,
+  getDepartmentId: getDepartmentByIdReducer,
+  editDepartment: editDepartmentByIdReducer,
+  editCourse: editCourseByIdReducer,
+  getCourseId: getCourseByIdReducer,
+  deleteCourseById: deleteCourseByIdReducer,
+  editProfilePicture: profilePictureReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

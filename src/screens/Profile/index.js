@@ -15,6 +15,7 @@ import stateData from "../../stateData";
 import { userDetails } from "../../redux/action/userAction";
 import { editUserProfile } from "../../redux/action/editUserProfileAction";
 import { EDIT_USERPROFILE_RESET } from "../../redux/constants/editUserProfileConstant";
+import { profileImage } from "../../redux/action/profilePictureAction";
 
 function Profile() {
   const [first_name, setFirst_name] = useState("");
@@ -34,6 +35,8 @@ function Profile() {
   const [phone_no_2, setPhone_no_2] = useState("");
   const [type, setType] = useState("text");
 
+  const [profilePicture, setProfilePicture] = useState(null);
+
   const countryData = datas;
   const fonsusStateData = stateData;
 
@@ -44,24 +47,39 @@ function Profile() {
   const submitHandler = (e) => {
     e.preventDefault();
     const editprofiledata = {
-      account: {
-        first_name: first_name,
-        middle_name: middle_name,
-        last_name: last_name,
-        email: email,
+      first_name: first_name,
+      middle_name: middle_name,
+      last_name: last_name,
+      email: email,
+      biodata: {
+        marital_status: marital_status,
+        gender: gender,
+        religion: religion,
+        birthday: birthday,
+        nationality: nationality,
+        state_of_origin: state_of_origin,
+        local_govt: local_govt,
+        address: address,
+        phone_no_1: phone_no_1,
+        phone_no_2: phone_no_2,
       },
-      marital_status: marital_status,
-      religion: religion,
-      birthday: birthday,
-      nationality: nationality,
-      state_of_origin: state_of_origin,
-      local_govt: local_govt,
-      address: address,
-      phone_no_1: phone_no_1,
-      phone_no_2: phone_no_2,
     };
     dispatch(editUserProfile(editprofiledata));
     console.log(editprofiledata);
+  };
+
+  const pictureHandler = (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    formData.append("profile_picture", profilePicture);
+    dispatch(profileImage(formData));
+    console.log(formData);
+  };
+
+  const onChangeHandler = (e) => {
+    const file = e.target.files[0];
+    setProfilePicture(file);
+    console.log(file);
   };
 
   const backHandler = () => {
@@ -79,26 +97,38 @@ function Profile() {
   }, [dispatch]);
 
   useEffect(() => {
-    if (isSuccess && username && username.biodata) {
+    if (isSuccess) {
       setFirst_name(username && username.first_name);
       setLast_name(username && username.last_name);
       setMiddle_name(username && username.middle_name);
       setEmail(username && username.email);
-      setMarital_status(username && username.biodata.marital_status);
-      setGender(username && username.biodata.gender);
-      setReligion(username && username.biodata.religion);
-      setBirthday(username && username.biodata.birthday);
-      setNationality(username && username.biodata.nationality);
-      setState_of_origin(username && username.biodata.state_of_origin);
-      setLocal_govt(username && username.biodata.local_govt);
-      setPermanent_address(username && username.biodata.permanent_address);
-      setAddress(username && username.biodata.address);
-      setPhone_no_1(username && username.biodata.phone_no_1);
-      setPhone_no_2(username && username.biodata.phone_no_2);
+      setMarital_status(
+        username && username.biodata && username.biodata.marital_status
+      );
+      setGender(username && username.biodata && username.biodata.gender);
+      setReligion(username && username.biodata && username.biodata.religion);
+      setBirthday(username && username.biodata && username.biodata.birthday);
+      setNationality(
+        username && username.biodata && username.biodata.nationality
+      );
+      setState_of_origin(
+        username && username.biodata && username.biodata.state_of_origin
+      );
+      setLocal_govt(
+        username && username.biodata && username.biodata.local_govt
+      );
+      setPermanent_address(
+        username && username.biodata && username.biodata.permanent_address
+      );
+      setAddress(username && username.biodata && username.biodataaddress);
+      setPhone_no_1(
+        username && username.biodata && username.biodata.phone_no_1
+      );
+      setPhone_no_2(username && username.biodata && username.biodataphone_no_2);
     }
   }, [isSuccess, username]);
 
-  console.log(marital_status);
+  console.log(username && username.last_name);
 
   // if (success) {
   //   setInterval(() => {
@@ -108,6 +138,9 @@ function Profile() {
 
   // const saveProfile = () => {
   //   setMarital_status(data.value);
+  const nextHandler = () => {
+    navigate("/admin/healthdata");
+  };
   // };
 
   if (success) {
@@ -132,10 +165,6 @@ function Profile() {
     dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
-  const nextHandler = () => {
-    navigate("/admin/healthdata");
-  };
-
   return (
     <div className={styles.profileContainer}>
       <Sidebar />
@@ -145,8 +174,20 @@ function Profile() {
         <div className={styles.profileBox}>
           <div className={styles.profileHeader}>
             <div className={styles.cameraButton}>
-              <img src={personlog} alt="" />
-              <BsFillCameraFill />
+              <img src={profilePicture} alt="" />
+              {/* <BsFillCameraFill /> */}
+              <label for="profile_pic">
+                {" "}
+                <BsFillCameraFill />
+              </label>
+              <input
+                type="file"
+                id="profile_pic"
+                onChange={(e) => onChangeHandler(e)}
+                name="profile_picture"
+                style={{ display: "none", visibility: "none" }}
+                onClick={pictureHandler}
+              />
               <div className={styles.titleProfile}>
                 <p>Edit Profile Bio</p>
               </div>

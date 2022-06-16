@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
-import { FaCity } from "react-icons/fa";
 import {
   getDepartment,
   postDepartment,
@@ -13,10 +12,13 @@ import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { CREATE_DEPARTMENT_RESET } from "../../redux/constants/departmentConstant";
 import { totalStaff } from "../../redux/action/staffAction";
 import { getfaculty } from "../../redux/action/facultyAction";
+import { useNavigate } from "react-router-dom";
+import { BsBuilding } from "react-icons/bs";
 
 function NewDepartment() {
   const dispatch = useDispatch();
   const toast = useToast();
+  const navigate = useNavigate();
 
   const [facultyName, setFacultyName] = useState("");
   const [nameOfDepartment, setNameOfDepartment] = useState("");
@@ -36,25 +38,14 @@ function NewDepartment() {
       is_active: isActive,
     };
     dispatch(postDepartment(departmentData));
-    // dispatch({ type: CREATE_DEPARTMENT_RESET });
     console.log(departmentData);
   };
-
-  const departmentPost = useSelector((state) => state.departmentPost);
-  const { loading, success, error } = departmentPost;
 
   useEffect(() => {
     dispatch(getDepartment());
   }, [dispatch]);
-
   const departmentGet = useSelector((state) => state.departmentGet);
   const { departmentid } = departmentGet;
-
-  console.log(departmentid);
-
-  const handleClick = () => {
-    setIsActive(!isActive);
-  };
 
   useEffect(() => {
     dispatch(totalStaff());
@@ -65,9 +56,19 @@ function NewDepartment() {
   useEffect(() => {
     dispatch(getfaculty());
   }, [dispatch]);
-
   const listFaculty = useSelector((state) => state.listFaculty);
   const { faculty } = listFaculty;
+
+  const handleClick = () => {
+    setIsActive(!isActive);
+  };
+
+  const backHandler = () => {
+    navigate("/admin/department/homepage");
+  };
+
+  const departmentPost = useSelector((state) => state.departmentPost);
+  const { loading, success, error } = departmentPost;
 
   if (success) {
     setFacultyName("");
@@ -79,7 +80,7 @@ function NewDepartment() {
       title: "Notification",
       description: "Department Successfully Added",
       status: "success",
-      duration: 7000,
+      duration: 4000,
       isClosable: true,
     });
     dispatch({ type: CREATE_DEPARTMENT_RESET });
@@ -107,7 +108,7 @@ function NewDepartment() {
             <div className={styles.staffCount}>
               <div className={styles.staffDetails}>
                 <div className={styles.staffIcon}>
-                  <FaCity />
+                  <BsBuilding />
                   <h2>Department</h2>
                 </div>
                 <h1>|</h1>
@@ -123,7 +124,7 @@ function NewDepartment() {
                 <button
                   type="button"
                   className={styles.cancelButton}
-                  // onClick={cancelHandler}
+                  onClick={backHandler}
                 >
                   <BiArrowBack />
                   Cancel

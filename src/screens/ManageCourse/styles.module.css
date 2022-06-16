@@ -56,8 +56,8 @@
 }
 
 /* .profileGridCard {
-        padding: 1rem;
-      } */
+          padding: 1rem;
+        } */
 
 .profileEachCard {
   display: flex;
@@ -147,7 +147,7 @@
 
 .staffDetail svg {
   font-size: 50px;
-  color: #ff7870;
+  color: #7f6fdf;
 }
 
 .staffDetail h1 {

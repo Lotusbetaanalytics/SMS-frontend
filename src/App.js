@@ -27,6 +27,12 @@ import StaffData from "./screens/StaffData";
 import StaffHomePage from "./screens/StaffHomePage";
 import StudentData from "./screens/StudentData";
 import StudentHomePage from "./screens/StudentHomePage";
+import DepartmentHomePage from "./screens/DepartmentHomePage";
+import ManageDepartment from "./screens/ManageDepartment";
+import ManageViewDepartment from "./screens/ManageViewDepartment";
+import CourseHomePage from "./screens/CourseHomePage";
+import ManageCourse from "./screens/ManageCourse";
+import ManageViewCourse from "./screens/ManageViewCourse";
 
 function App() {
   return (
@@ -103,6 +109,32 @@ function App() {
           exact
           element={<ManageViewFaculty />}
         />
+        <Route
+          path="/admin/department/homepage"
+          exact
+          element={<DepartmentHomePage />}
+        />
+        <Route
+          path="/admin/managedepartment"
+          exact
+          element={<ManageDepartment />}
+        />
+        <Route
+          path="/admin/manageviewdepartment/:id"
+          exact
+          element={<ManageViewDepartment />}
+        />
+        <Route
+          path="/admin/manageviewcourse/:id"
+          exact
+          element={<ManageViewCourse />}
+        />
+        <Route
+          path="/admin/course/homepage"
+          exact
+          element={<CourseHomePage />}
+        />
+        <Route path="/admin/managecourse" exact element={<ManageCourse />} />
       </Routes>
     </Router>
   );

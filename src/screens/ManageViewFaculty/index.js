@@ -274,7 +274,7 @@ const ManageViewFaculty = () => {
                         className={styles.modalBtn}
                         onClick={submitHandler}
                       >
-                        Upadate
+                        Update
                       </button>
                     )}
                   </div>

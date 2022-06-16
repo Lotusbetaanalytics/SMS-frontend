@@ -174,10 +174,10 @@
   margin-top: 30px;
   font-size: 20px;
   font-weight: bold;
-  background-color: #009834;
+  background-color: rgb(247, 100, 100);
   width: 40%;
   padding: 13px 15px;
-  border-radius: 30px;
+  border-radius: 10px;
   cursor: pointer;
   box-shadow: 0px 5px 7px 0px rgba(0, 0, 0, 0.1);
   color: white;
