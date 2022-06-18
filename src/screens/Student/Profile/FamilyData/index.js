@@ -34,20 +34,23 @@ useEffect(() => {
 
   React.useEffect(() => {
     if (success) {
-  setNext_of_kin_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.next_of_kin_full_name) ;
-  setNext_of_kin_phone_no_1(studentDetail && studentDetail.biodata &&studentDetail.biodata.next_of_kin_phone_no_1);
-  setNext_of_kin_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.next_of_kin_phone_no_2);
-  setNext_of_kin_address(studentDetail && studentDetail.biodata && studentDetail.biodata.next_of_kin_address);
-  setGuardian_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.guardian_full_name);
-  setGuardian_phone_no_1(studentDetail && studentDetail.biodata &&studentDetail.biodata.guardian_phone_no_1);
-  setGuardian_phone_no_2(studentDetail && studentDetail.biodata &&studentDetail.biodata.guardian_phone_no_2);
-  setGuardian_address(studentDetail && studentDetail.biodata &&studentDetail.biodata.guardian_address);
+  setNext_of_kin_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_full_name) ;
+  setNext_of_kin_phone_no_1(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_phone_no_1)
+  setNext_of_kin_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_phone_no_2);
+  setNext_of_kin_address(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.next_of_kin_address);
+  setGuardian_full_name(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_full_name);
+  setGuardian_phone_no_1(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_phone_no_1);
+  setGuardian_phone_no_2(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data && studentDetail.biodata.family_data.guardian_phone_no_2);
+  setGuardian_address(studentDetail && studentDetail.biodata && studentDetail.biodata.family_data &&studentDetail.biodata.family_data.guardian_address);
 }}, [success,studentDetail]);
   const nextHandler = () => {
     navigate("/student/profile/basic")
   };
   const editHandler = () => {
     navigate("/student/profile/family/edit")
+  };
+  const backHandler = () => {
+    navigate("/student/profile/health")
   };
   return (
     <div className='page_container'>
@@ -99,8 +102,14 @@ useEffect(() => {
                 </div>
                 
                 <div className={styles.btnContainer}>
-                    <button className={styles.brown} onClick={editHandler}>Edit</button>
+                  <div>
+                  <button className={styles.linear} onClick={backHandler}>Health data</button>
+                  </div>
+                  <div>
+                  <button className={styles.brown} onClick={editHandler}>Edit</button>
                     <button className={styles.linear} onClick={nextHandler}>Basic information</button>
+                  </div>
+                    
                 </div>
             </div>
         </div>

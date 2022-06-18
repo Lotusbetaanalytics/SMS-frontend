@@ -9,7 +9,10 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { CONFIRM_PASSWORD_RESET } from "../../../../redux/Constants/auth";
 import { Confirmpassword } from "../../../../redux/Actions/auth";
-
+import slider1 from "../../../../assets/legs.jpg";
+import slider2 from  "../../../../assets/graduates.jpg";
+import slider3 from "../../../../assets/smiling-african-student-pointing-with-pencil-laptop-screen-concentrated-blonde-woman-glasses-propping-chin-with-hand-while-working-with-computer-office.jpg";
+import BackgroundSlider from 'react-background-slider'
 
 function ConfirmPassword() {
   const navigate = useNavigate();
@@ -59,8 +62,13 @@ function ConfirmPassword() {
 
   return (
     <div className={styles.pageContainer}>
-
+      
+     
     <div className={styles.confirm}>
+    <BackgroundSlider
+  images={[slider1,slider2,slider3]}
+  duration={15} transition={4} />
+
       <div className={styles.homepageContent}>
       <h2 className={styles.welcome}>Welcome to the </h2>
       <h1>Student Management Portal</h1>

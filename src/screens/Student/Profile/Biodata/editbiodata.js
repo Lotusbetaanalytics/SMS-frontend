@@ -47,17 +47,17 @@ const Editbiodata = () => {
 
   React.useEffect(() => {
     // console.log(studentDetail.biodata)
-    if (isSuccess && studentDetail.biodata) {
-      setMarital_status(studentDetail.biodata.marital_status);
-      setGender(studentDetail.biodata.gender);
-      setReligion(studentDetail.biodata.religion);
-      setBirthday(studentDetail.biodata.birthday);
-      setNationality(studentDetail.biodata.nationality);
-      setState_of_origin(studentDetail.biodata.state_of_origin);
-      setLocal_govt(studentDetail.biodata.local_govt);
-      setAddress(studentDetail.biodata.address);
-      setPhone_no_1(studentDetail.biodata.phone_no_1);
-      setPhone_no_2(studentDetail.biodata.phone_no_2);
+    if (isSuccess && studentDetail) {
+      setMarital_status(studentDetail && studentDetail.biodata && studentDetail.biodata.marital_status);
+      setGender(studentDetail && studentDetail.biodata && studentDetail.biodata.gender);
+      setReligion(studentDetail  && studentDetail.biodata && studentDetail.biodata.religion);
+      setBirthday(studentDetail  && studentDetail.biodata && studentDetail.biodata.birthday);
+      setNationality(studentDetail  && studentDetail.biodata && studentDetail.biodata.nationality);
+      setState_of_origin(studentDetail  && studentDetail.biodata && studentDetail.biodata.state_of_origin);
+      setLocal_govt(studentDetail && studentDetail.biodata && studentDetail.biodata.local_govt);
+      setAddress(studentDetail && studentDetail.biodata && studentDetail.biodata.address);
+      setPhone_no_1(studentDetail  && studentDetail.biodata && studentDetail.biodata.phone_no_1);
+      setPhone_no_2(studentDetail  && studentDetail.biodata && studentDetail.biodata.phone_no_2);
     }
   }, [isSuccess]);
 
@@ -227,7 +227,7 @@ console.log(state_of_origin)
                     readOnly
                   />
                   </div>
-                  <div className={styles.editinfo}>
+                  {/* <div className={styles.editinfo}>
                   <Input
                     label={"Phone Number 2"}
                     type="number"
@@ -235,7 +235,7 @@ console.log(state_of_origin)
                     onChange={(e) => setPhone_no_2(e.target.value)}
                     readOnly
                   />
-                  </div>
+                  </div> */}
               </div>
             </div>
 
@@ -246,12 +246,11 @@ console.log(state_of_origin)
                     <div>
                     {loading ? (
                 <Button
-                  isLoading
-                  loadingText="Validating Credentials..."
-                  colorScheme="teal"
-                  variant="outline"
-                  isFullWidth
-                  style={{ height: "5rem" }}
+                isLoading
+                loadingText="Updating..."
+                colorScheme="teal"
+                variant="outline"
+                style={{ height: "3rem" }}
                 />
               ) : (
                 <button className={styles.brown} onClick={submitHandler}>

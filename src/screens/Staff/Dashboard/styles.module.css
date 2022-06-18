@@ -7,10 +7,9 @@ flex-direction: row;
     width:60%;
     padding: 2%;
     flex-direction: column;
+    
 }
-.right{
-    display: flex;
-}
+
 .infoheader{
 display: flex;
 justify-content: space-between;
@@ -47,9 +46,12 @@ margin-bottom: 20px;
 .right{
     display: flex;
     flex-direction: column;
+    justify-content: flex-end;
     padding: 3%;
     margin-left: 5%;
-    height: 88vh;
+    width: 30%;
+    height: 89vh;
+
 }
 
 .noticeTitle{
@@ -57,8 +59,12 @@ margin-bottom: 20px;
     margin-bottom: 10px;
 }
 .notice_container{
-    margin-top: 10px;
+    margin-top: 2rem;
     height: 100%;
     overflow-y: scroll;
+    
 }
 
+.react-calender{
+    border:none
+}

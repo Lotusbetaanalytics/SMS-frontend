@@ -2,12 +2,17 @@ import React, { useEffect, useState } from "react";
 import Input from "../../../../components/Input";
 import styles from "./styles.module.css";
 import {Alert, useToast, Button} from  "@chakra-ui/react";
-
+// import "slick-carousel/slick/slick.css";
+import BackgroundSlider from 'react-background-slider'
+// import "slick-carousel/slick/slick-theme.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { LoginStudent } from "../../../../redux/Actions/auth";
 import { studentDetails } from "../../../../redux/Actions/studentActions/studentAction";
 import { STUDENT_LOGIN_RESET } from "../../../../redux/Constants/auth";
+import slider1 from "../../../../assets/legs.jpg";
+import slider2 from  "../../../../assets/graduates.jpg";
+import slider3 from "../../../../assets/smiling-african-student-pointing-with-pencil-laptop-screen-concentrated-blonde-woman-glasses-propping-chin-with-hand-while-working-with-computer-office.jpg";
 
 function StudentLogin() {
   const dispatch = useDispatch()
@@ -52,12 +57,18 @@ function StudentLogin() {
   },[userInfo,navigate,dispatch])
   return (
     <div className={styles.pageContainer}>
+     <div className={styles.left}>
+        <BackgroundSlider
+  images={[slider1,slider2,slider3]}
+  duration={15} transition={4} />
 
-        <div className={styles.left}>
+
           <div className={styles.homepageContent}>
           <h2 className={styles.welcome}>Welcome to the </h2>
           <h1>Student Management Portal</h1>
           </div>
+
+          
           <div className={styles.rectangle}>
             <div className={styles.rectangle_white}></div>
             <div className={styles.rectangle_dark}></div>

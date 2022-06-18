@@ -58,18 +58,18 @@ const LecturerLogin = () => {
         <div className={styles.left}>
             <div className={styles.header}>
             <h1>Welcome Back !</h1>
-            <p>Its nice seeing you</p>
+            <p>It's nice seeing you</p>
             </div>
            
             <div className={styles.center_div}> 
         <form >
-          <Input
+          <input
           type={"email"}
           placeholder={"Email"}
           onChange={(e) => setEmail(e.target.value)}
           value={email}
           />
-          <Input
+          <input
           type={"password"}
           placeholder={"Password"}
           onChange={(e) => setPassword(e.target.value)}
@@ -89,7 +89,7 @@ const LecturerLogin = () => {
               </button>
             )}
           </form>
-         <Link to="/lecturer/forgetpassword"><p>Forget password ?</p></Link>
+         <Link to="/lecturer/forgetpassword"><p>Forgot password ?</p></Link>
             </div>
         </div>
         <div className={styles.right}>

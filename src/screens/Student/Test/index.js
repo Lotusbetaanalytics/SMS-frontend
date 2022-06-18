@@ -36,7 +36,7 @@ const TestList = () => {
     localStorage.setItem("quiz_takers", JSON.stringify(rowData.id));
     dispatch(getTestquestion(rowData.id))
     navigate(`/student/test/${rowData.id}`)
-    console.log(rowData.id)
+    console.log(rowData)
     
   }
   useEffect(() => {
@@ -47,18 +47,22 @@ const TestList = () => {
 
    const columns=[
     {
-        title: "Course Title",
+        title: "Test Title",
         field: "quiz.name",
         type:"string"
     },
     {
-      title: "Course code",
-      field: "id",
+      title: "Test Description",
+      field: "quiz.description",
       type:"string"
     },
     {
       title: "Status",
-      field: "quiz.is_completed",
+      field: "quiz.is_completed",lookup:{false:"Not Completed", true:"Completed"}
+    },
+    {
+      title: "Timer",
+      field: "quiz.timer",
       type:"string"
     },
     

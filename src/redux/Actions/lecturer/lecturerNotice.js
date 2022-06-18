@@ -1,4 +1,5 @@
 import axios from "axios";
+import { GET_NOTICE_BY_SOURCE_FAIL, GET_NOTICE_BY_SOURCE_REQUEST, GET_NOTICE_BY_SOURCE_SUCCESS } from "../../Constants/lecturer/lecturerNotice";
 import { DELETE_NOTICE_FAIL, DELETE_NOTICE_REQUEST, DELETE_NOTICE_SUCCESS, EDIT_NOTICE_FAIL, EDIT_NOTICE_REQUEST, EDIT_NOTICE_SUCCESS, GET_NOTICE_BY_ID_FAIL, GET_NOTICE_BY_ID_REQUEST, GET_NOTICE_BY_ID_SUCCESS, GET_NOTICE_FAIL, GET_NOTICE_REQUEST, GET_NOTICE_SUCCESS, GET_SCOPE_FAIL, GET_SCOPE_REQUEST, GET_SCOPE_SUCCESS, POST_NOTICE_FAIL, POST_NOTICE_REQUEST, POST_NOTICE_SUCCESS } from "../../Constants/lecturer/notice";
 
 export const lecturerGetScopeAction = () => async (dispatch, getState) => {
@@ -104,6 +105,39 @@ export const lecturerGetScopeAction = () => async (dispatch, getState) => {
     }
   };
 
+  export const getNoticeBySourceAction = (source) => async (dispatch, getState) => {
+    try {
+      dispatch({
+        type: GET_NOTICE_BY_SOURCE_REQUEST,
+      });
+  
+      const {
+        lecturerLogin: { userInfo },
+      } = getState();
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${userInfo.access}`,
+        },
+      };
+      const { data } = await axios.get(`/information/notice/?source__id=${source}`, config);
+      dispatch({
+        type: GET_NOTICE_BY_SOURCE_SUCCESS,
+        payload: data,
+      });
+      
+     
+    } catch (error) {
+      dispatch({
+        type: GET_NOTICE_BY_SOURCE_FAIL,
+        payload:
+          error.response && error.response.data.message
+            ? error.response.data.message
+            : error.message,
+      });
+    }
+  };
+
   export const getNoticeByIdAction = (id) => async (dispatch, getState) => {
     try {
       dispatch({
@@ -189,7 +223,7 @@ export const lecturerGetScopeAction = () => async (dispatch, getState) => {
           Authorization: `Bearer ${userInfo.access}`,
         },
       };
-      const { data } = await axios.delete(`/information/notice/${id}`, config);
+      const { data } = await axios.delete(`/information/notice/${id}/`, config);
       dispatch({
         type: DELETE_NOTICE_SUCCESS,
         payload: data,

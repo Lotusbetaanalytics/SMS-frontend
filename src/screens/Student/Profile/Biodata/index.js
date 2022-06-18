@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
+import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SearchWidget from '../../../../components/Input/Search';
 import StudentSidebar from '../../../../components/Sidebar';
@@ -9,6 +10,16 @@ const Biodata = () => {
   const dispatch = useNavigate();
   const studentLogin = JSON.parse(localStorage.getItem("studentInfo"));
 
+  const [marital_status, setMarital_status] = useState("");
+  const [gender, setGender] = useState("");
+  const [religion, setReligion] = useState("");
+  const [birthday, setBirthday] = useState("");
+  const [nationality, setNationality] = useState("");
+  const [state_of_origin, setState_of_origin] = useState("");
+  const [local_govt, setLocal_govt] = useState("");
+  const [address, setAddress] = useState("");
+  const [phone_no_1, setPhone_no_1] = useState("");
+  const [phone_no_2, setPhone_no_2] = useState("");
  useEffect(() => {
   if (!studentLogin) {
     navigate("/")
@@ -28,20 +39,25 @@ const backHandler = () => {
     navigate("/student/profile/basic")
   }
 
-  const myDetail = JSON.parse(localStorage.getItem("studentDetails")).biodata || {biodata:{marital_status:"",gender:"",religion:"",birthday:"",nationality:"",state_of_origin:"",local_govt:"",address:"",phone_no_1:"",phone_no_2:""}};
-  const mystudentDetails = myDetail;
-  console.log(mystudentDetails);
+  const { success: isSuccess, studentDetail } = useSelector(
+    (state) => state.details
+  );
 
-  const marital_status = mystudentDetails.marital_status;
-  const gender =mystudentDetails.gender;
-  const religion = mystudentDetails.religion;
-  const birthday = mystudentDetails.birthday;
-  const nationality =mystudentDetails.nationality;
-  const state_of_origin = mystudentDetails.state_of_origin;
-  const local_govt =  mystudentDetails.local_govt;
-  const address = mystudentDetails.address;
-  const phone_no_1 = mystudentDetails.phone_no_1;
-  const phone_no_2 = mystudentDetails.phone_no_2;
+  React.useEffect(() => {
+    // console.log(studentDetail.biodata)
+    if (isSuccess && studentDetail) {
+      setMarital_status(studentDetail && studentDetail.biodata && studentDetail.biodata.marital_status);
+      setGender(studentDetail && studentDetail.biodata && studentDetail.biodata.gender);
+      setReligion(studentDetail  && studentDetail.biodata && studentDetail.biodata.religion);
+      setBirthday(studentDetail  && studentDetail.biodata && studentDetail.biodata.birthday);
+      setNationality(studentDetail  && studentDetail.biodata && studentDetail.biodata.nationality);
+      setState_of_origin(studentDetail  && studentDetail.biodata && studentDetail.biodata.state_of_origin);
+      setLocal_govt(studentDetail && studentDetail.biodata && studentDetail.biodata.local_govt);
+      setAddress(studentDetail && studentDetail.biodata && studentDetail.biodata.address);
+      setPhone_no_1(studentDetail  && studentDetail.biodata && studentDetail.biodata.phone_no_1);
+      setPhone_no_2(studentDetail  && studentDetail.biodata && studentDetail.biodata.phone_no_2);
+    }
+  }, [isSuccess]);
 
   
   return (

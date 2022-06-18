@@ -37,6 +37,56 @@ const LecturerTest = () => {
         navigate("/lecturer/assessment/assignment")
     }
 
+     // console.log(textInput);
+ 
+    //  const textInput = React.useRef();
+  // const removeListAgenda = (i) => {
+  //   let filtered = agenda.filter((agendas) => {
+  //     return agendas !== i;
+  //   });
+  //   setAgenda(filtered);
+  // };
+  // const addListAgenda = () => {
+  //   setAgenda([...agenda, listAgenda ]);
+  // };
+
+  {/* <Input
+                  title="five point agenda"
+                  type={"text"}
+                  onChange={(e) => {
+                    setListAgenda(e.target.value);
+                  }}
+                  value={listAgenda}
+              
+                /> */}
+                 {/* <div>
+                 <button
+                  className={styles.removeBtn}
+                  onClick={() => {
+                    addListAgenda();
+                   
+                  }}
+                  type="button"
+                >
+                  Add Option
+                </button>
+                 </div> */}
+
+                  {/* {agenda.map((item, i) => (
+              <div className="remove_option2" key={i}>
+                <ul>
+                  <ol>{item}</ol>
+                </ul>
+               
+                <button
+                  type="button"
+                  className={styles.removeBtn}
+                  onClick={() => removeListAgenda(item)}
+                >
+                  Remove Option
+                </button>
+              </div>
+            ))} */}
   return (
     <div className="page_container">
     <LectureSidebar assessment={"focus"} />

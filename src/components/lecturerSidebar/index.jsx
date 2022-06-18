@@ -10,7 +10,7 @@ import { BsCardList } from "react-icons/bs";
 import { AiOutlineCamera,AiFillNotification} from "react-icons/ai";
 
 import { useDispatch, useSelector } from "react-redux";
-import { studentLogout } from "../../redux/Actions/auth";
+import { lecturerLogoutAction, studentLogout } from "../../redux/Actions/auth";
 import { studentDetails } from "../../redux/Actions/studentActions/studentAction";
 
 const LectureSidebar = (props) => {
@@ -22,8 +22,8 @@ const LectureSidebar = (props) => {
     const mystudentDetails = studentDetail;
 
     const logoutHandler = () => {
-      dispatch(studentLogout());
-      setTimeout(() => navigate("/"), [2000]);
+      dispatch(lecturerLogoutAction());
+      setTimeout(() => navigate("/lecturer/login"), [2000]);
     };
     
 
@@ -62,7 +62,7 @@ const LectureSidebar = (props) => {
                   < GiBookshelf />
                 </div>
               </div>
-              assessment
+              Assessment
             </li>
           </Link>
           <Link to="/lecturer/student/assignment">
@@ -72,7 +72,7 @@ const LectureSidebar = (props) => {
                   <FaClipboardList />
                 </div>
               </div>
-              student
+              Student
             </li>
           </Link>
           <Link to="/lecturer/notification">
@@ -82,7 +82,7 @@ const LectureSidebar = (props) => {
                   <AiFillNotification />
                 </div>
               </div>
-              notification
+              Notification
             </li>
           </Link>
           

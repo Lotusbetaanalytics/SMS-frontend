@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import "./App.css";
 import LectureSidebar from "./components/lecturerSidebar";
 import StudentSidebar from "./components/Sidebar";
-import {  AcademyData, Assignment, AssignmentQuestionBank, AssignmentStudent, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerEditNotice, LecturerForgetPassword, LecturerLogin, LecturerNotice, LecturerProfile, LecturerResetPassword, LecturerTest, NoticeBank, ProfilePicture, RegisteredCourses, Result, StartPage, TestList, TestqustionBank, TestScreen, TestStudent } from "./screens";
+import {  AcademyData, Assignment, AssignmentQuestionBank, AssignmentStudent, AvailableCourses, BasicProfile, BioData, ConfirmPassword, CourseRegisteration, DashBoard, EditAcademyData, EditAssignment, EditBasicProfile, Editbiodata, Editfamilydata, EditHealthdata, EditLecturerProfile, FamilyData, ForgotPassword, HealthData, Home, LecturerEditNotice, LecturerForgetPassword, LecturerLogin, LecturerNotice, LecturerProfile, LecturerResetPassword, LecturerTest, NoticeBank, ProfilePicture, RegisteredCourses, Result, StartPage, StudentAssignment, StudentNotice, TestList, TestqustionBank, TestResult, TestScreen, TestStudent } from "./screens";
 import LecturerDashboard from "./screens/Staff/Dashboard";
 import AllStudent from "./screens/Staff/Student/allStudent";
 
@@ -33,12 +33,14 @@ function App() {
         <Route path="/student/test" exact element={<TestList/>} />
         <Route path="/student/test/:id" exact element={<StartPage/>} />
         <Route path="/student/test/testscreen" exact element={<TestScreen/>} />
+        <Route path="/student/test/result" exact element={<TestResult/>} />
         <Route path="/student/profile/picture" exact element={<ProfilePicture/>} />
         <Route path="/lecturer" exact element={<LectureSidebar/>} />
         <Route path="/lecturer/dashboard" exact element={<LecturerDashboard/>} />
         <Route path="/lecturer/profile" exact element={<LecturerProfile/>} />
         <Route path="/lecturer/profile/edit" exact element={<EditLecturerProfile/>} />
         <Route path="/lecturer/assessment/assignment" exact element={<Assignment/>} />
+        <Route path="/lecturer/assignment/:id" exact element={<EditAssignment/>} />
         <Route path="/lecturer/assessment/assignment/history" exact element={<AssignmentQuestionBank/>} />
         <Route path="/lecturer/assessment/test" exact element={<LecturerTest/>} />
         <Route path="/lecturer/assessment/test/history" exact element={<TestqustionBank/>} />
@@ -53,6 +55,9 @@ function App() {
         <Route path="/lecturer/student/assignment" exact element={<AssignmentStudent/>} />
         <Route path="/lecturer/student/student" exact element={<AllStudent/>} />
         <Route path="/lecturer/student/test" exact element={<TestStudent/>} />
+        <Route path="/student/notice" exact element={<StudentNotice/>} />
+        <Route path="/student/assignment" exact element={<StudentAssignment/>} />
+        
       </Routes>
     </Router>
   );

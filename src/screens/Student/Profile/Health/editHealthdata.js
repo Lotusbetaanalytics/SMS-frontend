@@ -44,7 +44,7 @@ const details = useSelector((state) => state.details);
       setBlood_group(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.blood_group );
        setGenotype(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.genotype);
        setAllergies(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.allergies);
-      setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.disabilities);
+      setDisabilities(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.disabilities);
       setSTIs(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.STIs);
       setHeart_disease(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.heart_disease);
       setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
@@ -83,6 +83,9 @@ const details = useSelector((state) => state.details);
   const nextHandler = () => {
     navigate("/student/profile/family")
 }
+const backHandler = () =>{
+  navigate("/student/profile/academy")
+}
   if (success) {
     dispatch(studentDetails());
     setMsg(true);
@@ -113,21 +116,38 @@ const details = useSelector((state) => state.details);
             </div>
             <div className={styles.editContainer2}>
               <div className={styles.editinfo}>
-              <Input
-                  label={"Blood Group"}
-                  type="type"
-                  value={blood_group}
+              <label>Blood Group</label>
+                <select
                   onChange={(e) => setBlood_group(e.target.value)}
-                />
+                  value={blood_group}
+                >
+                  <option>Select</option>
+                  <option value="A RhD positive (A+)">A RhD positive (A+)</option>
+                  <option value="A RhD negative (A-)">A RhD negative (A-)</option>
+                  <option value="B RhD positive (B+)">B RhD positive (B+)</option>
+                  <option value="B RhD negative (B-)">B RhD negative (B-)</option>
+                  <option value="O RhD positive (O+)">O RhD positive (O+)</option>
+                  <option value="O RhD negative (O-)">O RhD negative (O-) (B-)</option>
+                  <option value="AB RhD positive (AB+)">AB RhD positive (AB+)</option>
+                  <option value="AB RhD negative (AB-)">AB RhD negative (AB-)</option>
+                  
+                </select>
               </div>
               <div className={styles.editinfo}>
-              <Input
-                  label={"Genotype"}
-                  type="type"
-                  value={genotype}
+              <label>Genotype</label>
+                <select
                   onChange={(e) => setGenotype(e.target.value)}
-     
-                />
+                  value={genotype}
+                >
+                  <option>Select</option>
+                  <option value="AA">AA</option>
+                  <option value="AB">AB</option>
+                  <option value="BB">BB</option>
+                  <option value="BO">BO</option>
+                  <option value="OO">OO</option>
+                  <option value="AO">AO</option>
+                  
+                </select>
                 </div>
               <div className={styles.editinfo}>
               <label>Allergies</label>
@@ -148,8 +168,8 @@ const details = useSelector((state) => state.details);
                   value={diabetes}
                 >
                   <option>Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
                   
                 </select>
               </div>
@@ -205,23 +225,28 @@ const details = useSelector((state) => state.details);
           
 
           <div className={styles.btnContainer}>
+            <div>
+            <button className={styles.linear} onClick={backHandler}>Academic history</button>
+            </div>
+            <div>
             {loading ? (
               <Button
-                isLoading
-                loadingText="Validating Credentials..."
-                colorScheme="teal"
-                variant="outline"
-                isFullWidth
-                style={{ height: "5rem" }}
+              isLoading
+              loadingText="Updating..."
+              colorScheme="teal"
+              variant="outline"
+              style={{ height: "3rem" }}
               />
             ) : (
               <button className={styles.brown} onClick={submitHandler}>
-                update
+                Update
               </button>
             )}
             <button className={styles.linear} onClick={nextHandler}>
-              familyData
+              Family data
             </button>
+            </div>
+            
           </div>
           </div>
         </div>

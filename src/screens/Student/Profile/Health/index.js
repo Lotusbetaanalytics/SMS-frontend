@@ -43,7 +43,7 @@ const HealthData = () => {
        setDiabetes(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
        setSTIs(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.STIs);
        setHeart_disease(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.heart_disease);
-       setDisabilities(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.diabetes);
+       setDisabilities(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.disabilities);
        setRespiratory_problems(studentDetail && studentDetail.biodata && studentDetail.biodata.health_data && studentDetail.biodata.health_data.respiratory_problems);
 }
 }, [success,studentDetail]);
@@ -54,6 +54,9 @@ const HealthData = () => {
         navigate("/student/profile/family")
       }
       
+      const backHandler = () =>{
+        navigate("/student/profile/academy")
+      }
 
   return (
     <div className='page_container'>
@@ -105,8 +108,14 @@ const HealthData = () => {
                 </div>
                 
                 <div className={styles.btnContainer}>
-                    <button className={styles.brown} onClick={editHandler}>edit</button>
-                    <button className={styles.linear} onClick={nextHandler}>family Data</button>
+                <div>
+                    <button className={styles.linear} onClick={backHandler}>Academic history</button>
+                    </div>
+                    <div>
+                    <button className={styles.brown} onClick={editHandler}>Edit</button>
+                    <button className={styles.linear} onClick={nextHandler}>Family data</button>
+                    </div>
+                    
                 </div>
             </div>
         </div>

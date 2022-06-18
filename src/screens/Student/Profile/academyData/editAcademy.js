@@ -85,7 +85,7 @@ const nextHandler = () => {
     navigate("/student/profile/health")
 }
 const backHandler = () => {
-  navigate("/student/profile/acadeny")
+  navigate("/student/profile/basic")
 }
   return (
     <div className='page_container'>
@@ -103,7 +103,7 @@ const backHandler = () => {
             <div className={styles.profile_bg}>
                 <div>
                 <div className={styles.header}>
-                   <Link to="/student/profile/health" ><div className={styles.header_title}>Academy Information</div></Link>
+                   <Link to="/student/profile/health" ><div className={styles.header_title}>Academic History</div></Link>
                     
                 </div>
                 <div className={styles.editContainer}>
@@ -149,17 +149,16 @@ const backHandler = () => {
                 
                 <div className={styles.btnContainer}>
                 <div>
-                <button className={styles.linear} onClick={backHandler}>Academy data</button>
+                <button className={styles.linear} onClick={backHandler}>Basic Information</button>
                 </div>
                 <div>
                 {loading? (
               <Button
               isLoading
-              loadingText="Validating Credentials..."
+              loadingText="Updating..."
               colorScheme="teal"
               variant="outline"
-              isFullWidth
-              style={{ height: "5rem" }}
+              style={{ height: "3rem" }}
             />):(
                 <button className={styles.brown} onClick={submitHandler}>Update</button>
             )}

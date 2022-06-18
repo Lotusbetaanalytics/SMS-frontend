@@ -52,7 +52,7 @@ const backHandler = () => {
             <div className={styles.profile_bg}>
                 <div>
                 <div className={styles.header}>
-                    <div className={styles.header_title}>Academy Information</div>
+                    <div className={styles.header_title}>Academic History</div>
                     
                 </div>
                 <div className={styles.content}>

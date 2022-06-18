@@ -128,6 +128,7 @@ const EditLecturerProfile = () => {
       duration: 9000,
       isClosable: true,
     });
+    dispatch({type:EDITPROFILE_RESET})
   }
 
   React.useEffect(() => {
@@ -136,7 +137,7 @@ const EditLecturerProfile = () => {
       setLast_name(lecturerDetail && lecturerDetail.last_name);
       setMiddle_name(lecturerDetail && lecturerDetail.middle_name);
       setEmail(lecturerDetail && lecturerDetail.email);
-      setSpecialization(lecturerDetail && lecturerDetail.specialization);
+      setSpecialization(lecturerDetail && lecturerDetail.specialization.name);
       setMarital_status(
         lecturerDetail &&
           lecturerDetail.biodata &&
@@ -576,8 +577,8 @@ const EditLecturerProfile = () => {
                   value={diabetes}
                 >
                   <option>Select</option>
-                  <option value="true">Yes</option>
-                  <option value="false">No</option>
+                  <option value="Yes">Yes</option>
+                  <option value="No">No</option>
                   
                 </select>
               </div>
@@ -634,11 +635,11 @@ const EditLecturerProfile = () => {
             {loading? (
               <Button
               isLoading
-              loadingText="Validating Credentials..."
+              loadingText="Updating..."
               colorScheme="teal"
               variant="outline"
-              isFullWidth
-              style={{ height: "5rem" }}
+        
+              style={{ height: "3rem" }}
             />):(
                 <button className={styles.brown} onClick={submitHandler}>Update</button>
             )}

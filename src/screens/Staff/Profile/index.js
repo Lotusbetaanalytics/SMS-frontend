@@ -66,7 +66,7 @@ const LecturerProfile = () => {
      setLast_name( lecturerDetail && lecturerDetail.last_name);
      setMiddle_name( lecturerDetail && lecturerDetail.middle_name);
      setEmail(lecturerDetail &&  lecturerDetail.email);
-     setSpecialization(lecturerDetail && lecturerDetail.specialization);
+     setSpecialization(lecturerDetail && lecturerDetail.specialization.name);
      setMarital_status(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.marital_status);
      setGender( lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.gender);
      setReligion(  lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.religion);

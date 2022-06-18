@@ -121,10 +121,11 @@ const AllStudent = () => {
     setCourse(e.target.value);
     console.log(course, "this is it");
     const courseName = course;
-
-    dispatch(getStudentAction(courseName));
   };
-  console.log(getStudent);
+
+  useEffect(()=>(
+    dispatch(getStudentAction(course))
+  ),[course])
   
   const assignmentPage = () => {
     navigate("/lecturer/student/assignment");
@@ -159,9 +160,10 @@ const AllStudent = () => {
           </div>
           <div>
             <select onChange={courseHandler} value={course}>
-              {/* <option>Select Assignment</option> */}
+              <option>Select Assignment</option>
               {mycourses &&
                 mycourses.map((item, i) => (
+                 
                   <option key={i} value={item.name}>
                     {item.name}
                   </option>

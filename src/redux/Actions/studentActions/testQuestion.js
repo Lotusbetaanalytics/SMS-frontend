@@ -15,7 +15,7 @@ export const getTestquestion = (id) => async (dispatch, getState) => {
           Authorization: `Bearer ${userInfo.access}`,
         },
       };
-      const { data } = await axios.get(`/assessment/quiztaker/${id}`, config);
+      const { data } = await axios.get(`/assessment/quiztaker/${id}/`, config);
       dispatch({
         type: QUESTION_SUCCESS,
         payload: data,

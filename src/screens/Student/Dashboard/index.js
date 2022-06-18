@@ -91,7 +91,9 @@ const StudentDashboard = () => {
   
   const registered_courses =
     mystudentDetails && mystudentDetails.student[0].course_registrations.length;
-
+    const course_registered =
+    mystudentDetails && mystudentDetails.student[0].course_registrations
+    console.log(course_registered);
     const courseBank =academicData&& academicData.specialization.recommended_courses
   
     const courseData = courseBank && courseBank
@@ -174,7 +176,7 @@ const StudentDashboard = () => {
             />
             <Cards
               iconColor={"white"}
-              iconBorder={"5px solid rgba(131, 233, 244, 0.49)"}
+              iconBorder={"5px rgba(131, 233, 244, 0.49)"}
               body={student_department}
               title={"Department"}
               bgColor={"rgba(131, 233, 244, 1)"}
@@ -307,10 +309,10 @@ const StudentDashboard = () => {
             </button>
           </div>
         </div>
-        <div className={styles.reactCalender}>
-          <Calendar onChange={onChange} value={value} />
+        <div >
+          <Calendar className="react-calender" onChange={onChange} value={value} />
         </div>
-        <div className={styles.spaceBetween}></div>
+       
         <div className={styles.notice_container}>
           <div className={styles.noticeTitle}>Notice</div>
           <div className={styles.notice}>

@@ -85,7 +85,7 @@ const TestScreen = () => {
 
   if (minutes == 0 && seconds == 10) {
     alert("You have less than 10 seconds");
-    setTimeout(() => navigate("/student/takeTest"), [1000]);
+    setTimeout(() => navigate("/student/test/result"), [1000]);
   }
 
   const submitHandler = (e) => {
@@ -100,7 +100,7 @@ const TestScreen = () => {
       alert("Please select an option");
     } else {
       if (newIndex >= questionLength) {
-        setTimeout(() => navigate("/student/takeTest"), [1000]);
+        setTimeout(() => navigate("/student/test/result"), [1000]);
       } else {
         setIndex(newIndex);
         setAnswer("");

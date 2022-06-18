@@ -155,11 +155,10 @@ const [first_name, setFirst_name] = useState("");
             {loading? (
               <Button
               isLoading
-              loadingText="Validating Credentials..."
+              loadingText="Updating..."
               colorScheme="teal"
               variant="outline"
-              isFullWidth
-              style={{ height: "5rem" }}
+              style={{ height: "3rem" }}
             />):(
                 <button className={styles.brown} onClick={submitHandler}>Update</button>
             )}

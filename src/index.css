@@ -1,10 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Gothic+A1:wght@100&family=Noto+Sans&family=Open+Sans:wght@300&family=Poppins:wght@100;200;400&display=swap");
-@import "../node_modules/@syncfusion/ej2-base/styles/material.css";
+/* @import "../node_modules/@syncfusion/ej2-base/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-buttons/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-lists/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-inputs/styles/material.css";
 @import "../node_modules/@syncfusion/ej2-popups/styles/material.css";
-@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css";
+@import "../node_modules/@syncfusion/ej2-react-calendars/styles/material.css"; */
 body {
   margin: 0;
   padding: 0;
@@ -44,8 +44,18 @@ body {
   align-items: center;
   height: 100vh;
   justify-content: center;
- 
   overflow-y: scroll;
+  
+}
+.right_content_Notice{
+  width: 70%;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  justify-content: center;
+  overflow-y: scroll;
+  background-color: #fff;
+
 }
 .active {
   background: linear-gradient(89.89deg, rgba(52, 26, 37, 0.32) 26.29%, rgba(52, 26, 37, 0) 122.26%);
@@ -66,4 +76,9 @@ body {
   background: rgba(217, 217, 217, 0.1);
   border-radius: 8px;
   font-weight: 800;
+  height:80px;
+  }
+  .react-calender{
+    border:none;
+    border-radius: 15px;
   }

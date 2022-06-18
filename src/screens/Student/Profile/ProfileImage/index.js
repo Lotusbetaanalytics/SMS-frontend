@@ -5,14 +5,14 @@ import { useNavigate } from 'react-router-dom';
 import Input from '../../../../components/Input';
 import SearchWidget from '../../../../components/Input/Search';
 import StudentSidebar from '../../../../components/Sidebar';
-import { editProfile } from '../../../../redux/Actions/ProfileActions/profile';
+import { editProfile, profilePicture } from '../../../../redux/Actions/ProfileActions/profile';
 import { studentDetails } from '../../../../redux/Actions/studentActions/studentAction';
 import { EDITPROFILE_RESET } from '../../../../redux/Constants/ProfileConstants/profileConstants';
 import styles from "../styles.module.css"
 
 const ProfilePicture = () => {
-
-    const [profile_picture, setProfile_picture] = useState("");
+  const toast = useToast();
+    const [profile_image, setProfile_image] = useState("");
       const [msg,setMsg] = useState("")
     
       const dispatch = useDispatch()
@@ -30,31 +30,38 @@ const ProfilePicture = () => {
       }, [dispatch]);
     
       const details = useSelector((state) => state.details);
-      const { studentDetail } = details;
+      const { studentDetail,loading,error,success } = details;
      
-      const editProfile_ = useSelector((state) => state.editProfile_);
-      const {loading,success,error} = editProfile_
     
       const nextHandler = () => {
         navigate("/student/profile/biodata")
     }
         
       useEffect(() => {
-        if (studentDetail){
-        setProfile_picture(studentDetail && studentDetail.profile_picture)
+        if (success && studentDetail.biodata){
+        setProfile_image(studentDetail && studentDetail.biodata.profile_picture)
         }
-      }, [studentDetail,dispatch]);
+      }, [success]);
+
+      const displayPicture = useSelector((state) => state.displayPicture);
+      const {loading:uploadLoading,success:uploadSuccess,error:uploadError,ProfilePicture} = displayPicture
+
+      const onChangeHandler = (e) => {
+        const file = e.target.files[0];
+        setProfile_image(file);
+      };
     
       
       const submitHandler = (e) => {
         e.preventDefault();
-        const userdata = {profile_picture } 
-          dispatch(editProfile(userdata))   
+        const formData = new FormData();
+    formData.append("profile_picture",profile_image); 
+          dispatch(profilePicture(formData))   
       };
-      if (success) {
-        setMsg(true)
-        dispatch({type:EDITPROFILE_RESET})
-     }
+    //   if (success) {
+    //     setMsg(true)
+    //     dispatch({type:EDITPROFILE_RESET})
+    //  }
      if (error) {
         toast({
           title: "Error",
@@ -64,6 +71,30 @@ const ProfilePicture = () => {
           isClosable: true,
         });
       }
+      if (uploadSuccess) {
+        toast({
+          title: "Success",
+          description: uploadSuccess,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+        dispatch({type:EDITPROFILE_RESET})
+     }
+     if (uploadError) {
+        toast({
+          title: "Error",
+          description: uploadError,
+          status: "error",
+          duration: 9000,
+          isClosable: true,
+        });
+      }
+
+      const jame = [
+        
+      ]
+
      
     
       return (
@@ -84,15 +115,14 @@ const ProfilePicture = () => {
                   <div className={styles.header}>
                     <div className={styles.header_title}>Profile picture</div>
                     <div className={styles.header_profile}>Profile Information</div>
-                    <div >kjkhhjhjhkkl</div>
+                    <img src={profile_image} alt="avatar"/>
                   </div>
                   <div className={styles.editContainer}>
                     <div className={styles.editinfo}>
                         <Input
-                        
-                         type={"file"}
-                         value={profile_picture}
-                         onChange={(e) => setProfile_picture(e.target.file)}
+                        type={"file"}
+                        name="profile_image"
+                         onChange={onChangeHandler}
                         />
                     </div>
                   </div>
@@ -103,11 +133,10 @@ const ProfilePicture = () => {
                 {loading? (
                   <Button
                   isLoading
-                  loadingText="Validating Credentials..."
-                  colorScheme="teal"
-                  variant="outline"
-                  isFullWidth
-                  style={{ height: "5rem" }}
+              loadingText="Updating..."
+              colorScheme="teal"
+              variant="outline"
+              style={{ height: "3rem" }}
                 />):(
                     <button className={styles.brown} onClick={submitHandler}>upload</button>
                 )}

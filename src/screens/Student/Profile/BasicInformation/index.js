@@ -22,7 +22,7 @@ const BasicProfile = () => {
       const last_Name = mystudentDetails && mystudentDetails.last_name;
       const middle_Name = mystudentDetails && mystudentDetails.middle_name;
       const email_ =mystudentDetails &&  mystudentDetails.email;
-      const specialization_ =mystudentDetails && mystudentDetails.specialization;
+      const specialization_ =mystudentDetails && mystudentDetails.specialization.name;
       const matricNum = mystudentDetails && mystudentDetails.student[0].matric_no;
 
     const navigate = useNavigate();

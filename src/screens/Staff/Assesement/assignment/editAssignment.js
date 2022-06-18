@@ -2,24 +2,27 @@ import { CircularProgress, toast, useToast } from '@chakra-ui/react';
 
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate, useNavigate, useParams } from 'react-router-dom';
 import Input from '../../../../components/Input';
 import LecturerHeader from '../../../../components/lecturerHeader';
 import LectureSidebar from '../../../../components/lecturerSidebar';
-import { lecturerPostAssignmentAction } from '../../../../redux/Actions/lecturer/lecturerAssessment';
+import { getAssignmentByIdAction, lecturerEditAssignmentAction, lecturerPostAssignmentAction } from '../../../../redux/Actions/lecturer/lecturerAssessment';
 import { lecturerCourseAction } from '../../../../redux/Actions/lecturer/lecturerCourses';
 import { lecturerDetailsAction } from '../../../../redux/Actions/lecturer/lecturerDetail';
 import data from '../../data';
 import "../../../../App.css"
 import styles from "./styles.module.css"
-import { POST_ASSIGNMENT_RESET } from '../../../../redux/Constants/lecturer/lecturerAssessment';
+import { EDIT_ASSIGNMENT_RESET, POST_ASSIGNMENT_RESET } from '../../../../redux/Constants/lecturer/lecturerAssessment';
 
 
 
-const Assignment = () => {
+const EditAssignment = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate();
+    const {id:assignmentId} = useParams()
+   
     const toast = useToast();
+
     const [due_date,setDue_date] = useState("");
     const [title,setTitle] = useState("");
     const [question,setQuestion] = useState("");
@@ -27,37 +30,57 @@ const Assignment = () => {
     const [course,setCourse] = useState("")
     const [msg,setMsg] = useState("")
 
-    
     const getId = JSON.parse(localStorage.getItem("lecturerDetails"));
     const id = getId.staff[0].id
-    console.log(id)
-
 
     useEffect(()=>{
       dispatch(lecturerCourseAction(id))
     },[dispatch])
 
+    useEffect(()=>{
+        dispatch(getAssignmentByIdAction(assignmentId))
+      },[dispatch])
+
     const lecturerCourse = useSelector((state) => state.lecturerCourse);
     const {lecturerCourses, loading}  = lecturerCourse;
 
-    const lecturerPostAssignment = useSelector((state) => state.lecturerPostAssignment);
-    const {success, loading:isLoading,error}  = lecturerPostAssignment;
+    const  lecturerGetAssignmentById = useSelector((state) => state. lecturerGetAssignmentById);
+    const { getAssignment,loading:isLoading,error:isError,success:getByidSuccess}  =  lecturerGetAssignmentById;
+      console.log(getAssignment && getAssignment)
+
+    useEffect(()=>{
+        if (getByidSuccess){
+            setTitle(getAssignment&& getAssignment.title)
+            setQuestion(getAssignment&&getAssignment.question)
+            setMax_score(getAssignment&&getAssignment.max_score)
+            setDue_date(getAssignment&&getAssignment.due_date)
+        }
+      },[getByidSuccess,getAssignment])
+
+    const lecturerEditAssignment = useSelector((state) => state.lecturerEditAssignment);
+    const {loading:editLoading,success,error}  = lecturerEditAssignment;
 
     const mycourses = lecturerCourses && lecturerCourses.specialization && lecturerCourses.specialization.courses
     console.log(mycourses)
 
     const courseHandler=(e) =>{
          setCourse(e.target.value)
-        console.log(course,"this is it")
 
     }
 
 
     const submitHandler = () => {
+        const assignmentData = {
+            title:title,
+            question:question,
+            course:course,
+            max_score:max_score,
+            due_date:due_date
+        }
         if (!title || !due_date || !title || !course || !max_score  ) {
           setMsg(true)
         } else {
-          dispatch(lecturerPostAssignmentAction(title,question,course,max_score,due_date))
+          dispatch(lecturerEditAssignmentAction(assignmentData,assignmentId))
           console.log("hey")
         }
     }
@@ -73,7 +96,7 @@ const Assignment = () => {
       setMax_score("")
       setTitle("")
       setQuestion("")
-      dispatch({type:POST_ASSIGNMENT_RESET})
+      dispatch({type:EDIT_ASSIGNMENT_RESET})
     }
     if (error) {
       toast ({
@@ -94,7 +117,7 @@ const Assignment = () => {
         navigate("/lecturer/assessment/assignment")
     }
 
-    console.log(due_date)
+   
 
   return (
     <div className="page_container">
@@ -104,7 +127,7 @@ const Assignment = () => {
       {loading && (
               <CircularProgress isIndeterminate color='green.300' />
         )}
-        {isLoading && (
+        {editLoading && (
               <CircularProgress isIndeterminate color='green.300' />
         )}
         {msg && (
@@ -123,7 +146,6 @@ const Assignment = () => {
                   <label>Course Name</label>
                   <select onChange={courseHandler}
                     value={course}>
-                      <option>Select</option>
                     {mycourses && mycourses.map((item,i) =>(
                         <option key={i} value={item.id}>{item.name}
                             
@@ -187,4 +209,4 @@ const Assignment = () => {
   )
 }
 
-export default Assignment
+export default EditAssignment

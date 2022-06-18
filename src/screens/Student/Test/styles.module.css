@@ -114,3 +114,33 @@ input[type='radio'] {
   input[type='radio']:checked:before {
     background:green;
   }
+
+  .result{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 3rem;
+  }
+  .result h1{
+    font-size: 34px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .result h2{
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 20px;
+  }
+  .imageContainer{
+    height: 200px;
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+  }
+  .imageContainer{
+    height: 100%;
+    width: 100%;
+  }

@@ -59,6 +59,10 @@ const Editfamilydata = () => {
     navigate("/student/profile/basic")
 }
 
+const backHandler = () => {
+  navigate("/student/profile/health")
+}
+
   const submitHandler = (e) => {
     e.preventDefault();
     const userdata = {
@@ -120,7 +124,7 @@ const Editfamilydata = () => {
               <div className={styles.editinfo}>
               <Input
                   label={"Next of Kin Phone Number "}
-                  type="text"
+                  type="number"
                   value={next_of_kin_phone_no_1}
                   onChange={(e) => setNext_of_kin_phone_no_1(e.target.value)}
                 />
@@ -128,7 +132,7 @@ const Editfamilydata = () => {
               <div className={styles.editinfo}>
               <Input
                   label={"Next of Kin Phone Number 2"}
-                  type="text"
+                  type="number"
                   value={next_of_kin_phone_no_2}
                   onChange={(e) => setNext_of_kin_phone_no_2(e.target.value)}
                 />
@@ -152,7 +156,7 @@ const Editfamilydata = () => {
               <div className={styles.editinfo}>
                 <Input
                   label={"Guardian Phone Number"}
-                  type="text"
+                  type="number"
                   value={guardian_phone_no_1}
                   onChange={(e) => setGuardian_phone_no_1(e.target.value)}
                 />
@@ -160,8 +164,8 @@ const Editfamilydata = () => {
               <div className={styles.editinfo}>
                 <Input
                   label={"Guardian Phone Number 2"}
-                  type="text"
-                  value={setGuardian_phone_no_2}
+                  type="number"
+                  value={guardian_phone_no_2}
                   onChange={(e) => setGuardian_phone_no_2(e.target.value)}
                 />
                 </div>
@@ -178,14 +182,17 @@ const Editfamilydata = () => {
           </div>
 
           <div className={styles.btnContainer}>
+            <div>
+            <button className={styles.linear} onClick={backHandler}>Health data</button>
+            </div>
+            <div>
             {loading ? (
               <Button
-                isLoading
-                loadingText="Validating Credentials..."
-                colorScheme="teal"
-                variant="outline"
-                isFullWidth
-                style={{ height: "5rem" }}
+              isLoading
+              loadingText="Updating..."
+              colorScheme="teal"
+              variant="outline"
+              style={{ height: "3rem" }}
               />
             ) : (
               <button className={styles.brown} onClick={submitHandler}>
@@ -195,6 +202,8 @@ const Editfamilydata = () => {
             <button className={styles.linear} onClick={nextHandler}>
               Basic data
             </button>
+            </div>
+            
           </div>
         </div>
       </div>

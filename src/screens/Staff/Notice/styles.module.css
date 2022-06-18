@@ -110,7 +110,7 @@
 }
 .white_container{
     display: flex;
-    flex-direction: row;
+    justify-content: flex-start;
     margin: 1% 2% ;
     width:95%;
     padding: 2% 5%;

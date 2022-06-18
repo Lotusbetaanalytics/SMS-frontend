@@ -31,11 +31,20 @@ const StartPage = () => {
 const testData = questions && questions;
   const quizName = testData && testData.quiz && testData.quiz.name;
   const timer = testData && testData.quiz && testData.quiz.timer;
+  const is_completed = testData && testData.quiz.is_completed
+  console.log(is_completed)
+  
+
+  
 
   const testHandler = (id) => {
-    dispatch(getTestquestion(id));
-    navigate("/student/test/testscreen");
-    // console.log(id)
+    if (testData && testData.quiz.is_completed == true){
+      setTimeout(() => navigate("/student/test/result"), [1000]);
+    } else {
+      dispatch(getTestquestion(id));
+      navigate("/student/test/testscreen");
+    }
+   
   };
 
   return (

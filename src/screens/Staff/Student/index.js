@@ -23,6 +23,7 @@ import Remove from "@material-ui/icons/Remove";
 import SaveAlt from "@material-ui/icons/SaveAlt";
 import Search from "@material-ui/icons/Search";
 import ViewColumn from "@material-ui/icons/ViewColumn";
+import { GrView } from "react-icons/gr";
 import tableData from "../Assesement/tableData";
 import styles from "./styles.module.css";
 import { getStudentAction } from "../../../redux/Actions/lecturer/lecturerGetStudent";
@@ -122,8 +123,13 @@ const AssignmentStudent = () => {
     console.log(course, "this is it");
     const courseName = course;
 
-    dispatch(getStudentAction(courseName));
+    
   };
+
+  useEffect(()=>(
+    dispatch(getStudentAction(course))
+  ),[course])
+
   console.log(getStudent);
   const assignmentPage = () => {
     navigate("/lecturer/student/assignment");
@@ -158,7 +164,7 @@ const AssignmentStudent = () => {
           </div>
           <div>
             <select onChange={courseHandler} value={course}>
-              {/* <option>Select Assignment</option> */}
+              <option>Select</option> 
               {mycourses &&
                 mycourses.map((item, i) => (
                   <option key={i} value={item.name}>

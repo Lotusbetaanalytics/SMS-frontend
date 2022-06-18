@@ -28,6 +28,7 @@ const LecturerEditNotice = () => {
         dispatch(getNoticeByIdAction(id))
       },[dispatch])
 
+    
    
   const lecturerGetScope = useSelector((state) => state.lecturerGetScope);
   const { loading:isLoading,error:isError,getScope } = lecturerGetScope;

@@ -30,9 +30,10 @@
 .card_container{
 display: grid;
 grid-template-columns: 30% 30% 30%;
-justify-content: center;
-grid-gap: 2%;
-margin-top: 20px;
+
+grid-gap: 5%;
+margin-top: 2.5rem;
+
 }
 .widget{
     padding: .5% 2% 0 2%;
@@ -119,14 +120,19 @@ margin-top: 20px;
 .logout_btn :hover{
     font-size: 20px;
 }
-
+.notice_container{
+    margin-top: 3rem;
+    
+}
 .noticeTitle{
 font-weight: bold;
 margin-top: 10px;
+padding:.8rem 0 ;
 }
 .table_container{
     width: 100%;
     margin-top: 20px;
     height: 100%;
     padding: 2%;
+    overflow-y: scroll;
 }

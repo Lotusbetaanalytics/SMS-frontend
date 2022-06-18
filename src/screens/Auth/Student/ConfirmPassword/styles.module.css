@@ -21,11 +21,7 @@
     color: black;
     background: linear-gradient(359.39deg,
         rgba(0, 0, 0, 0.6)45.04%,
-        rgba(255, 255, 255, 0) 88.88%),
-      url(../../../../assets/smiling-african-student-pointing-with-pencil-laptop-screen-concentrated-blonde-woman-glasses-propping-chin-with-hand-while-working-with-computer-office.jpg);
-    background-repeat: no-repeat;
-    background-size: cover;
-    background-position: center;
+        rgba(255, 255, 255, 0) 88.88%);
     align-items: flex-start;
     justify-content: flex-end;
   }
