@@ -13,6 +13,8 @@ import {
   CONFIRMPASSWORD_REQUEST,
   CONFIRMPASSWORD_SUCCESS,
   CONFIRMPASSWORD_FAIL,
+  CONFIRMPASSWORD_RESET,
+  USER_FORGOTPASSWORD_RESET,
 } from "../constants/userContstant";
 
 export const userLoginReducer = (state = {}, action) => {
@@ -40,6 +42,8 @@ export const userForgotPasswordReducer = (state = {}, action) => {
       return { loading: false, success: true, user: action.payload.data };
     case USER_FORGOTPASSWORD_FAIL:
       return { loading: false, error: action.payload };
+    case USER_FORGOTPASSWORD_RESET:
+      return {};
     default:
       return state;
   }
@@ -70,6 +74,8 @@ export const confirmPasswordReducer = (state = {}, action) => {
       return { loading: false, success: true, user: action.payload.data };
     case CONFIRMPASSWORD_FAIL:
       return { loading: false, error: action.payload };
+    case CONFIRMPASSWORD_RESET:
+      return {};
     default:
       return state;
   }

@@ -29,6 +29,8 @@ const ManageViewStaff = () => {
   const [specialization, setSpecialization] = useState("");
   const [employee_id, setEmployee_id] = useState("");
   const [isActive, setIsActive] = useState(false);
+  const [currentEmail, setCurrentEmail] = useState("");
+
   React.useEffect(() => {
     dispatch(
       getStaffId(
@@ -52,7 +54,7 @@ const ManageViewStaff = () => {
         first_name: first_Name,
         middle_name: middle_Name,
         last_name: last_Name,
-        email: email,
+        email: currentEmail !== email ? email : undefined,
         specialization: specialization,
       },
       is_active: isActive,
@@ -68,6 +70,7 @@ const ManageViewStaff = () => {
     setMiddle_Name(e.target.value);
     setLast_Name(e.target.value);
     setEmail(e.target.value);
+    setCurrentEmail(e.target.value);
     setEmployee_id(e.target.value);
     setSpecialization(e.target.value);
     setIsActive(e.target.value);
@@ -104,6 +107,12 @@ const ManageViewStaff = () => {
 
   const editStaff = useSelector((state) => state.editStaff);
   const { success, error, loading } = editStaff;
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (success) {
     toast({

@@ -2,6 +2,7 @@ import { Alert, AlertIcon } from "@chakra-ui/alert";
 import { Center } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { useToast } from "@chakra-ui/toast";
+import { Button } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
@@ -105,13 +106,24 @@ function ForgetPassword() {
                   </div>
 
                   <div className={styles.stBtn}>
-                    <button
-                      type="submit"
-                      className={styles.btn}
-                      onClick={submitHandler}
-                    >
-                      Submit
-                    </button>
+                    {loading ? (
+                      <Button
+                        isLoading
+                        loadingText="Validating Credentials..."
+                        colorScheme="teal"
+                        variant="outline"
+                        isfullWidth
+                        style={{ height: "5rem" }}
+                      />
+                    ) : (
+                      <button
+                        type="submit"
+                        className={styles.btn}
+                        onClick={submitHandler}
+                      >
+                        Submit
+                      </button>
+                    )}
                   </div>
                 </div>
               </div>

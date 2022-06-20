@@ -6,10 +6,9 @@ import {
   EDIT_USERPROFILE_FAIL,
 } from "../constants/editUserProfileConstant";
 
-export const editUserProfile = (id, userData) => async (dispatch, getState) => {
+export const editUserProfile = (userData) => async (dispatch, getState) => {
   try {
     console.log(userData);
-    console.log(id);
     dispatch({
       type: EDIT_USERPROFILE_REQUEST,
     });

@@ -38,7 +38,7 @@ export const editStaffByIdReducer = (state = { staffs: [] }, action) => {
   }
 };
 
-export const getStaffByIdReducer = (state = { getStaffById: [] }, action) => {
+export const getStaffByIdReducer = (state = { user: {} }, action) => {
   switch (action.type) {
     case GET_STAFFBYID_REQUEST:
       return { ...state, loading: true };
@@ -46,7 +46,7 @@ export const getStaffByIdReducer = (state = { getStaffById: [] }, action) => {
       return {
         loading: false,
         success: true,
-        getStaffById: action.payload.user,
+        user: action.payload.user,
       };
     case GET_STAFFBYID_FAIL:
       return {

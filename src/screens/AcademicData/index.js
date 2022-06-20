@@ -1,14 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
-import { RiFolderHistoryFill } from "react-icons/ri";
 import { BiArrowBack } from "react-icons/bi";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { postAcademicData } from "../../redux/action/userProfileDataAction";
-import { ACADEMIC_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
 import { Link, useNavigate } from "react-router-dom";
+import { editUserProfile } from "../../redux/action/editUserProfileAction";
+import { MdHistoryEdu } from "react-icons/md";
+import { EDIT_USERPROFILE_RESET } from "../../redux/constants/editUserProfileConstant";
+import { userDetails } from "../../redux/action/userAction";
 
 function AcademicData() {
   const dispatch = useDispatch();
@@ -24,31 +25,75 @@ function AcademicData() {
   const submitHandler = (e) => {
     e.preventDefault();
     const academicdata = {
-      institution: institution,
-      start_date: start_date,
-      end_date: end_date,
-      qualification_earned: qualification_earned,
+      biodata: {
+        academic_history: [
+          {
+            institution: institution,
+            start_date: start_date,
+            end_date: end_date,
+            qualification_earned: qualification_earned,
+          },
+        ],
+      },
     };
-    dispatch(postAcademicData(academicdata));
+    dispatch(editUserProfile(academicdata));
     console.log(academicdata);
   };
 
-  const postAcademic = useSelector((state) => state.postAcademic);
-  const { loading, success, error } = postAcademic;
+  const editProfileUser = useSelector((state) => state.editProfileUser);
+  const { loading, success, error } = editProfileUser;
+
+  useEffect(() => {
+    dispatch(userDetails());
+  }, [dispatch]);
+
+  const userDetail = useSelector((state) => state.userDetail);
+  const { username, success: isSuccess } = userDetail;
+
+  useEffect(() => {
+    if (isSuccess) {
+      setInstitution(
+        username &&
+          username.biodata &&
+          username.biodata.academic_history[0].institution
+      );
+      setStart_date(
+        username &&
+          username.biodata &&
+          username.biodata.academic_history[0].start_date
+      );
+      setEnd_date(
+        username &&
+          username.biodata &&
+          username.biodata.academic_history[0].end_date
+      );
+      setQualification_earned(
+        username &&
+          username.biodata &&
+          username.biodata.academic_history[0].qualification_earned
+      );
+    }
+  }, [isSuccess, username]);
 
   const backHandler = () => {
-    navigate("/admin/healthdata");
+    navigate("/admin/viewacademicdata");
   };
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (success) {
     toast({
       title: "Notification",
-      description: "Academic Credentials Created",
+      description: "Academic Data Updated",
       status: "success",
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: ACADEMIC_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   if (error) {
@@ -59,7 +104,7 @@ function AcademicData() {
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: ACADEMIC_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   return (
@@ -73,12 +118,12 @@ function AcademicData() {
             <div className={styles.staffCount}>
               <div className={styles.staffDetails}>
                 <div className={styles.staffIcon}>
-                  <RiFolderHistoryFill />
+                  <MdHistoryEdu />
                 </div>
                 <h1>|</h1>
               </div>
               <div className={styles.titleProfile}>
-                <p>Create Academic History</p>
+                <p>Edit Academic History</p>
               </div>
             </div>
             <div className={styles.profileContent}>
@@ -96,9 +141,8 @@ function AcademicData() {
                   <Button
                     isLoading
                     loadingText="Validating Credentials..."
-                    colorScheme="teal"
+                    colorScheme="green"
                     variant="outline"
-                    isfullWidth
                     style={{ height: "5rem" }}
                   />
                 ) : (
@@ -107,7 +151,7 @@ function AcademicData() {
                     className={styles.subButton}
                     onClick={submitHandler}
                   >
-                    Submit
+                    Update Academic History
                   </button>
                 )}
               </div>
@@ -169,7 +213,7 @@ function AcademicData() {
                 </div>
                 <div className={styles.inputBox}>
                   <button>
-                    <Link to="/admin/familydata">
+                    <Link to="/admin/viewfamilydata">
                       <p>Next</p>
                     </Link>
                   </button>

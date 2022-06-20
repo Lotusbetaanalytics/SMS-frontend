@@ -41,6 +41,12 @@ function InformationImage() {
   const noticeGet = useSelector((state) => state.noticeGet);
   const { allNotice } = noticeGet;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     setMessage("");
     setImages("");

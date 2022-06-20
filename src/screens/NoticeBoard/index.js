@@ -45,6 +45,12 @@ function NoticeBoard() {
   const { getScopeId } = scopeId;
   console.log(getScopeId);
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     setTitle("");
     setMessage("");
@@ -91,6 +97,18 @@ function NoticeBoard() {
           </div>
           <div className={styles.noticeFormContainer}>
             <div className={styles.noticeButton}>
+              <div className={styles.scopeBtn}>
+                <Link to="/admin/scope">
+                  <button>Create Scope</button>
+                </Link>
+              </div>
+              <div className={styles.noticeManageBtn}>
+                <Link to="/admin/managenotice">
+                  <buttonn type="button" className={styles.manageBtn}>
+                    Manage Notice
+                  </buttonn>
+                </Link>
+              </div>
               <Link to="/admin/notice/information">
                 <button className={styles.infoBtn} type="button">
                   Information

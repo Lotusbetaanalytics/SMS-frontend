@@ -35,7 +35,7 @@ import {
   getCourseReducer,
   postAddCourseReducer,
 } from "./reducer/courseReducer";
-import { getScopeReducer } from "./reducer/scopeReducer";
+import { getScopeReducer, postScopeReducer } from "./reducer/scopeReducer";
 import { editUserProfileReducer } from "./reducer/editUserProfileReducer";
 import {
   editStudentByIdReducer,
@@ -68,6 +68,12 @@ import {
   getCourseByIdReducer,
 } from "./reducer/editCourseIdReducer";
 import { profilePictureReducer } from "./reducer/profilePictureReducer";
+import {
+  deleteNoticeByIdReducer,
+  editNoticeByIdReducer,
+  getNoticeByIdReducer,
+} from "./reducer/editNoticeReducer";
+import { getGeneralStudentDetailsReducer } from "./reducer/studentGeneralDetailsReducer";
 
 const reducer = combineReducers({
   userLogin: userLoginReducer,
@@ -95,7 +101,7 @@ const reducer = combineReducers({
   editProfileUser: editUserProfileReducer,
   deleteStudentById: deleteStudentByIdReducer,
   editStudent: editStudentByIdReducer,
-  getStudentId: getStudentByIdReducer,
+  getStudentById: getStudentByIdReducer,
   postInfo: postInformationReducer,
   postSpecializations: postSpecilizationReducer,
   levelGet: getLevelReducer,
@@ -114,6 +120,11 @@ const reducer = combineReducers({
   getCourseId: getCourseByIdReducer,
   deleteCourseById: deleteCourseByIdReducer,
   editProfilePicture: profilePictureReducer,
+  editNoticeById: editNoticeByIdReducer,
+  deleteNoticeById: deleteNoticeByIdReducer,
+  getNoticeById: getNoticeByIdReducer,
+  getGeneralStudentDetail: getGeneralStudentDetailsReducer,
+  postScopeData: postScopeReducer,
 });
 
 const userInfoFromStorage = localStorage.getItem("userInfo")

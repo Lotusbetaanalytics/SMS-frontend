@@ -38,6 +38,12 @@ function CourseHomePage() {
   const percentage3 = 39;
   const percentage4 = 0;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   return (
     <div className={styles.profileContainer}>
       <Sidebar />

@@ -105,6 +105,12 @@ const ManageViewCourse = () => {
   const editCourse = useSelector((state) => state.editCourse);
   const { success, error, loading } = editCourse;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     toast({
       title: "Notification",

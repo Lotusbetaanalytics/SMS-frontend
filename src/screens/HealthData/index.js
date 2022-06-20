@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
@@ -6,9 +6,12 @@ import { RiHealthBookFill } from "react-icons/ri";
 import { BiArrowBack } from "react-icons/bi";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { postHealthData } from "../../redux/action/userProfileDataAction";
-import { HEALTH_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
+// import { postHealthData } from "../../redux/action/userProfileDataAction";
+// import { HEALTH_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
 import { useNavigate } from "react-router-dom";
+import { userDetails } from "../../redux/action/userAction";
+import { editUserProfile } from "../../redux/action/editUserProfileAction";
+import { EDIT_USERPROFILE_RESET } from "../../redux/constants/editUserProfileConstant";
 
 function HealthData() {
   const dispatch = useDispatch();
@@ -24,46 +27,100 @@ function HealthData() {
   const [disabilities, setDisabilities] = useState("");
   const [respiratory_problems, setRespiratory_problems] = useState("");
 
+  useEffect(() => {
+    dispatch(userDetails());
+  }, [dispatch]);
+
+  const userDetail = useSelector((state) => state.userDetail);
+  const { username, success: isSuccess } = userDetail;
+
+  useEffect(() => {
+    if (isSuccess) {
+      setBlood_group(
+        username && username.biodata && username.biodata.health_data.blood_group
+      );
+      setGenotype(
+        username && username.biodata && username.biodata.health_data.genotype
+      );
+      setAllergies(
+        username && username.biodata && username.biodata.health_data.allergies
+      );
+      setDiabetes(
+        username && username.biodata && username.biodata.health_data.diabetes
+      );
+      setSTIs(
+        username && username.biodata && username.biodata.health_data.STIs
+      );
+      setHeart_disease(
+        username &&
+          username.biodata &&
+          username.biodata.health_data.heart_disease
+      );
+      setDisabilities(
+        username &&
+          username.biodata &&
+          username.biodata.health_data.disabilities
+      );
+      setRespiratory_problems(
+        username &&
+          username.biodata &&
+          username.biodata.health_data.respiratory_problems
+      );
+    }
+  }, [isSuccess, username]);
+
+  console.log(username && username.biodata.health_data.blood_group);
+
   const submitHandler = (e) => {
     e.preventDefault();
     const healthdata = {
-      blood_group: blood_group,
-      genotype: genotype,
-      allergies: allergies,
-      diabetes: diabetes,
-      STIs: STIs,
-      heart_disease: heart_disease,
-      disabilities: disabilities,
-      respiratory_problems: respiratory_problems,
+      biodata: {
+        health_data: {
+          blood_group: blood_group,
+          genotype: genotype,
+          allergies: allergies,
+          diabetes: diabetes,
+          STIs: STIs,
+          heart_disease: heart_disease,
+          disabilities: disabilities,
+          respiratory_problems: respiratory_problems,
+        },
+      },
     };
-    dispatch(postHealthData(healthdata));
+    dispatch(editUserProfile(healthdata));
     console.log(healthdata);
   };
 
-  const postHealth = useSelector((state) => state.postHealth);
-  const { loading, success, error } = postHealth;
+  const editProfileUser = useSelector((state) => state.editProfileUser);
+  const { loading, success, error } = editProfileUser;
 
-  if (success) {
-    navigate("/admin/academicdata");
-  }
+  // if (success) {
+  //   navigate("/admin/academicdata");
+  // }
 
   const backHandler = () => {
-    navigate("/admin/profile");
+    navigate("/admin/viewhealthdata");
   };
 
   const nextHandler = () => {
-    navigate("/admin/academicdata");
+    navigate("/admin/viewacademicdata");
   };
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (success) {
     toast({
       title: "Notification",
-      description: "Health Credentials Created",
+      description: "Health Edited Successfully",
       status: "success",
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: HEALTH_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   if (error) {
@@ -74,7 +131,7 @@ function HealthData() {
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: HEALTH_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   return (
@@ -93,7 +150,7 @@ function HealthData() {
                 <h1>|</h1>
               </div>
               <div className={styles.titleProfile}>
-                <p>Create Health Data</p>
+                <p>Edit Health Data</p>
               </div>
             </div>
             <div className={styles.profileContent}>
@@ -106,13 +163,24 @@ function HealthData() {
                   <BiArrowBack />
                   Back
                 </button>
-                <button
-                  type="submit"
-                  className={styles.subButton}
-                  onClick={submitHandler}
-                >
-                  Submit
-                </button>
+                {loading ? (
+                  <Button
+                    isLoading
+                    loadingText="Validating Credentials..."
+                    colorScheme="green"
+                    variant="outline"
+                    isfullWidth
+                    style={{ height: "3rem" }}
+                  />
+                ) : (
+                  <button
+                    type="submit"
+                    className={styles.subButton}
+                    onClick={submitHandler}
+                  >
+                    Update Health Data
+                  </button>
+                )}
               </div>
             </div>
           </div>

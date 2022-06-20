@@ -38,6 +38,12 @@ function FacultyHomePage() {
   const percentage3 = 3;
   const percentage4 = 7;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   return (
     <div className={styles.profileContainer}>
       <Sidebar />

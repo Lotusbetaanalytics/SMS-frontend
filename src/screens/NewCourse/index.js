@@ -70,6 +70,12 @@ function NewCourse() {
     navigate("/admin/course/homepage");
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     toast({
       title: "Notification",

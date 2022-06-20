@@ -73,6 +73,12 @@ function StudentData() {
     navigate("/admin/student/homepage");
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     setFirst_Name("");
     setMiddle_Name("");

@@ -11,9 +11,9 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaPlay } from "react-icons/fa";
 import { BsPersonFill } from "react-icons/bs";
-import { BsPersonXFill } from "react-icons/bs";
 import { BsFillPersonDashFill } from "react-icons/bs";
 import { BsPersonCheckFill } from "react-icons/bs";
+import { getGeneralStudentDetailAction } from "../../redux/action/getGeneralStudentDetailAction";
 
 function StudentHomePage() {
   const dispatch = useDispatch();
@@ -29,6 +29,17 @@ function StudentHomePage() {
   const postNewStudent = useSelector((state) => state.postNewStudent);
   const { loading } = postNewStudent;
 
+  useEffect(() => {
+    getGeneralStudentDetailAction();
+  }, [dispatch]);
+
+  // console.log(id)
+  const getGeneralStudentDetail = useSelector(
+    (state) => state.getGeneralStudentDetail
+  );
+  const { getGeneralDetails } = getGeneralStudentDetail;
+  console.log(getGeneralDetails);
+
   const nextHandler = () => {
     navigate("/admin/student");
   };
@@ -40,6 +51,12 @@ function StudentHomePage() {
   const percentage2 = 9;
   const percentage3 = 15;
   const percentage4 = 87;
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   return (
     <div className={styles.profileContainer}>
@@ -213,7 +230,7 @@ function StudentHomePage() {
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>Newly Created Students</h2>
-                  <h3>38</h3>
+                  <h3>{allStudent && allStudent.length}</h3>
                 </div>
                 <div className={styles.profileCardIcon}>
                   <FaPlay />
@@ -225,7 +242,7 @@ function StudentHomePage() {
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>All Created Students</h2>
-                  <h3>129</h3>
+                  <h3>{allStudent && allStudent.length}</h3>
                 </div>
                 <div className={styles.profileCardIcon}>
                   <FaPlay />

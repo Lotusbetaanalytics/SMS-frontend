@@ -39,7 +39,7 @@ function NoticeInformation() {
 
   const getInformationImage = useSelector((state) => state.getInformationImage);
   const { getInforImage } = getInformationImage;
-  console.log(getInforImage && getInforImage[0].images[0].image);
+  console.log(getInforImage && getInforImage);
 
   useEffect(() => {
     dispatch(getScope());
@@ -48,6 +48,12 @@ function NoticeInformation() {
   const scopeId = useSelector((state) => state.scopeId);
   const { getScopeId } = scopeId;
   //   console.log(getScopeId);
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (success) {
     setTitle("");

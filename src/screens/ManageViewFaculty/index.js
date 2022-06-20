@@ -97,6 +97,12 @@ const ManageViewFaculty = () => {
   const editFaculty = useSelector((state) => state.editFaculty);
   const { success, error, loading } = editFaculty;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     toast({
       title: "Notification",

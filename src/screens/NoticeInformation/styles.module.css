@@ -25,6 +25,7 @@
   height: 780px;
   border-radius: 10px;
   overflow-y: scroll;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -93,6 +94,9 @@
 
 .noticeContent {
   padding: 20px;
+  margin: 25px 15px 25px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .noticeContent h2 {

@@ -39,9 +39,9 @@ function ViewProfileData() {
   const toast = useToast();
   const navigate = useNavigate();
 
-  const nextHandler = () => {
-    navigate("/admin/healthdata");
-  };
+  // const nextHandler = () => {
+  //   navigate("/admin/healthdata");
+  // };
   const postBioDataInfo = useSelector((state) => state.postBioDataInfo);
   const { loading, success, error } = postBioDataInfo;
 
@@ -51,9 +51,11 @@ function ViewProfileData() {
   //   }, 3000);
   // }
 
-  // const saveProfile = () => {
-  //   setMarital_status(data.value);
-  // };
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 
   const userDetail = useSelector((state) => state.userDetail);
   const { username, success: isSuccess } = userDetail;
@@ -89,11 +91,13 @@ function ViewProfileData() {
       setPermanent_address(
         username && username.biodata && username.biodata.permanent_address
       );
-      setAddress(username && username.biodata && username.biodataaddress);
+      setAddress(username && username.biodata && username.biodata.address);
       setPhone_no_1(
         username && username.biodata && username.biodata.phone_no_1
       );
-      setPhone_no_2(username && username.biodata && username.biodataphone_no_2);
+      setPhone_no_2(
+        username && username.biodata && username.biodata.phone_no_2
+      );
     }
   }, [isSuccess, username]);
 
@@ -376,20 +380,9 @@ function ViewProfileData() {
                   />
                 </div>
                 <div className={styles.inputBox}>
-                  {loading ? (
-                    <Button
-                      isLoading
-                      loadingText="Validating Credentials..."
-                      colorScheme="whatsapp"
-                      variant="outline"
-                      isfullWidth
-                      style={{ height: "5rem" }}
-                    />
-                  ) : (
-                    <button onClick={nextHandler} type="submit">
+                  {/* <button onClick={nextHandler} type="submit">
                       <p>Next</p>
-                    </button>
-                  )}
+                    </button> */}
                 </div>
               </div>
             )}

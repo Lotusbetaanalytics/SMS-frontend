@@ -40,6 +40,12 @@ function StaffHomePage() {
   const percentage3 = 3;
   const percentage4 = 7;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   return (
     <div className={styles.profileContainer}>
       <Sidebar />
@@ -212,19 +218,7 @@ function StaffHomePage() {
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>Newly Created Staff</h2>
-                  <h3>7</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsPersonXFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Recently Deleted Staff</h2>
-                  <h3>3</h3>
+                  <h3>{allStaff && allStaff.length}</h3>
                 </div>
                 <div className={styles.profileCardIcon}>
                   <FaPlay />
@@ -236,7 +230,7 @@ function StaffHomePage() {
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>All Created Staff</h2>
-                  <h3>50</h3>
+                  <h3>{allStaff && allStaff.length}</h3>
                 </div>
                 <div className={styles.profileCardIcon}>
                   <FaPlay />

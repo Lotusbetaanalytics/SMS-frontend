@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
 import styles from "./styles.module.css";
@@ -6,9 +6,10 @@ import { BiArrowBack } from "react-icons/bi";
 import { MdOutlineFamilyRestroom } from "react-icons/md";
 import { Button, Center, CircularProgress, useToast } from "@chakra-ui/react";
 import { useDispatch, useSelector } from "react-redux";
-import { postFamilyData } from "../../redux/action/userProfileDataAction";
-import { FAMILY_DATA_RESET } from "../../redux/constants/userProfileDataConstant";
 import { useNavigate } from "react-router-dom";
+import { editUserProfile } from "../../redux/action/editUserProfileAction";
+import { EDIT_USERPROFILE_RESET } from "../../redux/constants/editUserProfileConstant";
+import { userDetails } from "../../redux/action/userAction";
 
 function FamilyData() {
   const dispatch = useDispatch();
@@ -27,43 +28,97 @@ function FamilyData() {
   const submitHandler = (e) => {
     e.preventDefault();
     const familydata = {
-      next_of_kin_full_name: next_of_kin_full_name,
-      next_of_kin_phone_no_1: next_of_kin_phone_no_1,
-      next_of_kin_phone_no_2: next_of_kin_phone_no_2,
-      next_of_kin_address: next_of_kin_address,
-      guardian_full_name: guardian_full_name,
-      guardian_phone_no_1: guardian_phone_no_1,
-      guardian_phone_no_2: guardian_phone_no_2,
-      guardian_address: guardian_address,
+      biodata: {
+        family_data: {
+          next_of_kin_full_name: next_of_kin_full_name,
+          next_of_kin_phone_no_1: next_of_kin_phone_no_1,
+          next_of_kin_phone_no_2: next_of_kin_phone_no_2,
+          next_of_kin_address: next_of_kin_address,
+          guardian_full_name: guardian_full_name,
+          guardian_phone_no_1: guardian_phone_no_1,
+          guardian_phone_no_2: guardian_phone_no_2,
+          guardian_address: guardian_address,
+        },
+      },
     };
-    dispatch(postFamilyData(familydata, toast));
+    dispatch(editUserProfile(familydata, toast));
     console.log(familydata);
   };
 
-  const postFamily = useSelector((state) => state.postFamily);
-  const { loading, success, error } = postFamily;
+  const editProfileUser = useSelector((state) => state.editProfileUser);
+  const { loading, success, error } = editProfileUser;
+
+  useEffect(() => {
+    dispatch(userDetails());
+  }, [dispatch]);
+
+  const userDetail = useSelector((state) => state.userDetail);
+  const { username, success: isSuccess } = userDetail;
+
+  useEffect(() => {
+    if (isSuccess) {
+      setNext_of_kin_full_name(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.next_of_kin_full_name
+      );
+      setNext_of_kin_phone_no_1(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.next_of_kin_phone_no_1
+      );
+      setNext_of_kin_phone_no_2(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.next_of_kin_phone_no_2
+      );
+      setNext_of_kin_address(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.next_of_kin_address
+      );
+      setGuardian_full_name(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.guardian_full_name
+      );
+      setGuardian_phone_no_1(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.guardian_phone_no_1
+      );
+      setGuardian_phone_no_2(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.guardian_phone_no_2
+      );
+      setGuardian_address(
+        username &&
+          username.biodata &&
+          username.biodata.family_data.guardian_address
+      );
+    }
+  }, [isSuccess, username]);
 
   const backHandler = () => {
-    navigate("/admin/academicdata");
+    navigate("/admin/viewfamilydata");
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
-    setNext_of_kin_full_name("");
-    setNext_of_kin_phone_no_1("");
-    setNext_of_kin_phone_no_2("");
-    setNext_of_kin_address("");
-    setGuardian_full_name("");
-    setGuardian_phone_no_1("");
-    setGuardian_phone_no_2("");
-    setGuardian_address("");
     toast({
       title: "Notification",
-      description: "Family Credentials Created",
+      description: "Family Data Updated",
       status: "success",
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: FAMILY_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   if (error) {
@@ -74,7 +129,7 @@ function FamilyData() {
       duration: 4000,
       isClosable: true,
     });
-    dispatch({ type: FAMILY_DATA_RESET });
+    dispatch({ type: EDIT_USERPROFILE_RESET });
   }
 
   return (
@@ -93,7 +148,7 @@ function FamilyData() {
                 <h1>|</h1>
               </div>
               <div className={styles.titleProfile}>
-                <p>Create Family Data</p>
+                <p>Edit Family Data</p>
               </div>
             </div>
             <div className={styles.profileContent}>
@@ -113,8 +168,7 @@ function FamilyData() {
                     loadingText="Validating Credentials..."
                     colorScheme="teal"
                     variant="outline"
-                    isfullWidth
-                    style={{ height: "5rem" }}
+                    style={{ height: "3rem" }}
                   />
                 ) : (
                   <button
@@ -122,7 +176,7 @@ function FamilyData() {
                     className={styles.subButton}
                     onClick={submitHandler}
                   >
-                    Submit
+                    Updata Family Data
                   </button>
                 )}
               </div>

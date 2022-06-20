@@ -53,6 +53,12 @@ function ManageStaff() {
     }
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   // const deactivateHandler = (id, is_active) => {
   //   editStudentId(id, is_active);
   //   setIsActive(!isActive);
@@ -133,7 +139,7 @@ function ManageStaff() {
                     <Th>Email</Th>
                     <Th>Spec.</Th>
                     <Th>Employee ID</Th>
-
+                    <Th>Status</Th>
                     <Th>Action</Th>
                   </Tr>
                   {allStaff &&
@@ -145,6 +151,7 @@ function ManageStaff() {
                           <Td>{item.user.email}</Td>
                           <Td>{item.user.specialization}</Td>
                           <Td>{item.employee_id}</Td>
+                          <Td>{item.is_active.toString()}</Td>
                           <Td>
                             <Button
                               className={styles.chakar_btn1}

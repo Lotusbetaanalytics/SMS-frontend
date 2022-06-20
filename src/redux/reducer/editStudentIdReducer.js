@@ -35,7 +35,7 @@ export const editStudentByIdReducer = (state = { students: [] }, action) => {
 };
 
 export const getStudentByIdReducer = (
-  state = { getStudentById: [] },
+  state = { user: {}, specialization: {} },
   action
 ) => {
   switch (action.type) {
@@ -45,7 +45,8 @@ export const getStudentByIdReducer = (
       return {
         loading: false,
         success: true,
-        getStudentById: action.payload.user,
+        user: action.payload.user,
+        specialization: action.payload.specialization,
       };
     case GET_STUDENTBYID_FAIL:
       return {

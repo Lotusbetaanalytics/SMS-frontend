@@ -60,6 +60,12 @@ function Faculty() {
     navigate("/admin/faculty/homepage");
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     setFaculty_Name("");
     setFaculty_Code("");

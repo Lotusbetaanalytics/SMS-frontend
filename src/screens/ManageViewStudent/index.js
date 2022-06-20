@@ -34,31 +34,21 @@ const ManageViewStudent = () => {
   const [specialization, setSpecialization] = useState("");
   const [isActive, setIsActive] = useState("");
 
-  // React.useEffect(() => {
-  //   dispatch(
-  //     getStudentId(
-  //       id,
-  //       setFirst_Name,
-  //       setMiddle_Name,
-  //       setLast_Name,
-  //       setEmail,
-  //       setMatric_no,
-  //       setStudent_id,
-  //       setSpecialization,
-  //       setIsActive
-  //       onChangeHandler
-  //     )
-  //   );
-  // }, [id, dispatch]);
+  const [currentEmail, setCurrentEmail] = useState("");
+
+  React.useEffect(() => {
+    dispatch(getStudentId(id));
+  }, [dispatch, id]);
 
   const submitHandler = (e) => {
     e.preventDefault();
+
     const data = {
       user: {
         first_name: first_Name,
         middle_name: middle_Name,
         last_name: last_Name,
-        email: email,
+        email: currentEmail !== email ? email : undefined,
         specialization: specialization,
       },
       is_active: isActive,
@@ -66,37 +56,14 @@ const ManageViewStudent = () => {
       student_id: student_id,
     };
     dispatch(editStudentId(id, data));
-    console.log(data);
   };
-  console.log(id);
-
-  // const onChangeHandler = (e) => {
-  //   setFirst_Name(e.target.value);
-  //   setMiddle_Name(e.target.value);
-  //   setLast_Name(e.target.value);
-  //   setEmail(e.target.value);
-  //   setMatric_no(e.target.value);
-  //   setStudent_id(e.target.value);
-  //   setSpecialization(e.target.value);
-  //   setIsActive(e.target.value);
-  // };
 
   useEffect(() => {
     dispatch(totalStudent());
   }, [dispatch]);
 
-  const [studentInfo, setStudentInfo] = React.useState();
-
   const totalStudentNo = useSelector((state) => state.totalStudentNo);
-  const { allStudent = [], success: student } = totalStudentNo;
-  const data = allStudent.filter((x) => x.id === parseInt(id));
-
-  React.useEffect(() => {
-    if (student) {
-      setStudentInfo(data && data);
-    }
-  }, [student]);
-  console.log(studentInfo && studentInfo[0].user.first_name);
+  const { allStudent = [] } = totalStudentNo;
 
   const backHandler = () => {
     navigate("/admin/managestudent");
@@ -110,8 +77,30 @@ const ManageViewStudent = () => {
   const { specializationid } = getSpecilize;
   // console.log(specializationid);
 
+  const getStudentById = useSelector((state) => state.getStudentById);
+  const { user = {}, specialization: isSpecialization = {} } = getStudentById;
+
   const editStudent = useSelector((state) => state.editStudent);
   const { success, error, loading } = editStudent;
+
+  const openHandler = () => {
+    setOpenModal(true);
+    setFirst_Name(user.first_name);
+    setMiddle_Name(user.middle_name);
+    setLast_Name(user.last_name);
+    setEmail(user.email);
+    setCurrentEmail(user.email);
+    setMatric_no(user.student && user.student[0].matric_no);
+    setStudent_id(user.student && user.student[0].student_id);
+    setSpecialization(isSpecialization.specialization);
+    setIsActive(user.is_active.toString());
+  };
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (success) {
     toast({
@@ -121,6 +110,7 @@ const ManageViewStudent = () => {
       duration: 4000,
       isClosable: true,
     });
+    setOpenModal(false);
     dispatch({ type: EDIT_STUDENTBYID_RESET });
   }
 
@@ -169,26 +159,20 @@ const ManageViewStudent = () => {
             <div className={styles.eachGridBox}>
               <header>First Name</header>
               <span className={styles.titleContainer}>
-                <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].user.first_name}
-                </p>
+                <p className={styles.titleName}>{user.first_name}</p>
               </span>
             </div>
             <div className={styles.eachGridBox}>
               <header>Middle Name</header>
               <span className={styles.titleContainer}>
-                <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].user.middle_name}
-                </p>
+                <p className={styles.titleName}>{user.middle_name}</p>
               </span>
             </div>
 
             <div className={styles.eachGridBox}>
               <header>Last Name</header>
               <span className={styles.titleContainer}>
-                <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].user.last_name}
-                </p>
+                <p className={styles.titleName}>{user.last_name}</p>
               </span>
             </div>
 
@@ -196,7 +180,7 @@ const ManageViewStudent = () => {
               <header>Matric No</header>
               <span className={styles.titleContainer}>
                 <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].matric_no}
+                  {user.student && user.student[0].matric_no}
                 </p>
               </span>
             </div>
@@ -204,16 +188,14 @@ const ManageViewStudent = () => {
             <div className={styles.eachGridBox}>
               <header>Email</header>
               <span className={styles.titleContainer}>
-                <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].user.email}
-                </p>
+                <p className={styles.titleName}>{user.email}</p>
               </span>
             </div>
             <div className={styles.eachGridBox}>
               <header>Specialization</header>
               <span className={styles.titleContainer}>
                 <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].specialization.name}
+                  {isSpecialization.specialization}
                 </p>
               </span>
             </div>
@@ -221,7 +203,7 @@ const ManageViewStudent = () => {
               <header>Student Identification Number</header>
               <span className={styles.titleContainer}>
                 <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].student_id}
+                  {user.student && user.student[0].student_id}
                 </p>
               </span>
             </div>
@@ -229,18 +211,13 @@ const ManageViewStudent = () => {
               <header>Active Student</header>
               <span className={styles.titleContainer}>
                 <p className={styles.titleName}>
-                  {studentInfo && studentInfo[0].is_active.toString()}
+                  {user.student && user.student[0].is_active.toString()}
                 </p>
               </span>
             </div>
           </div>
           <div className={styles.editModal}>
-            <button
-              className={styles.editBtn}
-              onClick={() => {
-                setOpenModal(true);
-              }}
-            >
+            <button className={styles.editBtn} onClick={openHandler}>
               Edit Details
             </button>
           </div>
@@ -256,9 +233,6 @@ const ManageViewStudent = () => {
                     <label>First Name</label>
                     <input
                       type="text"
-                      placeholder={
-                        studentInfo && studentInfo[0].user.first_name
-                      }
                       onChange={(e) => setFirst_Name(e.target.value)}
                       value={first_Name}
                       required={true}
@@ -268,9 +242,6 @@ const ManageViewStudent = () => {
                     <label>Middle Name</label>
                     <input
                       type="text"
-                      placeholder={
-                        studentInfo && studentInfo[0].user.middle_name
-                      }
                       onChange={(e) => setMiddle_Name(e.target.value)}
                       value={middle_Name}
                       required={true}
@@ -280,7 +251,6 @@ const ManageViewStudent = () => {
                     <label>Last Name</label>
                     <input
                       type="text"
-                      placeholder={studentInfo && studentInfo[0].user.last_name}
                       onChange={(e) => setLast_Name(e.target.value)}
                       value={last_Name}
                       required={true}
@@ -291,7 +261,6 @@ const ManageViewStudent = () => {
                     <label>Email Address</label>
                     <input
                       type="email"
-                      placeholder={studentInfo && studentInfo[0].user.email}
                       onChange={(e) => setEmail(e.target.value)}
                       value={email}
                       required={true}
@@ -301,7 +270,6 @@ const ManageViewStudent = () => {
                     <label>Martic No.</label>
                     <input
                       type="number"
-                      placeholder={studentInfo && studentInfo[0].matric_no}
                       onChange={(e) => setMatric_no(e.target.value)}
                       value={matric_no}
                       required={true}
@@ -313,9 +281,6 @@ const ManageViewStudent = () => {
                       onChange={(e) => setSpecialization(e.target.value)}
                       value={specialization}
                       required={true}
-                      placeholder={
-                        studentInfo && studentInfo[0].specialization.name
-                      }
                       className={styles.newStudentSelect}
                     >
                       <option></option>
@@ -331,7 +296,6 @@ const ManageViewStudent = () => {
                     <label>Student ID</label>
                     <input
                       type="text"
-                      placeholder={studentInfo && studentInfo[0].student_id}
                       onChange={(e) => setStudent_id(e.target.value)}
                       value={student_id}
                       required={true}
@@ -341,9 +305,6 @@ const ManageViewStudent = () => {
                     <label>Active Student</label>
                     <input
                       type="text"
-                      placeholder={
-                        studentInfo && studentInfo[0].is_active.toString()
-                      }
                       onChange={(e) => setIsActive(e.target.value)}
                       value={isActive}
                       required={true}

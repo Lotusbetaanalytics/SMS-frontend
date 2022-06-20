@@ -33,6 +33,12 @@ import ManageViewDepartment from "./screens/ManageViewDepartment";
 import CourseHomePage from "./screens/CourseHomePage";
 import ManageCourse from "./screens/ManageCourse";
 import ManageViewCourse from "./screens/ManageViewCourse";
+import ViewHealthData from "./screens/HealthData/ViewHealthData";
+import ViewAcademicData from "./screens/AcademicData/ViewAcademicData";
+import ViewFamilyData from "./screens/FamilyData/ViewFamilyData";
+import ManageNotice from "./screens/ManageNotice";
+import EditNotice from "./screens/EditNotice";
+import CreateScope from "./screens/CreateScope";
 
 function App() {
   return (
@@ -135,6 +141,24 @@ function App() {
           element={<CourseHomePage />}
         />
         <Route path="/admin/managecourse" exact element={<ManageCourse />} />
+        <Route
+          path="/admin/viewhealthdata"
+          exact
+          element={<ViewHealthData />}
+        />
+        <Route
+          path="/admin/viewacademicdata"
+          exact
+          element={<ViewAcademicData />}
+        />
+        <Route
+          path="/admin/viewfamilydata"
+          exact
+          element={<ViewFamilyData />}
+        />
+        <Route path="/admin/managenotice" exact element={<ManageNotice />} />
+        <Route path="/admin/editnotice/:id" exact element={<EditNotice />} />
+        <Route path="/admin/scope" exact element={<CreateScope />} />
       </Routes>
     </Router>
   );

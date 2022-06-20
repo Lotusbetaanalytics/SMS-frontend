@@ -19,6 +19,7 @@ import {
   Th,
   Tr,
   useToast,
+  TableContainer,
 } from "@chakra-ui/react";
 import { BiArrowBack } from "react-icons/bi";
 // import { BsPersonFill } from "react-icons/bs";
@@ -58,6 +59,11 @@ function ManageStudent() {
     }
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
   // const deactivateHandler = (id, is_active) => {
   //   editStudentId(id, is_active);
   //   setIsActive(!isActive);
@@ -131,111 +137,60 @@ function ManageStudent() {
                   <CircularProgress isIndeterminate color="purple.500" />
                 </Center>
               ) : (
-                <Table varient="striped" colorScheme="gray" size="md">
-                  <Tr>
-                    <Th>First Name</Th>
-                    <Th>Last Name</Th>
-                    <Th>Matric No</Th>
-                    <Th>Email</Th>
-                    <Th>Spec.</Th>
-                    <Th>Stud.ID</Th>
+                <TableContainer>
+                  <Table varient="striped" colorScheme="gray" size="md">
+                    <Tr colorScheme="green">
+                      <Th>First Name</Th>
+                      <Th>Last Name</Th>
+                      <Th>Matric No</Th>
+                      <Th>Email</Th>
+                      <Th>Spec.</Th>
+                      <Th>Status</Th>
 
-                    <Th>Action</Th>
-                  </Tr>
-                  {allStudent &&
-                    allStudent.map((item, i) => (
-                      <Tbody key={i}>
-                        <Tr key={item.id}>
-                          <Td>{item.user.first_name}</Td>
-                          <Td>{item.user.last_name}</Td>
-                          <Td>{item.matric_no}</Td>
-                          <Td>{item.user.email}</Td>
-                          <Td>{item.user.specialization}</Td>
-                          <Td>{item.student_id}</Td>
-                          <Td>
-                            <Button
-                              className={styles.chakar_btn1}
-                              // colorScheme="yellow"
-                              borderRadius="10"
-                              type="submit"
-                            >
-                              <Link to={`/admin/manageviewstudent/${item.id}`}>
-                                <GrView />
-                              </Link>
-                            </Button>
-                            <Button
-                              className={styles.chakar_btn2}
-                              borderRadius="10"
-                              key={item._id}
-                              onClick={() => deleteHandler(item.id)}
-                              // value={isActive}
-                              // disabled={isActive ? "true" : "false"}
-                            >
-                              <MdDeleteForever />
-                            </Button>
-                          </Td>
-                        </Tr>
-                      </Tbody>
-                    ))}
-                </Table>
+                      <Th>Action</Th>
+                    </Tr>
+                    {allStudent &&
+                      allStudent.map((item, i) => (
+                        <Tbody key={i}>
+                          <Tr key={item.id}>
+                            <Td>{item.user.first_name}</Td>
+                            <Td>{item.user.last_name}</Td>
+                            <Td>{item.matric_no}</Td>
+                            <Td>{item.user.email}</Td>
+                            <Td>{item.specialization.name}</Td>
+                            <Td>{item.is_active.toString()}</Td>
+                            <Td>
+                              <Button
+                                className={styles.chakar_btn1}
+                                // colorScheme="yellow"
+                                borderRadius="10"
+                                type="submit"
+                              >
+                                <Link
+                                  to={`/admin/manageviewstudent/${item.id}`}
+                                >
+                                  <GrView />
+                                </Link>
+                              </Button>
+                              <Button
+                                className={styles.chakar_btn2}
+                                borderRadius="10"
+                                key={item._id}
+                                onClick={() => deleteHandler(item.id)}
+                                // value={isActive}
+                                // disabled={isActive ? "true" : "false"}
+                              >
+                                <MdDeleteForever />
+                              </Button>
+                            </Td>
+                          </Tr>
+                        </Tbody>
+                      ))}
+                  </Table>
+                </TableContainer>
               )}
             </div>
           </div>
-          {/* <div className={styles.profileBox2}>
-            <div className={styles.pageTitle2}>
-              <span>Statistics</span>
-            </div>
-            <div className={styles.profileGridCard}>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon1}>
-                  <BsPersonFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Newly Created Students</h2>
-                  <h3>38</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsPersonXFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Recently Deleted Students</h2>
-                  <h3>12</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon1}>
-                  <BsPersonCheckFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Created Students</h2>
-                  <h3>129</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsFillPersonDashFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Deleted Students</h2>
-                  <h3>53</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

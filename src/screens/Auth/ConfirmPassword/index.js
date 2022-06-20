@@ -1,15 +1,18 @@
 import { Alert, AlertIcon } from "@chakra-ui/alert";
 import { Center } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
-// import { useToast } from "@chakra-ui/toast";
-import React, { useEffect, useState } from "react";
+import { useToast } from "@chakra-ui/toast";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 import { userForgotPassword } from "../../../redux/action/userAction";
+// import { CONFIRMPASSWORD_RESET } from "../../../redux/constants/userContstant";
 // import { USER_LOGIN_RESET } from "../../../redux/constants/userContstant";
 import styles from "./styles.module.css";
 
 function ConfirmPassword() {
+  const toast = useToast();
+
   const [email, setEmail] = useState("");
 
   const dispatch = useDispatch();
@@ -22,8 +25,31 @@ function ConfirmPassword() {
   };
 
   const forgetPassword = useSelector((state) => state.forgetPassword);
-  const { loading, error, success, userInfo } = forgetPassword;
+  const { userInfo, loading, error, success } = forgetPassword;
   console.log(userInfo);
+
+  // if (success) {
+  //   setEmail("");
+  //   toast({
+  //     title: "Notification",
+  //     description: "Success",
+  //     status: "success",
+  //     duration: 8000,
+  //     isClosable: true,
+  //   });
+  //   dispatch({ type: CONFIRMPASSWORD_RESET });
+  // }
+  // if (error) {
+  //   setEmail("");
+  //   toast({
+  //     title: "Notification",
+  //     description: "Error",
+  //     status: "error",
+  //     duration: 8000,
+  //     isClosable: true,
+  //   });
+  //   dispatch({ type: CONFIRMPASSWORD_RESET });
+  // }
 
   // useEffect(() => {
   //   if (userInfo) {
@@ -36,7 +62,7 @@ function ConfirmPassword() {
       <div className={styles.loginPageContent}>
         <div className={styles.loginTitle}>
           <h2> Welcome</h2>
-          <p>To the Student Management System</p>
+          <p>To the School Management System</p>
         </div>
         <div className={styles.loginForm}>
           {error && (
@@ -58,14 +84,13 @@ function ConfirmPassword() {
           ) : (
             <form onSubmit={submitHandler}>
               <div className={styles.loginContent}>
-                <div className={styles.adminTitle}>Reset Password</div>
+                <div className={styles.adminTitle}>Confirm Email</div>
                 <div className={styles.newForm}>
                   <label>Email</label>
                   <input
                     type="email"
                     onChange={(e) => setEmail(e.target.value)}
                     value={email}
-                    placeholder="Email"
                     required={true}
                   />
                 </div>

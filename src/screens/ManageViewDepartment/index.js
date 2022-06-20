@@ -104,6 +104,12 @@ const ManageViewDepartment = () => {
   const editDepartment = useSelector((state) => state.editDepartment);
   const { success, error, loading } = editDepartment;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     toast({
       title: "Notification",

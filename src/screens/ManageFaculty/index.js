@@ -25,6 +25,7 @@ import { MdDeleteForever } from "react-icons/md";
 // import { BsFillPersonDashFill } from "react-icons/bs";
 import { Link, useNavigate } from "react-router-dom";
 import {
+  deleteFacultyId,
   editFacultyId,
   //   deleteFacultyId,
   //   getFacultyId,
@@ -49,18 +50,24 @@ function ManageFaculty() {
   const deleteFacultyById = useSelector((state) => state.deleteFacultyById);
   const { loading, success, error } = deleteFacultyById;
 
-  //   const deleteHandler = (id) => {
-  //     if (window.confirm("Are you sure you want to delete this ?")) {
-  //       dispatch(deleteFacultyId(id));
-  //       console.log(id);
-  //     }
-  //   };
+  const deleteHandler = (id) => {
+    if (window.confirm("Are you sure you want to delete this ?")) {
+      dispatch(deleteFacultyId(id));
+      console.log(id);
+    }
+  };
 
   const deactivateHandler = (id, is_active) => {
     editFacultyId(id, is_active);
     setIsActive(!isActive);
   };
   console.log(isActive);
+
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
 
   if (success) {
     toast({
@@ -135,6 +142,7 @@ function ManageFaculty() {
                     <Th>Faculty Code</Th>
                     <Th>Description</Th>
                     <Th>DOF</Th>
+                    <Th>Status</Th>
                     <Th>Action</Th>
                   </Tr>
                   {faculty &&
@@ -145,6 +153,7 @@ function ManageFaculty() {
                           <Td>{item.code}</Td>
                           <Td>{item.description}</Td>
                           <Td>{item.dean}</Td>
+                          <Td>{item.is_active.toString()}</Td>
                           <Td>
                             <Button
                               className={styles.chakar_btn1}
@@ -160,9 +169,9 @@ function ManageFaculty() {
                               className={styles.chakar_btn2}
                               borderRadius="10"
                               key={item._id}
-                              onClick={() => deactivateHandler(item.id)}
-                              value={isActive}
-                              disabled={isActive ? "false" : "true"}
+                              onClick={() => deleteHandler(item.id)}
+                              // value={isActive}
+                              // disabled={isActive ? "false" : "true"}
                             >
                               <MdDeleteForever />
                             </Button>
@@ -174,61 +183,6 @@ function ManageFaculty() {
               )}
             </div>
           </div>
-          {/* <div className={styles.profileBox2}>
-            <div className={styles.pageTitle2}>
-              <span>Statistics</span>
-            </div>
-            <div className={styles.profileGridCard}>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon1}>
-                  <BsPersonFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Newly Created Students</h2>
-                  <h3>38</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsPersonXFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Recently Deleted Students</h2>
-                  <h3>12</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon1}>
-                  <BsPersonCheckFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Created Students</h2>
-                  <h3>129</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsFillPersonDashFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Deleted Students</h2>
-                  <h3>53</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

@@ -20,6 +20,7 @@
   height: 780px;
   border-radius: 10px;
   overflow-y: scroll;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 ::-webkit-scrollbar {
@@ -58,7 +59,7 @@
 
 .noticeButton {
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   margin-bottom: 25px;
 }
 
@@ -88,6 +89,9 @@
 
 .noticeContent {
   padding: 20px;
+  margin: 25px 15px 25px 15px;
+  border-radius: 5px;
+  box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
 }
 
 .noticeContent h2 {
@@ -105,7 +109,6 @@
 
 .noticeComment {
   padding: 5px;
-  box-shadow: 0px 3px 0px 0px rgba(0, 0, 0, 0.1);
   border: none;
   border-radius: 5px;
 }
@@ -174,4 +177,20 @@
   color: white;
   font-size: 16px;
   font-weight: 700;
+}
+
+.noticeManageBtn {
+  background-color: #ffa871;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  color: white;
+  font-weight: bold;
+}
+
+.scopeBtn {
+  background-color: #30ed9e;
+  padding: 1rem 2rem;
+  border-radius: 30px;
+  color: black;
+  font-weight: bold;
 }

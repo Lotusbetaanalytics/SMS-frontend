@@ -70,6 +70,12 @@ function NewDepartment() {
   const departmentPost = useSelector((state) => state.departmentPost);
   const { loading, success, error } = departmentPost;
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     setFacultyName("");
     setNameOfDepartment("");

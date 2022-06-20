@@ -74,6 +74,12 @@ function StaffData() {
     navigate("/admin/staff/homepage");
   };
 
+  // window.scroll({
+  //   top: 0,
+  //   left: 0,
+  //   behavior: "smooth",
+  // });
+
   if (success) {
     setFirst_Name("");
     setMiddle_Name("");
@@ -210,6 +216,18 @@ function StaffData() {
                       disable={isActive ? "false" : "true"}
                     />
                     <span className={styles.toggleRound}>Publish Staff</span>
+                    {/* <select>
+                      <option></option>
+                      <option value={isActive ? "false" : "true"}>
+                        Publish Head of Department
+                      </option>
+                      <option value={isActive ? "false" : "true"}>
+                        Publish Bursar
+                      </option>
+                      <option value={isActive ? "false" : "true"}>
+                        Publish IT Lead
+                      </option>
+                    </select> */}
                   </div>
                 </div>
               </div>
