@@ -59,7 +59,7 @@ function Sidebar() {
               <div className={styles.icons}>
                 <MdGroups />
               </div>
-              <p>Staffs</p>
+              <p>Staff</p>
             </li>
           </Link>
           <Link to="/admin/faculty/homepage">

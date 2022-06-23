@@ -104,6 +104,10 @@ const ManageViewFaculty = () => {
   // });
 
   if (success) {
+    dispatch(getFacultyId());
+  }
+
+  if (success) {
     toast({
       title: "Notification",
       description: "Update Successful",

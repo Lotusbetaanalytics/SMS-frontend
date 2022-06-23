@@ -125,7 +125,7 @@ export const userDetails = () => async (dispatch, getState) => {
   }
 };
 
-export const postConfirmPassword = (password, token) => async (dispatch) => {
+export const postResetPassword = (password, token) => async (dispatch) => {
   try {
     dispatch({
       type: CONFIRMPASSWORD_REQUEST,

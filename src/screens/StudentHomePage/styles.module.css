@@ -13,6 +13,7 @@
   margin: 3.5%;
   border-radius: 15px;
   width: 70%;
+  overflow-y: scroll;
 }
 
 .profileBox2 {
@@ -23,27 +24,55 @@
   margin-top: 50px;
 }
 
-.statsBox {
-  width: 40%;
+.stats {
+  display: flex;
+  padding: 1rem 2.5rem;
+  background-color: whitesmoke;
+  margin-bottom: 20px;
+  border-radius: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+  /* justify-content: space-between; */
+  align-items: center;
+}
+.statBoxmap {
+  display: flex;
+  align-items: center;
+}
+
+/* .stats h6 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+} */
+
+.statsCount {
+  display: flex;
+  width: 30%;
 }
 
 .statsRating {
   width: 60px;
+  margin-right: 20px;
   height: 70px;
+  margin-top: 10px;
 }
 
-.profileEachBox h5 {
+.profileEachBox h6 {
   font-size: 35px;
   font-weight: bold;
 }
 
-.profileEachBox h6 {
+.profileEachBox h5 {
   font-size: 13px;
   font-weight: bold;
+  width: 50%;
 }
 
 .profileEachBox h1 {
   font-size: 45px;
+  margin-right: 20px;
+  margin-left: 20px;
   color: lightgray;
 }
 
@@ -57,6 +86,15 @@
 
 .profileGridCard {
   padding: 1rem;
+}
+
+.profileGridBox {
+  display: grid;
+}
+
+.statBoxmap {
+  display: flex;
+  flex-direction: row;
 }
 
 .profileEachCard {
@@ -133,26 +171,6 @@
 .statsContainer {
   display: flex;
   flex-direction: row;
-}
-
-.profileGridBox {
-  display: grid;
-  grid-template-columns: 48% 48%;
-  column-gap: 2%;
-  row-gap: 15px;
-  /* background-color: whitesmoke; */
-  height: 100px;
-  padding: 0.5rem 1rem;
-  width: 100%;
-}
-
-.profileEachBox {
-  display: flex;
-  flex-direction: row;
-  margin-left: 10px;
-  justify-content: space-around;
-  align-items: center;
-  margin-top: 50px;
 }
 
 .staffDetails {

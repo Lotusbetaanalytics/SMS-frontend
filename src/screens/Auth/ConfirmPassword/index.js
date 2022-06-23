@@ -1,11 +1,12 @@
-import { Alert, AlertIcon } from "@chakra-ui/alert";
+// import { Alert, AlertIcon } from "@chakra-ui/alert";
 import { Center } from "@chakra-ui/layout";
 import { CircularProgress } from "@chakra-ui/progress";
 import { useToast } from "@chakra-ui/toast";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { userForgotPassword } from "../../../redux/action/userAction";
+import { USER_FORGOTPASSWORD_RESET } from "../../../redux/constants/userContstant";
 // import { CONFIRMPASSWORD_RESET } from "../../../redux/constants/userContstant";
 // import { USER_LOGIN_RESET } from "../../../redux/constants/userContstant";
 import styles from "./styles.module.css";
@@ -17,7 +18,6 @@ function ConfirmPassword() {
 
   const dispatch = useDispatch();
   // const navigate = useNavigate();
-  // const toast = useToast();
 
   const submitHandler = (e) => {
     e.preventDefault();
@@ -25,31 +25,32 @@ function ConfirmPassword() {
   };
 
   const forgetPassword = useSelector((state) => state.forgetPassword);
-  const { userInfo, loading, error, success } = forgetPassword;
-  console.log(userInfo);
+  const { user, loading, error, success } = forgetPassword;
+  console.log(user);
 
-  // if (success) {
-  //   setEmail("");
-  //   toast({
-  //     title: "Notification",
-  //     description: "Success",
-  //     status: "success",
-  //     duration: 8000,
-  //     isClosable: true,
-  //   });
-  //   dispatch({ type: CONFIRMPASSWORD_RESET });
-  // }
-  // if (error) {
-  //   setEmail("");
-  //   toast({
-  //     title: "Notification",
-  //     description: "Error",
-  //     status: "error",
-  //     duration: 8000,
-  //     isClosable: true,
-  //   });
-  //   dispatch({ type: CONFIRMPASSWORD_RESET });
-  // }
+  if (success) {
+    setEmail("");
+    toast({
+      title: "Notification",
+      description: "Email Sent Successfully",
+      status: "success",
+      duration: 4000,
+      isClosable: true,
+    });
+    dispatch({ type: USER_FORGOTPASSWORD_RESET });
+  }
+
+  if (error) {
+    setEmail("");
+    toast({
+      title: "Notification",
+      description: error,
+      status: "error",
+      duration: 4000,
+      isClosable: true,
+    });
+    dispatch({ type: USER_FORGOTPASSWORD_RESET });
+  }
 
   // useEffect(() => {
   //   if (userInfo) {
@@ -65,54 +66,40 @@ function ConfirmPassword() {
           <p>To the School Management System</p>
         </div>
         <div className={styles.loginForm}>
-          {error && (
-            <Alert status="error">
-              <AlertIcon />
-              {error}
-            </Alert>
-          )}
-          {success && (
-            <Alert status="success">
-              <AlertIcon />
-              Email Successfully Sent
-            </Alert>
-          )}
           {loading ? (
             <Center>
               <CircularProgress isIndeterminate color="purple.500" />
             </Center>
           ) : (
-            <form onSubmit={submitHandler}>
-              <div className={styles.loginContent}>
-                <div className={styles.adminTitle}>Confirm Email</div>
-                <div className={styles.newForm}>
-                  <label>Email</label>
-                  <input
-                    type="email"
-                    onChange={(e) => setEmail(e.target.value)}
-                    value={email}
-                    required={true}
-                  />
+            <div className={styles.loginContent}>
+              <div className={styles.adminTitle}>Confirm Email</div>
+              <div className={styles.newForm}>
+                <label>Email</label>
+                <input
+                  type="email"
+                  onChange={(e) => setEmail(e.target.value)}
+                  value={email}
+                  required={true}
+                />
+              </div>
+              <div className={styles.forgotpassword_btn}>
+                <div className={styles.forgotpassword}>
+                  <Link to="/">
+                    <h5>Back</h5>
+                  </Link>
                 </div>
-                <div className={styles.forgotpassword_btn}>
-                  <div className={styles.forgotpassword}>
-                    <Link to="/">
-                      <h5>Back</h5>
-                    </Link>
-                  </div>
 
-                  <div className={styles.stBtn}>
-                    <button
-                      type="submit"
-                      className={styles.btn}
-                      onClick={submitHandler}
-                    >
-                      Submit
-                    </button>
-                  </div>
+                <div className={styles.stBtn}>
+                  <button
+                    type="submit"
+                    className={styles.btn}
+                    onClick={submitHandler}
+                  >
+                    Submit
+                  </button>
                 </div>
               </div>
-            </form>
+            </div>
           )}
         </div>
       </div>

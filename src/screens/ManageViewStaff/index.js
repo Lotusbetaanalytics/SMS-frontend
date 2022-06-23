@@ -115,6 +115,10 @@ const ManageViewStaff = () => {
   // });
 
   if (success) {
+    dispatch(getStaffId(id));
+  }
+
+  if (success) {
     toast({
       title: "Notification",
       description: "Update Successful",
@@ -140,13 +144,13 @@ const ManageViewStaff = () => {
     <div className={styles.profileContainer}>
       <Sidebar />
       <div className={styles.profile}>
-        <HeaderNav title="View Staffs" />
+        <HeaderNav title="View Staff" />
         <div className={styles.profileHeader}>
           <div className={styles.staffCount}>
             <div className={styles.staffDetail}>
               <div className={styles.staffIcon}>
                 <FaPeopleArrows />
-                <h2>Staffs</h2>
+                <h2>Staff</h2>
               </div>
               <h1>|</h1>
               <h4>{allStaff && allStaff.length}</h4>

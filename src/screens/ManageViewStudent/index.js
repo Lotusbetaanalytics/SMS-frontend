@@ -103,6 +103,10 @@ const ManageViewStudent = () => {
   // });
 
   if (success) {
+    dispatch(getStudentId(id));
+  }
+
+  if (success) {
     toast({
       title: "Notification",
       description: "Update Successful",

@@ -4,11 +4,12 @@ import personlog from "../../assets/personlog.png";
 import { MdOutlineNotificationsActive } from "react-icons/md";
 import { userDetails } from "../../redux/action/userAction";
 import { useDispatch, useSelector } from "react-redux";
+import Modal from "../Modal";
 // import { BiSearchAlt } from "react-icons/bi";
 
 function HeaderNav({ title }) {
   const dispatch = useDispatch();
-  const [search, setSearch] = useState("");
+  // const [search, setSearch] = useState("");
 
   useEffect(() => {
     dispatch(userDetails());
@@ -16,6 +17,12 @@ function HeaderNav({ title }) {
 
   const userDetail = useSelector((state) => state.userDetail);
   const { username } = userDetail;
+
+  const [openModal, setOpenModal] = useState(false);
+
+  const openHandler = () => {
+    setOpenModal(true);
+  };
 
   // const current = new Date();
   // const date = `${current.getDate()}/${
@@ -39,12 +46,12 @@ function HeaderNav({ title }) {
         </h6>
       </div>
       <div className={styles.headerSearch}>
-        <input
+        {/* <input
           type="text"
           placeholder="Search.."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
-        />
+        /> */}
         {/* <BiSearchAlt /> */}
       </div>
       <div className={styles.headerUser}>
@@ -53,7 +60,23 @@ function HeaderNav({ title }) {
       </div>
 
       <div className={styles.headerNotify}>
-        <MdOutlineNotificationsActive />
+        <button onClick={openHandler}>
+          <MdOutlineNotificationsActive />
+        </button>
+        {openModal && (
+          <Modal
+            onClose={() => setOpenModal(false)}
+            isVisible={true}
+            size="md"
+            content={
+              <div className={styles.modalYes}>
+                <h6>Are you sure you want to LogOut</h6>
+                <button className={styles.mobtn1}>No</button>
+                <button>Yes</button>
+              </div>
+            }
+          />
+        )}
         <p className={styles.colorNotify}></p>
       </div>
     </div>

@@ -118,9 +118,9 @@ function EditNotice() {
                   </buttonn>
                 </Link>
               </div> */}
-              <Link to="/admin/notice/information">
+              <Link to="/admin/managenotice">
                 <button className={styles.infoBtn} type="button">
-                  Information
+                  Back
                 </button>
               </Link>
             </div>

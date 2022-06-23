@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import HeaderNav from "../../components/HeaderNav";
 import Sidebar from "../../components/Sidebar";
+// import { getNoticeId } from "../../redux/action/editNoticeAction";
 import { getNotice, postNotice } from "../../redux/action/noticeBoardAction";
 import { getScope } from "../../redux/action/scopeAction";
 import { POST_NOTICE_RESET } from "../../redux/constants/noticeBoardConstant";
@@ -12,6 +13,8 @@ import styles from "./styles.module.css";
 function NoticeBoard() {
   const dispatch = useDispatch();
   const toast = useToast();
+
+  // let { id } = useParams();
 
   const [title, setTitle] = useState("");
   const [scope, setScope] = useState("");
@@ -37,6 +40,14 @@ function NoticeBoard() {
   const noticeGet = useSelector((state) => state.noticeGet);
   const { allNotice } = noticeGet;
 
+  // useEffect(() => {
+  //   dispatch(getNoticeId(id));
+  // }, [dispatch, id]);
+
+  // const getNoticeById = useSelector((state) => state.getNoticeById);
+  // const { results = {} } = getNoticeById;
+  // console.log(results);
+
   useEffect(() => {
     dispatch(getScope());
   }, [dispatch]);
@@ -50,6 +61,10 @@ function NoticeBoard() {
   //   left: 0,
   //   behavior: "smooth",
   // });
+
+  if (success) {
+    dispatch(getNotice());
+  }
 
   if (success) {
     setTitle("");

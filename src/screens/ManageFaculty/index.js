@@ -136,7 +136,7 @@ function ManageFaculty() {
                   <CircularProgress isIndeterminate color="purple.500" />
                 </Center>
               ) : (
-                <Table varient="striped" colorScheme="gray" size="md">
+                <Table varient="striped" colorScheme="gray" size="sm">
                   <Tr>
                     <Th>Faculty Name</Th>
                     <Th>Faculty Code</Th>

@@ -132,7 +132,7 @@ function ManageCourse() {
                   <CircularProgress isIndeterminate color="red.500" />
                 </Center>
               ) : (
-                <Table varient="striped" colorScheme="gray" size="md">
+                <Table varient="striped" colorScheme="gray" size="sm">
                   <Tr>
                     <Th>Spec. Name</Th>
                     <Th>Course Name</Th>

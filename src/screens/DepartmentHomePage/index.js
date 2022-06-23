@@ -8,9 +8,9 @@ import { useNavigate } from "react-router-dom";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaPlay } from "react-icons/fa";
-import { BsBuilding, BsPersonFill } from "react-icons/bs";
-import { BsPersonCheckFill } from "react-icons/bs";
+import { BsBuilding } from "react-icons/bs";
 import { getDepartment } from "../../redux/action/departmentAction";
+import { getfaculty } from "../../redux/action/facultyAction";
 
 function FacultyHomePage() {
   const dispatch = useDispatch();
@@ -23,8 +23,35 @@ function FacultyHomePage() {
   const departmentGet = useSelector((state) => state.departmentGet);
   const { departmentid } = departmentGet;
 
+  console.log(departmentid);
+
   const departmentPost = useSelector((state) => state.departmentPost);
   const { loading } = departmentPost;
+
+  useEffect(() => {
+    dispatch(getfaculty());
+  }, [dispatch]);
+
+  const listFaculty = useSelector((state) => state.listFaculty);
+  const { faculty } = listFaculty;
+
+  const getNumberOfDepartment = (id) => {
+    const foundItems =
+      departmentid &&
+      departmentid.filter(({ faculty }) => {
+        return faculty.id === id;
+      });
+    return foundItems ? foundItems.length : 0;
+  };
+
+  const percentage = (id) => {
+    const findItems =
+      departmentid &&
+      departmentid.filter(({ faculty }) => {
+        return faculty.id === id;
+      });
+    return findItems ? findItems.length : 0;
+  };
 
   const nextHandler = () => {
     navigate("/admin/department");
@@ -33,10 +60,7 @@ function FacultyHomePage() {
     navigate("/admin/managedepartment");
   };
 
-  const percentage = 5;
-  const percentage2 = 12;
-  const percentage3 = 3;
-  const percentage4 = 7;
+  // const percentage = 5;
 
   // window.scroll({
   //   top: 0,
@@ -109,98 +133,27 @@ function FacultyHomePage() {
             <div className={styles.profileGridBox}>
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
-                  <h6>Art</h6>
-                  <h5>5</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage}
-                    text={`${percentage}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Economics</h6>
-                  <h5>12</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage2}
-                    text={`${percentage2}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Bio Chemistry</h6>
-                  <h5>3</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage3}
-                    text={`${percentage3}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Human Hospitality</h6>
-                  <h5>7</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage4}
-                    text={`${percentage4}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Agriculture</h6>
-                  <h5>10</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage}
-                    text={`${percentage}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Science</h6>
-                  <h5>4</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage}
-                    text={`${percentage}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
+                  {faculty &&
+                    faculty.map((item, i) => (
+                      <div key={i} className={styles.stats}>
+                        <h5>{item.name}</h5>
+                        <div className={styles.statsCount}>
+                          <h6>{getNumberOfDepartment(item.id)}</h6>
+                        </div>
+                        <div className={styles.statBoxmap}>
+                          <h1>|</h1>
+                          <div className={styles.statsRating}>
+                            <CircularProgressbar
+                              value={percentage(item.id)}
+                              text={`${percentage(item.id)}%`}
+                            />
+                          </div>
+                          <div className={styles.statsIcon}>
+                            <FaPlay />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -212,27 +165,23 @@ function FacultyHomePage() {
             <div className={styles.profileGridCard}>
               <div className={styles.profileEachCard}>
                 <div className={styles.profileIcon1}>
-                  <BsPersonFill />
+                  <BsBuilding />
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>Newly Created Depart.</h2>
-                  <h3>7</h3>
+                  <h3>{departmentid && departmentid.length}</h3>
                 </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
+                <div className={styles.profileCardIcon}>{/* <FaPlay /> */}</div>
               </div>
               <div className={styles.profileEachCard}>
                 <div className={styles.profileIcon1}>
-                  <BsPersonCheckFill />
+                  <BsBuilding />
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>All Created Depart.</h2>
-                  <h3>50</h3>
+                  <h3>{departmentid && departmentid.length}</h3>
                 </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
+                <div className={styles.profileCardIcon}>{/* <FaPlay /> */}</div>
               </div>
             </div>
           </div>

@@ -62,11 +62,11 @@ function ManageDepartment() {
   // };
   // console.log(isActive);
 
-  // window.scroll({
-  //   top: 0,
-  //   left: 0,
-  //   behavior: "smooth",
-  // });
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
 
   if (success) {
     toast({
@@ -135,13 +135,13 @@ function ManageDepartment() {
                   <CircularProgress isIndeterminate color="red.500" />
                 </Center>
               ) : (
-                <Table varient="striped" colorScheme="gray" size="md">
+                <Table varient="striped" colorScheme="gray" size="sm">
                   <Tr>
                     <Th>Faculty Name</Th>
                     <Th>Name Of Department</Th>
                     <Th>Department Code</Th>
-                    <Th>Description</Th>
                     <Th>Head Of Department</Th>
+                    <Th>Status</Th>
                     <Th>Action</Th>
                   </Tr>
                   {departmentid &&
@@ -151,8 +151,8 @@ function ManageDepartment() {
                           <Td>{item.faculty.name}</Td>
                           <Td>{item.name}</Td>
                           <Td>{item.code}</Td>
-                          <Td>{item.description}</Td>
                           <Td>{item.head}</Td>
+                          <Td>{item.is_active.toString()}</Td>
                           <Td>
                             <Button
                               className={styles.chakar_btn1}
@@ -184,61 +184,6 @@ function ManageDepartment() {
               )}
             </div>
           </div>
-          {/* <div className={styles.profileBox2}>
-            <div className={styles.pageTitle2}>
-              <span>Statistics</span>
-            </div>
-            <div className={styles.profileGridCard}>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon1}>
-                  <BsPersonFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Newly Created Students</h2>
-                  <h3>38</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsPersonXFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>Recently Deleted Students</h2>
-                  <h3>12</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon1}>
-                  <BsPersonCheckFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Created Students</h2>
-                  <h3>129</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachCard}>
-                <div className={styles.profileIcon2}>
-                  <BsFillPersonDashFill />
-                </div>
-                <div className={styles.profileContentCard}>
-                  <h2>All Deleted Students</h2>
-                  <h3>53</h3>
-                </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </div>

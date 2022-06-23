@@ -79,7 +79,7 @@ const reducer = combineReducers({
   userLogin: userLoginReducer,
   userDetail: userDetailsReducer,
   forgetPassword: userForgotPasswordReducer,
-  confirmPassword: confirmPasswordReducer,
+  resetPassword: confirmPasswordReducer,
   noticeGet: getNoticeReducer,
   postBioDataInfo: postUserDataReducer,
   postNewStaff: newStaffReducer,

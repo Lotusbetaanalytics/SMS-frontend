@@ -48,6 +48,8 @@ function StaffData() {
         is_staff: isActive,
         is_IT: isActive,
         is_superuser: isActive,
+        is_dean_of_faculty: isActive,
+        is_head_of_department: isActive,
       },
       employee_id,
       specialization,
@@ -81,6 +83,10 @@ function StaffData() {
   // });
 
   if (success) {
+    dispatch(totalStaff());
+  }
+
+  if (success) {
     setFirst_Name("");
     setMiddle_Name("");
     setLast_Name("");
@@ -112,7 +118,7 @@ function StaffData() {
     <div className={styles.profileContainer}>
       <Sidebar />
       <div className={styles.profile}>
-        <HeaderNav title="Staffs" />
+        <HeaderNav title="Staff" />
 
         <div className={styles.profileBox}>
           <div className={styles.profileHeader}>
@@ -120,7 +126,7 @@ function StaffData() {
               <div className={styles.staffDetails}>
                 <div className={styles.staffIcon}>
                   <FaPeopleArrows />
-                  <h2>Staffs</h2>
+                  <h2>Staff</h2>
                 </div>
                 <h1>|</h1>
                 <h4>{allStaff && allStaff.length}</h4>

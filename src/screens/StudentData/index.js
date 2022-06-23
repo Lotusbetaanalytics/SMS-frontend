@@ -80,6 +80,10 @@ function StudentData() {
   // });
 
   if (success) {
+    dispatch(totalStudent());
+  }
+
+  if (success) {
     setFirst_Name("");
     setMiddle_Name("");
     setLast_Name("");

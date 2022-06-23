@@ -16,10 +16,13 @@ import { totalStudent } from "../../redux/action/studentAction";
 import { totalStaff } from "../../redux/action/staffAction";
 import { getDepartment } from "../../redux/action/departmentAction";
 import { getCourse } from "../../redux/action/courseAction";
+import { Link, useParams } from "react-router-dom";
 // import MyCalendar from "../../components/Calendar";
 
 const Dashboard = (props) => {
   const [calDate, setCalDate] = useState(new Date());
+
+  // let {id} = useParams();
 
   const dispatch = useDispatch();
 
@@ -86,7 +89,9 @@ const Dashboard = (props) => {
                 <h5>Students</h5>
               </p>
               <h1>|</h1>
-              <h3> {allStudent && allStudent.length}</h3>
+              <Link to="/admin/managestudent">
+                <h3> {allStudent && allStudent.length}</h3>
+              </Link>
             </div>
           </div>
           <div className={styles.dashboardCard}>
@@ -96,7 +101,9 @@ const Dashboard = (props) => {
                 <h5>Staff</h5>
               </p>
               <h1>|</h1>
-              <h3>{allStaff && allStaff.length}</h3>
+              <Link to="/admin/managestaff">
+                <h3>{allStaff && allStaff.length}</h3>
+              </Link>
             </div>
           </div>
           <div className={styles.dashboardCard}>
@@ -106,17 +113,22 @@ const Dashboard = (props) => {
                 <h5>Faculty</h5>
               </p>
               <h1>|</h1>
-              <h3>{faculty && faculty.length}</h3>
+              <Link to="/admin/managefaculty">
+                <h3>{faculty && faculty.length}</h3>
+              </Link>
             </div>
           </div>
           <div className={styles.dashboardCard}>
             <div className={styles.dashboardCount4}>
               <p>
                 <BsBuilding />
+
                 <h5>Department</h5>
               </p>
               <h1>|</h1>
-              <h3>{departmentid && departmentid.length}</h3>
+              <Link to="/admin/managedepartment">
+                <h3>{departmentid && departmentid.length}</h3>
+              </Link>
             </div>
           </div>
           <div className={styles.dashboardCard}>
@@ -126,7 +138,9 @@ const Dashboard = (props) => {
                 <h5>Course</h5>
               </p>
               <h1>|</h1>
-              <h3>{getCourseId && getCourseId.count}</h3>
+              <Link to="/admin/managecourse">
+                <h3>{getCourseId && getCourseId.count}</h3>
+              </Link>
             </div>
           </div>
         </div>
@@ -149,7 +163,9 @@ const Dashboard = (props) => {
                 <div key={i} className={styles.noticeContent}>
                   <h2>{item.timestamp}</h2>
                   <h4>{item.title}</h4>
-                  <h5 className={styles.noticeComment}>{item.message}</h5>
+                  <Link to="/admin/managenotice">
+                    <h5 className={styles.noticeComment}>{item.message}</h5>
+                  </Link>
                 </div>
               ))}
           </div>

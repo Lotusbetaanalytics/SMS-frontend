@@ -19,16 +19,28 @@ function LoginPage() {
 
   const submitHandler = (e) => {
     e.preventDefault();
-    dispatch(loginUser(email, password));
+    if (!email || !password) {
+    } else {
+      dispatch(loginUser(email, password));
+    }
   };
 
   const userLogin = useSelector((state) => state.userLogin);
   const { loading, error, success, userInfo } = userLogin;
   console.log(userInfo);
 
+  const userSignIn = localStorage.getItem("userInfo");
+  console.log(userSignIn);
+
   if (success) {
     navigate("/admin/dashboard");
   }
+
+  // useEffect(() => {
+  //   if (userInfo) {
+  //     navigate("/");
+  //   }
+  // }, [userInfo, navigate]);
 
   if (success) {
     toast({
@@ -50,12 +62,6 @@ function LoginPage() {
     });
     dispatch({ type: USER_LOGIN_RESET });
   }
-
-  // useEffect(() => {
-  //   if (userInfo) {
-  //     navigate("/");
-  //   }
-  // });
 
   return (
     <div className={styles.loginPageContainer}>
@@ -106,7 +112,7 @@ function LoginPage() {
               </div>
               <div className={styles.forgotpassword_btn}>
                 <div className={styles.forgotpassword}>
-                  <Link to="/auth/confirmpassword">
+                  <Link to="/auth/confirmemail">
                     <h5>Forgot Password ?</h5>
                   </Link>
                 </div>
@@ -116,7 +122,7 @@ function LoginPage() {
                     type="submit"
                     className={styles.btn}
                     onClick={submitHandler}
-                    disabled={!email || !password}
+                    // disabled={!email || !password}
                   >
                     Login
                   </button>

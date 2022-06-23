@@ -77,6 +77,10 @@ function NewDepartment() {
   // });
 
   if (success) {
+    dispatch(getDepartment());
+  }
+
+  if (success) {
     setFacultyName("");
     setNameOfDepartment("");
     setDepartmentCode("");

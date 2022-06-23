@@ -39,6 +39,7 @@ import ViewFamilyData from "./screens/FamilyData/ViewFamilyData";
 import ManageNotice from "./screens/ManageNotice";
 import EditNotice from "./screens/EditNotice";
 import CreateScope from "./screens/CreateScope";
+// import PrivateRoute from "./components/PrivateRoute";
 
 function App() {
   return (
@@ -50,11 +51,7 @@ function App() {
           exact
           element={<ForgetPassword />}
         />
-        <Route
-          path="/auth/confirmpassword"
-          exact
-          element={<ConfirmPassword />}
-        />
+        <Route path="/auth/confirmemail" exact element={<ConfirmPassword />} />
         <Route path="/admin/dashboard" exact element={<Dashboard />} />
         <Route path="/admin/profile" exact element={<Profile />} />
         <Route path="/admin/staffs" exact element={<StaffData />} />

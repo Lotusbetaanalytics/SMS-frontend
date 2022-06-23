@@ -60,6 +60,10 @@ function Faculty() {
     navigate("/admin/faculty/homepage");
   };
 
+  if (success) {
+    dispatch(getfaculty());
+  }
+
   // window.scroll({
   //   top: 0,
   //   left: 0,

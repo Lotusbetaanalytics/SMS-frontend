@@ -66,6 +66,10 @@ function ManageStaff() {
   // console.log(isActive);
 
   if (success) {
+    dispatch(totalStaff());
+  }
+
+  if (success) {
     toast({
       title: "Notification",
       description: "Staff Deleted Successfully",
@@ -73,7 +77,6 @@ function ManageStaff() {
       duration: 4000,
       isClosable: true,
     });
-    window.location.reload();
     dispatch({ type: DELETE_STAFFBYID_RESET });
   }
 
@@ -96,7 +99,7 @@ function ManageStaff() {
     <div className={styles.profileContainer}>
       <Sidebar />
       <div className={styles.profile}>
-        <HeaderNav title="Staffs" />
+        <HeaderNav title="Staff" />
         <div className={styles.profileHeader}>
           <div className={styles.staffCount}>
             <div className={styles.staffDetail}>
@@ -132,7 +135,7 @@ function ManageStaff() {
                   <CircularProgress isIndeterminate color="blue.500" />
                 </Center>
               ) : (
-                <Table varient="striped" colorScheme="gray" size="md">
+                <Table varient="striped" colorScheme="gray" size="sm">
                   <Tr>
                     <Th>First Name</Th>
                     <Th>Last Name</Th>

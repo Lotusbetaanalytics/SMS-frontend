@@ -59,16 +59,20 @@ function ManageStudent() {
     }
   };
 
-  // window.scroll({
-  //   top: 0,
-  //   left: 0,
-  //   behavior: "smooth",
-  // });
+  window.scroll({
+    top: 0,
+    left: 0,
+    behavior: "smooth",
+  });
   // const deactivateHandler = (id, is_active) => {
   //   editStudentId(id, is_active);
   //   setIsActive(!isActive);
   // };
   // console.log(isActive);
+
+  if (success) {
+    dispatch(totalStudent());
+  }
 
   if (success) {
     toast({
@@ -78,7 +82,6 @@ function ManageStudent() {
       duration: 4000,
       isClosable: true,
     });
-    window.location.reload();
     dispatch({ type: DELETE_STUDENTBYID_RESET });
   }
 
@@ -138,7 +141,7 @@ function ManageStudent() {
                 </Center>
               ) : (
                 <TableContainer>
-                  <Table varient="striped" colorScheme="gray" size="md">
+                  <Table varient="striped" colorScheme="gray" size="sm">
                     <Tr colorScheme="green">
                       <Th>First Name</Th>
                       <Th>Last Name</Th>

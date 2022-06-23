@@ -6,12 +6,8 @@ import { FaCity } from "react-icons/fa";
 import { useDispatch, useSelector } from "react-redux";
 import { Button } from "@chakra-ui/react";
 import { useNavigate } from "react-router-dom";
-import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { FaPlay } from "react-icons/fa";
-import { BsPersonFill } from "react-icons/bs";
-import { BsFillPersonDashFill } from "react-icons/bs";
-import { BsPersonCheckFill } from "react-icons/bs";
 import { getfaculty } from "../../redux/action/facultyAction";
 
 function FacultyHomePage() {
@@ -34,11 +30,6 @@ function FacultyHomePage() {
   const manageHandler = () => {
     navigate("/admin/managefaculty");
   };
-
-  const percentage = 5;
-  const percentage2 = 12;
-  const percentage3 = 3;
-  const percentage4 = 7;
 
   // window.scroll({
   //   top: 0,
@@ -111,98 +102,22 @@ function FacultyHomePage() {
             <div className={styles.profileGridBox}>
               <div className={styles.profileEachBox}>
                 <div className={styles.statsBox}>
-                  <h6>Art</h6>
-                  <h5>5</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage}
-                    text={`${percentage}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Business Administration</h6>
-                  <h5>12</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage2}
-                    text={`${percentage2}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Health Science</h6>
-                  <h5>3</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage3}
-                    text={`${percentage3}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Human Hospitality</h6>
-                  <h5>7</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage4}
-                    text={`${percentage4}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Agriculture</h6>
-                  <h5>10</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage}
-                    text={`${percentage}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
-                </div>
-              </div>
-              <div className={styles.profileEachBox}>
-                <div className={styles.statsBox}>
-                  <h6>Science</h6>
-                  <h5>4</h5>
-                </div>
-                <h1>|</h1>
-                <div className={styles.statsRating}>
-                  <CircularProgressbar
-                    value={percentage}
-                    text={`${percentage}%`}
-                  />
-                </div>
-                <div className={styles.statsIcon}>
-                  <FaPlay />
+                  {faculty &&
+                    faculty.map((item, i) => (
+                      <div key={i} className={styles.stats}>
+                        <h4>{item.name}</h4>
+                        <div className={styles.statBoxmap}>
+                          <h1>|</h1>
+                          <div className={styles.statsRating}>
+                            <h5>Year</h5>
+                            <h6>2022</h6>
+                          </div>
+                          <div className={styles.statsIcon}>
+                            <FaPlay />
+                          </div>
+                        </div>
+                      </div>
+                    ))}
                 </div>
               </div>
             </div>
@@ -214,29 +129,25 @@ function FacultyHomePage() {
             <div className={styles.profileGridCard}>
               <div className={styles.profileEachCard}>
                 <div className={styles.profileIcon1}>
-                  <BsPersonFill />
+                  <FaCity />
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>Newly Created Faculty</h2>
-                  <h3>7</h3>
+                  <h3>{faculty && faculty.length}</h3>
                 </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
+                <div className={styles.profileCardIcon}>{/* <FaPlay /> */}</div>
               </div>
               <div className={styles.profileEachCard}>
                 <div className={styles.profileIcon1}>
-                  <BsPersonCheckFill />
+                  <FaCity />
                 </div>
                 <div className={styles.profileContentCard}>
                   <h2>All Created Faculty</h2>
-                  <h3>50</h3>
+                  <h3>{faculty && faculty.length}</h3>
                 </div>
-                <div className={styles.profileCardIcon}>
-                  <FaPlay />
-                </div>
+                <div className={styles.profileCardIcon}>{/* <FaPlay /> */}</div>
               </div>
-              <div className={styles.profileEachCard}>
+              {/* <div className={styles.profileEachCard}>
                 <div className={styles.profileIcon2}>
                   <BsFillPersonDashFill />
                 </div>
@@ -247,7 +158,7 @@ function FacultyHomePage() {
                 <div className={styles.profileCardIcon}>
                   <FaPlay />
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>

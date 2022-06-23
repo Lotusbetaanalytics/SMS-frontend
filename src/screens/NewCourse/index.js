@@ -70,6 +70,10 @@ function NewCourse() {
     navigate("/admin/course/homepage");
   };
 
+  if (success) {
+    dispatch(getCourse());
+  }
+
   // window.scroll({
   //   top: 0,
   //   left: 0,
@@ -77,6 +81,11 @@ function NewCourse() {
   // });
 
   if (success) {
+    setSpecialization("");
+    setCourseName("");
+    setCourseCode("");
+    setDescription("");
+    setCoordinator("");
     toast({
       title: "Notification",
       description: "Course Created Successfully",
