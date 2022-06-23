@@ -26,42 +26,38 @@ import ViewColumn from "@material-ui/icons/ViewColumn";
 import tableData from "../Assesement/tableData";
 import styles from "./styles.module.css";
 import { getStudentAction } from "../../../redux/Actions/lecturer/lecturerGetStudent";
+import { getTestBySourceAction, getTesttakerByTestIdAction } from "../../../redux/Actions/lecturer/lecturerAssessment";
 const TestStudent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const [course, setCourse] = useState("");
+  const [testId, setTestId] = useState(0);
 
   const getId = JSON.parse(localStorage.getItem("lecturerDetails"));
-  const id = getId.staff[0].id;
-  console.log(id);
+  const source = getId.staff[0].user.id;
+ 
 
   useEffect(() => {
-    dispatch(lecturerCourseAction(id));
+    dispatch(getTestBySourceAction(source));
   }, [dispatch]);
 
-  const lecturerCourse = useSelector((state) => state.lecturerCourse);
-  const { lecturerCourses, loading } = lecturerCourse;
+  const lectureGetTestBySource = useSelector((state) => state.lectureGetTestBySource);
+  const { getTestBySource, loading } = lectureGetTestBySource;
+console.log(getTestBySource)
 
-  const mycourses =
-    lecturerCourses &&
-    lecturerCourses.specialization &&
-    lecturerCourses.specialization.courses;
-  console.log(mycourses);
-
-  const lecturerGetStudent = useSelector((state) => state.lecturerGetStudent);
-  const { getStudent, loading: isLoading } = lecturerGetStudent;
-
+  const lecturerGetTesttakerById = useSelector((state) => state.lecturerGetTesttakerById);
+  const { getTesttaker, loading: isLoading } = lecturerGetTesttakerById;
+  console.log(getTesttaker)
   const columns = [
     {
       title: "Matric Number",
-      field: "student.matric_no",
+      field: "student",
       type: "string",
     },
     {
-      title: "Course Name",
-      field: "course.name",
+      title: "Test Name",
+      field: "quiz.name",
       type: "string",
       cellStyle: {
         width: 400,
@@ -73,13 +69,18 @@ const TestStudent = () => {
       },
     },
     {
-      title: "Code",
-      field: "course.code",
+      title: "Test Description",
+      field: "quiz.description",
       type: "string",
     },
     {
-      title: "Semester",
-      field: "semester.semester",
+      title: "Timer",
+      field: "quiz.timer",
+      type: "number",
+    },
+    {
+      title: "Score",
+      field: "score",
       type: "number",
     },
   ];
@@ -117,14 +118,14 @@ const TestStudent = () => {
   };
 
   const courseHandler = (e) => {
-    setCourse(e.target.value);
-    console.log(course, "this is it");
+    setTestId(e.target.value);
+    console.log(testId, "this is it");
   
   };
 
   useEffect(()=>(
-    dispatch(getStudentAction(course))
-  ),[course])
+    dispatch(getTesttakerByTestIdAction(testId))
+  ),[testId])
 
   const assignmentPage = () => {
     navigate("/lecturer/student/assignment");
@@ -135,16 +136,16 @@ const TestStudent = () => {
   const allStudent = () => {
     navigate("/lecturer/student/student");
   };
-  const deleteHandler = (id) => {
-    console.log(id);
-  };
+  // const deleteHandler = (id) => {
+  //   console.log(id);
+  // };
   return (
     <div className="page_container">
       <LectureSidebar student={"focus"} />
       <div className="right_container2">
         <LecturerHeader title={"Assignment History"} />
         {loading && <CircularProgress isIndeterminate color="green.300" />}
-        {isLoading && <CircularProgress isIndeterminate color="green.300" />}
+        
         <div className={styles.dropDown}>
           <div className={styles.dropDown_container}>
           <button className={`${styles.left_Curve} ${styles.white}`} onClick={assignmentPage}>
@@ -158,11 +159,11 @@ const TestStudent = () => {
             </button>
           </div>
           <div>
-            <select onChange={courseHandler} value={course}>
-              <option>Select Tets</option> 
-              {mycourses &&
-                mycourses.map((item, i) => (
-                  <option key={i} value={item.name}>
+            <select onChange={courseHandler} value={testId}>
+              <option>Select Test</option> 
+              {getTestBySource &&
+                getTestBySource.map((item, i) => (
+                  <option key={item.id} value={item.id}>
                     {item.name}
                   </option>
                 ))}
@@ -173,8 +174,8 @@ const TestStudent = () => {
           <MaterialTable
             columns={columns}
             icons={tableIcons}
-            data={getStudent && getStudent}
-            title={`Total Number of student ${getStudent && getStudent.length}`}
+            data={getTesttaker && getTesttaker}
+            title={`Total Number of student ${getTesttaker && getTesttaker.length}`}
             options={{
               headerStyle: {
                 fontSize: 16,
@@ -195,34 +196,7 @@ const TestStudent = () => {
 
               margin: "0 0",
             }}
-            actions={[
-              {
-                icon: "visibility",
-                iconProps: {
-                  style: { fontSize: "20px", color: "gold" },
-                },
-                tooltip: "add",
-
-                onClick: (event, rowData) => {
-                  handleAssign(rowData);
-                },
-              },
-            ]}
-            localization={{
-              toolbar: {
-                searchPlaceholder: "search course",
-              },
-            }}
-            components={{
-              Action: (props) => (
-                <button
-                  onClick={(event) => props.action.onClick(event, props.data)}
-                  className={styles.table_btn}
-                >
-                  {props.action.tooltip}
-                </button>
-              ),
-            }}
+           
           />
         </div>
       </div>

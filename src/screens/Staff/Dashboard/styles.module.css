@@ -24,18 +24,25 @@ margin-bottom: 20px;
     flex-direction: row;
     align-items: flex-end;
     justify-content: space-between;
-    width: 40%;
+    width: 38%;
 }
 .infoBtn button{
     height: 2.5rem;
+    display: flex;
+    flex-direction: row;
     padding: .4rem 1rem;
     color: rgba(0, 0, 0, 0.4);;
-    display: block;
+    justify-content: center;
     border: 1px solid rgb(255, 255, 255);
     border-radius: 15px;
     outline: none;
     border-radius: 5px;
     background-color: #fff;
+  }
+  .infoBtn button svg{
+    display: flex;
+    margin-left: 10px;
+    margin-top: 3px;
   }
   .card_container{
       display: grid;
@@ -67,4 +74,15 @@ margin-bottom: 20px;
 
 .react-calender{
     border:none
+}
+
+.tableContainer{
+    background-color: #fff;
+    margin-top: 1rem;
+}
+
+.courseHeader{
+    font-weight: bold;
+    margin-top: 5rem;
+  
 }

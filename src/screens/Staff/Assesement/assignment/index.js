@@ -63,7 +63,7 @@ const Assignment = () => {
     }
     if (success) {
       toast ({
-        title: "Success",
+        title: "Assignment Created Successfuly",
         description: success,
         status: "success",
         duration: 9000,

@@ -1,7 +1,7 @@
 import { Alert } from "@chakra-ui/react";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import SearchWidget from "../../../components/Input/Search";
 import StudentSidebar from "../../../components/Sidebar";
 import { studentDetails } from "../../../redux/Actions/studentActions/studentAction";
@@ -24,68 +24,54 @@ import Search from '@material-ui/icons/Search';
 import ViewColumn from '@material-ui/icons/ViewColumn';
 import { CircularProgress,useToast } from '@chakra-ui/react';
 import { forwardRef } from 'react';
+import { getAssignmentByStudentIdAction } from "../../../redux/Actions/StudentAssignment/assignment";
 
 const AssignmentList = () => {
     const toast = useToast()
+    const navigate = useNavigate();
   const dispatch = useDispatch();
     const [msg,setMsg] = useState("");
 
-    const deleteCourse_ = useSelector((state) => state.deleteCourse_);
-    const {loading:deleteLoading, success:deleteSuccess, error } = deleteCourse_;
+   
+    const studentId = JSON.parse(localStorage.getItem("studentDetails")).student[0].id;
+    console.log(studentId)
 
     const handleAssign = (rowData) => {
-        console.log(rowData);
-        const id = rowData.id
+        const id = rowData.assignment.id
         console.log(id)
+        const assignment_taker = rowData.id
+        localStorage.setItem("assignment_taker", JSON.stringify(assignment_taker));
+         console.log(assignment_taker)
         // dispatch(deleteCourseAction(id))
+        if (rowData.completed === true){
+          setMsg(true)
+        } else {
+          navigate(`/student/assignment/${id}`)
+        }
         
       };
-      
-      if (deleteSuccess) {
-        toast ({
-          title: "Success",
-          description: deleteSuccess,
-          status: "success",
-          duration: 9000,
-          isClosable: true,
-        })
-        // dispatch({ type: DELETE_COURSE_RESET });
-        window.location.reload()
-      }
-      if (error) {
-        toast ({
-          title: "Error",
-          description: error,
-          status: "error",
-          duration: 9000,
-          isClosable: true,
-        })
-        // dispatch({ type: DELETE_COURSE_RESET });
-      }
-
-
       useEffect(() => {
         dispatch(studentDetails());
       }, []);
 
-      const details = useSelector((state) => state.details);
-      const { studentDetail,loading } = details;
-      const mystudentDetails = studentDetail;
+      useEffect(() => {
+        dispatch(getAssignmentByStudentIdAction(studentId));  
+      }, []);
 
-      const registered_courses =
-    mystudentDetails && mystudentDetails.student[0].course_registrations;
-      console.log(registered_courses)
+      const  getAssignmentByStudentId = useSelector((state) => state. getAssignmentByStudentId);
+      const { getAssignmentByStudent,loading } =  getAssignmentByStudentId;
+      console.log(getAssignmentByStudent)
 
-      const courseData = registered_courses && registered_courses 
+      const courseData = getAssignmentByStudent && getAssignmentByStudent 
     const columns=[
       {
         title: "Course code",
-        field: "course.code",
+        field: "assignment.course",
         type:"string"
       },
       {
-        title: "Course Name",
-        field: "course.name",
+        title: "Assignment Title",
+        field: "assignment.title",
         type:"string",
         cellStyle: {
           width: 400,
@@ -98,10 +84,20 @@ const AssignmentList = () => {
         
       },
       {
-        title: "Assignment",cellStyle: {
+        title: "Status",
+        field: "completed",lookup:{false:"Not Completed",true:"Completed"},
+       
+      },
+      {
+        title: "Score",
+        field: "score",
+       
+      },
+      {
+        title: "Due Date",cellStyle: {
             textAlign: "right"
         },
-        field: "course.assignments.length",
+        field: "assignment.due_date",
         type:"string",
         cellStyle: {
             textAlign: "left"
@@ -139,11 +135,9 @@ const AssignmentList = () => {
       {loading && (
               <CircularProgress isIndeterminate color='green.300' />
         )}
-         {deleteLoading && (
-              <CircularProgress isIndeterminate color='green.300' />
-        )}
+        
          {msg && (
-              <div>Course Dropped Successfully</div>
+              <div>Assignment done you can't attempt twice</div>
         )}
           </div>
       <div className="right_content_container">

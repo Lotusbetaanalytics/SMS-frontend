@@ -104,15 +104,20 @@ export const lecturerGetScopeReducer = (state = { getScope: [] }, action) => {
     }
   };
  
-  export const lecturerDeleteNoticeReducer = (state = { getDeleteNotice: {} }, action) => {
+  export const lecturerDeleteNoticeReducer = (state = {  getNoticeBySource: [] }, action) => {
     switch (action.type) {
       case DELETE_NOTICE_REQUEST:
-        return { loading: true };
+        return {
+          ...state,
+           getNoticeBySource: state. getNoticeBySource.filter((x) => x.id !== action.payload),
+          loading:true,
+       };
+        
       case DELETE_NOTICE_SUCCESS:
         return {
           loading: false,
           success: true,
-          getDeleteNotice: state.getDeleteNotice.filter((x) => x.id !== action.payload),
+          getDeleteNotice:action.payload,
         };
       case DELETE_NOTICE_FAIL:
         return { loading: false, error: action.payload };

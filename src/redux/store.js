@@ -2,15 +2,16 @@ import { createStore, combineReducers, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
 import { composeWithDevTools } from "redux-devtools-extension";
 import { confirmPasswordReducer, forgetPasswordReducer, lecturerconfirmPasswordReducer, lecturerforgetPasswordReducer, lecturerLoginReducer, studentLoginReducer } from "./Reducer/auth";
-import { studentDetailsReducer } from "./Reducer/studentReducer/studentReducer";
+import { noticeReducer, studentDetailsReducer } from "./Reducer/studentReducer/studentReducer";
 import { editProfileReducer, ProfilePictureReducer } from "./Reducer/Profile Reducer/profile";
 import { questionsReducer, ResponseReducer } from "./Reducer/Test Reducer/testQuestion";
 import { addCourseReducer, deleteCourseReducer } from "./Reducer/CourseReducer/courseReducer";
 import { lecturerDetailsReducer } from "./Reducer/lecturer/lecturerDetail";
 import { lecturerCoursesReducer } from "./Reducer/lecturer/lecturerCourse";
-import { lecturerDeleteAssignmnetReducer, lecturerDeleteTestReducer, lecturerEditAssignmentReducer, lecturerEditTestReducer, lecturerGetAssignmentByCourseReducer, lecturerGetAssignmentByIdReducer, lecturerGetTestByCourseReducer, lecturerGetTestByIdReducer, lecturerPostAssignmentReducer } from "./Reducer/lecturer/lecturerAssesmentReducer";
+import { lecturerDeleteAssignmnetReducer, lecturerDeleteTestReducer, lecturerEditAssignmentReducer, lecturerEditAssignmenttakerByItIdReducer, lecturerEditTestReducer, lecturerGetAssignmentByCourseReducer, lecturerGetAssignmentByIdReducer, lecturerGetAssignmentByStaffIdReducer, lecturerGetAssignmenttakerByIdReducer, lecturerGetAssignmenttakerByItIdReducer, lecturerGetTestByCourseReducer, lecturerGetTestByIdReducer, lecturerGetTestBySourceReducer, lecturerGetTesttakerByIdReducer, lecturerPostAssignmentReducer } from "./Reducer/lecturer/lecturerAssesmentReducer";
 import { lecturerDeleteNoticeReducer, lecturerEditNoticeReducer, lecturerGetNoticeByIdReducer, lecturerGetNoticeBySourceReducer, lecturerGetNoticeReducer, lecturerGetScopeReducer, lecturerPostNoticeReducer } from "./Reducer/lecturer/lecturerNotice";
 import { lecturerGetStudentReducer } from "./Reducer/lecturer/lecturerGetStudent";
+import { getAssignmentByStudentIdReducer, postAssignmentResponseReducer } from "./Reducer/studentAssignment/assignment";
 
 
 
@@ -47,7 +48,15 @@ const reducer = combineReducers({
   lecturerGetTestById : lecturerGetTestByIdReducer,
   lecturerEditTest:lecturerEditTestReducer,
   lecturerDeleteTest:lecturerDeleteTestReducer,
-
+  getAssignmentByStudentId:getAssignmentByStudentIdReducer,
+  postAssignmentResponse:postAssignmentResponseReducer,
+  lecturerGetAssignmentByStaffID : lecturerGetAssignmentByStaffIdReducer,
+  lecturerGetAssignmenttakerById : lecturerGetAssignmenttakerByIdReducer,
+  lecturerGetAssignmenttakerByItId : lecturerGetAssignmenttakerByItIdReducer,
+  lecturerEditAssignmenttaker :lecturerEditAssignmenttakerByItIdReducer,
+  lectureGetTestBySource : lecturerGetTestBySourceReducer,
+  lecturerGetTesttakerById : lecturerGetTesttakerByIdReducer,
+  noticeById: noticeReducer
 });
 
 const userInfoFromStorage = localStorage.getItem("studentInfo")

@@ -1,25 +1,25 @@
 import styles from "./styles.module.css";
 import React, { useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { studentDetails } from "../../../redux/Actions/studentActions/studentAction";
+import { studentDetails, studentNoticeAction } from "../../../redux/Actions/studentActions/studentAction";
 import StudentSidebar from "../../../components/Sidebar";
 import SearchWidget from "../../../components/Input/Search";
 import adminpic from "../../../assets/profile.jpg";
 
-const StudentNotice = () => {
+const NoticeChild = () => {
   const dispatch = useDispatch();
+  const {id} = useParams()
 
   useEffect(() => {
-    dispatch(studentDetails());
+    dispatch(studentNoticeAction(id));
   }, [dispatch]);
 
-  const details = useSelector((state) => state.details);
-    const { studentDetail } = details;
-    const mystudentDetails = studentDetail;
+  const noticeById = useSelector((state) => state.noticeById);
+    const { noticeBoard } = noticeById;
+    console.log(noticeBoard)
     
-    const academicData = mystudentDetails && mystudentDetails.student[0].notices;
-    console.log(academicData)
+    
 
   return (
     <div className="page_container">
@@ -32,23 +32,23 @@ const StudentNotice = () => {
               <div className={styles.header}>
                 <div className={styles.header_title}>Notice Board</div>
               </div>
-              {academicData &&academicData.map((item,i)=>(
-                     <div className={styles.noticeContainer} key={i}> 
+              
+                     <div className={styles.noticeContainer}> 
                      
                      <div className={styles.content}>
                          <div className={styles.contentHeader}>
-                             {item.title}
+                             {noticeBoard&&noticeBoard.title}
                          </div>
                          <div className={styles.newsContent}>
-                         {item.message}
+                         {noticeBoard&&noticeBoard.message}
                          </div>
                          <div className={styles.footer}>
-                         <div className={styles.source}>  Source : {item.source}</div>
-                           <div>{item.timestamp}</div>
+                         <div className={styles.source}>  Source : {noticeBoard&&noticeBoard.source}</div>
+                           <div>{noticeBoard&&noticeBoard.timestamp}</div>
                            </div>
                      </div> 
                    </div>
-              ))}
+        
              
               
             </div>
@@ -61,4 +61,4 @@ const StudentNotice = () => {
   );
 };
 
-export default StudentNotice;
+export default NoticeChild;

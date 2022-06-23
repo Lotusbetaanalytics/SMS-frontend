@@ -76,7 +76,7 @@ const LecturerEditNotice = () => {
         setTitle("")
         setMessage("")
       toast ({
-        title: "Success",
+        title: "Notice edited successfully",
         description: success,
         status: "success",
         duration: 9000,

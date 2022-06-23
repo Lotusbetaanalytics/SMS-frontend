@@ -27,43 +27,49 @@ import { GrView } from "react-icons/gr";
 import tableData from "../Assesement/tableData";
 import styles from "./styles.module.css";
 import { getStudentAction } from "../../../redux/Actions/lecturer/lecturerGetStudent";
+import { getAssignmentByStaffIdAction, getAssignmentTakerByIdAction } from "../../../redux/Actions/lecturer/lecturerAssessment";
+import { Assignment, AssignmentInd } from "@material-ui/icons";
 
 const AssignmentStudent = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const [course, setCourse] = useState("");
+  const [assignmentId, setAssignmentId] = useState(0);
 
   const getId = JSON.parse(localStorage.getItem("lecturerDetails"));
-  const id = getId.staff[0].id;
+  console.log(getId)
+  const id = getId.staff[0].user.id;
   console.log(id);
 
   useEffect(() => {
-    dispatch(lecturerCourseAction(id));
+    dispatch(getAssignmentByStaffIdAction(id));
   }, [dispatch]);
 
-  const lecturerCourse = useSelector((state) => state.lecturerCourse);
-  const { lecturerCourses, loading } = lecturerCourse;
+  // const lecturerCourse = useSelector((state) => state.lecturerCourse);
+  // const { lecturerCourses, loading } = lecturerCourse;
 
-  const mycourses =
-    lecturerCourses &&
-    lecturerCourses.specialization &&
-    lecturerCourses.specialization.courses;
-  console.log(mycourses);
+  const lecturerGetAssignmentByStaffID = useSelector((state) => state.lecturerGetAssignmentByStaffID);
+  const { getAssignmentByStaffId, loading } = lecturerGetAssignmentByStaffID;
+  console.log(getAssignmentByStaffId)
 
-  const lecturerGetStudent = useSelector((state) => state.lecturerGetStudent);
-  const { getStudent, loading: isLoading } = lecturerGetStudent;
+  
+
+  const lecturerGetAssignmenttakerById = useSelector((state) => state.lecturerGetAssignmenttakerById);
+  const { getAssignmenttakerById, loading: isLoading } = lecturerGetAssignmenttakerById;
+  console.log(getAssignmenttakerById)
+
+  
 
   const columns = [
     {
       title: "Matric Number",
-      field: "student.matric_no",
+      field: "student",
       type: "string",
     },
     {
-      title: "Course Name",
-      field: "course.name",
+      title: "Title",
+      field: "assignment.title",
       type: "string",
       cellStyle: {
         width: 400,
@@ -75,13 +81,13 @@ const AssignmentStudent = () => {
       },
     },
     {
-      title: "Code",
-      field: "course.code",
+      title: "Course",
+      field: "assignment.course",
       type: "string",
     },
     {
-      title: "Semester",
-      field: "semester.semester",
+      title: "Score",
+      field: "score",
       type: "number",
     },
   ];
@@ -116,21 +122,21 @@ const AssignmentStudent = () => {
 
   const handleAssign = (rowData) => {
     console.log(rowData);
+    const id = rowData.id
+
+    navigate(`/lecturer/student/assignment/${id}`)
   };
 
   const courseHandler = (e) => {
-    setCourse(e.target.value);
-    console.log(course, "this is it");
-    const courseName = course;
-
+    setAssignmentId(e.target.value);
     
   };
 
   useEffect(()=>(
-    dispatch(getStudentAction(course))
-  ),[course])
+    dispatch(getAssignmentTakerByIdAction(assignmentId))
+  ),[assignmentId])
 
-  console.log(getStudent);
+  
   const assignmentPage = () => {
     navigate("/lecturer/student/assignment");
   };
@@ -149,7 +155,7 @@ const AssignmentStudent = () => {
       <div className="right_container2">
         <LecturerHeader title={"Assignment History"} />
         {loading && <CircularProgress isIndeterminate color="green.300" />}
-        {isLoading && <CircularProgress isIndeterminate color="green.300" />}
+       
         <div className={styles.dropDown}>
           <div className={styles.dropDown_container}>
           <button className={`${styles.left_Curve} ${styles.green}`} onClick={assignmentPage}>
@@ -163,12 +169,12 @@ const AssignmentStudent = () => {
             </button>
           </div>
           <div>
-            <select onChange={courseHandler} value={course}>
+            <select onChange={courseHandler} value={assignmentId}>
               <option>Select</option> 
-              {mycourses &&
-                mycourses.map((item, i) => (
-                  <option key={i} value={item.name}>
-                    {item.name}
+              {getAssignmentByStaffId &&
+                getAssignmentByStaffId.map((item, i) => (
+                  <option key={i} value={item.id}>
+                    {item.title}
                   </option>
                 ))}
             </select>
@@ -178,8 +184,8 @@ const AssignmentStudent = () => {
           <MaterialTable
             columns={columns}
             icons={tableIcons}
-            data={getStudent && getStudent}
-            title={`Total Number of student ${getStudent && getStudent.length}`}
+            data={getAssignmenttakerById && getAssignmenttakerById}
+            title={`Total Number of student ${getAssignmenttakerById && getAssignmenttakerById.length}`}
             options={{
               headerStyle: {
                 fontSize: 16,
@@ -206,7 +212,7 @@ const AssignmentStudent = () => {
                 iconProps: {
                   style: { fontSize: "20px", color: "gold" },
                 },
-                tooltip: "add",
+                tooltip: "Assess",
 
                 onClick: (event, rowData) => {
                   handleAssign(rowData);
@@ -222,7 +228,7 @@ const AssignmentStudent = () => {
               Action: (props) => (
                 <button
                   onClick={(event) => props.action.onClick(event, props.data)}
-                  className={styles.table_btn}
+                  className={styles.material_btn}
                 >
                   {props.action.tooltip}
                 </button>

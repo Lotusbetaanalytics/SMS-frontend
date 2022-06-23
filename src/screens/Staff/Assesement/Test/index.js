@@ -5,16 +5,21 @@ import LecturerHeader from '../../../../components/lecturerHeader';
 import LectureSidebar from '../../../../components/lecturerSidebar';
 import data from '../../data';
 import styles from "../assignment/styles.module.css"
+import { GrAddCircle,GrSubtractCircle } from "react-icons/gr";
 
 const LecturerTest = () => {
     const navigate = useNavigate();
     const [deadline,setDeadline] = useState("");
     const [testDescription,setTestDescription] = useState("");
     const [question,setQuestion] = useState("");
+    const [questionSet,setQuestionSet] = useState([])
+    const [singleQuestion,setSingleQuestion] = useState({})
     const [courseTitle,setCourseTitle] = useState("")
     const [course_code,setCourse_code] = useState("")
-    const [options,setOptions] = useState("")
+    const [answerSet,setAnswerSet] = useState([])
+    const [option,setOption] =useState({})
     const [correctAnswer,setCorrectAnswer] = useState("")
+    const [disable,setDisable] = useState(false)
 
         const mydata = data;
         console.log(mydata)
@@ -37,56 +42,43 @@ const LecturerTest = () => {
         navigate("/lecturer/assessment/assignment")
     }
 
-     // console.log(textInput);
  
-    //  const textInput = React.useRef();
-  // const removeListAgenda = (i) => {
-  //   let filtered = agenda.filter((agendas) => {
-  //     return agendas !== i;
-  //   });
-  //   setAgenda(filtered);
-  // };
-  // const addListAgenda = () => {
-  //   setAgenda([...agenda, listAgenda ]);
-  // };
+     const textInput = React.useRef();
+  const removeOption = (i) => {
+    let filtered = answerSet.filter((answer) => {
+      return answer !== i;
+    });
+    setAnswerSet(filtered);
+  };
+  const addOption = () => {
+    setAnswerSet([...answerSet, option ]);
+    setOption(option.text="")
+  };
 
-  {/* <Input
-                  title="five point agenda"
-                  type={"text"}
-                  onChange={(e) => {
-                    setListAgenda(e.target.value);
-                  }}
-                  value={listAgenda}
-              
-                /> */}
-                 {/* <div>
-                 <button
-                  className={styles.removeBtn}
-                  onClick={() => {
-                    addListAgenda();
-                   
-                  }}
-                  type="button"
-                >
-                  Add Option
-                </button>
-                 </div> */}
+  const addToQuestionSetHandler = () => {
+    setQuestionSet([...questionSet, singleQuestion ]);
+    setOption("")
+  };
 
-                  {/* {agenda.map((item, i) => (
-              <div className="remove_option2" key={i}>
-                <ul>
-                  <ol>{item}</ol>
-                </ul>
-               
-                <button
-                  type="button"
-                  className={styles.removeBtn}
-                  onClick={() => removeListAgenda(item)}
-                >
-                  Remove Option
-                </button>
-              </div>
-            ))} */}
+  const anotherQuestion = () =>{
+ console.log("i am here")
+  }
+
+
+  const questionData =[
+    {
+  
+      "label": "",
+      "answer_set": [
+        {
+          "text": "string",
+          "is_correct": true
+        }
+      ],
+     
+    }
+  ]
+  
   return (
     <div className="page_container">
     <LectureSidebar assessment={"focus"} />
@@ -141,39 +133,105 @@ const LecturerTest = () => {
                   />
                 </div>
                 <div className={styles.editinfo}>
-                  <Input
-                    label={"Correct Answer"}
-                    type="text"
-                    value={correctAnswer}
-                    onChange={(e) => setCorrectAnswer(e.target.value)}
-                  />
+                <select value={correctAnswer} onChange={(e)=>{
+                  setCorrectAnswer(e.target.value)
+                  
+                  const foundItem =answerSet.indexOf(answerSet.filter(({text,is_correct},index)=>{
+                    return text==e.target.value
+                  }).length>0&&(answerSet.filter(({text,is_correct},index)=>{
+                    return text==e.target.value
+                  }))[0]);
+
+                 
+
+                  
+                    answerSet[foundItem].is_correct=true
+                  setAnswerSet((prev)=>{
+                    return [...prev.filter((item,ind)=>ind!=foundItem).map(({text,is_correct})=>{
+                      return{
+                        text,
+                        is_correct:false
+                      }
+                    }),answerSet[foundItem]]
+                  })
+
+               
+                
+                }}>
+                  <option value="">--Select answer--</option>
+                  {answerSet.map(({text,is_correct})=>{
+                    return <option value={text}>{text}</option>
+                  })}
+                </select>
+                 
                 </div>
-                <div className={styles.editinfo}>
+                <div className={styles.editinf}>
                   <Input
+                  textInput
                     label={"Options"}
                     type="text"
-                    value={options}
-                    onChange={(e) => setOptions(e.target.value)}
+                    value={option&&option.text}
+                    onChange={(e) => setOption({
+                      text:e.target.value,
+                      is_correct:false
+                    })}
                   />
+                  <button
+                  className={styles.removeBtn}
+                  onClick={() => {
+                    addOption();
+                   
+                  }}
+                  type="button"
+                >
+                 <GrAddCircle/>
+                </button>
+
                 </div>
-                <div className={styles.editinfo}>
-                  <Input
-                    label={"Deadline"}
-                    type="date"
-                    value={deadline}
-                    onChange={(e) => setDeadline(e.target.value)}
-                  />
-                </div>
+                <div className={styles.options}>
+                {answerSet.map((item, i) => (
+              <div className={styles.remove_option2} key={i}>
+              
+                <div className={`${styles.removeItem} ${item.is_correct&&styles.correct}`} onClick={()=>{
+                
+                  // setAnswerSet((prev,index)=>{
+                  //   return [...prev.filter((val,ind)=>ind!=index),...prev.filter((val,ind)=>ind==index).map(({is_correct,text})=>{
+                  //     return {text,is_correct:true}
+                  //   })]
+                  // })
+                 
+                 
+                }} >{item.text}</div>
+            
+             
+              <button
+                type="button"
+                className={styles.removeBtn}
+                onClick={() => removeOption(i)}
+              >
+               <GrSubtractCircle/>
+              </button>
+            </div>
+              ))}
+
+            </div>
+           
+                
                 <div className={styles.editinfo}>
                 <div className={styles.btn_container}>
                     <button className={styles.blue} onClick={submitHandler}>Create</button>
                 </div>
+                <div className={styles.btn_container}>
+                    <button className={styles.green} onClick={anotherQuestion} disabled={!disable}>add question</button>
+                </div>
                 </div>
                
          </div>
+      
           <div className={styles.btnContainer}>
             <button className={styles.green} onClick={questionBank}>Question Bank</button>
         </div>
+       
         </div>
         </div>
       </div>

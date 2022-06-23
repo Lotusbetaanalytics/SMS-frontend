@@ -15,7 +15,12 @@ height: 100vh;
     align-items: center;
 }
 .left p {
-    color: white;
+    color: rgb(182, 174, 174);
+    font-size: 16px;
+}
+.left h5 {
+    color: rgb(182, 174, 174);
+    font-size: 12px;
 }
 .header{
     display: flex;

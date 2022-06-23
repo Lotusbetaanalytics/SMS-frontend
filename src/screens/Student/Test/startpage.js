@@ -27,7 +27,7 @@ const StartPage = () => {
   const testQuestion = useSelector((state) => state.testQuestion);
   const { questions,loading,error } = testQuestion;
 
-//   const testData = JSON.parse(localStorage.getItem("question"));
+
 const testData = questions && questions;
   const quizName = testData && testData.quiz && testData.quiz.name;
   const timer = testData && testData.quiz && testData.quiz.timer;

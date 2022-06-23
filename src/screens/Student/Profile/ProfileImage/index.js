@@ -32,7 +32,8 @@ const ProfilePicture = () => {
       const details = useSelector((state) => state.details);
       const { studentDetail,loading,error,success } = details;
      
-    
+     const id = studentDetail && studentDetail.biodata && studentDetail.biodata.id
+     
       const nextHandler = () => {
         navigate("/student/profile/biodata")
     }
@@ -56,7 +57,7 @@ const ProfilePicture = () => {
         e.preventDefault();
         const formData = new FormData();
     formData.append("profile_picture",profile_image); 
-          dispatch(profilePicture(formData))   
+          dispatch(profilePicture(id,formData))   
       };
     //   if (success) {
     //     setMsg(true)
@@ -91,10 +92,6 @@ const ProfilePicture = () => {
         });
       }
 
-      const jame = [
-        
-      ]
-
      
     
       return (
@@ -115,7 +112,7 @@ const ProfilePicture = () => {
                   <div className={styles.header}>
                     <div className={styles.header_title}>Profile picture</div>
                     <div className={styles.header_profile}>Profile Information</div>
-                    <img src={profile_image} alt="avatar"/>
+                    <img src={`${profile_image}`} alt="avatar"/>
                   </div>
                   <div className={styles.editContainer}>
                     <div className={styles.editinfo}>

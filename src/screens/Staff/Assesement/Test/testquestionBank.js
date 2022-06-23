@@ -32,7 +32,7 @@ const TestqustionBank = () => {
 
     const lecturerGetTestByCourse = useSelector((state) => state.lecturerGetTestByCourse);
     const {getTestByCourse, loading:TestLoading}  = lecturerGetTestByCourse;
-
+    console.log(getTestByCourse)
     const lecturerDeleteTest = useSelector((state) => state.lecturerDeleteTest);
     const { loading:deleteLoading,success:deleteSuccess,error:deleteError}  = lecturerDeleteTest;
 
@@ -106,17 +106,12 @@ const editHandler = (id) =>{
       <div className={styles.white_container}>
        <Table varient="striped" colorScheme="gray" size="md" maxWidth={"100"}>
             <Tr maxWidth={"100"}>
-              <Th>Course_Title</Th>
+              <Th>Test_Title</Th>
               <Th>Course_Code</Th>
               <Th>Test_Description</Th>
-              <Th>Test_Question</Th>
-              <Th>Options_one</Th>
-              <Th>Options_two</Th>
-              <Th>Options_three</Th>
-              <Th>Options_four</Th>
-              
-              <Th>Correct_Answer</Th>
-              <Th>Deadline</Th>
+              <Th>Question(No)</Th>
+              <Th>Timer</Th>
+              <Th>Action</Th>
               <Th>Action</Th>
               <Th>Action</Th>
             </Tr>
@@ -124,17 +119,16 @@ const editHandler = (id) =>{
               getTestByCourse.map((item) => (
                 <Tbody maxWidth={"100"}>
                   <Tr key={item.id}>
-                  <Td>{item.course_title}</Td>
-                  <Td>{item.course_code}</Td>
-                  <Td>{item.test_description}</Td>
-                  <Td>{item.question}</Td>
-                  {item.options.map((item)=>(
-                     <Td>{item.option}</Td> 
-                  ))}
+                  <Td>{item.name}</Td>
+                  <Td>{item.course}</Td>
+                  <Td>{item.description}</Td>
+                  {/* <Td>{item.question}</Td> */}
+                  
+                     <Td>{item.question_set.length}</Td> 
 
                    
-                    <Td>{item.correct_answer}</Td>
-                    <Td>{item.deadline}</Td>
+                    <Td>{item.timer}</Td> 
+                   
                     <Td>
                     <Button
                         className="chakar_btn"
@@ -158,6 +152,18 @@ const editHandler = (id) =>{
                         onClick={() => deleteHandler(item.id)}
                       >
                         Delete
+                      </Button>
+                    </Td>
+                    <Td>
+                    <Button
+                        className="chakar_btn"
+                        colorScheme="blue"
+                        borderRadius="10"
+                        size="sm"
+                        key={item.id}
+                        onClick={() => deleteHandler(item.id)}
+                      >
+                        View
                       </Button>
                     </Td>
                     </Tr>

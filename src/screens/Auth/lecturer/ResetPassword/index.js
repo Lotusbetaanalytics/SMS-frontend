@@ -1,12 +1,12 @@
 import { Alert, Button, toast } from "@chakra-ui/react";
 import React, { useState } from "react";
-import Input from "../../../../components/Input";
+
 import styles from "../styles.module.css";
 import girl from "../../../../assets/Ellipse 44bc.png";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { lecturerConfirmpasswordAction } from "../../../../redux/Actions/auth";
-import { CONFIRM_PASSWORD_RESET, LECTURER_CONFIRM_PASSWORD_RESET } from "../../../../redux/Constants/auth";
+import {  LECTURER_CONFIRM_PASSWORD_RESET } from "../../../../redux/Constants/auth";
 const LecturerResetPassword = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -14,6 +14,7 @@ const LecturerResetPassword = () => {
   const [password, setPassword] = useState("");
   const [successMsg, setSuccessMsg] = useState(false);
   const [msg, setMsg] = useState(false);
+
   const lecturerConfirmpassword = useSelector(
     (state) => state.lecturerConfirmpassword
   );
@@ -35,8 +36,8 @@ const LecturerResetPassword = () => {
 
   if (success) {
     setSuccessMsg(true);
-    dispatch({ type: CONFIRM_PASSWORD_RESET });
-    navigate("/");
+    dispatch({ type: LECTURER_CONFIRM_PASSWORD_RESET });
+    navigate("/lecturer/login");
   }
 
   if (error) {
@@ -64,19 +65,19 @@ const LecturerResetPassword = () => {
           )}
         </div>
         <div className={styles.header}>
-          <h1>Welcome Back !</h1>
-          <p>Its nice seeing you</p>
+          <h1>Reset Password </h1>
+          <h5>Please input a new password</h5>
         </div>
 
         <div className={styles.center_div}>
           <form onSubmit={submitHandler}>
-            <Input
+            <input
               type={"password"}
               placeholder={"New Password"}
               onChange={(e) => setPassword(e.target.value)}
               value={password}
             />
-            <Input
+            <input
               type={"password"}
               placeholder={"Confirm Password"}
               onChange={(e) => setConfirmPassword(e.target.value)}
@@ -93,7 +94,7 @@ const LecturerResetPassword = () => {
               />
             ) : (
               <button type="submit" className={styles.blue_}>
-                Login
+                Submit
               </button>
             )}
           </form>

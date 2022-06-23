@@ -59,7 +59,7 @@ const LecturerNotice = () => {
         setTitle("")
         setMessage("")
       toast ({
-        title: "Success",
+        title: "Notification created successfully",
         description: success,
         status: "success",
         duration: 9000,

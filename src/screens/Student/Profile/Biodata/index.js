@@ -101,20 +101,16 @@ const backHandler = () => {
                         <div className={styles.info_title}>Local Address</div>
                         <div className={styles.info_body}>{local_govt}</div>
                     </div>
+                   
                     <div className={styles.info}>
-                        
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.info_title}>Phone Number 1</div>
+                        <div className={styles.info_title}>Phone Number </div>
                         <div className={styles.info_body}>{phone_no_1}</div>
                     </div>
-                    <div className={styles.info}>
+                    {/* <div className={styles.info}>
                         <div className={styles.info_title}>Phone Number 2</div>
                         <div className={styles.info_body}>{phone_no_2}</div>
-                    </div>
-                    <div className={styles.info}>
-                        
-                    </div>
+                    </div> */}
+                   
                     <div className={styles.info}>
                         <div className={styles.info_title}>Address</div>
                         <div className={styles.info_body}>{address}</div>

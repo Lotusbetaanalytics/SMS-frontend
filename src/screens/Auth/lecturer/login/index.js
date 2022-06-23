@@ -7,6 +7,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { lecturerLoginAction } from '../../../../redux/Actions/auth'
 import { LECTURER_LOGIN_RESET } from '../../../../redux/Constants/auth'
+import { lecturerDetailsAction } from '../../../../redux/Actions/lecturer/lecturerDetail'
 const LecturerLogin = () => {
     const dispatch = useDispatch()
   const navigate = useNavigate()
@@ -28,8 +29,18 @@ const LecturerLogin = () => {
       }
     }
     const lecturerLogin = useSelector((state) => state.lecturerLogin);
-    const {loading,error,userInfo} = lecturerLogin
-    
+    const {loading,error,success,userInfo} = lecturerLogin
+    if (success) {
+    toast ({
+      title: "Successfully logged in",
+      description: success,
+      status: "success",
+      duration: 9000,
+      isClosable: true,
+    })
+   dispatch(lecturerDetailsAction())
+   
+  }
     if (error) {
         toast ({
           title: "Error",

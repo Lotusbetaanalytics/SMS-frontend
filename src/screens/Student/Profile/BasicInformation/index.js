@@ -75,7 +75,7 @@ const BasicProfile = () => {
                 </div>
                 
                 <div className={styles.btnContainer}>
-                    <button className={styles.brown} onClick={editHandler}>Edit</button>
+                    <div></div>
                     <button className={styles.linear} onClick={nextHandler}>Bio data</button>
                 </div>
             </div>

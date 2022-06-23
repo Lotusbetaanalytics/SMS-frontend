@@ -1,4 +1,4 @@
-import { STUDENT_DETAILS_FAIL, STUDENT_DETAILS_REQUEST, STUDENT_DETAILS_SUCCESS } from "../../Constants/studentConstants/studentConstants";
+import { NOTICE_FAIL, NOTICE_REQUEST, NOTICE_SUCCESS, STUDENT_DETAILS_FAIL, STUDENT_DETAILS_REQUEST, STUDENT_DETAILS_SUCCESS } from "../../Constants/studentConstants/studentConstants";
 
 
 export const studentDetailsReducer = (state = {},action) => {
@@ -16,11 +16,11 @@ export const studentDetailsReducer = (state = {},action) => {
 
 export const noticeReducer = (state = {},action) => {
   switch (action.type){
-      case STUDENT_DETAILS_REQUEST:
+      case NOTICE_REQUEST:
           return {loading:true};
-      case STUDENT_DETAILS_SUCCESS:
+      case NOTICE_SUCCESS:
           return{loading:false, success:true, noticeBoard:action.payload};
-      case STUDENT_DETAILS_FAIL:
+      case NOTICE_FAIL:
           return {loading:false, error:action.payload,success:false}
       default:
           return state;

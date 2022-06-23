@@ -16,6 +16,7 @@ const TestScreen = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const id = JSON.parse(localStorage.getItem("id"));
+  console.log(id)
 
   const testResponse = useSelector((state) => state.testResponse);
   const { loading, error } = testResponse;
@@ -100,6 +101,7 @@ const TestScreen = () => {
       alert("Please select an option");
     } else {
       if (newIndex >= questionLength) {
+
         setTimeout(() => navigate("/student/test/result"), [1000]);
       } else {
         setIndex(newIndex);
@@ -137,7 +139,7 @@ const TestScreen = () => {
             <div className={styles.profile_bg}>
               <div className={styles.flex}>
                 <div className={styles.header}>
-                  <div className={styles.header_title}>{course}</div>
+                  <div className={styles.header_title}>Test</div>
                   <div>{quizName}</div>
                 </div>
                 <div className={styles.testContainer}>

@@ -32,24 +32,21 @@ export const studentDetails = () => async (dispatch,getState) => {
 
 
 
-export const studentNotice = (id) => async (dispatch,getState) => {
+export const studentNoticeAction = (id) => async (dispatch,getState) => {
 
   try {
     dispatch({ type: NOTICE_REQUEST });  
     const {studentLogin: {userInfo}} = getState();
     
-    // console.log(token)
     const config = {
       headers: {
         "Content-Type": "application/json",
         Authorization: `Bearer ${userInfo.access}`,
       },
     };
-    // console.log(userInfo.access)
-    const { data } = await axios.get(`/information/notice/${id}`, config);
+    const { data } = await axios.get(`/information/notice/${id}/`, config);
     dispatch({ type: NOTICE_SUCCESS, payload: data });
-    console.log(data)
-    localStorage.setItem("studentDetails", JSON.stringify(data));
+   
   } catch (error) {
     dispatch({
       type: NOTICE_FAIL,
@@ -61,4 +58,5 @@ export const studentNotice = (id) => async (dispatch,getState) => {
   }
 };
 	
+
 	

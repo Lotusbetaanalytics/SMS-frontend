@@ -37,7 +37,7 @@ const StudentSidebar = (props) => {
         <div className={styles.imgContainer}>
           <Link to="/student/profile/picture">
             {" "}
-            <img src={adminpic} alt="avatar" />
+            <img src={displayPicture} alt="avatar" />
           </Link>
         </div>
         <Link to="/student/profile/picture">

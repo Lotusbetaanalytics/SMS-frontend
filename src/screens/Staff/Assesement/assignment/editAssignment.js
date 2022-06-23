@@ -86,7 +86,7 @@ const EditAssignment = () => {
     }
     if (success) {
       toast ({
-        title: "Success",
+        title: "Assignmnet edited successfully",
         description: success,
         status: "success",
         duration: 9000,

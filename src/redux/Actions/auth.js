@@ -28,6 +28,9 @@ export const LoginStudent = (email, password) => async (dispatch) => {
   export const studentLogout = () => (dispatch) => {
       localStorage.removeItem("studentInfo")
       localStorage.removeItem("studentDetails")
+      localStorage.removeItem("question")
+      localStorage.removeItem("quiz_takers")
+      localStorage.removeItem("assignment_taker")
       dispatch({
           type: STUDENT_LOGOUT,
         });

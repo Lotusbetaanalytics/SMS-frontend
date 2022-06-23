@@ -168,7 +168,7 @@ const StudentDashboard = () => {
           <div className={styles.card_container}>
             <Cards
               iconColor={"white"}
-              iconBorder={"5px solid rgba(82, 69, 159, 0.49)"}
+              iconBorder={"5px rgba(82, 69, 159, 0.49)"}
               body={matricNum}
               title={"Matric Num"}
               bgColor={"rgba(82, 69, 159, 0.49)"}
@@ -224,7 +224,7 @@ const StudentDashboard = () => {
             />
             <Cards
               iconColor={"white"}
-              iconBorder={"5px solid rgba(96, 66, 37, 1)"}
+              iconBorder={"5px rgba(96, 66, 37, 1)"}
               body={course_adviser}
               title={"D.C.A"}
               bgColor={"rgba(52, 26, 37, 1)"}
@@ -232,7 +232,7 @@ const StudentDashboard = () => {
             />
             <Cards
               iconColor={"white"}
-              iconBorder={"5px double rgba(4, 74, 28, 0.49)"}
+              iconBorder={"5px rgba(4, 74, 28, 0.49)"}
               body={Hod}
               title={"H.O.D"}
               bgColor={"rgba(4, 87, 22, 1)"}
@@ -294,15 +294,16 @@ const StudentDashboard = () => {
       </div>
       <div className={styles.widget}>
         <div className={styles.headerbar}>
-          <button className={styles.bellContainer}>
+        <div className={styles.avatar}>
+              <img src={adminpic} alt="avatar" />
+            </div>
+          {/* <button className={styles.bellContainer}>
             <BiBell />
 
             <div className={styles.notice_count}>2</div>
-          </button>
+          </button> */}
           <div className={styles.userName}>
-            <div className={styles.avatar}>
-              <img src={adminpic} alt="avatar" />
-            </div>
+            
             {mystudentDetails && mystudentDetails.full_name}{" "}
             <button className={styles.logout_btn} onClick={logoutHandler}>
               <MdOutlineLogout />

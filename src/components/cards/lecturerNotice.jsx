@@ -33,9 +33,7 @@ const LecturerNotice = () => {
 
       )): (
       <div>
-           {data && data.map((item) => (
-              <div className={styles.noNew}>{item.message}</div> 
-           ))}
+              <div className={styles.noNew}>There are no notice</div> 
         </div>
         )}
      </div>

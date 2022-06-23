@@ -105,9 +105,9 @@ const backHandler = () => {
 
  
 
-console.log(NaijaStates.all());
+
 const statesSelect =  NaijaStates.states()
-console.log(state_of_origin)
+
 // const selectLGA = NaijaStates.lgas(state_of_origin)
 // console.log(NaijaStates.states());
 // console.log(NaijaStates.lgas())
@@ -189,19 +189,7 @@ console.log(state_of_origin)
                    
                   </select>
                 </div>
-                {/* <div className={styles.editinfo}>
-                  <label>Local Government</label>
-
-                  <select onChange={(e) => setState_of_origin(e.target.value)}
-                  value={state_of_origin}>
-                     {selectLGA && selectLGA.map((item,i) =>(
-                        <option key={i} value={item}>{item}
-                            
-                        </option>
-                    ))}
-                   
-                  </select>
-                </div> */}
+                
                 <div className={styles.editinfo}>
                   <Input
                     label={"Local Government"}
@@ -227,15 +215,7 @@ console.log(state_of_origin)
                     readOnly
                   />
                   </div>
-                  {/* <div className={styles.editinfo}>
-                  <Input
-                    label={"Phone Number 2"}
-                    type="number"
-                    value={phone_no_2}
-                    onChange={(e) => setPhone_no_2(e.target.value)}
-                    readOnly
-                  />
-                  </div> */}
+                 
               </div>
             </div>
 

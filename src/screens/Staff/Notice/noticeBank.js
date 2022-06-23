@@ -8,7 +8,7 @@ import LecturerHeader from '../../../components/lecturerHeader'
 import LectureSidebar from '../../../components/lecturerSidebar'
 import { getNoticeAction, lecturerDeleteNoticeAction} from '../../../redux/Actions/lecturer/lecturerNotice'
 import { DELETE_NOTICE_RESET } from '../../../redux/Constants/lecturer/notice'
-import tableData from '../Assesement/tableData'
+
 import styles from "./styles.module.css"
 const NoticeBank = () => {
     const dispatch = useDispatch();
@@ -20,6 +20,7 @@ const NoticeBank = () => {
         navigate("/lecturer/notification")
     }
     const deleteHandler = (id) => {
+      alert("Are you sure you want to delete this notice?")
         dispatch(lecturerDeleteNoticeAction(id))
     } 
 
@@ -27,11 +28,6 @@ const NoticeBank = () => {
         navigate(`/lecturer/notification/${id}`)
         console.log(id)
     } 
-
-
-
-    const lecturerDeleteNotice = useSelector((state) => state.lecturerDeleteNotice);
-    const { loading:deleteLoading, success:deleteSuccess,error:deleteError } = lecturerDeleteNotice;
 
      const userEmail = JSON.parse(localStorage.getItem("lecturerDetails"));
     const lecturerEmail = userEmail && userEmail.email
@@ -44,9 +40,12 @@ const NoticeBank = () => {
       const lecturerGetNotice = useSelector((state) => state.lecturerGetNotice);
     const { loading,error,getNotice } = lecturerGetNotice;
 
+    const lecturerDeleteNotice = useSelector((state) => state.lecturerDeleteNotice);
+    const { loading:deleteLoading, success:deleteSuccess,error:deleteError } = lecturerDeleteNotice;
+
     if (deleteSuccess) {
         toast ({
-          title: "Success",
+          title: "Notice deleted successfully",
           description: deleteSuccess,
           status: "success",
           duration: 9000,

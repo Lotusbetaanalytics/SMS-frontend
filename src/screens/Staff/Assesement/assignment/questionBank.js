@@ -56,13 +56,14 @@ const editHandler = (id) =>{
 } 
 
     const deleteHandler = (id) =>{
+      alert("Are you sure you want to delete this assignment");
       dispatch(lecturerDeleteAssignmentAction(id))
         console.log(id)
     } 
 
     if (deleteSuccess) {
       toast ({
-        title: "Success",
+        title: "Assignment deleted successfully",
         description: deleteSuccess,
         status: "success",
         duration: 9000,

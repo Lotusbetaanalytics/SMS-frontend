@@ -147,6 +147,7 @@
 .noticeInfo {
   display: flex;
   font-size: 11px;
+  justify-content: flex-start;
 }
 
 .infoHeader {

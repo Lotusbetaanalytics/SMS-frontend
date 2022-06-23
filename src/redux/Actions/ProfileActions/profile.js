@@ -30,7 +30,7 @@ export const editProfile = (userdata) => async (dispatch,getState) =>{
   }
 }
 
-export const profilePicture = (formData) => async (dispatch,getState) =>{
+export const profilePicture = (id,formData) => async (dispatch,getState) =>{
   const {studentLogin:{userInfo}} = getState();
   
 try {
@@ -44,7 +44,7 @@ try {
       Authorization: `Bearer ${userInfo.access}`,
     },
   };
-  const { data } = await axios.patch("/user/account/",formData, config);
+  const { data } = await axios.patch(`/user/biodata/${id}/`,formData, config);
   dispatch({ type: PROFILE_PICTURE_SUCCESS, payload: data });
   
 } catch (error) {

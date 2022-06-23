@@ -32,7 +32,7 @@ const AllStudent = () => {
   const dispatch = useDispatch();
   const toast = useToast();
 
-  const [course, setCourse] = useState("");
+  const [course, setCourse] = useState(0);
 
   const getId = JSON.parse(localStorage.getItem("lecturerDetails"));
   const id = getId.staff[0].id;
@@ -120,7 +120,7 @@ const AllStudent = () => {
   const courseHandler = (e) => {
     setCourse(e.target.value);
     console.log(course, "this is it");
-    const courseName = course;
+    
   };
 
   useEffect(()=>(
@@ -145,7 +145,7 @@ const AllStudent = () => {
       <div className="right_container2">
         <LecturerHeader title={"Assignment History"} />
         {loading && <CircularProgress isIndeterminate color="green.300" />}
-        {isLoading && <CircularProgress isIndeterminate color="green.300" />}
+        
         <div className={styles.dropDown}>
           <div className={styles.dropDown_container}>
             <button className={`${styles.left_Curve} ${styles.white}`} onClick={assignmentPage}>
@@ -160,7 +160,7 @@ const AllStudent = () => {
           </div>
           <div>
             <select onChange={courseHandler} value={course}>
-              <option>Select Assignment</option>
+              <option>Select Course</option>
               {mycourses &&
                 mycourses.map((item, i) => (
                  
@@ -197,34 +197,7 @@ const AllStudent = () => {
 
               margin: "0 0",
             }}
-            actions={[
-              {
-                icon: "visibility",
-                iconProps: {
-                  style: { fontSize: "20px", color: "gold" },
-                },
-                tooltip: "add",
-
-                onClick: (event, rowData) => {
-                  handleAssign(rowData);
-                },
-              },
-            ]}
-            localization={{
-              toolbar: {
-                searchPlaceholder: "search course",
-              },
-            }}
-            components={{
-              Action: (props) => (
-                <button
-                  onClick={(event) => props.action.onClick(event, props.data)}
-                  className={styles.table_btn}
-                >
-                  {props.action.tooltip}
-                </button>
-              ),
-            }}
+            
           />
         </div>
       </div>

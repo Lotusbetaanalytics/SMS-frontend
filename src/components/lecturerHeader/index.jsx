@@ -29,12 +29,12 @@ const {lecturerDetail}  = lecturerDetails;
             <img src={adminpic} alt="avatar" />
             </button>
           </div>
-          <button className={styles.bellContainer}>
+          {/* <button className={styles.bellContainer}>
               <BiBell/>
           <div className={styles.notice_count}>
               2
           </div>
-          </button>
+          </button> */}
          
            
         </div>

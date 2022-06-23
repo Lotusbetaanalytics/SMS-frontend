@@ -8,12 +8,15 @@ import styles from "./styles.module.css";
 import adminpic from "../../../assets/profile.jpg";
 import Input from "../../../components/Input";
 import { EDITPROFILE_RESET } from "../../../redux/Constants/ProfileConstants/profileConstants";
-import { Button, toast, useToast } from "@chakra-ui/react";
-
+import { Alert, Button, toast, useToast } from "@chakra-ui/react";
+import NaijaStates from "naija-state-local-government";
 import { lecturerDetailsAction } from "../../../redux/Actions/lecturer/lecturerDetail";
-import { editLecturerProfile, editProfile } from "../../../redux/Actions/ProfileActions/profile";
+import {
+  editLecturerProfile,
+  editProfile,
+} from "../../../redux/Actions/ProfileActions/profile";
 const EditLecturerProfile = () => {
-  const toast = useToast()
+  const toast = useToast();
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
@@ -21,10 +24,9 @@ const EditLecturerProfile = () => {
   useEffect(() => {
     dispatch(lecturerDetailsAction());
   }, [dispatch]);
-  
 
   const lecturerDetails = useSelector((state) => state.lecturerDetails);
-  const {lecturerDetail,success}  = lecturerDetails;
+  const { lecturerDetail, success } = lecturerDetails;
 
   const [first_name, setFirst_name] = useState("");
   const [middle_name, setMiddle_name] = useState("");
@@ -61,66 +63,66 @@ const EditLecturerProfile = () => {
   const [heart_disease, setHeart_disease] = useState("");
   const [disabilities, setDisabilities] = useState("");
   const [respiratory_problems, setRespiratory_problems] = useState("");
-  const [msg,setMsg] = useState("");
-
+  const [msg, setMsg] = useState("");
+  const statesSelect = NaijaStates.states();
   const editProfile_ = useSelector((state) => state.editProfile_);
-  const {loading,success:isSuccess,error} = editProfile_
+  const { loading, success: isSuccess, error } = editProfile_;
 
   const submitHandler = (e) => {
     e.preventDefault();
-    const userdata = {first_name,
-        middle_name,
-        last_name,
-        biodata: {
-            marital_status: marital_status,
-            gender: gender,
-            religion: religion,
-            birthday: birthday,
-            nationality: nationality,
-            state_of_origin: state_of_origin,
-            local_govt: local_govt,
-            address: address,
-            phone_no_1: phone_no_1,
-            phone_no_2: phone_no_2,
-            academic_history: [
-                {
-                  institution:institution,
-                  start_date:start_date,
-                  end_date:end_date,
-                  qualification_earned:qualification_earned
-                }
-              ],
-            family_data : {
-                next_of_kin_full_name:next_of_kin_full_name,
-                next_of_kin_phone_no_1:next_of_kin_phone_no_1,
-                next_of_kin_phone_no_2:next_of_kin_phone_no_2,
-                next_of_kin_address:next_of_kin_address,
-                guardian_full_name:guardian_full_name,
-                guardian_phone_no_1:guardian_phone_no_1,
-                guardian_phone_no_2:guardian_phone_no_2,
-                guardian_address:guardian_address
-              },
-              health_data : {
-                blood_group:blood_group,
-                genotype:genotype,
-                allergies:allergies,
-                diabetes:diabetes,
-                STIs:STIs,
-                heart_disease:heart_disease,
-                disabilities:disabilities,
-                respiratory_problems:respiratory_problems,
-              }
-            
-          }
-        } 
-      dispatch(editLecturerProfile(userdata)) 
-      console.log("yeye")  
+    const userdata = {
+      first_name,
+      middle_name,
+      last_name,
+      biodata: {
+        marital_status: marital_status,
+        gender: gender,
+        religion: religion,
+        birthday: birthday,
+        nationality: nationality,
+        state_of_origin: state_of_origin,
+        local_govt: local_govt,
+        address: address,
+        phone_no_1: phone_no_1,
+        phone_no_2: phone_no_2,
+        academic_history: [
+          {
+            institution: institution,
+            start_date: start_date,
+            end_date: end_date,
+            qualification_earned: qualification_earned,
+          },
+        ],
+        family_data: {
+          next_of_kin_full_name: next_of_kin_full_name,
+          next_of_kin_phone_no_1: next_of_kin_phone_no_1,
+          next_of_kin_phone_no_2: next_of_kin_phone_no_2,
+          next_of_kin_address: next_of_kin_address,
+          guardian_full_name: guardian_full_name,
+          guardian_phone_no_1: guardian_phone_no_1,
+          guardian_phone_no_2: guardian_phone_no_2,
+          guardian_address: guardian_address,
+        },
+        health_data: {
+          blood_group: blood_group,
+          genotype: genotype,
+          allergies: allergies,
+          diabetes: diabetes,
+          STIs: STIs,
+          heart_disease: heart_disease,
+          disabilities: disabilities,
+          respiratory_problems: respiratory_problems,
+        },
+      },
+    };
+    dispatch(editLecturerProfile(userdata));
+    console.log("yeye");
   };
   if (isSuccess) {
-    setMsg(true)
-    dispatch({type:EDITPROFILE_RESET})
- }
- if (error) {
+    setMsg(true);
+    dispatch({ type: EDITPROFILE_RESET });
+  }
+  if (error) {
     toast({
       title: "Error",
       description: error,
@@ -128,7 +130,7 @@ const EditLecturerProfile = () => {
       duration: 9000,
       isClosable: true,
     });
-    dispatch({type:EDITPROFILE_RESET})
+    dispatch({ type: EDITPROFILE_RESET });
   }
 
   React.useEffect(() => {
@@ -144,13 +146,17 @@ const EditLecturerProfile = () => {
           lecturerDetail.biodata.marital_status
       );
       setGender(
-        lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.gender
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.gender
       );
       setReligion(
         lecturerDetail && lecturerDetail.tata && lecturerDetail.bioda.religion
       );
       setBirthday(
-        lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.birthday
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.birthday
       );
       setNationality(
         lecturerDetail &&
@@ -168,7 +174,9 @@ const EditLecturerProfile = () => {
           lecturerDetail.biodata.local_govt
       );
       setAddress(
-        lecturerDetail && lecturerDetail.biodata && lecturerDetail.biodata.address
+        lecturerDetail &&
+          lecturerDetail.biodata &&
+          lecturerDetail.biodata.address
       );
       setPhone_no_1(
         lecturerDetail &&
@@ -300,6 +308,7 @@ const EditLecturerProfile = () => {
       <LectureSidebar profile={"focus"} />
       <div className="right_container2">
         <LecturerHeader title={"Profile"} />
+        {msg && <Alert status="success">Profile Updated Successfully</Alert>}
         <div className={styles.info_container}>
           <div className={styles.left}>
             <div className={styles.image_container}>
@@ -307,140 +316,149 @@ const EditLecturerProfile = () => {
             </div>
           </div>
           <div className={styles.right}>
-          <div className={styles.editContainer}>
-                <div className={styles.editinfo}>
-                    <Input
-                    label={"First Name"}
-                     type={"text"}
-                     value={first_name}
-                     onChange={(e) => setFirst_name(e.target.value)}
-                    />
-                </div>
-                <div className={styles.editinfo}>
-                    <Input
-                    label={"Middle Name"}
-                     type="text"
-                     value={middle_name}
-                     onChange={(e) => setMiddle_name(e.target.value)}
-                    />
-                </div>
-                <div className={styles.editinfo}>
-                    <Input
-                    type="text"
-                    label={"Last Name"}
-                    disabled
-                    value={last_name}
-                    onChange={(e) => setLast_name(e.target.value)}
-                    />
-                </div>
-                <div className={styles.editinfo}>
-                    <Input
-                    label={"Email"}
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    disabled
-                    />
-                </div>
-                <div className={styles.editinfo}>
-                    <Input
-                    label={"Specialization"}
-                    type="text"
-                    value={specialization}
-                    onChange={(e) => setSpecialization(e.target.value)}
-                    readOnly/>
-                </div>
-                <div className={styles.editinfo}>
-                  <label>Marital Status</label>
-                  <select onChange={(e) => setMarital_status(e.target.value)}
-                    value={marital_status}>
-                    <option>Select</option>
-                    <option value="Single">Single</option>
-                    <option value="Married">Married</option>
-                    <option value="Divorced">Divorced</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div className={styles.editinfo}>
-                  <label>Gender</label>
+            <div className={styles.editContainer}>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"First Name"}
+                  type={"text"}
+                  value={first_name}
+                  onChange={(e) => setFirst_name(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Middle Name"}
+                  type="text"
+                  value={middle_name}
+                  onChange={(e) => setMiddle_name(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  type="text"
+                  label={"Last Name"}
+                  disabled
+                  value={last_name}
+                  onChange={(e) => setLast_name(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Email"}
+                  type="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  disabled
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Specialization"}
+                  type="text"
+                  value={specialization}
+                  onChange={(e) => setSpecialization(e.target.value)}
+                  readOnly
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <label>Marital Status</label>
+                <select
+                  onChange={(e) => setMarital_status(e.target.value)}
+                  value={marital_status}
+                >
+                  <option>Select</option>
+                  <option value="Single">Single</option>
+                  <option value="Married">Married</option>
+                  <option value="Divorced">Divorced</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className={styles.editinfo}>
+                <label>Gender</label>
 
-                  <select onChange={(e) => setGender(e.target.value)}
-                  value={gender}>
-                    <option>Select</option>
-                    <option value="Male">Male</option>
-                    <option value="Female">Female</option>
-                  </select>
-                </div>
-                <div className={styles.editinfo}>
+                <select
+                  onChange={(e) => setGender(e.target.value)}
+                  value={gender}
+                >
+                  <option>Select</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                </select>
+              </div>
+              <div className={styles.editinfo}>
                 <label>Religion</label>
-                  <select
-                    onChange={(e) => setReligion(e.target.value)}
-                  >
-                    <option>Select</option>
-                    <option value="Christianity">Christianity</option>
-                    <option value="Islam">Islam</option>
-                    <option value="Other">Other</option>
-                  </select>
-                </div>
-                <div className={styles.editinfo}>
-                  <Input
-                    label={"Birthday"}
-                    type="date"
-                    value={birthday}
-                    onChange={(e) => setBirthday(e.target.value)}
-                  />
-                </div>
-                <div className={styles.editinfo}>
-                  <Input
-                    label={"State of Origin"}
-                    type="text"
-                    value={state_of_origin}
-                    onChange={(e) => setState_of_origin(e.target.value)}
-                  />
-                </div>
-                <div className={styles.editinfo}>
-                  <Input
-                    label={"Nationality"}
-                    type="text"
-                    value={nationality}
-                    onChange={(e) => setNationality(e.target.value)}
-                  />
-                </div>
-                <div className={styles.editinfo}>
-                  <Input
-                    label={"Local Government"}
-                    type="text"
-                    value={local_govt}
-                    onChange={(e) => setLocal_govt(e.target.value)}
-                  />
-                  </div>
-                  <div className={styles.editinfo}>
-                  <Input
-                    label={"Address"}
-                    type="textarea"
-                    value={address}
-                    onChange={(e) => setAddress(e.target.value)}
-                  />
-                  </div>
-                  <div className={styles.editinfo}>
-                  <Input
-                    label={"Phone Number 1"}
-                    type="number"
-                    value={phone_no_1}
-                    onChange={(e) => setPhone_no_1(e.target.value)}
-                   
-                  />
-                  </div>
-                  <div className={styles.editinfo}>
-                  <Input
-                    label={"Phone Number 2"}
-                    type="number"
-                    value={phone_no_2}
-                    onChange={(e) => setPhone_no_2(e.target.value)}
-                   
-                  />
-                  </div>
-                  <div className={styles.editinfo}>
+                <select onChange={(e) => setReligion(e.target.value)}>
+                  <option>Select</option>
+                  <option value="Christianity">Christianity</option>
+                  <option value="Islam">Islam</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Birthday"}
+                  type="date"
+                  value={birthday}
+                  onChange={(e) => setBirthday(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Nationality"}
+                  type="text"
+                  value={nationality}
+                  onChange={(e) => setNationality(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <label>State of Origin</label>
+
+                <select
+                  onChange={(e) => setState_of_origin(e.target.value)}
+                  value={state_of_origin}
+                >
+                  {statesSelect &&
+                    statesSelect.map((item, i) => (
+                      <option key={i} value={item}>
+                        {item}
+                      </option>
+                    ))}
+                </select>
+              </div>
+            
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Local Government"}
+                  type="text"
+                  value={local_govt}
+                  onChange={(e) => setLocal_govt(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Address"}
+                  type="textarea"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Phone Number 1"}
+                  type="number"
+                  value={phone_no_1}
+                  onChange={(e) => setPhone_no_1(e.target.value)}
+                />
+              </div>
+              <div className={styles.editinfo}>
+                <Input
+                  label={"Phone Number 2"}
+                  type="number"
+                  value={phone_no_2}
+                  onChange={(e) => setPhone_no_2(e.target.value)}
+                />
+              </div>
+              {/* <div className={styles.editinfo}>
                     <Input
                     label={"Institution"}
                     type="text"
@@ -476,9 +494,9 @@ const EditLecturerProfile = () => {
                     <option value="Bachelors">Bachelors</option>
                     <option value="Other">Other</option>
                   </select>
-                </div>
-                <div className={styles.editinfo}>
-              <Input
+                </div> */}
+              <div className={styles.editinfo}>
+                <Input
                   label={"Next of kin full name"}
                   type="text"
                   value={next_of_kin_full_name}
@@ -486,7 +504,7 @@ const EditLecturerProfile = () => {
                 />
               </div>
               <div className={styles.editinfo}>
-              <Input
+                <Input
                   label={"Next of kin phone number "}
                   type="text"
                   value={next_of_kin_phone_no_1}
@@ -494,7 +512,7 @@ const EditLecturerProfile = () => {
                 />
               </div>
               <div className={styles.editinfo}>
-              <Input
+                <Input
                   label={"Next of kin phone number 2"}
                   type="text"
                   value={next_of_kin_phone_no_2}
@@ -532,34 +550,51 @@ const EditLecturerProfile = () => {
                   value={guardian_phone_no_2}
                   onChange={(e) => setGuardian_phone_no_2(e.target.value)}
                 />
-                </div>
-                <div className={styles.editinfo}>
+              </div>
+              <div className={styles.editinfo}>
                 <Input
                   label={"Guardian Address"}
                   type="textarea"
                   value={guardian_address}
                   onChange={(e) => setGuardian_address(e.target.value)}
                 />
-                </div>
-                <div className={styles.editinfo}>
-              <Input
-                  label={"Blood Group"}
-                  type="type"
-                  value={blood_group}
-                  onChange={(e) => setBlood_group(e.target.value)}
-                />
               </div>
               <div className={styles.editinfo}>
-              <Input
-                  label={"Genotype"}
-                  type="type"
-                  value={genotype}
-                  onChange={(e) => setGenotype(e.target.value)}
-     
-                />
-                </div>
+              <label>Blood Group</label>
+                <select
+                  onChange={(e) => setBlood_group(e.target.value)}
+                  value={blood_group}
+                >
+                  <option>Select</option>
+                  <option value="A RhD positive (A+)">A RhD positive (A+)</option>
+                  <option value="A RhD negative (A-)">A RhD negative (A-)</option>
+                  <option value="B RhD positive (B+)">B RhD positive (B+)</option>
+                  <option value="B RhD negative (B-)">B RhD negative (B-)</option>
+                  <option value="O RhD positive (O+)">O RhD positive (O+)</option>
+                  <option value="O RhD negative (O-)">O RhD negative (O-) (B-)</option>
+                  <option value="AB RhD positive (AB+)">AB RhD positive (AB+)</option>
+                  <option value="AB RhD negative (AB-)">AB RhD negative (AB-)</option>
+                  
+                </select>
+              </div>
               <div className={styles.editinfo}>
-              <label>Allergies</label>
+              <label>Genotype</label>
+                <select
+                  onChange={(e) => setGenotype(e.target.value)}
+                  value={genotype}
+                >
+                  <option>Select</option>
+                  <option value="AA">AA</option>
+                  <option value="AB">AB</option>
+                  <option value="BB">BB</option>
+                  <option value="BO">BO</option>
+                  <option value="OO">OO</option>
+                  <option value="AO">AO</option>
+                  
+                </select>
+              </div>
+              <div className={styles.editinfo}>
+                <label>Allergies</label>
                 <select
                   onChange={(e) => setAllergies(e.target.value)}
                   value={allergies}
@@ -567,35 +602,29 @@ const EditLecturerProfile = () => {
                   <option>Select</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
-                  
                 </select>
               </div>
               <div className={styles.editinfo}>
-              <label>Diabetes</label>
+                <label>Diabetes</label>
                 <select
                   onChange={(e) => setDiabetes(e.target.value)}
                   value={diabetes}
                 >
                   <option>Select</option>
-                  <option value="Yes">Yes</option>
-                  <option value="No">No</option>
-                  
+                  <option value="true">Yes</option>
+                  <option value="false">No</option>
                 </select>
               </div>
               <div className={styles.editinfo}>
-              <label>STIs</label>
-                <select
-                  onChange={(e) => setSTIs(e.target.value)}
-                  value={STIs}
-                >
+                <label>STIs</label>
+                <select onChange={(e) => setSTIs(e.target.value)} value={STIs}>
                   <option>Select</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
-                  
                 </select>
               </div>
               <div className={styles.editinfo}>
-              <label>Heart Disease</label>
+                <label>Heart Disease</label>
                 <select
                   onChange={(e) => setHeart_disease(e.target.value)}
                   value={heart_disease}
@@ -603,11 +632,10 @@ const EditLecturerProfile = () => {
                   <option>Select</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
-                  
                 </select>
               </div>
               <div className={styles.editinfo}>
-              <label>Disabilities</label>
+                <label>Disabilities</label>
                 <select
                   onChange={(e) => setDisabilities(e.target.value)}
                   value={disabilities}
@@ -615,10 +643,9 @@ const EditLecturerProfile = () => {
                   <option>Select</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
-                  
                 </select>
-                </div>
-                <div className={styles.editinfo}>
+              </div>
+              <div className={styles.editinfo}>
                 <label>Respiratory Problem</label>
                 <select
                   onChange={(e) => setRespiratory_problems(e.target.value)}
@@ -627,22 +654,23 @@ const EditLecturerProfile = () => {
                   <option>Select</option>
                   <option value="Yes">Yes</option>
                   <option value="No">No</option>
-                  
                 </select>
-                </div>
               </div>
+            </div>
             <div className={styles.btnContainer}>
-            {loading? (
-              <Button
-              isLoading
-              loadingText="Updating..."
-              colorScheme="teal"
-              variant="outline"
-        
-              style={{ height: "3rem" }}
-            />):(
-                <button className={styles.brown} onClick={submitHandler}>Update</button>
-            )}
+              {loading ? (
+                <Button
+                  isLoading
+                  loadingText="Updating..."
+                  colorScheme="teal"
+                  variant="outline"
+                  style={{ height: "3rem" }}
+                />
+              ) : (
+                <button className={styles.brown} onClick={submitHandler}>
+                  Update
+                </button>
+              )}
             </div>
           </div>
         </div>
